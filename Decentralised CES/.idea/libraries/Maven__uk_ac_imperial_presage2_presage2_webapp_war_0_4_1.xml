@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: uk.ac.imperial.presage2:presage2-webapp:war:0.4.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-webapp/0.4.1/presage2-webapp-0.4.1.war!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-webapp/0.4.1/presage2-webapp-0.4.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-webapp/0.4.1/presage2-webapp-0.4.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
