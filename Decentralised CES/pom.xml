@@ -78,5 +78,5 @@
 		</plugins>
 	</build>
 
-	<artifactId>myagents</artifactId>
+	<artifactId>DCES</artifactId>
 </project>
