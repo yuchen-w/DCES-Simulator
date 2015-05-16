@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Fri Feb 13 16:34:56 GMT 2015
+http\://dev.presage2.info/nexus/content/groups/public/.error=Could not transfer artifact commons-cli\:commons-cli\:jar\:sources\:1.2 from/to presage (http\://dev.presage2.info/nexus/content/groups/public/)\: connect timed out
+http\://repo.maven.apache.org/maven2/.lastUpdated=1423845296696
+@default-http\://dev.presage2.info/nexus/content/groups/public/.lastUpdated=1423845296453

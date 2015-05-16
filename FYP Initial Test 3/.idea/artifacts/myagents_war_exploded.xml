@@ -1,0 +1,34 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="myagents:war exploded">
+    <output-path>$PROJECT_DIR$/../../Eclipse Workspace/FYP Initial Test 3/target/myagents-0.0.1</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="myagents" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: uk.ac.imperial.presage2:presage2-core:0.4.0" />
+          <element id="library" level="project" name="Maven: com.google.inject:guice:3.0" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: com.google.inject.extensions:guice-assistedinject:3.0" />
+          <element id="library" level="project" name="Maven: com.google.inject.extensions:guice-multibindings:3.0" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
+          <element id="library" level="project" name="Maven: commons-cli:commons-cli:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.1" />
+          <element id="library" level="project" name="Maven: org.json:json:20090211" />
+          <element id="library" level="project" name="Maven: uk.ac.imperial.presage2:presage2-util:0.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-math:2.2" />
+          <element id="library" level="project" name="Maven: uk.ac.imperial.presage2:presage2-jsondb:0.4.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.1.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.1.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.1.0" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../../Eclipse Workspace/FYP Initial Test 3/target/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="myagents/web/Web" />
+    </root>
+  </artifact>
+</component>

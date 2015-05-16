@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Feb 17 12:28:24 GMT 2015
+http\://dev.presage2.info/nexus/content/groups/public/.error=Could not transfer artifact org.jmock\:jmock\:pom\:2.5.1 from/to presage (http\://dev.presage2.info/nexus/content/groups/public/)\: connect timed out
+http\://repo.maven.apache.org/maven2/.lastUpdated=1424176104338
+@default-http\://dev.presage2.info/nexus/content/groups/public/.lastUpdated=1424176104220

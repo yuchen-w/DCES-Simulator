@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="myagents:war">
+    <output-path>$PROJECT_DIR$/../../Eclipse Workspace/FYP Initial Test 3/target</output-path>
+    <root id="archive" name="myagents-0.0.1.war">
+      <element id="artifact" artifact-name="myagents:war exploded" />
+    </root>
+  </artifact>
+</component>

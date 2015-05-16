@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Feb 18 01:39:47 GMT 2015
+http\://dev.presage2.info/nexus/content/groups/public/.error=Could not transfer artifact mysql\:mysql-connector-java\:pom\:5.1.6 from/to presage (http\://dev.presage2.info/nexus/content/groups/public/)\: connect timed out
+http\://repo.maven.apache.org/maven2/.lastUpdated=1424223587119
+@default-http\://dev.presage2.info/nexus/content/groups/public/.lastUpdated=1424223586938
