@@ -11,3 +11,4 @@ To do:
 
 Next Steps:
 - Explore nesting of agents
+- Integrate JBoss Rules Engine (http://www.jboss.org/drools/)
