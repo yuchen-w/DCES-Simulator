@@ -12,6 +12,7 @@ import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
 import uk.ac.imperial.presage2.core.util.random.Random;
 import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
+import uk.ac.imperial.presage2.db.sql.SqlStorage;
 //import uk.ac.imperial.presage2.util.location.LocationStoragePlugin;
 //import uk.ac.imperial.presage2.util.location.MoveHandler;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;

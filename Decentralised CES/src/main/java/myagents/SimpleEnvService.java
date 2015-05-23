@@ -26,7 +26,8 @@ public class SimpleEnvService extends EnvironmentService{
 	private final Logger logger = Logger.getLogger(this.getClass());
 	
 	@Inject
-	public SimpleEnvService(EnvironmentSharedStateAccess sharedState) {
+	public SimpleEnvService(EnvironmentSharedStateAccess sharedState)
+	{
 		super(sharedState);
 	}
 	

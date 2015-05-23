@@ -1,3 +1,4 @@
+//Object for passing demand and generation between agent and environment
 package actions;
 
 public class Demand extends TimestampedAction { 
