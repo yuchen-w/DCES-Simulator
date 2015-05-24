@@ -1,5 +1,5 @@
 # FYP
-Repository for my EE4 FYP. Forked from the publicly available FYP-repository-test
+Repository for my EE4 FYP. Forked from the publicly available FYP-repository-test (https://github.com/yuchen-w/FYP-repository-test)
 
 To do: 
 - Create multiple agents (done)
