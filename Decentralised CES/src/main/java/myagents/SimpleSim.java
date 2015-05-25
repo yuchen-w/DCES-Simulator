@@ -7,6 +7,7 @@ import actions.DemandHandler;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 //import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
+import simpleactions.InstitutionDemandHandler;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
@@ -38,6 +39,7 @@ public class SimpleSim extends RunnableSimulation {
 		addModule(new AbstractEnvironmentModule()
                                 .addParticipantGlobalEnvironmentService(SimpleEnvService.class)
                                 .addActionHandler(DemandHandler.class)
+								.addActionHandler(InstitutionDemandHandler.class)
 				//Add the participant service and any other additional environment services here too
 				);
 		

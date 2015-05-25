@@ -9,19 +9,28 @@ import actions.Demand;
 
 import com.google.inject.Inject;
 
-import uk.ac.imperial.presage2.core.environment.EnvironmentService;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
+import simpleactions.SimpleDemand;
+import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
+import uk.ac.imperial.presage2.core.environment.EnvironmentConnector;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
+import uk.ac.imperial.presage2.core.simulator.Step;
 //import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 //import uk.ac.imperial.presage2.core.participant.Participant;
 //import uk.ac.imperial.presage2.util.location.LocationService;
+import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 
-public class SimpleEnvService extends EnvironmentService{
+public class SimpleEnvService extends SimpleInstitutionEnvService {
+	//Was ... extends EnvironmentService
 
 	
 	double totalDemand = 0;
 	double totalGeneration = 0;
 	double available = 0;
+
+	SimpleDemand AgentDemand;
+
+	protected EnvironmentConnector environment;
 	
 	private final Logger logger = Logger.getLogger(this.getClass());
 	
@@ -103,6 +112,17 @@ public class SimpleEnvService extends EnvironmentService{
 			logger.warn("Failed to getTotalGeneration", e);
 			return 909090.9090;	//Fix this
 		}
+	}
+
+	@Step
+	public void step(int t) throws ActionHandlingException {
+		try
+		{
+			environment.act(AgentDemand, getID(), authkey);
+		} catch (ActionHandlingException e) {
+			logger.warn("Failed to add demand to the pool", e);
+		}
+
 	}
 
 }

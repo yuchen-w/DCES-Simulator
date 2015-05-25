@@ -17,11 +17,6 @@ public class SimpleDemand extends SimpleTimestampedAction {
 	{
 		this.allocation = allocation;
 	}
-//	@Override
-//	public String toString() {
-//		return "Demand [quantity=" + quantity + ", player=" + player.getName()
-//				+ ", t=" + t + "]";
-//	}
 
 	public double getDemand() 
 	{

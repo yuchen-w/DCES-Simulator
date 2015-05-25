@@ -14,8 +14,9 @@ import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 //import uk.ac.imperial.presage2.core.participant.Participant;
 //import uk.ac.imperial.presage2.util.location.LocationService;
 
-public class SimpleSimpleEnvService extends SimpleEnvService{
+public class SimpleInstitutionEnvService extends EnvironmentService{
 
+	protected EnvironmentSharedStateAccess sharedState;
 
 	double totalDemand = 0;
 	double totalGeneration = 0;
@@ -24,7 +25,7 @@ public class SimpleSimpleEnvService extends SimpleEnvService{
 	private final Logger logger = Logger.getLogger(this.getClass());
 
 	@Inject
-	public SimpleSimpleEnvService(EnvironmentSharedStateAccess sharedState)
+	public SimpleInstitutionEnvService(EnvironmentSharedStateAccess sharedState)
 	{
 		super(sharedState);
 	}
