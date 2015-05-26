@@ -13,6 +13,7 @@ import uk.ac.imperial.presage2.core.simulator.Scenario;
 import uk.ac.imperial.presage2.core.util.random.Random;
 import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
 import uk.ac.imperial.presage2.db.sql.SqlStorage;
+import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
 //import uk.ac.imperial.presage2.util.location.LocationStoragePlugin;
 //import uk.ac.imperial.presage2.util.location.MoveHandler;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
@@ -36,10 +37,11 @@ public class SimpleSim extends RunnableSimulation {
 	@Override
 	public void initialiseScenario(Scenario scenario) {
 		addModule(new AbstractEnvironmentModule()
-                                .addParticipantGlobalEnvironmentService(SimpleEnvService.class)
-                                .addActionHandler(DemandHandler.class)
+						.addParticipantGlobalEnvironmentService(SimpleEnvService.class)
+						.addParticipantGlobalEnvironmentService(EnvironmentMembersService.class)
+						.addActionHandler(DemandHandler.class)
 				//Add the participant service and any other additional environment services here too
-				);
+		);
 		
 		 
 		 
