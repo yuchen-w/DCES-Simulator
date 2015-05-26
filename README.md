@@ -11,6 +11,7 @@ Repository for my EE4 FYP. Forked from the publicly available FYP-repository-tes
 
 ## Next Steps:
 - Explore nesting of agents
+  - Explore creating agentservice
 - Store data
 - Integrate JBoss Rules Engine (http://www.jboss.org/drools/)
 
