@@ -31,23 +31,26 @@ public class SimpleAgent extends AbstractParticipant
     @Named("params.size")
     public int size;
 
-    SimpleAgent(UUID id, String name, double consumption, double allocation) 
+    public SimpleAgent(UUID id, String name, double consumption, double allocation)
+    //Made public so constructor can be called from sim package
     {
         super(id, name);
         this.AgentDemand = new Demand(consumption, allocation);
     }
     
-    SimpleAgent(UUID id, String name, double consumption, double allocation, String behaviour) 
+    SimpleAgent(UUID id, String name, double consumption, double allocation, String behaviour)
+    //Constructor to be used for creating agents with certain rules (to be implemented)
     {
         super(id, name);
         this.AgentDemand = new Demand(consumption, allocation);
+        //this.behaviour = "greedy";
     }
 
-    @Initialisor
-    public void init() 
-    {
-        super.initialise();
-    }
+//    @Initialisor
+//    public void init() //never used?
+//    {
+//        super.initialise();
+//    }
     
     @Inject
     public void setServiceProvider(EnvironmentServiceProvider serviceProvider) {
@@ -60,9 +63,9 @@ public class SimpleAgent extends AbstractParticipant
 
     @Step
     public void step(int t) throws ActionHandlingException {
-        logger.info("My required Demand is: " 	+ this.AgentDemand.getDemand());
-        logger.info("My generation is: " 	+ this.AgentDemand.getGeneration());
-        logger.info("My allocation is: "+ this.AgentDemand.getAllocation());
+        logger.info("myagent.AgentDemand.getDemand() is: " 	+ this.AgentDemand.getDemand());
+        logger.info("myagent.AgentDemand.getGeneration() is: " 	+ this.AgentDemand.getGeneration());
+        logger.info("myagent.AgentDemand.getAllocation() is: "+ this.AgentDemand.getAllocation());
         
         try 
         {

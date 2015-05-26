@@ -7,10 +7,6 @@ import myagents.SimpleEnvService;
 import org.apache.log4j.Logger;
 //import org.drools.runtime.StatefulKnowledgeSession;
 
-
-
-
-
 import com.google.inject.Inject;
 
 import uk.ac.imperial.presage2.core.Action;
@@ -26,13 +22,13 @@ public class DemandHandler implements ActionHandler {
 	
 	SimpleEnvService EnvService;
 	final protected EnvironmentServiceProvider serviceProvider;
-	final protected EnvironmentSharedStateAccess sharedState;
+	//final protected EnvironmentSharedStateAccess sharedState;
 	
 	@Inject
 	public DemandHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState)
 	{
 		this.serviceProvider = serviceProvider;
-		this.sharedState = sharedState;
+		//this.sharedState = sharedState;
 	}
 	
 	@Override

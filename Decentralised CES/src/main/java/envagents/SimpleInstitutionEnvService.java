@@ -1,55 +1,33 @@
 //Generate the shared state. See ParticipantLocationService for template
 
-package myagents;
+package envagents;
 
-
-import envagents.SimpleInstitutionEnvService;
-import org.apache.log4j.Logger;
 
 import actions.Demand;
-
 import com.google.inject.Inject;
+import org.apache.log4j.Logger;
+import uk.ac.imperial.presage2.core.environment.EnvironmentService;
+import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
-import simpleactions.SimpleDemand;
-import uk.ac.imperial.presage2.core.environment.EnvironmentConnector;
-import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 //import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 //import uk.ac.imperial.presage2.core.participant.Participant;
 //import uk.ac.imperial.presage2.util.location.LocationService;
 
-//Using EnvService as a Agent
-import uk.ac.imperial.presage2.core.simulator.Step;
-import java.util.UUID;
+public class SimpleInstitutionEnvService extends EnvironmentService{
 
-public class SimpleEnvService extends SimpleInstitutionEnvService {
-	//Was ... extends EnvironmentService
+	protected EnvironmentSharedStateAccess sharedState;
 
-	
 	double totalDemand = 0;
 	double totalGeneration = 0;
 	double available = 0;
 
-	SimpleDemand AgentDemand;
-
-	protected EnvironmentConnector environment;
-	private UUID id;
-	
 	private final Logger logger = Logger.getLogger(this.getClass());
-	
+
 	@Inject
-	public SimpleEnvService(EnvironmentSharedStateAccess sharedState)
+	public SimpleInstitutionEnvService(EnvironmentSharedStateAccess sharedState)
 	{
 		super(sharedState);
-		
-
-        //Get demand from parent
-        //this.available = this.available +
-	}
-	
-	public void setUUID(UUID id)
-	{
-		this.id = id;	//this is new, identifies the EnvService as an agent
 	}
 	
 	public void addtoDemand(double d)
@@ -125,12 +103,5 @@ public class SimpleEnvService extends SimpleInstitutionEnvService {
 			return 909090.9090;	//Fix this
 		}
 	}
-
-	@Step
-    public void step(int t)
-    {
-        logger.info ("ZAAZAZAZAA SimpleEnvService stepping...");
-    }
-
 
 }

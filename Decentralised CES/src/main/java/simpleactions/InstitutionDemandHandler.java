@@ -1,8 +1,7 @@
 package simpleactions;
 
 import com.google.inject.Inject;
-import myagents.SimpleEnvService;
-import myagents.SimpleInstitutionEnvService;
+import envagents.SimpleInstitutionEnvService;
 import org.apache.log4j.Logger;
 import uk.ac.imperial.presage2.core.Action;
 import uk.ac.imperial.presage2.core.environment.*;
