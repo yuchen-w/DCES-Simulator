@@ -13,3 +13,6 @@ Next Steps:
 - Explore nesting of agents
 - Store data
 - Integrate JBoss Rules Engine (http://www.jboss.org/drools/)
+- 
+Notes:
+- Extending the use of EnvironmentService can't be used with injecting @Step . Something more fundamental in the source code is required.
