@@ -1,4 +1,4 @@
-package myagents;
+package CES_Agents;
 
 import actions.Demand;
 
@@ -19,25 +19,25 @@ import uk.ac.imperial.presage2.core.simulator.Step;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
 import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 
-public class SimpleAgent extends AbstractParticipant 
+public class ProsumerAgent extends AbstractParticipant
 {   
     Demand AgentDemand;
     
     public boolean alive;
     
-    protected SimpleEnvService EnvService;
+    protected PowerPoolEnvService EnvService;
 
     @Inject
     @Named("params.size")
     public int size;
 
-    SimpleAgent(UUID id, String name, double consumption, double allocation) 
+    public ProsumerAgent(UUID id, String name, double consumption, double allocation)
     {
         super(id, name);
         this.AgentDemand = new Demand(consumption, allocation);
     }
     
-    SimpleAgent(UUID id, String name, double consumption, double allocation, String behaviour) 
+    ProsumerAgent(UUID id, String name, double consumption, double allocation, String behaviour)
     {
         super(id, name);
         this.AgentDemand = new Demand(consumption, allocation);
@@ -52,9 +52,9 @@ public class SimpleAgent extends AbstractParticipant
     @Inject
     public void setServiceProvider(EnvironmentServiceProvider serviceProvider) {
         try {
-            this.EnvService = serviceProvider.getEnvironmentService(SimpleEnvService.class);
+            this.EnvService = serviceProvider.getEnvironmentService(PowerPoolEnvService.class);
         } catch (UnavailableServiceException e) {
-            logger.warn("unable to load SimpleEnvService class", e);
+            logger.warn("unable to load PowerPoolEnvService class", e);
         }
     }
 

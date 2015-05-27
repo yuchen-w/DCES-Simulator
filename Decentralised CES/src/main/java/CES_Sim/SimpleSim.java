@@ -1,6 +1,8 @@
-package myagents;
+package CES_Sim;
 
 //import org.apache.log4j.Logger;
+import CES_Agents.PowerPoolEnvService;
+import CES_Agents.ProsumerAgent;
 import actions.DemandHandler;
 //import uk.ac.imperial.evpool.EvEnvService;
 //import uk.ac.imperial.evpool.Inject;
@@ -12,8 +14,6 @@ import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
 import uk.ac.imperial.presage2.core.util.random.Random;
 import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
-import uk.ac.imperial.presage2.db.sql.SqlStorage;
-import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
 //import uk.ac.imperial.presage2.util.location.LocationStoragePlugin;
 //import uk.ac.imperial.presage2.util.location.MoveHandler;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
@@ -37,8 +37,9 @@ public class SimpleSim extends RunnableSimulation {
 	@Override
 	public void initialiseScenario(Scenario scenario) {
 		addModule(new AbstractEnvironmentModule()
-						.addParticipantGlobalEnvironmentService(SimpleEnvService.class)
-						.addParticipantGlobalEnvironmentService(EnvironmentMembersService.class)
+						.addParticipantGlobalEnvironmentService(PowerPoolEnvService.class)
+								//.addParticipantEnvironmentService()
+								//.addParticipantGlobalEnvironmentService(EnvironmentMembersService.class)
 						.addActionHandler(DemandHandler.class)
 				//Add the participant service and any other additional environment services here too
 		);
@@ -46,7 +47,7 @@ public class SimpleSim extends RunnableSimulation {
 		 
 		 
 		for (int i = 0; i < agents; i++) {
-			scenario.addAgent(new SimpleAgent(
+			scenario.addAgent(new ProsumerAgent(
 					Random.randomUUID(),
 					"agent" + i,
 					Random.randomInt(size), 
@@ -55,7 +56,7 @@ public class SimpleSim extends RunnableSimulation {
 		}
 		
 //		for (int i = 0; i < agents; i++) {
-//			scenario.addAgent(new SimpleAgent(
+//			scenario.addAgent(new ProsumerAgent(
 //					Random.randomUUID(),
 //					"agent" + i,
 //					10, 

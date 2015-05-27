@@ -1,6 +1,6 @@
 //Generate the shared state. See ParticipantLocationService for template
 
-package myagents;
+package CES_Agents;
 
 
 import org.apache.log4j.Logger;
@@ -16,7 +16,7 @@ import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 //import uk.ac.imperial.presage2.core.participant.Participant;
 //import uk.ac.imperial.presage2.util.location.LocationService;
 
-public class SimpleEnvService extends EnvironmentService{
+public class PowerPoolEnvService extends EnvironmentService{
 
 	
 	double totalDemand = 0;
@@ -26,7 +26,7 @@ public class SimpleEnvService extends EnvironmentService{
 	private final Logger logger = Logger.getLogger(this.getClass());
 	
 	@Inject
-	public SimpleEnvService(EnvironmentSharedStateAccess sharedState)
+	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState)
 	{
 		super(sharedState);
 	}

@@ -1,7 +1,7 @@
 package simpleactions;
 
 import com.google.inject.Inject;
-import myagents.SimpleEnvService;
+import CES_Agents.PowerPoolEnvService;
 import org.apache.log4j.Logger;
 import uk.ac.imperial.presage2.core.Action;
 import uk.ac.imperial.presage2.core.environment.*;
@@ -14,7 +14,7 @@ public class SimpleDemandHandler implements ActionHandler {
 
 	final private Logger logger = Logger.getLogger(SimpleDemandHandler.class);
 	
-	SimpleEnvService EnvService;
+	PowerPoolEnvService EnvService;
 	final protected EnvironmentServiceProvider serviceProvider;
 	final protected EnvironmentSharedStateAccess sharedState;
 	
@@ -39,19 +39,19 @@ public class SimpleDemandHandler implements ActionHandler {
 			logger.info("DemandHandler: Demand d.Demand = " + d.getDemand() + " and Demand d.Generation = " + d.getGeneration());		//Debug
 			//this.EnvService.addtoPool(d);
 			//this.EnvService.takefromPool(d);
-			logger.info("SimpleEnvService::totalDemand= " + this.EnvService.getTotalDemand());										//Debug
-			logger.info("SimpleEnvService::totalGeneration= " + this.EnvService.getTotalGeneration());										//Debug
-			logger.info("SimpleEnvService::available= " + this.EnvService.getAvailable());
+			logger.info("PowerPoolEnvService::totalDemand= " + this.EnvService.getTotalDemand());										//Debug
+			logger.info("PowerPoolEnvService::totalGeneration= " + this.EnvService.getTotalGeneration());										//Debug
+			logger.info("PowerPoolEnvService::available= " + this.EnvService.getAvailable());
 		}
 		return null;
 	}
 	
-	protected SimpleEnvService getService()
+	protected PowerPoolEnvService getService()
 	{
 		if (EnvService == null) {
 			try {
 				this.EnvService = serviceProvider
-						.getEnvironmentService(SimpleEnvService.class);
+						.getEnvironmentService(PowerPoolEnvService.class);
 			} catch (UnavailableServiceException e) {
 				logger.warn("Could not get EnvService", e);
 			}
