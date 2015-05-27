@@ -20,7 +20,7 @@ public class SimpleDNOSim extends RunnableSimulation {
     @Parameter(name = "size")
     public int size;
 
-    @Parameter(name = "agent-children")
+    @Parameter(name = "children")
     public int agent_children;
 
     @Parameter(name = "agents")
@@ -29,7 +29,7 @@ public class SimpleDNOSim extends RunnableSimulation {
     @Parameter(name = "allocation", optional = true)
     public String allocation;
 
-    @Parameter (name = "Grid_Surplus")
+    @Parameter (name = "surplus")
     public double grid_surplus;
 
     public double returnGridSurplus()
@@ -46,7 +46,7 @@ public class SimpleDNOSim extends RunnableSimulation {
     public void initialiseScenario(Scenario scenario) {
         addModule(new AbstractEnvironmentModule()
                         .addParticipantGlobalEnvironmentService(PowerPoolEnvService.class)
-                        .addParticipantEnvironmentService(PowerChildPoolEnvService.class)
+                        //.addParticipantEnvironmentService(PowerChildPoolEnvService.class)
                                 //.addParticipantGlobalEnvironmentService(EnvironmentMembersService.class)
                         .addActionHandler(DemandHandler.class)
                 //Add the participant service and any other additional environment services here too

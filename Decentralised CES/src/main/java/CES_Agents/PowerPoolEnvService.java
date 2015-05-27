@@ -29,6 +29,7 @@ public class PowerPoolEnvService extends EnvironmentService{
 	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState)
 	{
 		super(sharedState);
+		//sharedState.create("group.demand", )
 	}
 	
 	public void addtoDemand(double d)

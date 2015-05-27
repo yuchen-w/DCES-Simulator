@@ -7,13 +7,11 @@ import com.google.inject.name.Named;
 
 //import java.util.Set;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.UUID;
 
-import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
-import uk.ac.imperial.presage2.core.environment.EnvironmentService;
-import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
+import uk.ac.imperial.presage2.core.environment.*;
 //import uk.ac.imperial.presage2.core.environment.ParticipantSharedState;
-import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 import uk.ac.imperial.presage2.core.simulator.Initialisor;
 import uk.ac.imperial.presage2.core.simulator.Step;
 //import uk.ac.imperial.presage2.util.location.Location;
@@ -95,6 +93,10 @@ public class ProsumerAgent extends AbstractParticipant
 		} catch (ActionHandlingException e) {
 			logger.warn("Failed to add demand to the pool", e);
 		}
+
+        Set<ParticipantSharedState> ss = this.getSharedState();
+        //TODO
+        //get from shared state Demand
 
         //logger.info("Total demand is now : " + this.EnvService.getTotalDemand());
         //logger.info("Total Generation Pool is now: " + this.EnvService.getTotalGeneration());
