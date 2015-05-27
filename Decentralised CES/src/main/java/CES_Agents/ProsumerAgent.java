@@ -6,9 +6,11 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 //import java.util.Set;
+import java.util.Iterator;
 import java.util.UUID;
 
 import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
+import uk.ac.imperial.presage2.core.environment.EnvironmentService;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 //import uk.ac.imperial.presage2.core.environment.ParticipantSharedState;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
@@ -19,13 +21,34 @@ import uk.ac.imperial.presage2.core.simulator.Step;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
 import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 
+
+
+//useless?:
+
+
 public class ProsumerAgent extends AbstractParticipant
-{   
+{
     Demand AgentDemand;
-    
+
     public boolean alive;
-    
+
     protected PowerPoolEnvService EnvService;
+
+    //Modify this method to check which environment agent it's being registered to
+    public <T extends EnvironmentService> T getEnvironmentService_yw4311(Class<T> type) throws UnavailableServiceException {
+        Iterator j$ = this.services.iterator();
+
+        EnvironmentService s;
+        do {
+            if(!j$.hasNext()) {
+                throw new UnavailableServiceException(type);
+            }
+
+            s = (EnvironmentService)j$.next();
+        } while(s.getClass() != type);
+
+        return (T)s;
+    }
 
     @Inject
     @Named("params.size")
@@ -36,7 +59,7 @@ public class ProsumerAgent extends AbstractParticipant
         super(id, name);
         this.AgentDemand = new Demand(consumption, allocation);
     }
-    
+
     ProsumerAgent(UUID id, String name, double consumption, double allocation, String behaviour)
     {
         super(id, name);
@@ -44,15 +67,17 @@ public class ProsumerAgent extends AbstractParticipant
     }
 
     @Initialisor
-    public void init() 
+    public void init()
     {
         super.initialise();
     }
-    
+
     @Inject
     public void setServiceProvider(EnvironmentServiceProvider serviceProvider) {
-        try {
+        try{
+            logger.info("does this even run?");
             this.EnvService = serviceProvider.getEnvironmentService(PowerPoolEnvService.class);
+            //this.EnvService = this.getEnvironmentService_yw4311(PowerPoolEnvService.class);   //Trying out my method
         } catch (UnavailableServiceException e) {
             logger.warn("unable to load PowerPoolEnvService class", e);
         }
@@ -63,20 +88,20 @@ public class ProsumerAgent extends AbstractParticipant
         logger.info("My required Demand is: " 	+ this.AgentDemand.getDemand());
         logger.info("My generation is: " 	+ this.AgentDemand.getGeneration());
         logger.info("My allocation is: "+ this.AgentDemand.getAllocation());
-        
-        try 
+
+        try
         {
 			environment.act(AgentDemand, getID(), authkey);
 		} catch (ActionHandlingException e) {
 			logger.warn("Failed to add demand to the pool", e);
 		}
-        
+
         //logger.info("Total demand is now : " + this.EnvService.getTotalDemand());
         //logger.info("Total Generation Pool is now: " + this.EnvService.getTotalGeneration());
-        
-        
+
+
     }
-    
+
      /*@Override
      protected Set<ParticipantSharedState> getSharedState() {
          Set<ParticipantSharedState> Power_Pool = super.getSharedState();
