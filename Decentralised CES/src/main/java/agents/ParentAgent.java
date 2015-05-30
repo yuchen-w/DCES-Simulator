@@ -27,11 +27,8 @@ import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 
 public class ParentAgent extends AbstractParticipant
 {
-    Demand GroupDemand;
-
-    public boolean alive;
-
-    protected PowerPoolEnvService EnvService;
+    private final Demand GroupDemand;
+    private PowerPoolEnvService EnvService;
 
     //Modify this method to check which environment agent it's being registered to
     public <T extends EnvironmentService> T getEnvironmentService_yw4311(Class<T> type) throws UnavailableServiceException {
@@ -96,7 +93,7 @@ public class ParentAgent extends AbstractParticipant
 
         //Set<ParticipantSharedState> ss = this.getSharedState();
         //TODO
-        //get from shared state Demand
+        //get from shared State Demand
 
         //logger.info("Total demand is now : " + this.EnvService.getTotalDemand());
         //logger.info("Total Generation Pool is now: " + this.EnvService.getTotalGeneration());
