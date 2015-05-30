@@ -1,4 +1,4 @@
-package CES_Agents;
+package agents;
 
 import actions.Demand;
 
@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
+import services.PowerPoolEnvService;
 import uk.ac.imperial.presage2.core.environment.*;
 //import uk.ac.imperial.presage2.core.environment.ParticipantSharedState;
 import uk.ac.imperial.presage2.core.simulator.Initialisor;
@@ -24,9 +25,9 @@ import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 //useless?:
 
 
-public class ProsumerAgent extends AbstractParticipant
+public class ParentAgent extends AbstractParticipant
 {
-    Demand AgentDemand;
+    Demand GroupDemand;
 
     public boolean alive;
 
@@ -52,16 +53,16 @@ public class ProsumerAgent extends AbstractParticipant
     @Named("params.size")
     public int size;
 
-    public ProsumerAgent(UUID id, String name, double consumption, double allocation)
+    public ParentAgent(UUID id, String name, double consumption, double allocation)
     {
         super(id, name);
-        this.AgentDemand = new Demand(consumption, allocation);
+        this.GroupDemand = new Demand(consumption, allocation);
     }
 
-    ProsumerAgent(UUID id, String name, double consumption, double allocation, String behaviour)
+    ParentAgent(UUID id, String name, double consumption, double allocation, String behaviour)
     {
         super(id, name);
-        this.AgentDemand = new Demand(consumption, allocation);
+        this.GroupDemand = new Demand(consumption, allocation);
     }
 
     @Initialisor
@@ -73,7 +74,6 @@ public class ProsumerAgent extends AbstractParticipant
     @Inject
     public void setServiceProvider(EnvironmentServiceProvider serviceProvider) {
         try{
-            logger.info("does this even run?");
             this.EnvService = serviceProvider.getEnvironmentService(PowerPoolEnvService.class);
             //this.EnvService = this.getEnvironmentService_yw4311(PowerPoolEnvService.class);   //Trying out my method
         } catch (UnavailableServiceException e) {
@@ -83,18 +83,18 @@ public class ProsumerAgent extends AbstractParticipant
 
     @Step
     public void step(int t) throws ActionHandlingException {
-        logger.info("My required Demand is: " 	+ this.AgentDemand.getDemand());
-        logger.info("My generation is: " 	+ this.AgentDemand.getGeneration());
-        logger.info("My allocation is: "+ this.AgentDemand.getAllocation());
+        logger.info("My required Group Demand is: " 	+ this.GroupDemand.getDemand());
+        logger.info("My Group Generation is: " 	+ this.GroupDemand.getGeneration());
+        logger.info("My Group Allocation is: "+ this.GroupDemand.getAllocation());
 
         try
         {
-			environment.act(AgentDemand, getID(), authkey);
+			environment.act(GroupDemand, getID(), authkey);
 		} catch (ActionHandlingException e) {
 			logger.warn("Failed to add demand to the pool", e);
 		}
 
-        Set<ParticipantSharedState> ss = this.getSharedState();
+        //Set<ParticipantSharedState> ss = this.getSharedState();
         //TODO
         //get from shared state Demand
 

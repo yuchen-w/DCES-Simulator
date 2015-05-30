@@ -1,14 +1,13 @@
-package actions;
+package actions.handlers;
 
 import java.util.UUID;
 
-import CES_Agents.PowerPoolEnvService;
+import actions.Demand;
+import actions.childDemand;
+import services.PowerPoolEnvService;
 
 import org.apache.log4j.Logger;
 //import org.drools.runtime.StatefulKnowledgeSession;
-
-
-
 
 
 import com.google.inject.Inject;
@@ -19,6 +18,7 @@ import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
+import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
 
 public class DemandHandler implements ActionHandler {
 
@@ -27,25 +27,27 @@ public class DemandHandler implements ActionHandler {
 	PowerPoolEnvService EnvService;
 	final protected EnvironmentServiceProvider serviceProvider;
 	final protected EnvironmentSharedStateAccess sharedState;
+    private final EnvironmentMembersService membersService;
 	
 	@Inject
-	public DemandHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState)
+	public DemandHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) throws UnavailableServiceException
 	{
 		this.serviceProvider = serviceProvider;
 		this.sharedState = sharedState;
+        this.membersService = serviceProvider.getEnvironmentService(EnvironmentMembersService.class);
 	}
 	
 	@Override
 	public boolean canHandle(Action demand) {
-		return demand instanceof Demand;
+		return (demand instanceof Demand) & !(demand instanceof childDemand);
 	}
 
 	@Override
-	public Object handle(Action demand_action, UUID actor) throws ActionHandlingException {
+	public Object handle(Action GroupDemand, UUID actor) throws ActionHandlingException {
 		getService();
-		if (demand_action instanceof Demand)
+		if (GroupDemand instanceof Demand)
 		{
-			final Demand d = (Demand)demand_action;
+			final Demand d = (Demand)GroupDemand;
 			logger.info("DemandHandler: Demand d.Demand = " + d.getDemand() + " and Demand d.Generation = " + d.getGeneration());		//Debug
 			this.EnvService.addtoPool(d);
 			this.EnvService.takefromPool(d);

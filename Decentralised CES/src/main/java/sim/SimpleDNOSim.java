@@ -1,10 +1,12 @@
-package CES_Sim;
+package sim;
 
-import CES_Agents.PowerChildPoolEnvService;
-import CES_Agents.PowerPoolEnvService;
-import CES_Agents.ProsumerAgent;
-import CES_Agents.ProsumerChildAgent;
-import actions.DemandHandler;
+import agents.ParentAgent;
+import services.ChildEnvService;
+import services.ParentEnvService;
+import services.PowerPoolEnvService;
+import agents.ProsumerAgent;
+import actions.handlers.ChildDemandHandler;
+import actions.handlers.DemandHandler;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
@@ -46,9 +48,11 @@ public class SimpleDNOSim extends RunnableSimulation {
     public void initialiseScenario(Scenario scenario) {
         addModule(new AbstractEnvironmentModule()
                         .addParticipantGlobalEnvironmentService(PowerPoolEnvService.class)
-                        //.addParticipantEnvironmentService(PowerChildPoolEnvService.class)
-                                //.addParticipantGlobalEnvironmentService(EnvironmentMembersService.class)
+                        .addParticipantGlobalEnvironmentService(ParentEnvService.class)
+                        .addParticipantEnvironmentService(ChildEnvService.class)
+
                         .addActionHandler(DemandHandler.class)
+                        .addActionHandler(ChildDemandHandler.class)
                 //Add the participant service and any other additional environment services here too
         );
 
@@ -56,15 +60,16 @@ public class SimpleDNOSim extends RunnableSimulation {
 
         for (int i = 0; i < agents; i++) {
             UUID parent_id = Random.randomUUID();
-            scenario.addAgent(new ProsumerAgent(parent_id, "parent" + i, 0 , 0));
+            scenario.addAgent(new ParentAgent(parent_id, "parent" + i, 0 , 0));
             for (int j = 0; j < agent_children; j++)
-                scenario.addAgent(new ProsumerChildAgent(Random.randomUUID(),
+                scenario.addAgent(new ProsumerAgent(Random.randomUUID(),
                         "parent" + i + "agent" + j, Random.randomInt(size),Random.randomInt(size),
                         "parent" + i, parent_id));
         }
 
+//Testing:
 //		for (int i = 0; i < agents; i++) {
-//			scenario.addAgent(new ProsumerAgent(
+//			scenario.addAgent(new ParentAgent(
 //					Random.randomUUID(),
 //					"agent" + i,
 //					10, 

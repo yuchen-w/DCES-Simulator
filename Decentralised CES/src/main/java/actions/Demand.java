@@ -1,12 +1,15 @@
 //Object for passing demand and generation between agent and environment
 package actions;
 
+import actions.TimestampedAction;
+
 import java.io.Serializable;
 
 public class Demand extends TimestampedAction implements Serializable {
 	
 	double demand = 0;
 	double generation = 0;
+
 	double allocation = 0;
 	
 	public Demand(double demand, double generation)

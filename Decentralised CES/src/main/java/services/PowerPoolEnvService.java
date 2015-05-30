@@ -1,8 +1,9 @@
 //Generate the shared state. See ParticipantLocationService for template
 
-package CES_Agents;
+package services;
 
 
+import actions.childDemand;
 import org.apache.log4j.Logger;
 
 import actions.Demand;

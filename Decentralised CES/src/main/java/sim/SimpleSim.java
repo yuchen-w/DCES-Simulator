@@ -1,9 +1,9 @@
-package CES_Sim;
+package sim;
 
 //import org.apache.log4j.Logger;
-import CES_Agents.PowerPoolEnvService;
-import CES_Agents.ProsumerAgent;
-import actions.DemandHandler;
+import agents.ParentAgent;
+import services.PowerPoolEnvService;
+import actions.handlers.DemandHandler;
 //import uk.ac.imperial.evpool.EvEnvService;
 //import uk.ac.imperial.evpool.Inject;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
@@ -43,11 +43,10 @@ public class SimpleSim extends RunnableSimulation {
 						.addActionHandler(DemandHandler.class)
 				//Add the participant service and any other additional environment services here too
 		);
-		
-		 
+
 		 
 		for (int i = 0; i < agents; i++) {
-			scenario.addAgent(new ProsumerAgent(
+			scenario.addAgent(new ParentAgent(
 					Random.randomUUID(),
 					"agent" + i,
 					Random.randomInt(size), 
@@ -56,7 +55,7 @@ public class SimpleSim extends RunnableSimulation {
 		}
 		
 //		for (int i = 0; i < agents; i++) {
-//			scenario.addAgent(new ProsumerAgent(
+//			scenario.addAgent(new ParentAgent(
 //					Random.randomUUID(),
 //					"agent" + i,
 //					10, 
