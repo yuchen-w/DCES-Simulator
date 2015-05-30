@@ -43,4 +43,16 @@ public class Demand extends TimestampedAction implements Serializable {
 		return allocation;
 	}
 
+	/**
+	 * Adds another Demand object to this one.
+	 * @param d
+	 */
+	public Demand addDemand(Demand d)
+	{
+		this.demand 	+= d.getDemand();
+		this.generation += d.getGeneration();
+		this.allocation += d.getAllocation();
+		return this;
+	}
+
 }

@@ -18,15 +18,15 @@ public class ProsumerAgent extends ParentAgent {
         super(id, name, consumption, allocation);
         this.parent = parent;
         this.parent_id = parent_id;
-        this.AgentDemand = new childDemand(consumption, allocation, parent_id, id);
+        this.AgentDemand = new childDemand(consumption, allocation, parent_id);
+        logger.info("Initiated " + name + " with d: " +consumption+ " and g=" +allocation );
     }
 
     @Step
     public void step(int t) throws ActionHandlingException {
-        logger.info("My required Demand is: " 	+ this.AgentDemand.getDemand());
-        logger.info("My Group Generation is: " 	+ this.AgentDemand.getGeneration());
-        logger.info("My Group Allocation is: "+ this.AgentDemand.getAllocation());
-
+        //logger.info("My required Demand is: " 	+ this.AgentDemand.getDemand());
+        //logger.info("My Group Generation is: " 	+ this.AgentDemand.getGeneration());
+        //logger.info("My Group Allocation is: "+ this.AgentDemand.getAllocation());
         try
         {
             environment.act(AgentDemand, getID(), authkey);
