@@ -15,6 +15,7 @@ import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
 
 import java.util.HashMap;
 
+//@ServiceDependencies({ EnvironmentMembersService.class })
 public class ParentEnvService extends PowerPoolEnvService {
 
 //    protected final EnvironmentMembersService membersService;
