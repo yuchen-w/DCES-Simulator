@@ -15,7 +15,7 @@ public class ProsumerAgent extends ParentAgent {
 
     public ProsumerAgent(UUID id, String name, double consumption, double allocation, String parent, UUID parent_id)
     {
-        super(id, name, consumption, allocation);
+        super(id, name, consumption, allocation, 0);
         this.parent = parent;
         this.parent_id = parent_id;
         this.AgentDemand = new childDemand(consumption, allocation, parent_id);

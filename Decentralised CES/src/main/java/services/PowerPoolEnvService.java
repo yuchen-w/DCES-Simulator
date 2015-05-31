@@ -10,6 +10,7 @@ import actions.Demand;
 
 import com.google.inject.Inject;
 
+import state.SimState;
 import uk.ac.imperial.presage2.core.environment.EnvironmentService;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
@@ -19,11 +20,14 @@ import java.util.UUID;
 public class PowerPoolEnvService extends EnvironmentService{
 
 	protected HashMap<UUID, Integer> RequestCounter = new HashMap<>();
+	protected SimState state = new SimState();
 	double totalDemand = 0;
 	double totalGeneration = 0;
 	double available = 0;
 	
 	private final Logger logger = Logger.getLogger(this.getClass());
+
+
 	
 	@Inject
 	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState)

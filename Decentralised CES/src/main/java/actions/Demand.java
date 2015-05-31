@@ -11,11 +11,19 @@ public class Demand extends TimestampedAction implements Serializable {
 	double generation = 0;
 
 	double allocation = 0;
+	int ChildrenNum;
 	
 	public Demand(double demand, double generation)
 	{
 		this.demand = demand;
 		this.generation = generation;
+	}
+
+	public Demand(double demand, double generation, int ChildrenNum)
+	{
+		this.demand = demand;
+		this.generation = generation;
+		this.ChildrenNum = ChildrenNum;
 	}
 	
 	public void Allocate (double allocation)

@@ -60,7 +60,7 @@ public class SimpleDNOSim extends RunnableSimulation {
 
         for (int i = 0; i < agents; i++) {
             UUID parent_id = Random.randomUUID();
-            scenario.addAgent(new ParentAgent(parent_id, "parent" + i, 0 , 0));
+            scenario.addAgent(new ParentAgent(parent_id, "parent" + i, 0 , 0, agent_children));
             for (int j = 0; j < agent_children; j++)
                 scenario.addAgent(new ProsumerAgent(Random.randomUUID(),
                         "parent" + i + "agent" + j, Random.randomInt(size),Random.randomInt(size),

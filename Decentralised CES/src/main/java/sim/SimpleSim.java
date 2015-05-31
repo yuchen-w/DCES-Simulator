@@ -50,7 +50,8 @@ public class SimpleSim extends RunnableSimulation {
 					Random.randomUUID(),
 					"agent" + i,
 					Random.randomInt(size), 
-					Random.randomInt(size)
+					Random.randomInt(size),
+					0
 					));
 		}
 		

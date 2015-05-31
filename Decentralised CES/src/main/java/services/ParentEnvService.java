@@ -7,21 +7,42 @@ import java.util.UUID;
 import javafx.scene.Parent;
 import org.apache.log4j.Logger;
 import com.google.inject.Inject;
+import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.ServiceDependencies;
+import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
+import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
 
 import java.util.HashMap;
 
-@ServiceDependencies({ PowerPoolEnvService.class })
 public class ParentEnvService extends PowerPoolEnvService {
+
+//    protected final EnvironmentMembersService membersService;
 
     private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<>();
     private final Logger logger = Logger.getLogger(this.getClass());
 
 
+//    @Inject
+//    public ParentEnvService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) {
+//        super(sharedState);
+//        this.membersService = getMembersService(serviceProvider);
+//    }
+
     @Inject
     public ParentEnvService(EnvironmentSharedStateAccess sharedState) {
         super(sharedState);
+    }
+
+    private EnvironmentMembersService getMembersService(
+            EnvironmentServiceProvider serviceProvider) {
+        try {
+            return serviceProvider
+                    .getEnvironmentService(EnvironmentMembersService.class);
+        } catch (UnavailableServiceException e) {
+            logger.warn("Could not retrieve EnvironmentMembersService in ParentEnvService; functionality limited.");
+            return null;
+        }
     }
 
 
