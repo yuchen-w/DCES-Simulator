@@ -21,11 +21,6 @@ import uk.ac.imperial.presage2.core.simulator.Step;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
 import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 
-
-
-//useless?:
-
-
 public class ParentAgent extends AbstractParticipant
 {
     private final Demand GroupDemand;

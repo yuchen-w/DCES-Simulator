@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class PowerPoolEnvService extends EnvironmentService{
 
-	protected HashMap<UUID, Integer> RequestCounter = new HashMap<>();
+	protected HashMap<UUID, Integer> RequestCounter = new HashMap<UUID, Integer>();
 	protected SimState state = new SimState();
 	double totalDemand = 0;
 	double totalGeneration = 0;
