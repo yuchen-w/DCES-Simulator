@@ -18,21 +18,16 @@ import java.util.HashMap;
 //@ServiceDependencies({ EnvironmentMembersService.class })
 public class ParentEnvService extends PowerPoolEnvService {
 
-//    protected final EnvironmentMembersService membersService;
+    protected final EnvironmentMembersService membersService;
 
     private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<>();
     private final Logger logger = Logger.getLogger(this.getClass());
 
 
-//    @Inject
-//    public ParentEnvService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) {
-//        super(sharedState);
-//        this.membersService = getMembersService(serviceProvider);
-//    }
-
     @Inject
-    public ParentEnvService(EnvironmentSharedStateAccess sharedState) {
+    public ParentEnvService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) {
         super(sharedState);
+        this.membersService = getMembersService(serviceProvider);
     }
 
     private EnvironmentMembersService getMembersService(
