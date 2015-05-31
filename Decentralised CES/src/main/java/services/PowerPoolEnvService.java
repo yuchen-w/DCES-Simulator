@@ -4,6 +4,7 @@ package services;
 
 
 import actions.childDemand;
+import com.google.inject.name.Named;
 import org.apache.log4j.Logger;
 
 import actions.Demand;
@@ -18,6 +19,14 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class PowerPoolEnvService extends EnvironmentService{
+
+	@Inject
+	@Named("params.children")
+	//protected int ChildrenNum=2;
+	protected int children;
+
+	protected int ChildrenNum = children;	//TODO: tidy this up
+
 
 	protected HashMap<UUID, Integer> RequestCounter = new HashMap<UUID, Integer>();
 	protected SimState state = new SimState();
@@ -119,11 +128,11 @@ public class PowerPoolEnvService extends EnvironmentService{
 		else
 		{
 			RequestCounter.put(ParentID,RequestCounter.get(ParentID)+1);
-			//Get number of children
-			//Reset to zero if exceeds bigger than No. of children
+			if (RequestCounter.get(ParentID) >= ChildrenNum)
+			{
+				RequestCounter.put(ParentID, 0);    //Reset to zero if exceeds bigger than No. of children
+				//Next State is changed
+			}
 		}
 	}
-
-
-
 }

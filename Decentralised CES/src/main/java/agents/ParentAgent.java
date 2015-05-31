@@ -20,18 +20,20 @@ import uk.ac.imperial.presage2.core.simulator.Step;
 //import uk.ac.imperial.presage2.util.location.Move;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
 import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
+import uk.ac.imperial.presage2.util.participant.StateAccessor;
 
 public class ParentAgent extends AbstractParticipant
 {
     private final Demand GroupDemand;
-    private PowerPoolEnvService EnvService;
-    private int ChildrenNum;
+    //public State<Integer> ChildrenNum;
 
 
     public ParentAgent(UUID id, String name, double consumption, double allocation, int ChildrenNum)
     {
         super(id, name);
         this.GroupDemand = new Demand(consumption, allocation, ChildrenNum);
+        //this.ChildrenNum = new State<Integer>("ChildrenNum", ChildrenNum);
+
     }
 
     public ParentAgent(UUID id, String name, double consumption, double allocation, String behaviour)
@@ -40,10 +42,11 @@ public class ParentAgent extends AbstractParticipant
         this.GroupDemand = new Demand(consumption, allocation);
     }
 
-    public int getChildrenNum()
-    {
-        return this.ChildrenNum;
-    }
+    //For using with SharedState
+//    public int getChildrenNum()
+//    {
+//        return this.ChildrenNum.get();
+//    }
 
     @Initialisor
     public void init()
@@ -51,15 +54,6 @@ public class ParentAgent extends AbstractParticipant
         super.initialise();
     }
 
-//    @Inject
-//    public void setServiceProvider(EnvironmentServiceProvider serviceProvider) {
-//        try{
-//            this.EnvService = serviceProvider.getEnvironmentService(PowerPoolEnvService.class);
-//            //this.EnvService = this.getEnvironmentService_yw4311(PowerPoolEnvService.class);   //Trying out my method
-//        } catch (UnavailableServiceException e) {
-//            logger.warn("unable to load PowerPoolEnvService class", e);
-//        }
-//    }
 
     @Step
     public void step(int t) throws ActionHandlingException {
@@ -75,7 +69,6 @@ public class ParentAgent extends AbstractParticipant
 		}
 
     }
-
 
 
 }

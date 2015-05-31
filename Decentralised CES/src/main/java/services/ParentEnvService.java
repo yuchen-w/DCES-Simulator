@@ -4,14 +4,15 @@ import actions.Demand;
 import actions.childDemand;
 import java.util.UUID;
 
-import javafx.scene.Parent;
 import org.apache.log4j.Logger;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.ServiceDependencies;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
+import uk.ac.imperial.presage2.util.participant.StateAccessor;
 
 import java.util.HashMap;
 
@@ -19,8 +20,10 @@ import java.util.HashMap;
 public class ParentEnvService extends PowerPoolEnvService {
 
     protected final EnvironmentMembersService membersService;
+    private PowerPoolEnvService EnvService;
+    final private EnvironmentServiceProvider serviceProvider;
 
-    private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<>();
+    private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<UUID, Demand>();
     private final Logger logger = Logger.getLogger(this.getClass());
 
 
@@ -28,6 +31,7 @@ public class ParentEnvService extends PowerPoolEnvService {
     public ParentEnvService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) {
         super(sharedState);
         this.membersService = getMembersService(serviceProvider);
+        this.serviceProvider = serviceProvider;
     }
 
     private EnvironmentMembersService getMembersService(
@@ -40,7 +44,6 @@ public class ParentEnvService extends PowerPoolEnvService {
             return null;
         }
     }
-
 
     public void addtoPool(childDemand d) {
         logger.info("Attempting to add to Parent Pool. ");
@@ -58,9 +61,44 @@ public class ParentEnvService extends PowerPoolEnvService {
             Demand temp;
             temp = GroupDemandStorage.get(d.getParentID());
             GroupDemandStorage.put(d.getParentID(), temp.addDemand(d));
-
         }
+        incrementRequestCounter(d.getParentID());
     }
 
+    private PowerPoolEnvService getParentService()
+    {
+        if (EnvService == null)
+        {
+            try
+            {
+                logger.info("Getting ParentService (GlobalService) of ParentEnvService");
+                this.EnvService = serviceProvider.getEnvironmentService(PowerPoolEnvService.class);
+            }
+            catch (UnavailableServiceException e)
+            {
+                logger.warn("Could not get ParentService (GlobalService)", e);
+            }
+        }
+        return EnvService;
+    }
 
+    @Override
+    public void incrementRequestCounter(UUID ParentID)
+    {
+        getParentService();
+        if (RequestCounter.containsKey(ParentID) == false)
+        {
+            RequestCounter.put(ParentID, 1);
+        }
+        else
+        {
+            RequestCounter.put(ParentID,RequestCounter.get(ParentID)+1);
+            if (RequestCounter.get(ParentID) >= ChildrenNum)
+            {
+                RequestCounter.put(ParentID, 0);    //Reset to zero if exceeds bigger than No. of children
+                state.IncrementState();
+                //Next State is changed
+            }
+        }
+    }
 }

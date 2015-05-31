@@ -40,6 +40,9 @@ public class ChildDemandHandler extends DemandHandler{
             getParentService();
             logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemand() + " and is generating " + d.getGeneration());		//Debug
             this.ParentService.addtoPool(d);
+
+           //TODO: Increment Global ChildrenNum varaiable here
+
             //this.ParentService.takefromPool(d);
             //logger.info("ParentEnvService::totalcDemand= " + this.ParentService.getTotalDemand());										//Debug
             //logger.info("ParentEnvService::totalcGeneration= " + this.ParentService.getTotalGeneration());										//Debug

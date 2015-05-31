@@ -1,9 +1,12 @@
 
 package state;
 
+import org.apache.log4j.Logger;
+
 public class SimState {
 
     private State state;
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     public SimState()
     {
@@ -12,6 +15,7 @@ public class SimState {
 
     public void IncrementState()
     {
+        logger.info("Incrementing State");
         switch (this.state)
         {
             case ChildrenRequest: this.state = State.ParentRequest;
