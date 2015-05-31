@@ -26,14 +26,13 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
 
 	protected HashMap<UUID, Integer> RequestCounter = new HashMap<UUID, Integer>();
+	protected HashMap<UUID, Demand>	AgentDemandStorage = new HashMap<UUID, Demand>();
 	protected SimState state = new SimState();
 	double totalDemand = 0;
 	double totalGeneration = 0;
 	double available = 0;
 	
 	private final Logger logger = Logger.getLogger(this.getClass());
-
-
 	
 	@Inject
 	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState)
@@ -41,7 +40,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 		super(sharedState);
 		//sharedState.create("group.demand", )
 	}
-	
+
 	public void addtoDemand(double d)
 	{
 		this.totalDemand = this.totalDemand + d;
@@ -57,6 +56,27 @@ public class PowerPoolEnvService extends GlobalEnvService{
 		this.totalDemand = this.totalDemand + d.getDemand();
 		this.totalGeneration = this.totalGeneration + d.getGeneration();
 		//this.available = this.available + d.getGeneration();
+	}
+
+	public double getTotalDemand()
+	{
+		return this.totalDemand;
+	}
+
+	public double getTotalGeneration()
+	{
+		return this.totalGeneration;
+	}
+
+	public double getAvailable()
+	{
+		return this.available;
+	}
+
+	public void addToAgentPool (Demand d)
+	{
+		logger.info("Agent " + d.getAgentID() + "is adding to AgentDemandStorage");
+		AgentDemandStorage.put(d.getAgentID(), d);
 	}
 	
 	public void takefromPool (Demand d)
@@ -82,39 +102,6 @@ public class PowerPoolEnvService extends GlobalEnvService{
 		
 		d.Allocate(allocation);
 	}
-	
-	public double getTotalDemand()
-	{
-		try {
-			return this.totalDemand;
-		} catch (Exception e)
-		{
-			logger.warn("Failed to getTotalDemand", e);
-			return 909090.9090;	//Fix this
-		}
-	}
-	
-	public double getTotalGeneration()
-	{
-		try {
-			return this.totalGeneration;
-		} catch (Exception e)
-		{
-			logger.warn("Failed to getTotalGeneration", e);
-			return 909090.9090;	//Fix this
-		}
-	}
-	
-	public double getAvailable()
-	{
-		try {
-			return this.available;
-		} catch (Exception e)
-		{
-			logger.warn("Failed to getTotalGeneration", e);
-			return 909090.9090;	//Fix this
-		}
-	}
 
 	public void incrementRequestCounter(UUID ParentID)
 	{
@@ -130,5 +117,15 @@ public class PowerPoolEnvService extends GlobalEnvService{
 				RequestCounter.put(ParentID, 0);    //Reset to zero if exceeds bigger than No. of children
 			}
 		}
+	}
+
+	public Demand getGroupDemand(Demand ParentID)
+	{
+		Demand sum = new Demand(0, 0, ParentID.getAgentID());
+		for (int i=0; i<ParentID.getChildrenList().size(); i++)
+		{
+			sum.addDemand(AgentDemandStorage.get(ParentID.getChildrenList().get(i)));
+		}
+		return sum;
 	}
 }

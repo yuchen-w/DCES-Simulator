@@ -45,6 +45,10 @@ public class ParentEnvService extends PowerPoolEnvService {
         }
     }
 
+    /**
+     * <p>This function adds to GroupDemandStorage HashMap <ParentID, ChildDemandTotal> </p>
+     * @param d
+     */
     public void addtoPool(childDemand d) {
         logger.info("Attempting to add to Parent Pool. ");
 

@@ -17,6 +17,7 @@ public class MasterAgent extends AbstractParticipant {
 
     @Step
     public void step(int t) throws ActionHandlingException {
+        Action.setT(t);
         try
         {
             environment.act(Action, getID(), authkey);

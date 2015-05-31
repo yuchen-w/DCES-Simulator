@@ -30,7 +30,17 @@ public class GlobalEnvService extends EnvironmentService{
 
     protected void incrementState()
     {
-        this.state.IncrementState();
+        this.state.incrementState();
         logger.info("State incremented. State is now: " + state.getState());
     }
+
+    public state.State getState()
+    {
+        return state.getState();
+    }
+
+//    public state.State getStateT()
+//    {
+//        int t = getT();
+//    }
 }

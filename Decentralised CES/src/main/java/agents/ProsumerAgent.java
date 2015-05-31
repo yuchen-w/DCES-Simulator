@@ -18,7 +18,7 @@ public class ProsumerAgent extends ParentAgent {
         super(id, name, consumption, allocation, 0);
         this.parent = parent;
         this.parent_id = parent_id;
-        this.AgentDemand = new childDemand(consumption, allocation, parent_id);
+        this.AgentDemand = new childDemand(consumption, allocation, id, parent_id);
         logger.info("Initiated " + name + " with d: " +consumption+ " and g=" +allocation );
     }
 
@@ -27,6 +27,7 @@ public class ProsumerAgent extends ParentAgent {
         //logger.info("My required Demand is: " 	+ this.AgentDemand.getDemand());
         //logger.info("My Group Generation is: " 	+ this.AgentDemand.getGeneration());
         //logger.info("My Group Allocation is: "+ this.AgentDemand.getAllocation());
+        AgentDemand.setT(t);
         try
         {
             environment.act(AgentDemand, getID(), authkey);

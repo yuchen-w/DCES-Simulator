@@ -4,23 +4,18 @@ import java.util.UUID;
 
 public class childDemand extends Demand {
 
-    UUID parent;
-    //UUID actor;
+    UUID ParentID;
 
-    public childDemand(double demand, double generation, UUID parent) {
-        super(demand, generation);
-        this.parent = parent;
-        //this.actor = actor;
+    public childDemand(double demand, double generation, UUID actor, UUID parent) {
+        super(demand, generation, actor);
+        this.ParentID = parent;
+        this.AgentID = actor;
 
     }
 
-//    public UUID getActor() {
-//        return actor;
-//    }
-
     public UUID getParentID()
     {
-        return parent;
+        return ParentID;
     }
 }
 

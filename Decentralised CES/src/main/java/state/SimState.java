@@ -13,7 +13,7 @@ public class SimState {
         this.state = State.ChildrenRequest;
     }
 
-    public void IncrementState()
+    public void incrementState()
     {
         switch (this.state)
         {

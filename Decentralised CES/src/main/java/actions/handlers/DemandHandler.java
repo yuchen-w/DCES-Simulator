@@ -1,9 +1,11 @@
 package actions.handlers;
 
+import java.security.acl.Group;
 import java.util.UUID;
 
 import actions.Demand;
 import actions.childDemand;
+import services.ParentEnvService;
 import services.PowerPoolEnvService;
 
 import org.apache.log4j.Logger;
@@ -23,8 +25,9 @@ import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
 public class DemandHandler implements ActionHandler {
 
 	final private Logger logger = Logger.getLogger(DemandHandler.class);
-	
-	PowerPoolEnvService EnvService;
+
+	ParentEnvService EnvService;
+	PowerPoolEnvService ParentEnvService;
 	final protected EnvironmentServiceProvider serviceProvider;
 	final protected EnvironmentSharedStateAccess sharedState;
     private final EnvironmentMembersService membersService;
@@ -43,32 +46,68 @@ public class DemandHandler implements ActionHandler {
 	}
 
 	@Override
-	public Object handle(Action GroupDemand, UUID actor) throws ActionHandlingException {
+	public Object handle(Action action, UUID actor) throws ActionHandlingException {
 		getService();
-		if (GroupDemand instanceof Demand)
+		getParentService();
+		if (action instanceof Demand)
 		{
-			final Demand d = (Demand)GroupDemand;
-			logger.info("DemandHandler: Demand d.Demand = " + d.getDemand() + " and Demand d.Generation = " + d.getGeneration());		//Debug
-			this.EnvService.addtoPool(d);
-			this.EnvService.takefromPool(d);
-			logger.info("PowerPoolEnvService::totalDemand= " + this.EnvService.getTotalDemand());										//Debug
-			logger.info("PowerPoolEnvService::totalGeneration= " + this.EnvService.getTotalGeneration());										//Debug
-			logger.info("PowerPoolEnvService::available= " + this.EnvService.getAvailable());
+
+			final Demand d = (Demand)action;
+			int CurrentState = d.getT()%d.getStateNum();
+			switch (CurrentState)
+			{
+				case 1:
+				{
+					logger.info("T=" + d.getT() + " Parent Request round");
+					//TODO: Add up demand from ParentEnvService.AgentDemandStorage,
+					//Todo: Submit GroupDemand to PowerPoolEnvService
+					//logger.info("DemandHandler: Demand d.Demand = " + d.getDemand() + " and Demand d.Generation = " + d.getGeneration());        //Debug
+					Demand GroupDemand = this.EnvService.getGroupDemand(d);
+					this.ParentEnvService.addToAgentPool(GroupDemand);
+					logger.info("GroupDemand D= " +GroupDemand.getDemand()+" G= " + GroupDemand.getGeneration());
+				}
+//				case x:
+//				{
+//					logger.info("T=" + d.getT() + "Parent Allocation round");
+//					this.EnvService.takefromPool(d);
+//					logger.info("PowerPoolEnvService::totalDemand= " + this.EnvService.getTotalDemand());                                        //Debug
+//					logger.info("PowerPoolEnvService::totalGeneration= " + this.EnvService.getTotalGeneration());                                        //Debug
+//					logger.info("PowerPoolEnvService::available= " + this.EnvService.getAvailable());
+//				}
+			}
 		}
 		return null;
 	}
 	
-	protected PowerPoolEnvService getService()
+	protected ParentEnvService getService()
 	{
-		if (EnvService == null) {
+		if (EnvService == null)
+		{
+			try
+			{
+				logger.info("Getting ParentService (GlobalService) of ParentEnvService");
+				this.EnvService = serviceProvider.getEnvironmentService(ParentEnvService.class);
+			}
+			catch (UnavailableServiceException e)
+			{
+				logger.warn("Could not get ParentService (GlobalService)", e);
+			}
+		}
+		return EnvService;
+	}
+
+	private PowerPoolEnvService getParentService()
+	{
+		if (ParentEnvService == null) {
 			try {
-				this.EnvService = serviceProvider
+				this.ParentEnvService = serviceProvider
 						.getEnvironmentService(PowerPoolEnvService.class);
 			} catch (UnavailableServiceException e) {
 				logger.warn("Could not get EnvService", e);
 			}
 		}
-		return EnvService;
+		return ParentEnvService;
 	}
+
 
 }

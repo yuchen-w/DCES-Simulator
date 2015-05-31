@@ -37,9 +37,9 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
         if (action instanceof MasterAction)
         {
             final MasterAction a = (MasterAction)action;
-            logger.info("Incrementing State. State was");		//Debug
+            //logger.info("State is currently: " + this.EnvService.getState()+"MasterAgent is incrementing the next state");		//Debug
             //Do allocate if State=allocate. Use Allocate action.
-            this.EnvService.incrementState();
+            //this.EnvService.incrementState();
         }
         return null;
     }

@@ -38,8 +38,26 @@ public class ChildDemandHandler extends DemandHandler{
         {
             final childDemand d = (childDemand)demand_action;
             getParentService();
-            logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemand() + " and is generating " + d.getGeneration());		//Debug
-            this.ParentService.addtoPool(d);
+            int CurrentState = d.getT()%d.getStateNum();
+
+            switch (CurrentState)
+            {
+                case 0:
+                {
+                    logger.info("T="+ d.getT() +" Children Request round");
+                    logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemand() + " and is providing " + d.getGeneration());		//Debug
+                    this.ParentService.addToAgentPool(d);
+                }
+//                case x:
+//                {
+//                    logger.info("T="+ d.getT() +"Children Allocation round");
+//                    logger.info("Children take from allocation code goes here");
+//                }
+            }
+
+
+
+
 
            //TODO: Increment Global ChildrenNum varaiable here
 
