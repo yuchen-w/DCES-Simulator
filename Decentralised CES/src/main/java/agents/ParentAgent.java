@@ -93,7 +93,7 @@ public class ParentAgent extends AbstractParticipant
 
         //Set<ParticipantSharedState> ss = this.getSharedState();
         //TODO
-        //get from shared State Demand
+        //get from shared SimState Demand
 
         //logger.info("Total demand is now : " + this.EnvService.getTotalDemand());
         //logger.info("Total Generation Pool is now: " + this.EnvService.getTotalGeneration());

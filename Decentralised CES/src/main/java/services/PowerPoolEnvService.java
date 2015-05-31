@@ -13,13 +13,12 @@ import com.google.inject.Inject;
 import uk.ac.imperial.presage2.core.environment.EnvironmentService;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
-//import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
-//import uk.ac.imperial.presage2.core.participant.Participant;
-//import uk.ac.imperial.presage2.util.location.LocationService;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class PowerPoolEnvService extends EnvironmentService{
 
-	
+	protected HashMap<UUID, Integer> RequestCounter = new HashMap<>();
 	double totalDemand = 0;
 	double totalGeneration = 0;
 	double available = 0;
@@ -106,5 +105,21 @@ public class PowerPoolEnvService extends EnvironmentService{
 			return 909090.9090;	//Fix this
 		}
 	}
+
+	public void incrementRequestCounter(UUID ParentID)
+	{
+		if (RequestCounter.containsKey(ParentID) == false)
+		{
+			RequestCounter.put(ParentID, 1);
+		}
+		else
+		{
+			RequestCounter.put(ParentID,RequestCounter.get(ParentID)+1);
+			//Get number of children
+			//Reset to zero if exceeds bigger than No. of children
+		}
+	}
+
+
 
 }
