@@ -1,5 +1,7 @@
 package sim;
 
+import services.MasterActionHandlerService;
+import agents.MasterAgent;
 import agents.ParentAgent;
 import services.ChildEnvService;
 import services.ParentEnvService;
@@ -53,10 +55,12 @@ public class SimpleDNOSim extends RunnableSimulation {
 
                         .addActionHandler(DemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)
+                        .addActionHandler(MasterActionHandlerService.class)
                 //Add the participant service and any other additional environment services here too
         );
 
 
+        scenario.addAgent(new MasterAgent(Random.randomUUID(), "Master Agent"));
 
         for (int i = 0; i < agents; i++) {
             UUID parent_id = Random.randomUUID();

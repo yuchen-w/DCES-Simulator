@@ -15,7 +15,6 @@ public class SimState {
 
     public void IncrementState()
     {
-        logger.info("Incrementing State");
         switch (this.state)
         {
             case ChildrenRequest: this.state = State.ParentRequest;
@@ -25,6 +24,7 @@ public class SimState {
             case Appropriate: this.state = State.ChildrenRequest;
                 break;
         }
+        logger.info("Incrementing State. State is now "+ this.getState());
     }
 
     public State getState()

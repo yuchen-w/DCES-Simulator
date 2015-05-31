@@ -12,18 +12,15 @@ import actions.Demand;
 import com.google.inject.Inject;
 
 import state.SimState;
-import uk.ac.imperial.presage2.core.environment.EnvironmentService;
-//import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class PowerPoolEnvService extends EnvironmentService{
+public class PowerPoolEnvService extends GlobalEnvService{
 
 	@Inject
 	@Named("params.children")
-	//protected int ChildrenNum=2;
-	protected int children;
+	protected int children;	//Variable here needs to be the same as it is called in the SimpleSim.java file
 
 	protected int ChildrenNum = children;	//TODO: tidy this up
 
@@ -131,7 +128,6 @@ public class PowerPoolEnvService extends EnvironmentService{
 			if (RequestCounter.get(ParentID) >= ChildrenNum)
 			{
 				RequestCounter.put(ParentID, 0);    //Reset to zero if exceeds bigger than No. of children
-				//Next State is changed
 			}
 		}
 	}

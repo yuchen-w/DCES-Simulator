@@ -96,8 +96,7 @@ public class ParentEnvService extends PowerPoolEnvService {
             if (RequestCounter.get(ParentID) >= ChildrenNum)
             {
                 RequestCounter.put(ParentID, 0);    //Reset to zero if exceeds bigger than No. of children
-                state.IncrementState();
-                //Next State is changed
+                //Next State can't be changed here
             }
         }
     }
