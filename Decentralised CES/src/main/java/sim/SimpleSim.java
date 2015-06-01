@@ -1,21 +1,19 @@
 package sim;
 
 //import org.apache.log4j.Logger;
-import actions.DemandHandler;
+import agents.ParentAgent;
+import services.PowerPoolEnvService;
+import actions.handlers.DemandHandler;
 //import uk.ac.imperial.evpool.EvEnvService;
 //import uk.ac.imperial.evpool.Inject;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 //import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
-import myagents.SimpleAgent;
-import myagents.SimpleEnvService;
-import simpleactions.InstitutionDemandHandler;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
 import uk.ac.imperial.presage2.core.util.random.Random;
 import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
-import uk.ac.imperial.presage2.db.sql.SqlStorage;
 //import uk.ac.imperial.presage2.util.location.LocationStoragePlugin;
 //import uk.ac.imperial.presage2.util.location.MoveHandler;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
@@ -39,25 +37,26 @@ public class SimpleSim extends RunnableSimulation {
 	@Override
 	public void initialiseScenario(Scenario scenario) {
 		addModule(new AbstractEnvironmentModule()
-                                .addParticipantGlobalEnvironmentService(SimpleEnvService.class)
-                                .addActionHandler(DemandHandler.class)
-								.addActionHandler(InstitutionDemandHandler.class)
+						.addParticipantGlobalEnvironmentService(PowerPoolEnvService.class)
+								//.addParticipantEnvironmentService()
+								//.addParticipantGlobalEnvironmentService(EnvironmentMembersService.class)
+						.addActionHandler(DemandHandler.class)
 				//Add the participant service and any other additional environment services here too
-				);
-		
-		 
+		);
+
 		 
 		for (int i = 0; i < agents; i++) {
-			scenario.addAgent(new SimpleAgent(
+			scenario.addAgent(new ParentAgent(
 					Random.randomUUID(),
 					"agent" + i,
 					Random.randomInt(size), 
-					Random.randomInt(size)
+					Random.randomInt(size),
+					0
 					));
 		}
 		
 //		for (int i = 0; i < agents; i++) {
-//			scenario.addAgent(new SimpleAgent(
+//			scenario.addAgent(new ParentAgent(
 //					Random.randomUUID(),
 //					"agent" + i,
 //					10, 

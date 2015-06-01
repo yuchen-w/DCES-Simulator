@@ -1,16 +1,35 @@
 //Object for passing demand and generation between agent and environment
 package actions;
 
-public class Demand extends TimestampedAction { 
+import actions.TimestampedAction;
+import sun.management.Agent;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.UUID;
+
+public class Demand extends MasterAction implements Serializable {
 	
 	double demand = 0;
 	double generation = 0;
+
 	double allocation = 0;
-	
-	public Demand(double demand, double generation)
+	UUID AgentID;
+
+	public Demand(double demand, double generation,UUID AgentID)
 	{
+		super(AgentID, null);
 		this.demand = demand;
 		this.generation = generation;
+		this.AgentID = AgentID;
+	}
+
+	public Demand(double demand, double generation,UUID AgentID, ArrayList<UUID> ChildrenList)
+	{
+		super(AgentID, ChildrenList);
+		this.demand = demand;
+		this.generation = generation;
+		this.AgentID = AgentID;
 	}
 	
 	public void Allocate (double allocation)
@@ -36,6 +55,18 @@ public class Demand extends TimestampedAction {
 	public double getAllocation()
 	{
 		return allocation;
+	}
+
+	/**
+	 * Adds another Demand object to this one.
+	 * @param d
+	 */
+	public Demand addDemand(Demand d)
+	{
+		this.demand 	+= d.getDemand();
+		this.generation += d.getGeneration();
+		this.allocation += d.getAllocation();
+		return this;
 	}
 
 }
