@@ -1,6 +1,6 @@
 package sim;
 
-import services.MasterActionHandlerService;
+import services.handler.MasterActionHandlerService;
 import agents.MasterAgent;
 import agents.ParentAgent;
 import services.ChildEnvService;
@@ -60,13 +60,17 @@ public class SimpleDNOSim extends RunnableSimulation {
         );
 
 
-        scenario.addAgent(new MasterAgent(Random.randomUUID(), "Supervisor/NGC"));
+        MasterAgent supervisor = new MasterAgent(Random.randomUUID(), "Supervisor/NGC");
+        scenario.addAgent(supervisor);
 
         for (int i = 0; i < agents; i++)
         {
             UUID parent_id = Random.randomUUID();
             ParentAgent Parent = new ParentAgent(parent_id, "parent" + i, 0, 0, agent_children);
             scenario.addAgent(Parent);
+
+            supervisor.addChild(Parent.getID());
+
             for (int j = 0; j < agent_children; j++)
             {
                 UUID child_id = Random.randomUUID();

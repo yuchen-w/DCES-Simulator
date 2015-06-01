@@ -20,10 +20,10 @@ import uk.ac.imperial.presage2.core.simulator.Step;
 import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 import uk.ac.imperial.presage2.util.participant.StateAccessor;
 
-public class ParentAgent extends AbstractParticipant
+public class ParentAgent extends MasterAgent
 {
     private final Demand GroupDemand;
-    private ArrayList<UUID> ChildrenList = new ArrayList<UUID>();
+
     //public State<Integer> ChildrenNum;
 
 
@@ -33,11 +33,6 @@ public class ParentAgent extends AbstractParticipant
         this.GroupDemand = new Demand(consumption, allocation, id, ChildrenList);
         //this.ChildrenNum = new State<Integer>("ChildrenNum", ChildrenNum);
 
-    }
-
-    public void addChild(UUID id)
-    {
-        ChildrenList.add(id);
     }
 
     @Initialisor

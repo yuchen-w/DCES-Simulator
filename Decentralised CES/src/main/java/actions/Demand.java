@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Demand extends TimestampedAction implements Serializable {
+public class Demand extends MasterAction implements Serializable {
 	
 	double demand = 0;
 	double generation = 0;
@@ -16,10 +16,9 @@ public class Demand extends TimestampedAction implements Serializable {
 	double allocation = 0;
 	UUID AgentID;
 
-	ArrayList<UUID> ChildrenList;
-	
-	public Demand(double demand, double generation, UUID AgentID)
+	public Demand(double demand, double generation,UUID AgentID)
 	{
+		super(AgentID, null);
 		this.demand = demand;
 		this.generation = generation;
 		this.AgentID = AgentID;
@@ -27,10 +26,10 @@ public class Demand extends TimestampedAction implements Serializable {
 
 	public Demand(double demand, double generation,UUID AgentID, ArrayList<UUID> ChildrenList)
 	{
+		super(AgentID, ChildrenList);
 		this.demand = demand;
 		this.generation = generation;
 		this.AgentID = AgentID;
-		this.ChildrenList = ChildrenList;
 	}
 	
 	public void Allocate (double allocation)
@@ -56,16 +55,6 @@ public class Demand extends TimestampedAction implements Serializable {
 	public double getAllocation()
 	{
 		return allocation;
-	}
-
-	public ArrayList<UUID> getChildrenList()
-	{
-		return ChildrenList;
-	}
-
-	public UUID getAgentID()
-	{
-		return AgentID;
 	}
 
 	/**

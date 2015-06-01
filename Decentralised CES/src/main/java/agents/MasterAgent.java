@@ -6,13 +6,22 @@ import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
 import uk.ac.imperial.presage2.core.simulator.Step;
 import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class MasterAgent extends AbstractParticipant {
-    MasterAction Action = new MasterAction();
+    MasterAction Action;
+    protected ArrayList<UUID> ChildrenList = new ArrayList<UUID>();
+
     public MasterAgent(UUID id, String name)
     {
         super(id, name);
+        Action = new MasterAction(id, ChildrenList);
+    }
+
+    public void addChild(UUID id)
+    {
+        ChildrenList.add(id);
     }
 
     @Step

@@ -3,6 +3,7 @@
 package services;
 
 
+import actions.MasterAction;
 import actions.childDemand;
 import com.google.inject.name.Named;
 import org.apache.log4j.Logger;
@@ -33,7 +34,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	double available = 0;
 	
 	private final Logger logger = Logger.getLogger(this.getClass());
-	
+
 	@Inject
 	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState)
 	{
@@ -121,10 +122,20 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
 	public Demand getGroupDemand(Demand ParentID)
 	{
-		Demand sum = new Demand(0, 0, ParentID.getAgentID());
+		Demand sum = new Demand(0, 0, ParentID.getAgentID(), null);
 		for (int i=0; i<ParentID.getChildrenList().size(); i++)
 		{
 			sum.addDemand(AgentDemandStorage.get(ParentID.getChildrenList().get(i)));
+		}
+		return sum;
+	}
+
+	public Demand getGroupDemand(MasterAction action)
+	{
+		Demand sum = new Demand(0, 0, action.getAgentID(), null);
+		for (int i=0; i<action.getChildrenList().size(); i++)
+		{
+			sum.addDemand(AgentDemandStorage.get(action.getChildrenList().get(i)));
 		}
 		return sum;
 	}
