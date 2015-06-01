@@ -35,15 +35,8 @@ public class SimpleDNOSim extends RunnableSimulation {
     @Parameter (name = "surplus")
     public double grid_surplus;
 
-    public double returnGridSurplus()
-    {
-        return grid_surplus;
-    }
-
-    public void setGridSurplus(double value)
-    {
-        this.grid_surplus = value;
-    }
+    @Parameter (name = "parent_level", optional = true)
+    public int parent_level = 2;
 
     @Override
     public void initialiseScenario(Scenario scenario) {

@@ -16,17 +16,24 @@ import uk.ac.imperial.presage2.core.environment.EnvironmentService;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
+import uk.ac.imperial.presage2.core.event.EventListener;
+import uk.ac.imperial.presage2.core.simulator.Parameter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class GlobalEnvService extends EnvironmentService{
-    private SimState state = new SimState();
+    private SimState state;
+    private int round = 0;
     private PowerPoolEnvService ChildEnvService;
     final protected EnvironmentServiceProvider serviceProvider;
 
     private final Logger logger = Logger.getLogger(this.getClass());
+
+//    @Inject
+    @Parameter (name = "parent_level")
+    private int parent_level;
 
     @Inject
     public GlobalEnvService(EnvironmentSharedStateAccess sharedState, EnvironmentServiceProvider serviceProvider)
@@ -86,9 +93,20 @@ public class GlobalEnvService extends EnvironmentService{
         return ChildEnvService;
     }
 
+    @EventListener
     protected void incrementState()
     {
-        this.state.incrementState();
+        round++;
+        if (this.state.getState() == null)
+        {
+            logger.info("Starting simulation. Initialising state");
+            this.state = new SimState();
+        }
+        else
+        {
+            if (round > parent_level)
+                this.state.incrementState();
+        }
         logger.info("State incremented. State is now: " + state.getState());
     }
 
@@ -96,4 +114,14 @@ public class GlobalEnvService extends EnvironmentService{
     {
         return state.getState();
     }
+
+    //public double returnGridSurplus()
+//    {
+//        return grid_surplus;
+//    }
+//
+//    public void setGridSurplus(double value)
+//    {
+//        this.grid_surplus = value;
+//    }
 }

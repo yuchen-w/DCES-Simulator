@@ -10,18 +10,16 @@ public class SimState {
 
     public SimState()
     {
-        this.state = State.ChildrenRequest;
+        this.state = State.Request;
     }
 
     public void incrementState()
     {
         switch (this.state)
         {
-            case ChildrenRequest: this.state = State.ParentRequest;
+            case Request: this.state = State.Appropriate;
                 break;
-            case ParentRequest: this.state = State.Appropriate;
-                break;
-            case Appropriate: this.state = State.ChildrenRequest;
+            case Appropriate: this.state = State.Request;
                 break;
         }
         logger.info("Incrementing State. State is now "+ this.getState());
