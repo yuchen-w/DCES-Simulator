@@ -13,6 +13,7 @@ import actions.Demand;
 import com.google.inject.Inject;
 
 import state.SimState;
+import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import java.util.HashMap;
 import java.util.UUID;
@@ -36,9 +37,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	private final Logger logger = Logger.getLogger(this.getClass());
 
 	@Inject
-	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState)
+	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState, EnvironmentServiceProvider serviceProvider)
 	{
-		super(sharedState);
+		super(sharedState, serviceProvider);
 		//sharedState.create("group.demand", )
 	}
 
@@ -80,29 +81,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 		AgentDemandStorage.put(d.getAgentID(), d);
 	}
 	
-	public void takefromPool (Demand d)
-	{
-		double shortfall = d.getDemand() - d.getGeneration();
-		double allocation;
-		if (shortfall < 0)
-		{
-			allocation = d.getDemand();
-			this.available -= shortfall;
-		}
-		else if (shortfall >= 0 && shortfall <= this.available)
-		{
-			allocation = d.getDemand();
-			this.available -= shortfall;
-		}
-		else
-		{
-			allocation = d.getGeneration() + this.available;
-			this.available = 0;
-		}
-		logger.info("Allocating: " + allocation);
-		
-		d.Allocate(allocation);
-	}
+
 
 	public void incrementRequestCounter(UUID ParentID)
 	{

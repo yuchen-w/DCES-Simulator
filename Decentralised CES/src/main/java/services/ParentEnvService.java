@@ -21,7 +21,7 @@ public class ParentEnvService extends PowerPoolEnvService {
 
     protected final EnvironmentMembersService membersService;
     private PowerPoolEnvService EnvService;
-    final private EnvironmentServiceProvider serviceProvider;
+    //final private EnvironmentServiceProvider serviceProvider;
 
     private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<UUID, Demand>();
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -29,9 +29,9 @@ public class ParentEnvService extends PowerPoolEnvService {
 
     @Inject
     public ParentEnvService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) {
-        super(sharedState);
+        super(sharedState, serviceProvider);
         this.membersService = getMembersService(serviceProvider);
-        this.serviceProvider = serviceProvider;
+        //this.serviceProvider = serviceProvider;
     }
 
     private EnvironmentMembersService getMembersService(

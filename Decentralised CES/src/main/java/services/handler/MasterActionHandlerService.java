@@ -16,15 +16,14 @@ import java.util.UUID;
 public class MasterActionHandlerService extends GlobalEnvService implements ActionHandler{
     final private Logger logger = Logger.getLogger(DemandHandler.class);
 
-    final protected EnvironmentServiceProvider serviceProvider;
+   // final protected EnvironmentServiceProvider serviceProvider;
     final protected EnvironmentSharedStateAccess sharedState;
     protected PowerPoolEnvService EnvService;
 
     @Inject
     public MasterActionHandlerService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState)
     {
-        super(sharedState);
-        this.serviceProvider = serviceProvider;
+        super(sharedState, serviceProvider);
         this.sharedState = sharedState;
     }
 
@@ -51,8 +50,7 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
                     logger.info("Parents are:" + a.getChildrenList());
                     TotalDemand = TotalDemand.addDemand(EnvService.getGroupDemand(a));
                     logger.info("Global Total D = " + TotalDemand.getDemand() + "G = " + TotalDemand.getGeneration());
-
-                    //Appropriate
+                    appropriate(TotalDemand, a.getChildrenList());
                 }
             }
             //Do allocate if State=allocate. Use Allocate action.
