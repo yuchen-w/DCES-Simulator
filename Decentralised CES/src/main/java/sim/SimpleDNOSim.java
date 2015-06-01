@@ -1,6 +1,5 @@
 package sim;
 
-import services.handler.MasterActionHandlerService;
 import agents.MasterAgent;
 import agents.ParentAgent;
 import services.ChildEnvService;
@@ -55,7 +54,7 @@ public class SimpleDNOSim extends RunnableSimulation {
 
                         .addActionHandler(DemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)
-                        .addActionHandler(MasterActionHandlerService.class)
+                        .addActionHandler(services.handler.MasterActionHandlerService.class)
                 //Add the participant service and any other additional environment services here too
         );
 
