@@ -104,35 +104,4 @@ public class ParentEnvService extends PowerPoolEnvService {
             }
         }
     }
-
-//    public void allocate(Demand d, Demand allocate)
-//    {
-//        d.Allocate(allocate.getDemandRequest());
-//    }
-
-//    @Override
-//    protected void setGroupDemand(UUID AgentID, parentDemand d)
-//    {
-//        logger.info("Allocating to ID: " + AgentID + " in AgentAllocationStorage");
-//        logger.info("Allocation: d = " + d.getDemandRequest() + " g = " + d.getGenerationRequest());
-//        AgentAllocationStorage.put(AgentID, d);
-//    }
-//
-//    @Override
-//    public parentDemand getAllocation(UUID ID)
-//    {
-//        logger.info("getting allocation");
-//        if (AgentAllocationStorage.containsKey(ID))
-//        {
-//            return AgentAllocationStorage.get(ID);
-//        }
-//        else
-//        {
-//            logger.info("Error!");
-//            parentDemand nullDemand = new parentDemand(0, 0, ID);
-//            return nullDemand;
-//        }
-//    }
-
-
 }

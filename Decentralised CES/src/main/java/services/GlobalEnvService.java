@@ -40,7 +40,7 @@ public class GlobalEnvService extends EnvironmentService{
 
     public void appropriate (parentDemand Total,  ArrayList<UUID> ChildrenList)
     {
-        logger.info("GlobalEnvService.appropriate() called");
+        //logger.info("GlobalEnvService.appropriate() called");
         getChildEnvService();
         double shortfall = Total.getDemandRequest() - Total.getGenerationRequest();
 
@@ -127,13 +127,4 @@ public class GlobalEnvService extends EnvironmentService{
         return state.getState();
     }
 
-    //public double returnGridSurplus()
-//    {
-//        return grid_surplus;
-//    }
-//
-//    public void setGridSurplus(double value)
-//    {
-//        this.grid_surplus = value;
-//    }
 }

@@ -47,7 +47,7 @@ public class ParentAgent extends MasterAgent
 			environment.act(GroupDemand, getID(), authkey);
 		} catch (ActionHandlingException e)
         {
-			logger.warn("Failed to add demand to the pool", e);
+			logger.warn("Failed to add Group Demand to the pool", e);
 		}
 
     }

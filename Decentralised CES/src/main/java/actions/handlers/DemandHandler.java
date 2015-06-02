@@ -56,8 +56,6 @@ public class DemandHandler implements ActionHandler {
 			if (CurrentState == 1)
             {
                 logger.info("T=" + d.getT() + " Parent Request round");
-                //TODO: Add up demand from ParentEnvService.AgentDemandStorage,
-                //Todo: Submit GroupDemand to PowerPoolEnvService
                 //logger.info("DemandHandler: parentDemand d.parentDemand = " + d.getDemandRequest() + " and parentDemand d.Generation = " + d.getGenerationRequest());        //Debug
                 parentDemand GroupDemand = this.EnvService.getGroupDemand(d);
                 this.ParentEnvService.addToAgentPool(GroupDemand);
@@ -66,7 +64,7 @@ public class DemandHandler implements ActionHandler {
 
             if (CurrentState == 3)
             {
-                logger.info("T=" + d.getT() + ". Appropriate to agent round");
+                //logger.info("T=" + d.getT() + ". Appropriate to agent round");
                 parentDemand allocated = ParentEnvService.getAllocation(actor);
                 d.allocateDemandObj(allocated);
                 logger.info("Parent " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
