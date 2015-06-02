@@ -43,7 +43,7 @@ public class ChildDemandHandler extends DemandHandler{
 
             if (CurrentState == 0)
             {
-                logger.info("T="+ d.getT() +" Children Request round");
+                logger.info("T= "+ d.getT() +". Children Request round");
                 logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemand() + " and is providing " + d.getGeneration());		//Debug
                 this.ParentService.addToAgentPool(d);
             }
@@ -51,11 +51,11 @@ public class ChildDemandHandler extends DemandHandler{
             if (CurrentState == 4)
             {
                 getParentService();
-                logger.info("CurrentState= " + CurrentState + "T= "+ d.getT() +" Children Receive round");
+                logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
                 logger.info("Agent: " + actor + " attempting to retrieve allocation");
                 Demand allocated = ParentService.getAllocation(actor);
                 d.allocateDemand(allocated);
-                logger.info("Agent: " + actor + "allocation: d=" + ParentEnvService.getAllocation(actor).getDemand());
+                logger.info("Agent: " + actor + "allocation: d=" + d.getDemand());
                 logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemand() + " g = " + allocated.getGeneration());
             }
 
