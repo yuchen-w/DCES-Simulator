@@ -2,7 +2,7 @@ package actions;
 
 import java.util.UUID;
 
-public class childDemand extends Demand {
+public class childDemand extends parentDemand {
 
     UUID ParentID;
 

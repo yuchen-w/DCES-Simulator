@@ -1,6 +1,6 @@
 package services.handler;
 
-import actions.Demand;
+import actions.parentDemand;
 import actions.MasterAction;
 import actions.childDemand;
 import actions.handlers.DemandHandler;
@@ -29,13 +29,13 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
 
     @Override
     public boolean canHandle(Action action) {
-        return (action instanceof MasterAction & !((action instanceof childDemand)|(action instanceof Demand)));
+        return (action instanceof MasterAction & !((action instanceof childDemand)|(action instanceof parentDemand)));
     }
 
     @Override
     public Object handle(Action action, UUID actor) throws ActionHandlingException {
         getService();
-        Demand TotalDemand = new Demand(0,0,actor);
+        parentDemand TotalDemand = new parentDemand(0,0,actor);
 
         if (action instanceof MasterAction)
         {

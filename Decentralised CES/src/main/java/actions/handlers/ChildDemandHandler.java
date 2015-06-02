@@ -1,9 +1,7 @@
 package actions.handlers;
 
-import actions.Demand;
+import actions.parentDemand;
 import actions.childDemand;
-import agents.ParentAgent;
-import agents.ProsumerAgent;
 import com.google.inject.Inject;
 import services.ParentEnvService;
 import uk.ac.imperial.presage2.core.Action;
@@ -53,7 +51,7 @@ public class ChildDemandHandler extends DemandHandler{
                 getParentService();
                 logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
                 logger.info("Agent: " + actor + " attempting to retrieve allocation");
-                Demand allocated = ParentService.getAllocation(actor);
+                parentDemand allocated = ParentService.getAllocation(actor);
                 d.allocateDemand(allocated);
                 logger.info("Agent: " + actor + "allocation: d=" + d.getDemand());
                 logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemand() + " g = " + allocated.getGeneration());

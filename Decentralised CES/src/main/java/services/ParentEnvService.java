@@ -1,20 +1,16 @@
 package services;
 
-import actions.Demand;
+import actions.parentDemand;
 import actions.childDemand;
 
-import java.security.acl.Group;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
-import uk.ac.imperial.presage2.core.environment.ServiceDependencies;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
-import uk.ac.imperial.presage2.util.participant.StateAccessor;
 
 import java.util.HashMap;
 
@@ -25,7 +21,7 @@ public class ParentEnvService extends PowerPoolEnvService {
     private PowerPoolEnvService EnvService;
     //final private EnvironmentServiceProvider serviceProvider;
 
-    private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<UUID, Demand>();
+    private HashMap<UUID, parentDemand> GroupDemandStorage = new HashMap<UUID, parentDemand>();
 
     private final Logger logger = Logger.getLogger(this.getClass());
 
@@ -65,9 +61,9 @@ public class ParentEnvService extends PowerPoolEnvService {
         else
         {
             logger.info("For ParentID " +d.getParentID()+" HashMap Entry Exists, adding demand.");
-            Demand temp;
+            parentDemand temp;
             temp = GroupDemandStorage.get(d.getParentID());
-            GroupDemandStorage.put(d.getParentID(), temp.addDemand(d));
+            GroupDemandStorage.put(d.getParentID(), (parentDemand)temp.addDemand(d));
         }
         incrementRequestCounter(d.getParentID());
     }
@@ -109,7 +105,7 @@ public class ParentEnvService extends PowerPoolEnvService {
     }
 
     @Override
-    protected void setGroupDemand(UUID AgentID, Demand d)
+    protected void setGroupDemand(UUID AgentID, parentDemand d)
     {
         logger.info("Allocating to ID: " + AgentID + " in AgentAllocationStorage");
         logger.info("Allocation: d = " + d.getDemand() + " g = " + d.getGeneration());
@@ -117,7 +113,7 @@ public class ParentEnvService extends PowerPoolEnvService {
     }
 
     @Override
-    public Demand getAllocation(UUID ID)
+    public parentDemand getAllocation(UUID ID)
     {
         logger.info("getting allocation");
         if (AgentAllocationStorage.containsKey(ID))
@@ -127,7 +123,7 @@ public class ParentEnvService extends PowerPoolEnvService {
         else
         {
             logger.info("Error!");
-            Demand nullDemand = new Demand(0, 0, ID);
+            parentDemand nullDemand = new parentDemand(0, 0, ID);
             return nullDemand;
         }
     }

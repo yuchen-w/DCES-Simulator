@@ -3,11 +3,8 @@
 package services;
 
 
-import actions.childDemand;
-import com.google.inject.name.Named;
+import actions.parentDemand;
 import org.apache.log4j.Logger;
-
-import actions.Demand;
 
 import com.google.inject.Inject;
 
@@ -20,7 +17,6 @@ import uk.ac.imperial.presage2.core.event.EventListener;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
 public class GlobalEnvService extends EnvironmentService{
@@ -42,7 +38,7 @@ public class GlobalEnvService extends EnvironmentService{
         this.serviceProvider = serviceProvider;
     }
 
-    public void appropriate (Demand Total,  ArrayList<UUID> ChildrenList)
+    public void appropriate (parentDemand Total,  ArrayList<UUID> ChildrenList)
     {
         logger.info("GlobalEnvService.appropriate() called");
         getChildEnvService();
@@ -63,8 +59,8 @@ public class GlobalEnvService extends EnvironmentService{
             for (int i=0; i<ChildrenList.size(); i++)
             {
                 UUID agent = ChildrenList.get(i);
-                Demand request = ChildEnvService.getAgentDemand(agent);
-                Demand allocation = new Demand(request.getDemand()*proportion, request.getGeneration(), agent);
+                parentDemand request = ChildEnvService.getAgentDemand(agent);
+                parentDemand allocation = new parentDemand(request.getDemand()*proportion, request.getGeneration(), agent);
                 ChildEnvService.setGroupDemand(agent, allocation);
             }
         }

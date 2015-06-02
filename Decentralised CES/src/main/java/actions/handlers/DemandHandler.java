@@ -1,9 +1,8 @@
 package actions.handlers;
 
-import java.security.acl.Group;
 import java.util.UUID;
 
-import actions.Demand;
+import actions.parentDemand;
 import actions.childDemand;
 import services.ParentEnvService;
 import services.PowerPoolEnvService;
@@ -42,25 +41,25 @@ public class DemandHandler implements ActionHandler {
 	
 	@Override
 	public boolean canHandle(Action demand) {
-		return (demand instanceof Demand) & !(demand instanceof childDemand);
+		return (demand instanceof parentDemand) & !(demand instanceof childDemand);
 	}
 
 	@Override
 	public Object handle(Action action, UUID actor) throws ActionHandlingException {
 		getService();
 		getParentService();
-		if (action instanceof Demand)
+		if (action instanceof parentDemand)
 		{
 
-			final Demand d = (Demand)action;
+			final parentDemand d = (parentDemand)action;
 			int CurrentState = d.getT()%d.getStateNum();
 			if (CurrentState == 1)
             {
                 logger.info("T=" + d.getT() + " Parent Request round");
                 //TODO: Add up demand from ParentEnvService.AgentDemandStorage,
                 //Todo: Submit GroupDemand to PowerPoolEnvService
-                //logger.info("DemandHandler: Demand d.Demand = " + d.getDemand() + " and Demand d.Generation = " + d.getGeneration());        //Debug
-                Demand GroupDemand = this.EnvService.getGroupDemand(d);
+                //logger.info("DemandHandler: parentDemand d.parentDemand = " + d.getDemand() + " and parentDemand d.Generation = " + d.getGeneration());        //Debug
+                parentDemand GroupDemand = this.EnvService.getGroupDemand(d);
                 this.ParentEnvService.addToAgentPool(GroupDemand);
                 logger.info("GroupDemand D= " +GroupDemand.getDemand()+" G= " + GroupDemand.getGeneration());
             }
@@ -68,7 +67,7 @@ public class DemandHandler implements ActionHandler {
             if (CurrentState == 3)
             {
                 logger.info("T=" + d.getT() + ". Appropriate to agent round");
-                Demand allocated = ParentEnvService.getAllocation(actor);
+                parentDemand allocated = ParentEnvService.getAllocation(actor);
                 d.allocateDemand(allocated);
                 logger.info("Parent " + actor + " allocation: d =" + allocated.getDemand() + " g = " + allocated.getGeneration());
                 ParentEnvService.appropriate(allocated, d.getChildrenList());

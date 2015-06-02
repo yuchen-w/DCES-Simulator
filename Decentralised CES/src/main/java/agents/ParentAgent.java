@@ -1,15 +1,10 @@
 package agents;
 
-import actions.Demand;
-
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import actions.parentDemand;
 
 //import java.util.Set;
 import java.util.*;
 
-import services.ParentEnvService;
-import services.PowerPoolEnvService;
 import uk.ac.imperial.presage2.core.environment.*;
 //import uk.ac.imperial.presage2.core.environment.ParticipantSharedState;
 import uk.ac.imperial.presage2.core.simulator.Initialisor;
@@ -17,12 +12,11 @@ import uk.ac.imperial.presage2.core.simulator.Step;
 //import uk.ac.imperial.presage2.util.location.Location;
 //import uk.ac.imperial.presage2.util.location.Move;
 //import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
-import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
-import uk.ac.imperial.presage2.util.participant.StateAccessor;
+
 
 public class ParentAgent extends MasterAgent
 {
-    private final Demand GroupDemand;
+    private final parentDemand GroupDemand;
 
     //public State<Integer> ChildrenNum;
 
@@ -30,7 +24,7 @@ public class ParentAgent extends MasterAgent
     public ParentAgent(UUID id, String name, double consumption, double allocation, int ChildrenNum)
     {
         super(id, name);
-        this.GroupDemand = new Demand(consumption, allocation, id, ChildrenList);
+        this.GroupDemand = new parentDemand(consumption, allocation, id, ChildrenList);
         //this.ChildrenNum = new State<Integer>("ChildrenNum", ChildrenNum);
 
     }
@@ -44,7 +38,7 @@ public class ParentAgent extends MasterAgent
 
     @Step
     public void step(int t) throws ActionHandlingException {
-//        logger.info("My required Group Demand is: " 	+ this.GroupDemand.getDemand());
+//        logger.info("My required Group parentDemand is: " 	+ this.GroupDemand.getDemand());
 //        logger.info("My Group Generation is: " 	+ this.GroupDemand.getGeneration());
 //        logger.info("My Group Allocation is: "+ this.GroupDemand.getAllocation());
         GroupDemand.setT(t);
