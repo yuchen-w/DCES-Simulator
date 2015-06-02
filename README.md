@@ -15,9 +15,10 @@ To do:
 - Make the Agents contribute to the Pool (done)
 - Make the Agents take from the Environment Pool (done)
 - Tidy up the code and publish! (done)
-
+- Explore nesting of agents (done)
+  - Explore creating agentservice (not required)
 Next Steps:
-- Explore nesting of agents
-  - Explore creating agentservice
-- Store data
+- Deploy self-organising demand/generation allocation algorithm for agents
+- Run simulations
+- Store simulation data
 - Integrate JBoss Rules Engine (http://www.jboss.org/drools/)
