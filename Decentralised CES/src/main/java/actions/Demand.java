@@ -13,7 +13,6 @@ public class Demand extends MasterAction implements Serializable {
     double allocated_demand = 0;
     double allocated_generation = 0;
 
-    double allocation = 0;
     UUID AgentID;
 
     public Demand(double demand, double generation, UUID AgentID)
@@ -32,9 +31,10 @@ public class Demand extends MasterAction implements Serializable {
         this.AgentID = AgentID;
     }
 
-    public void Allocate (double allocation)
+    public void allocate (double allocated_demand, double allocated_generation)
     {
-        this.allocation = allocation;
+        this.allocated_demand = allocated_demand;
+        this.allocated_generation = allocated_generation;
     }
 //	@Override
 //	public String toString() {
@@ -42,36 +42,41 @@ public class Demand extends MasterAction implements Serializable {
 //				+ ", t=" + t + "]";
 //	}
 
-    public double getDemand()
+    public double getDemandRequest()
     {
         return demand;
     }
 
-    public void allocateDemand(parentDemand d)
+    public void allocateDemandObj(Demand d)
     {
         this.allocated_demand = d.demand;
         this.allocated_generation = d.generation;
     }
 
-    public double getGeneration()
+    public double getGenerationRequest()
     {
         return generation;
     }
 
-    public double getAllocation()
+    public double getAllocationD()
     {
-        return allocation;
+        return allocated_demand;
+    }
+    public double getAllocationG()
+    {
+        return allocated_generation;
     }
 
     /**
      * Adds another Demand object to this one.
      * @param d
      */
-    public Demand addDemand(parentDemand d)
+    public Demand addDemand(Demand d)
     {
-        this.demand 	+= d.getDemand();
-        this.generation += d.getGeneration();
-        this.allocation += d.getAllocation();
+        this.demand 	+= d.getDemandRequest();
+        this.generation += d.getGenerationRequest();
+        this.allocated_demand += d.getAllocationD();
+        this.allocated_generation += d.getAllocationG();
         return this;
     }
 

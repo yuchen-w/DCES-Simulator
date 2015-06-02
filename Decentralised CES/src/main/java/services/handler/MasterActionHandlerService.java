@@ -46,7 +46,7 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
                 logger.info("T=" + a.getT() + " Appropriating requests");
                 logger.info("Parents are:" + a.getChildrenList());
                 TotalDemand = TotalDemand.addDemand(EnvService.getGroupDemand(a));
-                logger.info("Global Total D = " + TotalDemand.getDemand() + "G = " + TotalDemand.getGeneration());
+                logger.info("Global Total D = " + TotalDemand.getDemandRequest() + "G = " + TotalDemand.getGenerationRequest());
                 appropriate(TotalDemand, a.getChildrenList());
             }
 

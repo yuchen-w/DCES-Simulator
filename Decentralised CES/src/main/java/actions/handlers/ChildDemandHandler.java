@@ -35,14 +35,14 @@ public class ChildDemandHandler extends DemandHandler{
     public Object handle(Action demand_action, UUID actor) throws ActionHandlingException {
         if (demand_action instanceof childDemand)
         {
-            final childDemand d = (childDemand)demand_action;
+            childDemand d = (childDemand)demand_action;
             getParentService();
             int CurrentState = d.getT()%d.getStateNum();
 
             if (CurrentState == 0)
             {
                 logger.info("T= "+ d.getT() +". Children Request round");
-                logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemand() + " and is providing " + d.getGeneration());		//Debug
+                logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemandRequest() + " and is providing " + d.getGenerationRequest());		//Debug
                 this.ParentService.addToAgentPool(d);
             }
 
@@ -52,9 +52,10 @@ public class ChildDemandHandler extends DemandHandler{
                 logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
                 logger.info("Agent: " + actor + " attempting to retrieve allocation");
                 parentDemand allocated = ParentService.getAllocation(actor);
-                d.allocateDemand(allocated);
-                logger.info("Agent: " + actor + "allocation: d=" + d.getDemand());
-                logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemand() + " g = " + allocated.getGeneration());
+                logger.info("Agent demand was: " + d.getDemandRequest());
+                d.allocate(allocated.getDemandRequest(), allocated.getGenerationRequest());
+                logger.info("Agent allocation is now " + d.getAllocationD());
+                logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
             }
 
 

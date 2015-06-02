@@ -22,7 +22,7 @@ import java.util.UUID;
 public class GlobalEnvService extends EnvironmentService{
     private SimState state;
     private int round = 0;
-    protected PowerPoolEnvService ChildEnvService;
+    private PowerPoolEnvService ChildEnvService;
     final protected EnvironmentServiceProvider serviceProvider;
 
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -42,7 +42,7 @@ public class GlobalEnvService extends EnvironmentService{
     {
         logger.info("GlobalEnvService.appropriate() called");
         getChildEnvService();
-        double shortfall = Total.getDemand() - Total.getGeneration();
+        double shortfall = Total.getDemandRequest() - Total.getGenerationRequest();
 
         if (shortfall < 0)
         {
@@ -55,12 +55,12 @@ public class GlobalEnvService extends EnvironmentService{
         }
         else
         {
-            double proportion = Total.getGeneration()/Total.getDemand();
+            double proportion = Total.getGenerationRequest()/Total.getDemandRequest();
             for (int i=0; i<ChildrenList.size(); i++)
             {
                 UUID agent = ChildrenList.get(i);
                 parentDemand request = ChildEnvService.getAgentDemand(agent);
-                parentDemand allocation = new parentDemand(request.getDemand()*proportion, request.getGeneration(), agent);
+                parentDemand allocation = new parentDemand(request.getDemandRequest()*proportion, request.getGenerationRequest(), agent);
                 ChildEnvService.setGroupDemand(agent, allocation);
             }
         }
@@ -68,17 +68,17 @@ public class GlobalEnvService extends EnvironmentService{
 //        double allocation;
 //        if (shortfall < 0)
 //        {
-//            allocation = d.getDemand();
+//            allocation = d.getDemandRequest();
 //            this.available -= shortfall;
 //        }
 //        else if (shortfall >= 0 && shortfall <= this.available)
 //        {
-//            allocation = d.getDemand();
+//            allocation = d.getDemandRequest();
 //            this.available -= shortfall;
 //        }
 //        else
 //        {
-//            allocation = d.getGeneration() + this.available;
+//            allocation = d.getGenerationRequest() + this.available;
 //            this.available = 0;
 //        }
 //        logger.info("Allocating: " + allocation);

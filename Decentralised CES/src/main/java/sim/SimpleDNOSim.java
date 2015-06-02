@@ -67,7 +67,7 @@ public class SimpleDNOSim extends RunnableSimulation {
             {
                 UUID child_id = Random.randomUUID();
                 scenario.addAgent(new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, Random.randomInt(size), Random.randomInt(size),
+                        "parent" + i + "agent" + j, Random.randomInt(size), Random.randomInt(size-10),
                         "parent" + i, parent_id));
                 Parent.addChild(child_id);
 

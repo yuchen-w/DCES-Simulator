@@ -23,8 +23,8 @@ public class ProsumerAgent extends ParentAgent {
 
     @Step
     public void step(int t) throws ActionHandlingException {
-        //logger.info("My required parentDemand is: " 	+ this.AgentDemand.getDemand());
-        //logger.info("My Group Generation is: " 	+ this.AgentDemand.getGeneration());
+        //logger.info("My required parentDemand is: " 	+ this.AgentDemand.getDemandRequest());
+        //logger.info("My Group Generation is: " 	+ this.AgentDemand.getGenerationRequest());
         //logger.info("My Group Allocation is: "+ this.AgentDemand.getAllocation());
         AgentDemand.setT(t);
         try
@@ -33,7 +33,7 @@ public class ProsumerAgent extends ParentAgent {
         } catch (ActionHandlingException e) {
             logger.warn("Failed to add demand to the pool", e);
         }
-
+        logger.info("Agent: " + this.getID() + " allocation: d =" + AgentDemand.getAllocationD() + " g = " + AgentDemand.getGenerationRequest());
     }
 //    @Override
 //    protected Set<ParticipantSharedState> getSharedState() {

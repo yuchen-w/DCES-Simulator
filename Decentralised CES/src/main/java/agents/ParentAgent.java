@@ -38,8 +38,8 @@ public class ParentAgent extends MasterAgent
 
     @Step
     public void step(int t) throws ActionHandlingException {
-//        logger.info("My required Group parentDemand is: " 	+ this.GroupDemand.getDemand());
-//        logger.info("My Group Generation is: " 	+ this.GroupDemand.getGeneration());
+//        logger.info("My required Group parentDemand is: " 	+ this.GroupDemand.getDemandRequest());
+//        logger.info("My Group Generation is: " 	+ this.GroupDemand.getGenerationRequest());
 //        logger.info("My Group Allocation is: "+ this.GroupDemand.getAllocation());
         GroupDemand.setT(t);
         try

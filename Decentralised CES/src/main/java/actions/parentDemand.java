@@ -20,9 +20,10 @@ public class parentDemand extends Demand{
      */
     public parentDemand addDemand(parentDemand d)
     {
-        this.demand 	+= d.getDemand();
-        this.generation += d.getGeneration();
-        this.allocation += d.getAllocation();
+        this.demand 	+= d.getDemandRequest();
+        this.generation += d.getGenerationRequest();
+        this.allocated_demand += d.getAllocationD();
+        this.allocated_generation += d.getAllocationG();
         return this;
     }
 }

@@ -28,8 +28,8 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	protected int ChildrenNum = children;	//TODO: tidy this up
 
 
-	protected HashMap<UUID, Integer> RequestCounter = new HashMap<UUID, Integer>();
-	protected HashMap<UUID, parentDemand>	AgentDemandStorage = new HashMap<UUID, parentDemand>();
+	protected HashMap<UUID, Integer>      RequestCounter = new HashMap<UUID, Integer>();
+	protected HashMap<UUID, parentDemand> AgentDemandStorage = new HashMap<UUID, parentDemand>();
     protected HashMap<UUID, parentDemand> GroupDemandAllocationStorage = new HashMap<UUID, parentDemand>();
 	protected HashMap<UUID, parentDemand> AgentAllocationStorage = new HashMap<UUID, parentDemand>();
 
@@ -39,6 +39,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	double available = 0;
 	
 	private final Logger logger = Logger.getLogger(this.getClass());
+    private ParentEnvService ChildEnvService;
 
 	@Inject
 	public PowerPoolEnvService(EnvironmentSharedStateAccess sharedState, EnvironmentServiceProvider serviceProvider)
@@ -59,9 +60,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	
 	public void addtoPool (parentDemand d)
 	{
-		this.totalDemand = this.totalDemand + d.getDemand();
-		this.totalGeneration = this.totalGeneration + d.getGeneration();
-		//this.available = this.available + d.getGeneration();
+		this.totalDemand = this.totalDemand + d.getDemandRequest();
+		this.totalGeneration = this.totalGeneration + d.getGenerationRequest();
+		//this.available = this.available + d.getGenerationRequest();
 	}
 
 	public double getTotalDemand()
@@ -79,14 +80,6 @@ public class PowerPoolEnvService extends GlobalEnvService{
 		return this.available;
 	}
 
-	public void addToAgentPool (parentDemand d)
-	{
-		logger.info("Agent " + d.getAgentID() + "is adding to AgentDemandStorage");
-		AgentDemandStorage.put(d.getAgentID(), d);
-	}
-	
-
-
 	public void incrementRequestCounter(UUID ParentID)
 	{
 		if (RequestCounter.containsKey(ParentID) == false)
@@ -102,6 +95,14 @@ public class PowerPoolEnvService extends GlobalEnvService{
 			}
 		}
 	}
+
+
+
+    public void addToAgentPool (parentDemand d)
+    {
+        logger.info("Agent " + d.getAgentID() + "is adding to AgentDemandStorage");
+        AgentDemandStorage.put(d.getAgentID(), d);
+    }
 
     //Used by handlers to pass GroupDemand up to the next level
 	public parentDemand getGroupDemand(parentDemand Parent)
@@ -160,7 +161,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
     }
 
     @Override
-    protected PowerPoolEnvService getChildEnvService()
+    protected ParentEnvService getChildEnvService()
     {
         if (ChildEnvService == null)
         {
@@ -178,27 +179,28 @@ public class PowerPoolEnvService extends GlobalEnvService{
     }
 
     @Override
-    public void appropriate (parentDemand Total,  ArrayList<UUID> ChildrenList) {
+    public void appropriate (parentDemand allocated,  ArrayList<UUID> ChildrenList) {
         logger.info("GlobalEnvService.appropriate() called");
-		logger.info("appropriating: D=" + Total.getDemand() + " G="+Total.getGeneration());
+		logger.info("appropriating: D=" + allocated.getDemandRequest() + " G="+allocated.getGenerationRequest());
         getChildEnvService();
-        double shortfall = Total.getDemand() - Total.getGeneration();
+        parentDemand GroupDemand = getAgentDemand(allocated.getAgentID());   //also the same as ChildEnvService.getGroupDemand(allocated);
+        double shortfall = GroupDemand.getDemandRequest() - allocated.getDemandRequest();
 
         if (shortfall <= 0) {
             //Go through the children, and allocating their requests
             for (int i = 0; i < ChildrenList.size(); i++) {
                 UUID agent = ChildrenList.get(i);
-                logger.info("shortfall < 0; Appropriating: D=" + ChildEnvService.getAgentDemand(agent).getDemand() + " G=" + ChildEnvService.getAgentDemand(agent).getGeneration() + " to Agent: " + agent);
+                logger.info("shortfall= " + shortfall +" shortfall < 0; Appropriating: D=" + ChildEnvService.getAgentDemand(agent).getDemandRequest() + " G=" + ChildEnvService.getAgentDemand(agent).getGenerationRequest() + " to Agent: " + agent);
                 ChildEnvService.setGroupDemand(agent, ChildEnvService.getAgentDemand(agent));
 
             }
         } else {
-            double proportion = Total.getGeneration() / Total.getDemand();
+            double proportion = allocated.getDemandRequest() / GroupDemand.getDemandRequest();
             for (int i = 0; i < ChildrenList.size(); i++) {
                 UUID agent = ChildrenList.get(i);
                 parentDemand request = ChildEnvService.getAgentDemand(agent);
-                parentDemand allocation = new parentDemand(request.getDemand() * proportion, request.getGeneration(), agent);
-                logger.info("shortfall > 0; proportion factor is:" + proportion + "Appropriating: D =" + allocation.getDemand() + " G=" + allocation.getGeneration() + " to Agent: " + agent);
+                parentDemand allocation = new parentDemand(request.getDemandRequest() * proportion, request.getGenerationRequest(), agent);
+                logger.info("shortfall > 0; proportion factor is:" + proportion + "Appropriating: D =" + allocation.getDemandRequest() + " G=" + allocation.getGenerationRequest() + " to Agent: " + agent);
                 ChildEnvService.setGroupDemand(agent, allocation);
 
             }
