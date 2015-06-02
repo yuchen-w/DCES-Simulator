@@ -26,7 +26,7 @@ import java.util.UUID;
 public class GlobalEnvService extends EnvironmentService{
     private SimState state;
     private int round = 0;
-    private PowerPoolEnvService ChildEnvService;
+    protected PowerPoolEnvService ChildEnvService;
     final protected EnvironmentServiceProvider serviceProvider;
 
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -44,14 +44,29 @@ public class GlobalEnvService extends EnvironmentService{
 
     public void appropriate (Demand Total,  ArrayList<UUID> ChildrenList)
     {
+        logger.info("GlobalEnvService.appropriate() called");
         getChildEnvService();
         double shortfall = Total.getDemand() - Total.getGeneration();
 
         if (shortfall < 0)
         {
-            //HashMap<UUID, Demand> = HashMap(ParentID, RequestedDemand)
-            //Or:
-            //ChildEnvService.AllocateSame();
+            //Go through the children, and allocating their requests
+            for (int i=0; i<ChildrenList.size(); i++)
+            {
+                UUID agent = ChildrenList.get(i);
+                ChildEnvService.setGroupDemand(agent, ChildEnvService.getAgentDemand(agent));
+            }
+        }
+        else
+        {
+            double proportion = Total.getGeneration()/Total.getDemand();
+            for (int i=0; i<ChildrenList.size(); i++)
+            {
+                UUID agent = ChildrenList.get(i);
+                Demand request = ChildEnvService.getAgentDemand(agent);
+                Demand allocation = new Demand(request.getDemand()*proportion, request.getGeneration(), agent);
+                ChildEnvService.setGroupDemand(agent, allocation);
+            }
         }
 
 //        double allocation;
@@ -75,24 +90,25 @@ public class GlobalEnvService extends EnvironmentService{
 //        d.Allocate(allocation);
     }
 
-    private PowerPoolEnvService getChildEnvService()
+    protected PowerPoolEnvService getChildEnvService()
     {
-
         if (ChildEnvService == null)
         {
             try
             {
-                logger.info("Getting ParentService (GlobalService) of ParentEnvService");
+                logger.info("Getting ChildService (PowerPoolEnvService) of GlobalEnvService");
                 this.ChildEnvService = serviceProvider.getEnvironmentService(PowerPoolEnvService.class);
             }
             catch (UnavailableServiceException e)
             {
-                logger.warn("Could not get ParentService (GlobalService)", e);
+                logger.warn("Could not get ChildService (PowerPoolEnvService)", e);
             }
         }
         return ChildEnvService;
     }
 
+
+    //Currently not working:
     @EventListener
     protected void incrementState()
     {

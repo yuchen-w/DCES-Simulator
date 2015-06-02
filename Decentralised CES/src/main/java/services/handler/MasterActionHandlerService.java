@@ -40,19 +40,16 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
         if (action instanceof MasterAction)
         {
             final MasterAction a = (MasterAction)action;
-
             int CurrentState = a.getT()%a.getStateNum();
-            switch (CurrentState)
+            if (CurrentState == 2)
             {
-                case 2:
-                {
-                    logger.info("T=" + a.getT() + " Appropriating requests");
-                    logger.info("Parents are:" + a.getChildrenList());
-                    TotalDemand = TotalDemand.addDemand(EnvService.getGroupDemand(a));
-                    logger.info("Global Total D = " + TotalDemand.getDemand() + "G = " + TotalDemand.getGeneration());
-                    appropriate(TotalDemand, a.getChildrenList());
-                }
+                logger.info("T=" + a.getT() + " Appropriating requests");
+                logger.info("Parents are:" + a.getChildrenList());
+                TotalDemand = TotalDemand.addDemand(EnvService.getGroupDemand(a));
+                logger.info("Global Total D = " + TotalDemand.getDemand() + "G = " + TotalDemand.getGeneration());
+                appropriate(TotalDemand, a.getChildrenList());
             }
+
             //Do allocate if State=allocate. Use Allocate action.
             //this.EnvService.incrementState();
         }

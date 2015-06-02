@@ -1,5 +1,6 @@
 package actions.handlers;
 
+import actions.Demand;
 import actions.childDemand;
 import agents.ParentAgent;
 import agents.ProsumerAgent;
@@ -40,19 +41,22 @@ public class ChildDemandHandler extends DemandHandler{
             getParentService();
             int CurrentState = d.getT()%d.getStateNum();
 
-            switch (CurrentState)
+            if (CurrentState == 0)
             {
-                case 0:
-                {
-                    logger.info("T="+ d.getT() +" Children Request round");
-                    logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemand() + " and is providing " + d.getGeneration());		//Debug
-                    this.ParentService.addToAgentPool(d);
-                }
-//                case x:
-//                {
-//                    logger.info("T="+ d.getT() +"Children Allocation round");
-//                    logger.info("Children take from allocation code goes here");
-//                }
+                logger.info("T="+ d.getT() +" Children Request round");
+                logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemand() + " and is providing " + d.getGeneration());		//Debug
+                this.ParentService.addToAgentPool(d);
+            }
+
+            if (CurrentState == 4)
+            {
+                getParentService();
+                logger.info("CurrentState= " + CurrentState + "T= "+ d.getT() +" Children Receive round");
+                logger.info("Agent: " + actor + " attempting to retrieve allocation");
+                Demand allocated = ParentService.getAllocation(actor);
+                d.allocateDemand(allocated);
+                logger.info("Agent: " + actor + "allocation: d=" + ParentEnvService.getAllocation(actor).getDemand());
+                logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemand() + " g = " + allocated.getGeneration());
             }
 
 
@@ -85,6 +89,23 @@ public class ChildDemandHandler extends DemandHandler{
         }
         return ParentService;
     }
+
+//    protected ParentEnvService getService()
+//    {
+//        if (EnvService == null)
+//        {
+//            try
+//            {
+////                logger.info("Getting ParentService");
+//                this.EnvService = serviceProvider.getEnvironmentService(ChildEnvService.class);
+//            }
+//            catch (UnavailableServiceException e)
+//            {
+//                logger.warn("Could not get EnvService", e);
+//            }
+//        }
+//        return ParentService;
+//    }
 
     //private
 

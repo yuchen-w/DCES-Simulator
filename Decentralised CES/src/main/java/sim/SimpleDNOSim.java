@@ -2,7 +2,7 @@ package sim;
 
 import agents.MasterAgent;
 import agents.ParentAgent;
-import services.ChildEnvService;
+//import services.ChildEnvService;
 import services.ParentEnvService;
 import services.PowerPoolEnvService;
 import agents.ProsumerAgent;
@@ -43,7 +43,7 @@ public class SimpleDNOSim extends RunnableSimulation {
         addModule(new AbstractEnvironmentModule()
                         .addParticipantGlobalEnvironmentService(PowerPoolEnvService.class)
                         .addParticipantGlobalEnvironmentService(ParentEnvService.class)
-                        .addParticipantEnvironmentService(ChildEnvService.class)
+                        //.addParticipantEnvironmentService(ChildEnvService.class)
 
                         .addActionHandler(DemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)

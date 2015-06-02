@@ -54,27 +54,26 @@ public class DemandHandler implements ActionHandler {
 
 			final Demand d = (Demand)action;
 			int CurrentState = d.getT()%d.getStateNum();
-			switch (CurrentState)
-			{
-				case 1:
-				{
-					logger.info("T=" + d.getT() + " Parent Request round");
-					//TODO: Add up demand from ParentEnvService.AgentDemandStorage,
-					//Todo: Submit GroupDemand to PowerPoolEnvService
-					//logger.info("DemandHandler: Demand d.Demand = " + d.getDemand() + " and Demand d.Generation = " + d.getGeneration());        //Debug
-					Demand GroupDemand = this.EnvService.getGroupDemand(d);
-					this.ParentEnvService.addToAgentPool(GroupDemand);
-					logger.info("GroupDemand D= " +GroupDemand.getDemand()+" G= " + GroupDemand.getGeneration());
-				}
-//				case x:
-//				{
-//					logger.info("T=" + d.getT() + "Parent Allocation round");
-//					this.EnvService.takefromPool(d);
-//					logger.info("PowerPoolEnvService::totalDemand= " + this.EnvService.getTotalDemand());                                        //Debug
-//					logger.info("PowerPoolEnvService::totalGeneration= " + this.EnvService.getTotalGeneration());                                        //Debug
-//					logger.info("PowerPoolEnvService::available= " + this.EnvService.getAvailable());
-//				}
-			}
+			if (CurrentState == 1)
+            {
+                logger.info("T=" + d.getT() + " Parent Request round");
+                //TODO: Add up demand from ParentEnvService.AgentDemandStorage,
+                //Todo: Submit GroupDemand to PowerPoolEnvService
+                //logger.info("DemandHandler: Demand d.Demand = " + d.getDemand() + " and Demand d.Generation = " + d.getGeneration());        //Debug
+                Demand GroupDemand = this.EnvService.getGroupDemand(d);
+                this.ParentEnvService.addToAgentPool(GroupDemand);
+                logger.info("GroupDemand D= " +GroupDemand.getDemand()+" G= " + GroupDemand.getGeneration());
+            }
+
+            if (CurrentState == 3)
+            {
+                logger.info("T=" + d.getT() + ". Appropriate to agent round");
+                Demand allocated = ParentEnvService.getAllocation(actor);
+                d.allocateDemand(allocated);
+                logger.info("Parent " + actor + " allocation: d =" + allocated.getDemand() + " g = " + allocated.getGeneration());
+                ParentEnvService.appropriate(allocated, d.getChildrenList());
+            }
+
 		}
 		return null;
 	}

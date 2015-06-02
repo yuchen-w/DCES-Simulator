@@ -5,7 +5,7 @@ import uk.ac.imperial.presage2.core.Action;
 public abstract class TimestampedAction implements Action {
 
 	int t;
-	int StateNum = 4;
+	int StateNum = 5;
 
 	TimestampedAction() {
 		super();

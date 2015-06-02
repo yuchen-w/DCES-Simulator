@@ -13,6 +13,9 @@ public class Demand extends MasterAction implements Serializable {
 	double demand = 0;
 	double generation = 0;
 
+	double allocated_demand = 0;
+	double allocated_generation = 0;
+
 	double allocation = 0;
 	UUID AgentID;
 
@@ -45,6 +48,12 @@ public class Demand extends MasterAction implements Serializable {
 	public double getDemand() 
 	{
 		return demand;
+	}
+
+	public void allocateDemand(Demand d)
+	{
+		this.allocated_demand = d.demand;
+		this.allocated_generation = d.generation;
 	}
 	
 	public double getGeneration()

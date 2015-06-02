@@ -2,6 +2,8 @@ package services;
 
 import actions.Demand;
 import actions.childDemand;
+
+import java.security.acl.Group;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -24,6 +26,7 @@ public class ParentEnvService extends PowerPoolEnvService {
     //final private EnvironmentServiceProvider serviceProvider;
 
     private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<UUID, Demand>();
+
     private final Logger logger = Logger.getLogger(this.getClass());
 
 
@@ -104,4 +107,30 @@ public class ParentEnvService extends PowerPoolEnvService {
             }
         }
     }
+
+    @Override
+    protected void setGroupDemand(UUID AgentID, Demand d)
+    {
+        logger.info("Allocating to ID: " + AgentID + " in AgentAllocationStorage");
+        logger.info("Allocation: d = " + d.getDemand() + " g = " + d.getGeneration());
+        AgentAllocationStorage.put(AgentID, d);
+    }
+
+    @Override
+    public Demand getAllocation(UUID ID)
+    {
+        logger.info("getting allocation");
+        if (AgentAllocationStorage.containsKey(ID))
+        {
+            return AgentAllocationStorage.get(ID);
+        }
+        else
+        {
+            logger.info("Error!");
+            Demand nullDemand = new Demand(0, 0, ID);
+            return nullDemand;
+        }
+    }
+
+
 }
