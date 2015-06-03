@@ -1,6 +1,7 @@
 package agents;
 
 import actions.childDemand;
+import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
 import uk.ac.imperial.presage2.core.simulator.Step;
 
@@ -33,7 +34,9 @@ public class ProsumerAgent extends ParentAgent {
         } catch (ActionHandlingException e) {
             logger.warn("Failed to add demand to the pool", e);
         }
-        logger.info("Agent: " + this.getID() + " allocation: d =" + AgentDemand.getAllocationD() + " g = " + AgentDemand.getGenerationRequest());
+        if(t% AgentDemand.getStateNum() == 4){
+            logger.info("Agent: " + this.getID() + " allocation: d =" + AgentDemand.getAllocationD() + " g = " + AgentDemand.getGenerationRequest());
+        }
     }
 //    @Override
 //    protected Set<ParticipantSharedState> getSharedState() {
