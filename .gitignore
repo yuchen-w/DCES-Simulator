@@ -11,6 +11,21 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+#Latex compile files
+*.bbl
+*.gz
+*.toc
+*.blg
+*.aux
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.out
+*.pdf
+*.synctex.gz
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
