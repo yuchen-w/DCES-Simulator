@@ -9,7 +9,6 @@ public class childDemand extends parentDemand {
     public childDemand(double demand, double generation, UUID actor, UUID parent) {
         super(demand, generation, actor);
         this.ParentID = parent;
-        this.AgentID = actor;
 
     }
 
