@@ -1,5 +1,5 @@
-# FYP
-Repository for my EE4 FYP. Forked from the publicly available FYP-repository-test (https://github.com/yuchen-w/FYP-repository-test)
+# Simulator for Decentralised Energy Systems
+Repository for Simulator for Decentralised Energy Systems. Forked from the publicly available FYP-repository-test (https://github.com/yuchen-w/FYP-repository-test)
 ## Repository Structure
 .m2: This contains a backup of all the sources I used for this project. If presage servers are down and are using Windows OS, copy this folder into:
 ```
