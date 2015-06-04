@@ -72,3 +72,6 @@ Temporary Items
 
 *.gz
 Final Report/main.pdf
+*.upa
+Final Report/main.synctex.gz
+*.lot
