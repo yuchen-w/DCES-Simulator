@@ -9,11 +9,10 @@ In developing communities with significant generation from renewable sources suc
 
 Common Property Regimes can be formed to maintain the Common Pool Resources by controlling the access to the resource. 
 
-\section*{Decentralised Community Energy Systems as a Holonic System} %CITE PITT HERE
-A holonic system (or holarchy) is a system which is composed of interrelated subsystems or institution, each of which are in turn composed of sub-subsystems  or institution and so on, recursively until reaching a lowest level of "elementary" subsystems. Each system, sub-system or institution has a well-defined set of goals or objectives which is achieved through enforcing a set of rules on its members (subsystems, sub-institutions and elementary entities).\pdfmarkupcomment[markup=Highlight,color=yellow]{[[[[[[ "CITE PITT HERE" ]]]]]]]}{Highlight} It is this type of Common Property Regime that will be explored in this project to maintain the Common Pool Resource that is electricity. 
+\section*{Decentralised Community Energy Systems as a Holonic System}
+A holonic system (or holarchy) is a system which is composed of interrelated subsystems or institution, each of which are in turn composed of sub-subsystems  or institution and so on, recursively until reaching a lowest level of "elementary" subsystems. Each system, sub-system or institution has a well-defined set of goals or objectives which is achieved through enforcing a set of rules on its members (subsystems, sub-institutions and elementary entities)\cite{Pitt:Holonic_Institutions}. It is this type of Common Property Regime that will be explored in this project to maintain the Common Pool Resource that is electricity. 
 
-
-In the context of a rural Decentralised Community Energy system, a network between households, communities and even villages to pool and share electricity as a common pool resource can be modelled as a holonic system. The holonic system in this case would be composed of communities such as Districts, Provinces, Sectors which are composed of sub-communities such as Towns and Villages. The sub-communities would be composed of many "elementary" such as households, businesses and other points of connection for electricity. Each community or institution has the goal of fairly allocating electricity to all members. This goal would be achieved with the assumption that they are provided with the necessary infrastructure and powers for enforcing quotas and contribute to a common pool of electricity.
+In the context of a rural Decentralised Community Energy system, a network between households, communities and even villages to pool and share electricity as a common pool resource can be modelled as a holonic system. The holonic system in this case would be composed of communities such as Districts, Provinces, Sectors which are composed of sub-communities such as Towns and Villages. The sub-communities would be composed of many "elementary" subsystems such as households, businesses and other points of connection for electricity. Each community or institution has the goal of fairly allocating electricity to all members. This goal would be achieved with the assumption that they are provided with the necessary infrastructure and powers for enforcing quotas and contribute to a common pool of electricity.
 
 
 \section*{Rural Communities in Rwanda}
@@ -61,6 +60,8 @@ With the customers not returning to Energy Kiosks, the battery boxes are not hir
 
 It is hoped that the Standalone Solution and additional generation from the Energy Kiosk can be complemented the battery boxes in circulation to provide a continuous access to electricity to all households in the village.
 
+\clearpage
+
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=3]{Images/standalone_box.jpg}
@@ -69,7 +70,29 @@ It is hoped that the Standalone Solution and additional generation from the Ener
 \end{figure}
 
 \subsection*{In the context of the Project}
-In developing countries such as Rwanda, poor communities with no access to grid electricity are often in isolated locations. In these areas, fuel for generators are often difficult to obtain. Other available sources of electricity such as solar and wind power are highly dependent other variables such as weather. It is also highly unlikely that they will have access to redundancies to ensure continual access much like the electricity we receive from the national distribution and transmission network in the UK. It is therefore beneficial for systems such as the one we are modelling as it has lower barriers to entry than access to 
+In developing countries such as Rwanda, poor communities with no access to grid electricity are often in isolated locations. In these areas, fuel for generators are often difficult to obtain. Other available sources of electricity such as solar and wind power are highly dependent other variables such as weather. It is also highly unlikely that they will have access to redundancies to ensure continual access much like the electricity we receive from the national distribution and transmission network in the UK. It is therefore beneficial for systems such as the one being modelled as it has lower barriers to entry than access to grid electricity.
+
+\subsection*{Multi-Agent Simulation}
+In multi-agent simulation systems the MAS is used as a model to simulate some real-world domain.
+
+\subsection*{About Presage 2}
+Presage 2 is a simulation platform for multi-nodal or Agent simulation of societies. The platform was built by Sam Macbeth and is currently maintained by PhD students within Imperial. This platform was chosen for the simulator as it enables the investigation of the impact of agent design (such as household behaviour), network properties (constraints on access) and the physical environment on individual agent behaviour and long-term global network performance \cite{Presage2-Desc:2015}. In the context of this Project, each Node/Agent can represent individuals, households, businesses or generators. 
+
+% Presage 2 was chosen for this project as it is a platform which allows the rapid prototyping of complex Agent societies. Presage 2 Agents are only allowed to act during increments of time steps, which makes the simulation a discrete time driven one. Figures \ref{fig:Presage_architecture} and \ref{fig:Presage_sim_architecture} illustrates general and simulation archtecture.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1]{Images/Presage.jpg}
+	\caption{Presage 2 architecture \cite{Presage_Kyoto:2015}}
+	\label{fig:Presage_architecture}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1]{Images/Presage2.jpg}
+	\caption{Presage 2 simulation architecture \cite{Presage_Kyoto:2015}}
+	\label{fig:Presage_sim_architecture}
+\end{figure}
 
 % \subsection{Additional Research}
 % e.quinox in Rwanda only presents us with one scenario. Additional research is required for other regions such as South America and the Indian Subcontinent to look at potential new scenarios and use cases for various generators and electrical appliances.
