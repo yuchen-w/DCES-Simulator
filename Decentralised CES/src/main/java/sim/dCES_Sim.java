@@ -1,13 +1,12 @@
 package sim;
 
-import agents.MasterAgent;
-import agents.ParentAgent;
-//import services.ChildEnvService;
-import services.ParentEnvService;
-import services.PowerPoolEnvService;
-import agents.ProsumerAgent;
 import actions.handlers.ChildDemandHandler;
 import actions.handlers.DemandHandler;
+import agents.MasterAgent;
+import agents.ParentAgent;
+import agents.ProsumerAgent;
+import services.ParentEnvService;
+import services.PowerPoolEnvService;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
@@ -16,13 +15,18 @@ import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
 
 import java.util.UUID;
 
-public class SimpleDNOSim extends RunnableSimulation {
+//import services.ChildEnvService;
+
+public class dCES_Sim extends RunnableSimulation {
 
     //private final Logger logger = Logger.getLogger(this.getClass());
     private java.util.Random fRandom = new java.util.Random();
 
-    @Parameter(name = "size")
-    public int size;
+    @Parameter(name = "mean")
+    public int mean;
+
+    @Parameter(name = "variance")
+    public int variance;
 
     @Parameter(name = "children")
     public int agent_children;
@@ -64,21 +68,11 @@ public class SimpleDNOSim extends RunnableSimulation {
 
             supervisor.addChild(Parent.getID());
 
-//            for (int j = 0; j < agent_children; j++)
-//            {
-//                UUID child_id = Random.randomUUID();
-//                scenario.addAgent(new ProsumerAgent(child_id,
-//                        "parent" + i + "agent" + j, Random.randomInt(size), Random.randomInt(size-10),
-//                        "parent" + i, parent_id));
-//                Parent.addChild(child_id);
-//
-//            }
-
             for (int j = 0; j < agent_children; j++)
             {
                 UUID child_id = Random.randomUUID();
                 scenario.addAgent(new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, Random.randomInt(size), Random.randomInt(size-10),
+                        "parent" + i + "agent" + j, this.getGaussian(mean, variance), this.getGaussian(mean, variance) - 10,
                         "parent" + i, parent_id));
                 Parent.addChild(child_id);
 
@@ -87,6 +81,6 @@ public class SimpleDNOSim extends RunnableSimulation {
     }
 
     private double getGaussian(double aMean, double aVariance){
-        return aMean + fRandom.nextGaussian() * aVariance;
+        return aMean + fRandom.nextGaussian() * (aVariance/100);
     }
 }
