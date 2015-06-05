@@ -1,5 +1,6 @@
 package actions.handlers;
 
+import actions.Demand;
 import actions.parentDemand;
 import actions.childDemand;
 import com.google.inject.Inject;
@@ -51,23 +52,12 @@ public class ChildDemandHandler extends DemandHandler{
                 getParentService();
                 //logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
                 //logger.info("Agent: " + actor + " attempting to retrieve allocation");
-                parentDemand allocated = ParentService.getAllocation(actor);
+                Demand allocated = ParentService.getAllocation(actor);
                 //logger.info("Agent demand was: " + d.getDemandRequest());
                 d.allocate(allocated.getDemandRequest(), allocated.getGenerationRequest());
                 //logger.info("Agent allocation is now " + d.getAllocationD());
                 //logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
             }
-
-
-
-
-
-           //TODO: Increment Global ChildrenNum varaiable here
-
-            //this.ParentService.takefromPool(d);
-            //logger.info("ParentEnvService::totalcDemand= " + this.ParentService.getTotalDemand());										//Debug
-            //logger.info("ParentEnvService::totalcGeneration= " + this.ParentService.getTotalGeneration());										//Debug
-            //logger.info("ParentEnvService::available= " + this.ParentService.getAvailable());
         }
         return null;
     }

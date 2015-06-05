@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class GlobalEnvService extends EnvironmentService{
+    double curtailmentFactor = 1;
     private SimState state;
     private int round = 0;
     private PowerPoolEnvService ChildEnvService;
@@ -42,7 +43,7 @@ public class GlobalEnvService extends EnvironmentService{
         this.serviceProvider = serviceProvider;
     }
 
-    public void allocate(parentDemand Total, ArrayList<UUID> ChildrenList)
+    public void allocate(Demand Total, ArrayList<UUID> ChildrenList)
     {
         //logger.info("GlobalEnvService.allocate() called");
         getChildEnvService();
@@ -54,7 +55,10 @@ public class GlobalEnvService extends EnvironmentService{
             for (int i=0; i<ChildrenList.size(); i++)
             {
                 UUID agent = ChildrenList.get(i);
-                ChildEnvService.setGroupDemand(agent, (parentDemand)ChildEnvService.getAgentDemand(agent));
+                curtailmentFactor = Total.getDemandRequest()/Total.getGenerationRequest();
+                Demand allocation = ChildEnvService.getAgentDemand(agent);
+                allocation.curtail(curtailmentFactor);
+                ChildEnvService.setGroupDemand(agent, (parentDemand)allocation);
             }
         }
         else
@@ -68,7 +72,7 @@ public class GlobalEnvService extends EnvironmentService{
         }
     }
 
-    private void allocate_proportionally(parentDemand Total, ArrayList<UUID> ChildrenList)
+    private void allocate_proportionally(Demand Total, ArrayList<UUID> ChildrenList)
     {
         double proportion = Total.getGenerationRequest()/Total.getDemandRequest();
         for (int i=0; i<ChildrenList.size(); i++)

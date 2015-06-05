@@ -13,6 +13,8 @@ public class Demand extends MasterAction implements Serializable {
     double allocated_demand = 0;
     double allocated_generation = 0;
 
+    double curtailmentFactor = 1;
+
     UUID AgentID;
 
     public Demand(double demand, double generation, UUID AgentID)
@@ -31,11 +33,23 @@ public class Demand extends MasterAction implements Serializable {
         this.AgentID = AgentID;
     }
 
-    public void allocate (double allocated_demand, double allocated_generation)
+    public void allocate(double allocated_demand, double allocated_generation)
     {
         this.allocated_demand = allocated_demand;
         this.allocated_generation = allocated_generation;
     }
+
+    public void curtail(double factor)
+    {
+        this.generation = this.generation*factor;
+        this.curtailmentFactor = factor;
+    }
+
+    public double getCurtailmentFactor()
+    {
+        return this.curtailmentFactor;
+    }
+
 //	@Override
 //	public String toString() {
 //		return "parentDemand [quantity=" + quantity + ", player=" + player.getName()

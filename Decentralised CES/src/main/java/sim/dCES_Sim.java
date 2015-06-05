@@ -13,6 +13,10 @@ import uk.ac.imperial.presage2.core.simulator.Scenario;
 import uk.ac.imperial.presage2.core.util.random.Random;
 import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.UUID;
 
 //import services.ChildEnvService;
@@ -21,6 +25,9 @@ public class dCES_Sim extends RunnableSimulation {
 
     //private final Logger logger = Logger.getLogger(this.getClass());
     private java.util.Random fRandom = new java.util.Random();
+
+    @Parameter(name = "output", optional = true)
+    public String output = "output.csv";
 
     @Parameter(name = "mean")
     public int mean;
@@ -60,6 +67,12 @@ public class dCES_Sim extends RunnableSimulation {
         MasterAgent supervisor = new MasterAgent(Random.randomUUID(), "Supervisor/NGC");
         scenario.addAgent(supervisor);
 
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
+            out.println("name , consumption , allocation");
+        }catch (IOException e) {
+
+        }
+
         for (int i = 0; i < agents; i++)
         {
             UUID parent_id = Random.randomUUID();
@@ -72,11 +85,16 @@ public class dCES_Sim extends RunnableSimulation {
             {
                 UUID child_id = Random.randomUUID();
                 scenario.addAgent(new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, this.getGaussian(mean, variance), this.getGaussian(mean, variance) - 10,
+                        "parent" + i + "agent" + j, this.getGaussian(mean, variance)-10, this.getGaussian(mean, variance),
                         "parent" + i, parent_id));
                 Parent.addChild(child_id);
 
             }
+        }
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
+            out.println("name , consumption , allocation");
+        }catch (IOException e) {
+
         }
     }
 

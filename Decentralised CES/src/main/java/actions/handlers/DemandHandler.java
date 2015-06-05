@@ -2,6 +2,7 @@ package actions.handlers;
 
 import java.util.UUID;
 
+import actions.Demand;
 import actions.parentDemand;
 import actions.childDemand;
 import services.ParentEnvService;
@@ -65,7 +66,7 @@ public class DemandHandler implements ActionHandler {
             if (CurrentState == 3)
             {
                 //logger.info("T=" + d.getT() + ". Appropriate to agent round");
-                parentDemand allocated = ParentEnvService.getAllocation(actor);
+                Demand allocated = ParentEnvService.getAllocation(actor);
                 d.allocateDemandObj(allocated);
                 logger.info("Parent " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
                 ParentEnvService.allocate(allocated, d.getChildrenList());

@@ -33,7 +33,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
 	protected HashMap<UUID, Integer>      RequestCounter = new HashMap<UUID, Integer>();
 	protected HashMap<UUID, Demand> AgentDemandStorage = new HashMap<UUID, Demand>();
-    protected HashMap<UUID, parentDemand> GroupDemandAllocationStorage = new HashMap<UUID, parentDemand>();
+    protected HashMap<UUID, Demand> GroupDemandAllocationStorage = new HashMap<UUID, Demand>();
 	protected HashMap<UUID, parentDemand> AgentAllocationStorage = new HashMap<UUID, parentDemand>();
 
 	protected SimState state = new SimState();
@@ -103,7 +103,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
     public void addToAgentPool (Demand d)
     {
-        logger.info("Agent " + d.getAgentID() + "is adding to AgentDemandStorage");
+        logger.info("Agent " + d.getAgentID() + " is adding to AgentDemandStorage");
         AgentDemandStorage.put(d.getAgentID(), d);
     }
 
@@ -142,13 +142,13 @@ public class PowerPoolEnvService extends GlobalEnvService{
         }
     }
 
-    protected void setGroupDemand(UUID ParentID, parentDemand d)
+    protected void setGroupDemand(UUID ParentID, Demand d)
     {
         logger.info("Allocating to ID: " + ParentID);
         GroupDemandAllocationStorage.put(ParentID, d);
     }
 
-    public parentDemand getAllocation(UUID ParentID)
+    public Demand getAllocation(UUID ParentID)
     {
         logger.info("getting allocation");
         if (GroupDemandAllocationStorage.containsKey(ParentID))
@@ -182,9 +182,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
     }
 
     @Override
-    public void allocate(parentDemand allocated, ArrayList<UUID> ChildrenList) {
+    public void allocate(Demand allocated, ArrayList<UUID> ChildrenList) {
         logger.info("PowerPoolEnvService.allocate() called");
-		logger.info("appropriating: D=" + allocated.getDemandRequest() + " G="+allocated.getGenerationRequest());
+		logger.info("Allocating: D=" + allocated.getDemandRequest() + " G=" + allocated.getGenerationRequest());
         getChildEnvService();
         Demand GroupDemand = getAgentDemand(allocated.getAgentID());   //also the same as ChildEnvService.getGroupDemand(allocated);
         double shortfall = GroupDemand.getDemandRequest() - allocated.getDemandRequest();
@@ -194,9 +194,16 @@ public class PowerPoolEnvService extends GlobalEnvService{
             //Go through the children, and allocating their requests
             for (int i = 0; i < ChildrenList.size(); i++) {
                 UUID agent = ChildrenList.get(i);
-                logger.info("shortfall= " + shortfall +" shortfall < 0; Appropriating: D=" + ChildEnvService.getAgentDemand(agent).getDemandRequest() + " G=" + ChildEnvService.getAgentDemand(agent).getGenerationRequest() + " to Agent: " + agent);
-                ChildEnvService.setGroupDemand(agent, (parentDemand)ChildEnvService.getAgentDemand(agent));
+                logger.info("shortfall= " + shortfall +" shortfall < 0; Appropriating: D=" + allocated.getDemandRequest() + " G=" + allocated.getGenerationRequest() + " to Agent: " + agent);
 
+                Demand allocation = ChildEnvService.getAgentDemand(agent);
+
+                curtailmentFactor = allocated.getCurtailmentFactor();
+                allocation.curtail(curtailmentFactor);
+
+                logger.info("Curtailment = " + curtailmentFactor);
+                logger.info("Allocation post curtailment, D,G= " + allocation.getDemandRequest() +"  "+allocation.getGenerationRequest());
+                ChildEnvService.setGroupDemand(agent, allocation);
             }
         } else {
             if (allocationType == 1 ) {
@@ -214,7 +221,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         logger.info ("PowerPoolEnvService Allocating fairly");
     }
 
-    private void allocate_proportionally(parentDemand allocated, Demand GroupDemand, ArrayList<UUID> ChildrenList)
+    private void allocate_proportionally(Demand allocated, Demand GroupDemand, ArrayList<UUID> ChildrenList)
     {
         double proportion = allocated.getDemandRequest() / GroupDemand.getDemandRequest();
         for (int i = 0; i < ChildrenList.size(); i++) {

@@ -1,0 +1,119 @@
+parent0agent0, 25.082027533269088, 25.008362300110896
+parent0agent1, 24.94344183128867, 24.976270416397565
+parent0agent2, 24.912806739074643, 25.050174315087137
+parent0agent3, 25.08224905136341, 25.142649957461497
+parent0agent4, 25.030296078767105, 25.012134743502944
+parent1agent0, 24.96761089808963, 24.957975124668213
+parent1agent1, 25.094487442479323, 25.139049342638074
+parent1agent2, 24.79667554476096, 25.037489995078985
+parent1agent3, 25.108653627040443, 25.03276410466442
+parent1agent4, 24.843867083007044, 25.06648341788659
+name , consumption , allocation
+parent1agent1, 0.0, 25.139049342638074
+parent1agent4, 0.0, 25.06648341788659
+parent0agent2, 0.0, 25.050174315087137
+parent1agent0, 0.0, 24.957975124668213
+parent1agent3, 0.0, 25.03276410466442
+parent0agent1, 0.0, 24.976270416397565
+parent0agent0, 0.0, 25.008362300110896
+parent0agent3, 0.0, 25.142649957461497
+parent0agent4, 0.0, 25.012134743502944
+parent1agent2, 0.0, 25.037489995078985
+name , consumption , allocation
+parent0agent0, 25.129977914425172, 25.112604116205635
+parent0agent1, 24.971169791502593, 24.954390502891222
+parent0agent2, 24.96822339055463, 24.94086566093622
+parent0agent3, 24.910504686533578, 25.0602652200859
+parent0agent4, 24.88766299449564, 25.176928506959552
+parent1agent0, 24.912160221839454, 25.18009771779882
+parent1agent1, 24.92419482475983, 25.04104386703374
+parent1agent2, 24.937668551937307, 24.997752432041203
+parent1agent3, 24.94694085773568, 25.11860636771817
+parent1agent4, 24.843087475172872, 25.138038772628256
+name , consumption , allocation
+parent0agent3, 0.0, 25.0602652200859
+parent1agent4, 0.0, 25.138038772628256
+parent0agent0, 0.0, 25.112604116205635
+parent1agent3, 0.0, 25.11860636771817
+parent0agent2, 0.0, 24.94086566093622
+parent0agent1, 0.0, 24.954390502891222
+parent1agent0, 0.0, 25.18009771779882
+parent0agent4, 0.0, 25.176928506959552
+parent1agent1, 0.0, 25.04104386703374
+parent1agent2, 0.0, 24.997752432041203
+name , consumption , allocation
+parent0agent0, 24.984785029189197, 25.04152685018401
+name , consumption , allocation
+parent0agent0, 0.0, 25.04152685018401
+name , consumption , allocation
+parent0agent0, 24.760065342090357, 25.107588481176336
+name , consumption , allocation
+parent0agent0, 0.0, 25.107588481176336
+name , consumption , allocation
+parent0agent0, 25.043271334445425, 24.960956691888523
+name , consumption , allocation
+parent0agent0, 24.960956691888523, 24.960956691888523
+name , consumption , allocation
+parent0agent0, 24.999275902645607, 25.028280770342782
+name , consumption , allocation
+parent0agent0, 0.0, 25.028280770342782
+name , consumption , allocation
+parent0agent0, 24.880029812865587, 25.11014360774589
+name , consumption , allocation
+parent0agent0, 0.0, 25.11014360774589
+name , consumption , allocation
+parent0agent0, 25.019562083973018, 25.0703970588772
+name , consumption , allocation
+parent0agent0, 0.0, 25.019562083973018
+name , consumption , allocation
+parent0agent0, 24.9560882809545, 24.95629399673903
+name , consumption , allocation
+parent0agent0, 0.0, 24.95629399673903
+name , consumption , allocation
+parent0agent0, 25.038787945819358, 25.012367649787986
+name , consumption , allocation
+parent0agent0, 25.012367649787986, 25.012367649787986
+name , consumption , allocation
+parent0agent0, 25.022829243296194, 25.165393377773093
+name , consumption , allocation
+parent0agent0, 0.0, 25.022829243296194
+name , consumption , allocation
+parent0agent0, 25.1140383615089, 24.93638509394965
+name , consumption , allocation
+parent0agent0, 24.93638509394965, 24.93638509394965
+name , consumption , allocation
+parent0agent0, 25.237779687105153, 24.962798780666812
+name , consumption , allocation
+parent0agent0, 24.962798780666812, 24.962798780666812
+name , consumption , allocation
+parent0agent0, 25.017989143020884, 25.126838401336126
+name , consumption , allocation
+parent0agent0, 0.0, 25.126838401336126
+name , consumption , allocation
+parent0agent0, 25.06567730729186, 25.092795921628266
+name , consumption , allocation
+parent0agent0, 0.0, 25.06567730729186
+name , consumption , allocation
+parent0agent0, 24.96171042433737, 24.905997510743184
+name , consumption , allocation
+parent0agent0, 24.905997510743184, 24.905997510743184
+name , consumption , allocation
+parent0agent0, 25.066428342453463, 25.030268616180347
+name , consumption , allocation
+parent0agent0, 25.030268616180347, 25.030268616180347
+name , consumption , allocation
+parent0agent0, 25.019272462362704, 25.06686894672091
+name , consumption , allocation
+parent0agent0, 0.0, 25.019272462362704
+name , consumption , allocation
+parent0agent0, 14.958911161382055, 24.97889829503809
+name , consumption , allocation
+parent0agent0, 0.0, 14.958911161382055
+name , consumption , allocation
+parent0agent0, 15.098049843065983, 25.016850506752377
+name , consumption , allocation
+parent0agent0, 0.0, 15.098049843065983
+name , consumption , allocation
+parent0agent0, 14.974143254064273, 25.006298934615298
+name , consumption , allocation
+parent0agent0, 14.974143254064273, 14.974143254064273
