@@ -197,6 +197,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
                 logger.info("shortfall= " + shortfall +" shortfall < 0; Appropriating: D=" + allocated.getAllocationD() + " G=" + allocated.getAllocationG() + " to Agent: " + agent);
 
                 Demand allocation = ChildEnvService.getAgentDemand(agent);
+                allocation.allocate(allocated.getAllocationD(), allocated.getAllocationG());
 
                 curtailmentFactor = allocated.getCurtailmentFactor();
                 allocation.curtail(curtailmentFactor);
@@ -227,8 +228,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
         for (int i = 0; i < ChildrenList.size(); i++) {
             UUID agent = ChildrenList.get(i);
             Demand request = ChildEnvService.getAgentDemand(agent);
-            parentDemand allocation = new parentDemand(request.getDemandRequest() * proportion, request.getGenerationRequest(), agent);
-            logger.info("shortfall > 0; proportion factor is:" + proportion + " Appropriating: D =" + allocation.getDemandRequest() + " G=" + allocation.getGenerationRequest() + " to Agent: " + agent);
+            parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent);
+            allocation.allocate(request.getDemandRequest()*proportion, request.getGenerationRequest());
+            logger.info("shortfall > 0; proportion factor is:" + proportion + " Appropriating: D =" + allocation.getAllocationD() + " G=" + allocation.getAllocationG() + " to Agent: " + agent);
             ChildEnvService.setGroupDemand(agent, allocation);
         }
     }

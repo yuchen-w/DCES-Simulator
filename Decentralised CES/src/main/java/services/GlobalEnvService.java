@@ -80,7 +80,8 @@ public class GlobalEnvService extends EnvironmentService{
         {
             UUID agent = ChildrenList.get(i);
             parentDemand request = (parentDemand)ChildEnvService.getAgentDemand(agent);
-            parentDemand allocation = new parentDemand(request.getDemandRequest()*proportion, request.getGenerationRequest(), agent); //todo fix this
+            parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
+            allocation.allocate(request.getDemandRequest()*proportion, request.getGenerationRequest());
             ChildEnvService.setGroupDemand(agent, allocation);
         }
     }

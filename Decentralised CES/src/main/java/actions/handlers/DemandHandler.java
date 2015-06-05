@@ -68,7 +68,7 @@ public class DemandHandler implements ActionHandler {
                 logger.info("T=" + d.getT() + ". Appropriate to agent round");
                 Demand allocated = ParentEnvService.getAllocation(actor);
                 d.allocateDemandObj(allocated);
-                logger.info("Parent " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
+                logger.info("Parent " + actor + " allocation: d =" + allocated.getAllocationD() + " g = " + allocated.getAllocationG());
                 ParentEnvService.allocate(allocated, d.getChildrenList());
             }
 
