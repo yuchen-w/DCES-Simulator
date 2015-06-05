@@ -68,7 +68,7 @@ public class DemandHandler implements ActionHandler {
                 parentDemand allocated = ParentEnvService.getAllocation(actor);
                 d.allocateDemandObj(allocated);
                 logger.info("Parent " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
-                ParentEnvService.appropriate(allocated, d.getChildrenList());
+                ParentEnvService.allocate(allocated, d.getChildrenList());
             }
 
 		}

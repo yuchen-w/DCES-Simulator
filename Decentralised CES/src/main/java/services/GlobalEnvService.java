@@ -9,12 +9,10 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 
 import state.SimState;
-import uk.ac.imperial.presage2.core.environment.EnvironmentService;
-import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
-import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
-import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
+import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.event.EventListener;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
+import uk.ac.imperial.presage2.core.simulator.Step;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -38,9 +36,9 @@ public class GlobalEnvService extends EnvironmentService{
         this.serviceProvider = serviceProvider;
     }
 
-    public void appropriate (parentDemand Total,  ArrayList<UUID> ChildrenList)
+    public void allocate(parentDemand Total, ArrayList<UUID> ChildrenList)
     {
-        //logger.info("GlobalEnvService.appropriate() called");
+        //logger.info("GlobalEnvService.allocate() called");
         getChildEnvService();
         double shortfall = Total.getDemandRequest() - Total.getGenerationRequest();
 
@@ -105,9 +103,10 @@ public class GlobalEnvService extends EnvironmentService{
 
 
     //Currently not working:
-    @EventListener
-    protected void incrementState()
+    @Step
+    public void step(int t) throws ActionHandlingException
     {
+        logger.info("Incrementing State");
         round++;
         if (this.state.getState() == null)
         {

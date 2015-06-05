@@ -47,7 +47,7 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
                 //logger.info("Parents are:" + a.getChildrenList());
                 TotalDemand = TotalDemand.addDemand(EnvService.getGroupDemand(a));
                 //logger.info("Global Total D = " + TotalDemand.getDemandRequest() + "G = " + TotalDemand.getGenerationRequest());
-                appropriate(TotalDemand, a.getChildrenList());
+                allocate(TotalDemand, a.getChildrenList());
             }
 
             //Do allocate if State=allocate. Use Allocate action.

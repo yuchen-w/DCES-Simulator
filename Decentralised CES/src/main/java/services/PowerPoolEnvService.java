@@ -180,8 +180,8 @@ public class PowerPoolEnvService extends GlobalEnvService{
     }
 
     @Override
-    public void appropriate (parentDemand allocated,  ArrayList<UUID> ChildrenList) {
-        logger.info("GlobalEnvService.appropriate() called");
+    public void allocate(parentDemand allocated, ArrayList<UUID> ChildrenList) {
+        logger.info("PowerPoolEnvService.allocate() called");
 		logger.info("appropriating: D=" + allocated.getDemandRequest() + " G="+allocated.getGenerationRequest());
         getChildEnvService();
         Demand GroupDemand = getAgentDemand(allocated.getAgentID());   //also the same as ChildEnvService.getGroupDemand(allocated);
