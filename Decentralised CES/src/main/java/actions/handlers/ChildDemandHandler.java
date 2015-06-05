@@ -52,9 +52,15 @@ public class ChildDemandHandler extends DemandHandler{
                 getParentService();
                 //logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
                 //logger.info("Agent: " + actor + " attempting to retrieve allocation");
+
+                //todo
                 Demand allocated = ParentService.getAllocation(actor);
-                //logger.info("Agent demand was: " + d.getDemandRequest());
-                d.allocate(allocated.getDemandRequest(), allocated.getGenerationRequest());
+
+                logger.info("Agent demand was: " + d.getDemandRequest() + " " + d.getGenerationRequest());
+
+                //todo
+                d.allocate(allocated.getAllocationD(), allocated.getAllocationG());
+
                 //logger.info("Agent allocation is now " + d.getAllocationD());
                 //logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
             }

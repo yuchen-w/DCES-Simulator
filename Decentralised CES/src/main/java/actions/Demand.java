@@ -39,9 +39,13 @@ public class Demand extends MasterAction implements Serializable {
         this.allocated_generation = allocated_generation;
     }
 
+    /**
+     * Curtails allocated generation from requested generation
+     * @param factor
+     */
     public void curtail(double factor)
     {
-        this.generation = this.generation*factor;
+        this.allocated_generation = this.generation*factor;
         this.curtailmentFactor = factor;
     }
 

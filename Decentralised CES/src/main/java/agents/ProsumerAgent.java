@@ -48,7 +48,7 @@ public class ProsumerAgent extends ParentAgent {
             logger.warn("Failed to add demand to the pool", e);
         }
         if(t% AgentDemand.getStateNum() == 4){
-            logger.info("Agent: " + this.getID() + " allocation: d =" + AgentDemand.getAllocationD() + "g = " + AgentDemand.getGenerationRequest() + "allocation g =" +AgentDemand.getAllocationG());
+            logger.info("Agent: " + this.getID() + " d: "+ AgentDemand.getDemandRequest() + " allocation: d =" + AgentDemand.getAllocationD() + " g = " + AgentDemand.getGenerationRequest() + " allocation g = " +AgentDemand.getAllocationG());
             try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
                 out.println(this.getName() + ", " +AgentDemand.getAllocationD()+ ", "+ AgentDemand.getGenerationRequest());
             }catch (IOException e) {
@@ -56,11 +56,4 @@ public class ProsumerAgent extends ParentAgent {
             }
         }
     }
-//    @Override
-//    protected Set<ParticipantSharedState> getSharedState() {
-//        Set<ParticipantSharedState> ss = super.getSharedState();
-//        ss.add(new ParticipantSharedState("agent.demand", super.AgentDemand, getID()));
-//        return ss;
-//    }
-
 }
