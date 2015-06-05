@@ -17,6 +17,36 @@ In the context of a rural Decentralised Community Energy system, a network betwe
 \section*{Distributive Justice}
 Given that the necessary infrastructure and powers exist for enforcing quotas and contribution to the Common Pool, the allocation needs to be fair. Being fair forms two of the necessary Ostrom's Principles for Enduring Institutions in a Common Property Regime \cite{Ostrom:90}. Rescher
 
+\subsection*{Multi-Agent Simulation}
+The simulation will be designed as a Multi-Agent System (MAS). MASes are particularly suited for this kind of model as Agents in MASes have three very important characteristics:
+\begin{itemize}
+	\item Autonomous: Agents act independently
+	\item Local view: no Agent can see or manipulate the environment it is in
+	\item Decentralised: There is no Agent which controls the action of all Agents
+\end{itemize}
+In reality, individual households which are represented by Agents in the simulator all perform actions according to their individual and unique needs, and not controlled by a third party. This makes Autonomy and Decentralisation a requirement for the Agents in the Simulator. Participants or households connected to the network can't directly control how other participants use or generate electricity for the Common Resource Pool, making it an requirement for the Agent to have a Localised view. 
+
+\subsection*{About Presage 2}
+Presage 2 is a simulation platform for multi-nodal or Agent simulation of societies. The platform was built by Sam Macbeth and is currently maintained by PhD students within Imperial. This platform was chosen for the simulator as it enables the investigation of the impact of agent design (such as household behaviour), network properties (constraints on access) and the physical environment on individual agent behaviour and long-term global network performance \cite{Presage2-Desc:2015}. In the context of this Project, each Node/Agent can represent individuals, households, businesses or generators. 
+
+Presage 2 was chosen for this project as it is a platform which allows the rapid prototyping of complex Agent societies. Presage 2 Agents are only allowed to act during increments of time steps, which makes the simulation a discrete time driven one. Figures \ref{fig:Presage_architecture} and \ref{fig:Presage_sim_architecture} illustrates general and simulation archtecture.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.25]{Images/Presage.jpg}
+	\caption{Presage 2 architecture \cite{Presage_Kyoto:2015}}
+	\label{fig:Presage_architecture}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{Images/Presage2.jpg}
+	\caption{Presage 2 simulation architecture \cite{Presage_Kyoto:2015}}
+	\label{fig:Presage_sim_architecture}
+\end{figure}
+
+\clearpage
+
 \section*{Rural Communities in Rwanda}
 With an estimated 25\% rural electrification rate in 2009 \cite{IEA-web:2015}, rural Africa is one obvious candidate for simulation scenarios. Vast amounts of rural communities remain un-electrified. For a realistic simulation scenario, knowledge of existing infrastructure in place will need to be obtained. With many areas within many countries in Africa, Rwanda in particular has been identified as a good potential simulation scenario to research. Data is difficult to source for rural communities in developing countries, however in the case of Rwanda, some data can be easily from the student society e.quinox. e.quinox is a student-led society which aims to find a scalable solution for rural electrification who mainly operate in Rwanda \cite{e.quinox-web:2015}. The subsections below outline some of the ways remote rural communities are able to access electricity in Rwanda.
 
@@ -37,8 +67,6 @@ In the absence of any electricity distribution infrastructure, e.quinox has trad
 \caption{First Generation e.quinox Battery Boxes deployed at Rugaragara Falls Kiosk}
 \label{fig:AmaziBox}
 \end{figure}
-
-
 
 Consumers from local community pay to hire the battery boxes under one of two payment schemes: pay-per-recharge and pay-per-month \cite{e.quinox-Hydro-web:2012}. The biggest difference between the two schemes are that users can recharge as often as they would like with pay-per-month. Both payment schemes involve the recharge of the boxes at the energy kiosk when they are depleted of energy.
 
@@ -73,29 +101,6 @@ It is hoped that the Standalone Solution and additional generation from the Ener
 
 \subsection*{In the context of the Project}
 In developing countries such as Rwanda, poor communities with no access to grid electricity are often in isolated locations. In these areas, fuel for generators are often difficult to obtain. Other available sources of electricity such as solar and wind power are highly dependent other variables such as weather. It is also highly unlikely that they will have access to redundancies to ensure continual access much like the electricity we receive from the national distribution and transmission network in the UK. It is therefore beneficial for systems such as the one being modelled as it has lower barriers to entry than access to grid electricity.
-
-\subsection*{Multi-Agent Simulation}
-The simulation will be design as a Multi-Agent System (MAS). MASes are...
-In multi-agent simulation systems the MAS is used as a model to simulate some real-world domain.
-
-\subsection*{About Presage 2}
-Presage 2 is a simulation platform for multi-nodal or Agent simulation of societies. The platform was built by Sam Macbeth and is currently maintained by PhD students within Imperial. This platform was chosen for the simulator as it enables the investigation of the impact of agent design (such as household behaviour), network properties (constraints on access) and the physical environment on individual agent behaviour and long-term global network performance \cite{Presage2-Desc:2015}. In the context of this Project, each Node/Agent can represent individuals, households, businesses or generators. 
-
-% Presage 2 was chosen for this project as it is a platform which allows the rapid prototyping of complex Agent societies. Presage 2 Agents are only allowed to act during increments of time steps, which makes the simulation a discrete time driven one. Figures \ref{fig:Presage_architecture} and \ref{fig:Presage_sim_architecture} illustrates general and simulation archtecture.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=1]{Images/Presage.jpg}
-	\caption{Presage 2 architecture \cite{Presage_Kyoto:2015}}
-	\label{fig:Presage_architecture}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=1]{Images/Presage2.jpg}
-	\caption{Presage 2 simulation architecture \cite{Presage_Kyoto:2015}}
-	\label{fig:Presage_sim_architecture}
-\end{figure}
 
 % \subsection{Additional Research}
 % e.quinox in Rwanda only presents us with one scenario. Additional research is required for other regions such as South America and the Indian Subcontinent to look at potential new scenarios and use cases for various generators and electrical appliances.

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>actions.handlers.ChildDemandHandler</OriginalElement>
+  <nodes>
+    <node x="44.0" y="0.0">uk.ac.imperial.presage2.core.environment.ActionHandler</node>
+    <node x="0.0" y="123.0">actions.handlers.DemandHandler</node>
+    <node x="50.0" y="423.0">actions.handlers.ChildDemandHandler</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="actions.handlers.ChildDemandHandler" target="actions.handlers.DemandHandler">
+      <point x="0.0" y="-70.0" />
+      <point x="0.0" y="125.0" />
+    </edge>
+    <edge source="actions.handlers.DemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
+      <point x="0.0" y="-125.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="73.5" y="274.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

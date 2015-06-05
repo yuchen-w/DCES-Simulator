@@ -22,7 +22,7 @@ public class ParentEnvService extends PowerPoolEnvService {
     private PowerPoolEnvService EnvService;
     //final private EnvironmentServiceProvider serviceProvider;
 
-    private HashMap<UUID, parentDemand> GroupDemandStorage = new HashMap<UUID, parentDemand>();
+    private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<UUID, Demand>();
 
     private final Logger logger = Logger.getLogger(this.getClass());
 
@@ -62,7 +62,7 @@ public class ParentEnvService extends PowerPoolEnvService {
         else
         {
             logger.info("For ParentID " +d.getParentID()+" HashMap Entry Exists, adding demand.");
-            parentDemand temp;
+            Demand temp;
             temp = GroupDemandStorage.get(d.getParentID());
             GroupDemandStorage.put(d.getParentID(), (parentDemand)temp.addDemand(d));
         }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>actions.Demand</OriginalElement>
+  <nodes>
+    <node x="0.0" y="202.0">actions.MasterAction</node>
+    <node x="172.24999999999997" y="582.0">actions.parentDemand</node>
+    <node x="24.24999999999997" y="582.0">actions.childDemand</node>
+    <node x="42.0" y="79.0">actions.TimestampedAction</node>
+    <node x="68.99999999999997" y="325.0">actions.Demand</node>
+    <node x="79.5" y="0.0">uk.ac.imperial.presage2.core.Action</node>
+    <node x="246.0" y="224.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="actions.MasterAction" target="actions.TimestampedAction">
+      <point x="0.0" y="-36.5" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="actions.childDemand" target="actions.Demand">
+      <point x="0.0" y="-25.5" />
+      <point x="88.24999999999997" y="557.0" />
+      <point x="135.49999999999997" y="557.0" />
+      <point x="-66.5" y="103.5" />
+    </edge>
+    <edge source="actions.TimestampedAction" target="uk.ac.imperial.presage2.core.Action">
+      <point x="0.0" y="-36.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="actions.Demand" target="actions.MasterAction">
+      <point x="-66.49999999999997" y="-103.5" />
+      <point x="135.5" y="300.0" />
+      <point x="113.0" y="300.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="actions.Demand" target="java.io.Serializable">
+      <point x="66.50000000000003" y="-103.5" />
+      <point x="268.5" y="300.0" />
+      <point x="291.0" y="300.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="actions.parentDemand" target="actions.Demand">
+      <point x="0.0" y="-25.5" />
+      <point x="315.75" y="557.0" />
+      <point x="268.5" y="557.0" />
+      <point x="66.50000000000003" y="103.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="116.5" y="393.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

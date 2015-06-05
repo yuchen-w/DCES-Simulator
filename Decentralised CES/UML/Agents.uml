@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>agents.ProsumerAgent</OriginalElement>
+  <nodes>
+    <node x="0.0" y="190.0">uk.ac.imperial.presage2.util.participant.AbstractParticipant</node>
+    <node x="157.0" y="945.0">agents.ParentAgent</node>
+    <node x="172.5" y="777.0">agents.MasterAgent</node>
+    <node x="193.0" y="1091.0">agents.ProsumerAgent</node>
+    <node x="5.75" y="0.0">uk.ac.imperial.presage2.core.participant.Participant</node>
+    <node x="301.75" y="44.5">uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="agents.ProsumerAgent" target="agents.ParentAgent">
+      <point x="0.0" y="-59.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="uk.ac.imperial.presage2.util.participant.AbstractParticipant" target="uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider">
+      <point x="141.75" y="-268.5" />
+      <point x="425.25" y="165.0" />
+      <point x="423.25" y="165.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="uk.ac.imperial.presage2.util.participant.AbstractParticipant" target="uk.ac.imperial.presage2.core.participant.Participant">
+      <point x="-141.75" y="-268.5" />
+      <point x="141.75" y="165.0" />
+      <point x="143.75" y="165.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="agents.MasterAgent" target="uk.ac.imperial.presage2.util.participant.AbstractParticipant">
+      <point x="0.0" y="-59.0" />
+      <point x="0.0" y="268.5" />
+    </edge>
+    <edge source="agents.ParentAgent" target="agents.MasterAgent">
+      <point x="0.0" y="-48.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="145.5" y="693.0" />
+  <SelectedNodes>
+    <node>agents.ProsumerAgent</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
