@@ -34,8 +34,8 @@ public class dCES_Sim extends RunnableSimulation {
     @Parameter(name = "agents")
     public int agents;
 
-    @Parameter(name = "allocation", optional = true)
-    public String allocation;
+    @Parameter(name = "allocationType", optional = true)
+    public int allocationType;
 
     @Parameter (name = "surplus")
     public double grid_surplus;

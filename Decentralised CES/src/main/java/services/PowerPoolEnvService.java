@@ -22,7 +22,9 @@ import java.util.UUID;
 
 public class PowerPoolEnvService extends GlobalEnvService{
 
-	@Inject
+
+
+    @Inject
 	@Named("params.children")
 	protected int children;	//Variable here needs to be the same as it is called in the SimpleSim.java file
 
@@ -155,7 +157,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         }
         else
         {
-            logger.info("Error!");
+            logger.info("PowerPoolEnvService.getAllocation error! No allocation can be found for Agent");
             parentDemand nullDemand = new parentDemand(0, 0, ParentID);
             return nullDemand;
         }
@@ -187,6 +189,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         Demand GroupDemand = getAgentDemand(allocated.getAgentID());   //also the same as ChildEnvService.getGroupDemand(allocated);
         double shortfall = GroupDemand.getDemandRequest() - allocated.getDemandRequest();
 
+        //No special algorithm if Gen > Demand:
         if (shortfall <= 0) {
             //Go through the children, and allocating their requests
             for (int i = 0; i < ChildrenList.size(); i++) {
@@ -196,15 +199,30 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
             }
         } else {
-            double proportion = allocated.getDemandRequest() / GroupDemand.getDemandRequest();
-            for (int i = 0; i < ChildrenList.size(); i++) {
-                UUID agent = ChildrenList.get(i);
-                Demand request = ChildEnvService.getAgentDemand(agent);
-                parentDemand allocation = new parentDemand(request.getDemandRequest() * proportion, request.getGenerationRequest(), agent);
-                logger.info("shortfall > 0; proportion factor is:" + proportion + " Appropriating: D =" + allocation.getDemandRequest() + " G=" + allocation.getGenerationRequest() + " to Agent: " + agent);
-                ChildEnvService.setGroupDemand(agent, allocation);
-
+            if (allocationType == 1 ) {
+                allocate_fairly();
             }
+            else {
+                allocate_proportionally(allocated, GroupDemand, ChildrenList);
+            }
+
+        }
+    }
+
+    private void allocate_fairly()
+    {
+        logger.info ("PowerPoolEnvService Allocating fairly");
+    }
+
+    private void allocate_proportionally(parentDemand allocated, Demand GroupDemand, ArrayList<UUID> ChildrenList)
+    {
+        double proportion = allocated.getDemandRequest() / GroupDemand.getDemandRequest();
+        for (int i = 0; i < ChildrenList.size(); i++) {
+            UUID agent = ChildrenList.get(i);
+            Demand request = ChildEnvService.getAgentDemand(agent);
+            parentDemand allocation = new parentDemand(request.getDemandRequest() * proportion, request.getGenerationRequest(), agent);
+            logger.info("shortfall > 0; proportion factor is:" + proportion + " Appropriating: D =" + allocation.getDemandRequest() + " G=" + allocation.getGenerationRequest() + " to Agent: " + agent);
+            ChildEnvService.setGroupDemand(agent, allocation);
         }
     }
 }

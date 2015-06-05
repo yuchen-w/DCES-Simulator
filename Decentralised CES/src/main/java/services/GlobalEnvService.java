@@ -3,7 +3,9 @@
 package services;
 
 
+import actions.Demand;
 import actions.parentDemand;
+import com.google.inject.name.Named;
 import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
@@ -24,6 +26,10 @@ public class GlobalEnvService extends EnvironmentService{
     final protected EnvironmentServiceProvider serviceProvider;
 
     private final Logger logger = Logger.getLogger(this.getClass());
+
+    @Inject
+    @Named("params.allocationType")
+    public int allocationType;
 
 //    @Inject
     @Parameter (name = "parent_level")
@@ -53,35 +59,30 @@ public class GlobalEnvService extends EnvironmentService{
         }
         else
         {
-            double proportion = Total.getGenerationRequest()/Total.getDemandRequest();
-            for (int i=0; i<ChildrenList.size(); i++)
-            {
-                UUID agent = ChildrenList.get(i);
-                parentDemand request = (parentDemand)ChildEnvService.getAgentDemand(agent);
-                parentDemand allocation = new parentDemand(request.getDemandRequest()*proportion, request.getGenerationRequest(), agent);
-                ChildEnvService.setGroupDemand(agent, allocation);
+            if (allocationType == 1 ) {
+                allocate_fairly();
+            }
+            else {
+                allocate_proportionally(Total, ChildrenList);
             }
         }
+    }
 
-//        double allocation;
-//        if (shortfall < 0)
-//        {
-//            allocation = d.getDemandRequest();
-//            this.available -= shortfall;
-//        }
-//        else if (shortfall >= 0 && shortfall <= this.available)
-//        {
-//            allocation = d.getDemandRequest();
-//            this.available -= shortfall;
-//        }
-//        else
-//        {
-//            allocation = d.getGenerationRequest() + this.available;
-//            this.available = 0;
-//        }
-//        logger.info("Allocating: " + allocation);
-//
-//        d.Allocate(allocation);
+    private void allocate_proportionally(parentDemand Total, ArrayList<UUID> ChildrenList)
+    {
+        double proportion = Total.getGenerationRequest()/Total.getDemandRequest();
+        for (int i=0; i<ChildrenList.size(); i++)
+        {
+            UUID agent = ChildrenList.get(i);
+            parentDemand request = (parentDemand)ChildEnvService.getAgentDemand(agent);
+            parentDemand allocation = new parentDemand(request.getDemandRequest()*proportion, request.getGenerationRequest(), agent);
+            ChildEnvService.setGroupDemand(agent, allocation);
+        }
+    }
+
+    private void allocate_fairly()
+    {
+        logger.info("GlobalEnvService Allocating fairly");
     }
 
     protected PowerPoolEnvService getChildEnvService()
@@ -100,7 +101,6 @@ public class GlobalEnvService extends EnvironmentService{
         }
         return ChildEnvService;
     }
-
 
     //Currently not working:
     @Step
