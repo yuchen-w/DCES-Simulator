@@ -19,7 +19,6 @@ import java.util.UUID;
 public class SimpleDNOSim extends RunnableSimulation {
 
     //private final Logger logger = Logger.getLogger(this.getClass());
-    private java.util.Random fRandom = new java.util.Random();
 
     @Parameter(name = "size")
     public int size;
@@ -64,16 +63,6 @@ public class SimpleDNOSim extends RunnableSimulation {
 
             supervisor.addChild(Parent.getID());
 
-//            for (int j = 0; j < agent_children; j++)
-//            {
-//                UUID child_id = Random.randomUUID();
-//                scenario.addAgent(new ProsumerAgent(child_id,
-//                        "parent" + i + "agent" + j, Random.randomInt(size), Random.randomInt(size-10),
-//                        "parent" + i, parent_id));
-//                Parent.addChild(child_id);
-//
-//            }
-
             for (int j = 0; j < agent_children; j++)
             {
                 UUID child_id = Random.randomUUID();
@@ -84,9 +73,5 @@ public class SimpleDNOSim extends RunnableSimulation {
 
             }
         }
-    }
-
-    private double getGaussian(double aMean, double aVariance){
-        return aMean + fRandom.nextGaussian() * aVariance;
     }
 }
