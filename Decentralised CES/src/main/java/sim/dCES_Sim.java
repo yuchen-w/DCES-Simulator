@@ -92,7 +92,7 @@ public class dCES_Sim extends RunnableSimulation {
 
                 for (int k=0; k<hours; k++)
                 {
-                    prosumer.addProfileHourly(Random.randomDouble(), Random.randomDouble());
+                    prosumer.addProfileHourly(Random.randomDouble(), Random.randomDouble()+1);
                 }
 
                 scenario.addAgent(prosumer);

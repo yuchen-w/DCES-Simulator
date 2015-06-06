@@ -1,9 +1,12 @@
 package services;
 
 import actions.Demand;
+import actions.Feedback;
 import actions.parentDemand;
 import actions.childDemand;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;

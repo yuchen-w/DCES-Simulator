@@ -71,6 +71,7 @@ public class ProsumerAgent extends ParentAgent {
             }
 
             hourCount++;
+            AgentDemand.setHour(hourCount);
             logger.info("It is now hour: " + hourCount);
         }
     }

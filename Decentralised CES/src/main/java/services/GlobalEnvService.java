@@ -48,17 +48,19 @@ public class GlobalEnvService extends EnvironmentService{
         //logger.info("GlobalEnvService.allocate() called");
         getChildEnvService();
         double shortfall = Total.getDemandRequest() - Total.getGenerationRequest();
-
+        //logger.info("Shortfall = " + shortfall);
         if (shortfall < 0)
         {
             //Go through the children, and allocating their requests
+            curtailmentFactor = Total.getDemandRequest()/Total.getGenerationRequest();
             for (int i=0; i<ChildrenList.size(); i++)
             {
                 UUID agent = ChildrenList.get(i);
-                curtailmentFactor = Total.getDemandRequest()/Total.getGenerationRequest();
-                Demand allocation = new parentDemand(Total.getDemandRequest(), Total.getGenerationRequest(), agent);
-                allocation.allocate(Total.getDemandRequest(), Total.getGenerationRequest());
+                Demand request = ChildEnvService.getAgentDemand(agent);
+                Demand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent);
+                allocation.allocate(request.getDemandRequest(), request.getGenerationRequest());
                 allocation.curtail(curtailmentFactor);
+                //logger.info("Allocating: " + allocation.getAllocationD() + " " + allocation.getAllocationG());
                 ChildEnvService.setGroupDemand(agent, allocation);
             }
         }

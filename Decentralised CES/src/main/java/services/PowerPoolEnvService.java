@@ -4,6 +4,7 @@ package services;
 
 
 import actions.Demand;
+import actions.Feedback;
 import actions.MasterAction;
 import actions.parentDemand;
 import com.google.inject.name.Named;
@@ -35,6 +36,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	protected HashMap<UUID, Demand> AgentDemandStorage = new HashMap<UUID, Demand>();
     protected HashMap<UUID, Demand> GroupDemandAllocationStorage = new HashMap<UUID, Demand>();
 	protected HashMap<UUID, parentDemand> AgentAllocationStorage = new HashMap<UUID, parentDemand>();
+    protected HashMap<UUID,ArrayList<Double>> AgentSatisfaction = new HashMap <UUID,ArrayList<Double>>();
 
 	protected SimState state = new SimState();
 	double totalDemand = 0;
@@ -196,8 +198,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
                 UUID agent = ChildrenList.get(i);
                 logger.info("shortfall= " + shortfall +" shortfall < 0; Appropriating: D=" + allocated.getAllocationD() + " G=" + allocated.getAllocationG() + " to Agent: " + agent);
 
-                Demand allocation = ChildEnvService.getAgentDemand(agent);
-                allocation.allocate(allocated.getAllocationD(), allocated.getAllocationG());
+                Demand request = ChildEnvService.getAgentDemand(agent);
+                parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent);
+                allocation.allocate(request.getDemandRequest(), request.getGenerationRequest());
 
                 curtailmentFactor = allocated.getCurtailmentFactor();
                 allocation.curtail(curtailmentFactor);
@@ -233,5 +236,26 @@ public class PowerPoolEnvService extends GlobalEnvService{
             logger.info("shortfall > 0; proportion factor is:" + proportion + " Appropriating: D =" + allocation.getAllocationD() + " G=" + allocation.getAllocationG() + " to Agent: " + agent);
             ChildEnvService.setGroupDemand(agent, allocation);
         }
+    }
+
+    public void Feedback(UUID id, double satisfaction)
+    {
+        ArrayList<Double> list;
+        if (this.AgentSatisfaction.containsKey(id))
+        {
+            list = this.AgentSatisfaction.get(id);
+            list.add(satisfaction);
+        }
+        else
+        {
+            list = new ArrayList();
+            list.add(satisfaction);
+        }
+        this.AgentSatisfaction.put(id, list);
+    }
+
+    public ArrayList<Double> getSatisfaction(UUID id)
+    {
+        return this.AgentSatisfaction.get(id);
     }
 }

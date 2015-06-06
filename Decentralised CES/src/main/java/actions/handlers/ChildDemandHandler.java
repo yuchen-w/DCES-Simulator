@@ -4,6 +4,7 @@ import actions.Demand;
 import actions.parentDemand;
 import actions.childDemand;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import services.ParentEnvService;
 import uk.ac.imperial.presage2.core.Action;
 import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
@@ -11,6 +12,10 @@ import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -19,6 +24,10 @@ public class ChildDemandHandler extends DemandHandler{
     final private Logger logger = Logger.getLogger(ChildDemandHandler.class);
 
     private ParentEnvService ParentService;
+
+    @Inject
+    @Named("params.hours")
+    protected int hours;	//Variable here needs to be the same as it is called in the SimpleSim.java file
 
     @Inject
     public ChildDemandHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState)
@@ -50,7 +59,7 @@ public class ChildDemandHandler extends DemandHandler{
             if (CurrentState == 4)
             {
                 getParentService();
-                //logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
+                logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
                 //logger.info("Agent: " + actor + " attempting to retrieve allocation");
 
                 //todo
@@ -61,8 +70,20 @@ public class ChildDemandHandler extends DemandHandler{
                 //todo
                 d.allocate(allocated.getAllocationD(), allocated.getAllocationG());
 
-                //logger.info("Agent allocation is now " + d.getAllocationD());
-                //logger.info("Agent: " + actor + " allocation: d =" + allocated.getDemandRequest() + " g = " + allocated.getGenerationRequest());
+                double satisfaction = allocated.getAllocationD()/d.getDemandRequest();
+                //logger.info("ParentEnvService.Feedback");
+                //ParentEnvService.Feedback(actor, satisfaction);
+                ParentService.Feedback(actor, satisfaction);
+                if (d.getT() == hours*d.getStateNum()-1)
+                {
+                    logger.info("Agent: " + actor + " Satisfaction " + ParentService.getSatisfaction(actor));
+
+                    try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("satisfaction.txt", true)))) {
+                        out.println("Agent: " + actor + " Satisfaction " + ParentService.getSatisfaction(actor));
+                    }catch (IOException e) {
+                        logger.info("Failed to write to file" + "satisfaction.txt");
+                    }
+                }
             }
         }
         return null;
@@ -84,24 +105,4 @@ public class ChildDemandHandler extends DemandHandler{
         }
         return ParentService;
     }
-
-//    protected ParentEnvService getService()
-//    {
-//        if (EnvService == null)
-//        {
-//            try
-//            {
-////                logger.info("Getting ParentService");
-//                this.EnvService = serviceProvider.getEnvironmentService(ChildEnvService.class);
-//            }
-//            catch (UnavailableServiceException e)
-//            {
-//                logger.warn("Could not get EnvService", e);
-//            }
-//        }
-//        return ParentService;
-//    }
-
-    //private
-
 }

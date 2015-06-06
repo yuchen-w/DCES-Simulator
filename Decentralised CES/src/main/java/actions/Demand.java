@@ -15,6 +15,8 @@ public class Demand extends MasterAction implements Serializable {
 
     double curtailmentFactor = 1;
 
+    int hour = 0;
+
     UUID AgentID;
 
     public Demand(double demand, double generation, UUID AgentID)
@@ -31,6 +33,16 @@ public class Demand extends MasterAction implements Serializable {
         this.demand = demand;
         this.generation = generation;
         this.AgentID = AgentID;
+    }
+
+    public void setHour(int t)
+    {
+        this.hour = t;
+    }
+
+    public int getHour()
+    {
+        return hour;
     }
 
     public void allocate(double allocated_demand, double allocated_generation)
