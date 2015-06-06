@@ -20,7 +20,8 @@ public class ProsumerAgent extends ParentAgent {
     protected UUID parent_id;
     childDemand AgentDemand;
 
-    public String output = "output.csv";
+    public String request = "request.csv";
+    public String allocation = "allocation.csv";
 
 
     public ProsumerAgent(UUID id, String name, double consumption, double allocation, String parent, UUID parent_id)
@@ -31,15 +32,22 @@ public class ProsumerAgent extends ParentAgent {
         this.AgentDemand = new childDemand(consumption, allocation, id, parent_id);
         logger.info("Initiated " + name + " with d: " +consumption+ " and g=" +allocation );
 
-        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(request, true)))) {
             out.println(name + ", " +consumption+ ", "+ allocation);
         }catch (IOException e) {
             logger.info("Failed to write to file");
         }
     }
+    public ProsumerAgent(UUID id, String name, String parent, UUID parent_id)
+    {
+        super(id, name);
+        this.parent = parent;
+        this.parent_id = parent_id;
+    }
 
     @Step
     public void step(int t) throws ActionHandlingException {
+        AgentDemand = new childDemand(demandProfile.getDemandRequest(hourCount), demandProfile.getGenerationRequest(hourCount), this.getID(), this.parent_id);
         AgentDemand.setT(t);
         try
         {
@@ -48,12 +56,22 @@ public class ProsumerAgent extends ParentAgent {
             logger.warn("Failed to add demand to the pool", e);
         }
         if(t% AgentDemand.getStateNum() == 4){
-            logger.info("Agent: " + this.getID() + " d: "+ AgentDemand.getDemandRequest() + " allocation: d =" + AgentDemand.getAllocationD() + " g = " + AgentDemand.getGenerationRequest() + " allocation g = " +AgentDemand.getAllocationG());
-            try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
-                out.println(this.getName() + ", " +AgentDemand.getAllocationD()+ ", "+ AgentDemand.getGenerationRequest());
+            logger.info("Agent: " + this.getID() + " d: " + AgentDemand.getDemandRequest() + " allocation: d =" + AgentDemand.getAllocationD() + " g = " + AgentDemand.getGenerationRequest() + " allocation g = " + AgentDemand.getAllocationG());
+
+            try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(request, true)))) {
+                out.println(this.getName() + ", " +AgentDemand.getDemandRequest()+ ", "+ AgentDemand.getGenerationRequest());
             }catch (IOException e) {
-                logger.info("Failed to write to file");
+                logger.info("Failed to write to file" + request);
             }
+
+            try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(allocation, true)))) {
+                out.println(this.getName() + ", " +AgentDemand.getAllocationD()+ ", "+ AgentDemand.getAllocationG());
+            }catch (IOException e) {
+                logger.info("Failed to write to file" + allocation);
+            }
+
+            hourCount++;
+            logger.info("It is now hour: " + hourCount);
         }
     }
 }

@@ -27,7 +27,7 @@ public class dCES_Sim extends RunnableSimulation {
     private java.util.Random fRandom = new java.util.Random();
 
     @Parameter(name = "output", optional = true)
-    public String output = "output.csv";
+    public String output = "request.csv";
 
     @Parameter(name = "mean")
     public int mean;
@@ -49,6 +49,9 @@ public class dCES_Sim extends RunnableSimulation {
 
     @Parameter (name = "parent_level", optional = true)
     public int parent_level = 2;
+
+    @Parameter (name = "hours")
+    public int hours;
 
     @Override
     public void initialiseScenario(Scenario scenario) {
@@ -84,9 +87,15 @@ public class dCES_Sim extends RunnableSimulation {
             for (int j = 0; j < agent_children; j++)
             {
                 UUID child_id = Random.randomUUID();
-                scenario.addAgent(new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, this.getGaussian(mean, variance)-10, this.getGaussian(mean, variance),
-                        "parent" + i, parent_id));
+                ProsumerAgent prosumer = new ProsumerAgent(child_id,
+                        "parent" + i + "agent" + j, "parent" + i, parent_id);
+
+                for (int k=0; k<hours; k++)
+                {
+                    prosumer.addProfileHourly(Random.randomDouble(), Random.randomDouble());
+                }
+
+                scenario.addAgent(prosumer);
                 Parent.addChild(child_id);
 
             }
