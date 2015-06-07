@@ -29,6 +29,8 @@ public class dCES_Sim extends RunnableSimulation {
     @Parameter(name = "output", optional = true)
     public String output = "request.csv";
 
+    public String output2 = "allocation.csv";
+
     @Parameter(name = "mean")
     public int mean;
 
@@ -63,7 +65,7 @@ public class dCES_Sim extends RunnableSimulation {
                         .addActionHandler(DemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)
                         .addActionHandler(services.handler.MasterActionHandlerService.class)
-                //Add the participant service and any other additional environment services here too
+                        //Add the participant service and any other additional environment services here too
         );
 
 
@@ -72,7 +74,15 @@ public class dCES_Sim extends RunnableSimulation {
 
         try{
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
-            out.println("name , consumption , allocation");
+            out.println("hour, name , D , G");
+            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+        }catch (IOException e) {
+
+        }
+
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output2, true)));
+            out.println("hour, name , Allocated D , Allocated G");
             out.close(); //Fixing Resource specification not allowed here for source level below 1.7
         }catch (IOException e) {
 
@@ -94,20 +104,13 @@ public class dCES_Sim extends RunnableSimulation {
 
                 for (int k=0; k<hours; k++)
                 {
-                    prosumer.addProfileHourly(Random.randomDouble()+1, Random.randomDouble());
+                    prosumer.addProfileHourly(Random.randomDouble(), Random.randomDouble()+1);
                 }
 
                 scenario.addAgent(prosumer);
                 Parent.addChild(child_id);
 
             }
-        }
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
-            out.println("name , consumption , allocation");
-            out.close();
-        }catch (IOException e) {
-
         }
     }
 

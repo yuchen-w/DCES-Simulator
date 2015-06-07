@@ -31,12 +31,6 @@ public class ProsumerAgent extends ParentAgent {
         this.parent_id = parent_id;
         this.AgentDemand = new childDemand(consumption, allocation, id, parent_id);
         logger.info("Initiated " + name + " with d: " +consumption+ " and g=" +allocation );
-
-        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(request, true)))) {
-            out.println(name + ", " +consumption+ ", "+ allocation);
-        }catch (IOException e) {
-            logger.info("Failed to write to file");
-        }
     }
     public ProsumerAgent(UUID id, String name, String parent, UUID parent_id)
     {

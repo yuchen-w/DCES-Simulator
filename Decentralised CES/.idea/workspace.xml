@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="F:\Skydrive\Documents\Work\EE4\Final Year Project\FYP\Decentralised CES\pom.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" afterPath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
     </list>
     <ignored path="Decentralised CES.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dCES_Sim.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dCES_Sim.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="105" column="96" selection-start-line="105" selection-start-column="96" selection-end-line="105" selection-end-column="96" />
+            <state vertical-scroll-proportion="0.37565216">
+              <caret line="31" column="35" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -51,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="107" column="8" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#972#987#0" expanded="true" />
@@ -92,52 +94,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DemandHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PowerPoolEnvService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46086955">
-              <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#9287#9302#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParentEnvService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/services/ParentEnvService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="84" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="84" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MasterActionHandlerService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+              <caret line="32" column="92" selection-start-line="32" selection-start-column="92" selection-end-line="32" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -199,12 +156,12 @@
         <option value="$PROJECT_DIR$/src/main/java/agents/ParentAgent.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/ParentEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
       </list>
     </option>
   </component>
@@ -1046,7 +1003,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="uk.ac.imperial.presage2.core.simulator.RunnableSimulation" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=119 agents=5 mean=25 variance=10 children=5 surplus=10 allocationType=1 hours=24" />
+      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=119 agents=5 mean=25 variance=10 children=10 surplus=10 allocationType=1 hours=24" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -1111,13 +1068,13 @@
       <workItem from="1433557591792" duration="603000" />
       <workItem from="1433592625505" duration="23171000" />
       <workItem from="1433683182500" duration="921000" />
-      <workItem from="1433684144556" duration="16242000" />
+      <workItem from="1433684144556" duration="18041000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="203547000" />
+    <option name="totallyTimeSpent" value="205346000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1792,16 +1749,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/ParentAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-util/0.4.1/presage2-util-0.4.1.jar!/uk/ac/imperial/presage2/util/environment/AbstractEnvironment.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34854016">
@@ -1821,14 +1768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/services/ParentEnvService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1836,22 +1775,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="105" column="96" selection-start-line="105" selection-start-column="96" selection-end-line="105" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1874,10 +1797,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3773913">
+          <caret line="255" column="49" selection-start-line="255" selection-start-column="49" selection-end-line="255" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9287#9302#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46086955">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="92" selection-start-line="32" selection-start-column="92" selection-end-line="32" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="107" column="8" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#972#987#0" expanded="true" />
@@ -1890,14 +1840,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/ParentAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46086955">
-          <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9287#9302#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37565216">
+          <caret line="31" column="35" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
