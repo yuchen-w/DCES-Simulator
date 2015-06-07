@@ -29,6 +29,7 @@ public class GlobalEnvService extends EnvironmentService{
 
     HashMap<UUID, ArrayList<Double>> AllocationHistory = new HashMap<UUID, ArrayList<Double>>();
     HashMap<UUID, ArrayList<Double>> DemandHistory = new HashMap<UUID, ArrayList<Double>>();
+    HashMap<UUID, ArrayList<Double>> GenerationHistory = new HashMap<UUID, ArrayList<Double>>();
     //HashMap <UUID, Integer> AgentBordaPoints = new HashMap<UUID, Integer>();
 
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -175,6 +176,7 @@ public class GlobalEnvService extends EnvironmentService{
     {
         AgentBordaPoints = canon_of_equality(ChildrenList, AgentBordaPoints);
         AgentBordaPoints = canon_of_needs(ChildrenList, AgentBordaPoints);
+        AgentBordaPoints = canon_of_productivity(ChildrenList, AgentBordaPoints);
         return AgentBordaPoints;
     }
 
@@ -190,7 +192,7 @@ public class GlobalEnvService extends EnvironmentService{
         AvgDemand = sortByValue(AvgDemand);
 
         //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgAllocation);
-        return sortBordaPoints(AvgDemand, AgentBordaPoints);
+        return sortBordaPointsReverse(AvgDemand, AgentBordaPoints);
 
     }
 
@@ -208,16 +210,24 @@ public class GlobalEnvService extends EnvironmentService{
         //return
     }
 
-    //protected HashMap<UUID, Integer> canon_of_productivity(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
-    protected void canon_of_productivity(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
+    protected HashMap<UUID, Integer> canon_of_productivity(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
     {
+        //rank agents by decreasing order of average provision
+        HashMap <UUID, Double> AvgGeneration = new HashMap<UUID, Double>();
+        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
+            AvgGeneration.put(ID, calcAvgGeneration(ID));
+        }
 
+        AvgGeneration = sortByValue(AvgGeneration);
+
+        return sortBordaPoints(AvgGeneration, AgentBordaPoints);
     }
 
     protected void environmentStore(UUID agent, Demand allocation)
     {
         storeAllocation(agent, allocation.getAllocationD());
         storeDemand(agent, allocation.getDemandRequest());
+        storeGenerataion(agent, allocation.getGenerationRequest());
     }
 
     /**
@@ -273,7 +283,22 @@ public class GlobalEnvService extends EnvironmentService{
             list.add(Demand);
         }
         this.DemandHistory.put(id, list);
+    }
 
+    protected void storeGenerataion(UUID id, double Demand)
+    {
+        ArrayList<Double> list;
+        if (this.GenerationHistory.containsKey(id))
+        {
+            list = this.GenerationHistory.get(id);
+            list.add(Demand);
+        }
+        else
+        {
+            list = new ArrayList<Double>();
+            list.add(Demand);
+        }
+        this.GenerationHistory.put(id, list);
     }
 
     protected double calcAvgAllocation(UUID id)
@@ -297,6 +322,22 @@ public class GlobalEnvService extends EnvironmentService{
         if (this.DemandHistory.containsKey(id))
         {
             ArrayList<Double> list = this.DemandHistory.get(id);
+            double sum = 0;
+            for (Double d : list)
+                sum += d;
+            return sum;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    protected double calcAvgGeneration(UUID id)
+    {
+        if (this.GenerationHistory.containsKey(id))
+        {
+            ArrayList<Double> list = this.GenerationHistory.get(id);
             double sum = 0;
             for (Double d : list)
                 sum += d;
