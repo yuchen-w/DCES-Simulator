@@ -57,7 +57,7 @@ public class DemandHandler implements ActionHandler {
 			if (CurrentState == 1)
             {
                 //logger.info("T=" + d.getT() + " Parent Request round");
-                //logger.info("DemandHandler: parentDemand d.parentDemand = " + d.getDemandRequest() + " and parentDemand d.Generation = " + d.getGenerationRequest());        //Debug
+                logger.info("DemandHandler: parentDemand d.parentDemand = " + d.getDemandRequest() + " and parentDemand d.Generation = " + d.getGenerationRequest());        //Debug
                 parentDemand GroupDemand = this.EnvService.getGroupDemand(d);
                 this.ParentEnvService.addToAgentPool(GroupDemand);
                 //logger.info("GroupDemand D= " +GroupDemand.getDemandRequest()+" G= " + GroupDemand.getGenerationRequest());

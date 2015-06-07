@@ -53,6 +53,7 @@ public class ChildDemandHandler extends DemandHandler{
             {
                 //logger.info("T= "+ d.getT() +". Children Request round");
                 //logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemandRequest() + " and is providing " + d.getGenerationRequest());		//Debug
+
                 this.ParentService.addToAgentPool(d);
             }
 

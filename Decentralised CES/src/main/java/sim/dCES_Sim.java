@@ -102,8 +102,10 @@ public class dCES_Sim extends RunnableSimulation {
 
             }
         }
-        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
             out.println("name , consumption , allocation");
+            out.close();
         }catch (IOException e) {
 
         }

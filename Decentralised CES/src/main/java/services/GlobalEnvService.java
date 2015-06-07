@@ -17,6 +17,8 @@ import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.lang.Thread;
 
 public class GlobalEnvService extends EnvironmentService{
     double curtailmentFactor = 1;
@@ -98,16 +100,19 @@ public class GlobalEnvService extends EnvironmentService{
         //logger.info("GlobalEnvService allocating fairly");
 
         double proportion_available = Total.getGenerationRequest()/Total.getDemandRequest();
-        canon_of_equality(ChildrenList);
 
-        int BordaSum = calcBordaSum(); //Get BordaPoint sum
+
+        HashMap<UUID, Integer> AgentBordaPoints_local = canon_of_equality(ChildrenList);
+
+
+        int BordaSum = calcBordaSum(AgentBordaPoints_local); //Get BordaPoint sum
 
         for (int i=0; i<ChildrenList.size(); i++)
         {
             UUID agent = ChildrenList.get(i);
 
 
-            double proportion_borda = (double)AgentBordaPoints.get(agent)/(double)BordaSum;
+            double proportion_borda = (double)AgentBordaPoints_local.get(agent)/(double)BordaSum;
             double proportion = proportion_available * proportion_borda;
 
             //logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints.get(agent) + " Proportion: " + proportion);
@@ -166,7 +171,7 @@ public class GlobalEnvService extends EnvironmentService{
         return state.getState();
     }
 
-    protected void canon_of_equality( ArrayList<UUID> ChildrenList)
+    protected HashMap<UUID, Integer> canon_of_equality( ArrayList<UUID> ChildrenList)
     {
         // TreeMap <UUID, Double> AvgAllocation = new TreeMap<UUID, Double>();
         HashMap <UUID, Double> AvgAllocation = new HashMap<UUID, Double>();
@@ -178,7 +183,7 @@ public class GlobalEnvService extends EnvironmentService{
         AvgAllocation = sortByValue(AvgAllocation);
 
         //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgAllocation);
-        sortBordaPoints(AvgAllocation, ChildrenList);
+        return sortBordaPoints(AvgAllocation, ChildrenList);
 
     }
 
@@ -237,7 +242,7 @@ public class GlobalEnvService extends EnvironmentService{
         }
     }
 
-    protected int calcBordaSum()
+    protected int calcBordaSum(HashMap <UUID, Integer> AgentBordaPoints)
     {
         int sum = 0;
         for (int d : AgentBordaPoints.values())
