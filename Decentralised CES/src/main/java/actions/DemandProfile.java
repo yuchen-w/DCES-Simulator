@@ -1,5 +1,5 @@
 //Object for passing demand and generation between agent and environment
-package data;
+package actions;
 
 import java.util.ArrayList;
 import java.util.UUID;

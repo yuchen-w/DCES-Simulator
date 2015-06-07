@@ -51,21 +51,21 @@ public class ChildDemandHandler extends DemandHandler{
 
             if (CurrentState == 0)
             {
-                logger.info("T= "+ d.getT() +". Children Request round");
-                logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemandRequest() + " and is providing " + d.getGenerationRequest());		//Debug
+                //logger.info("T= "+ d.getT() +". Children Request round");
+                //logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemandRequest() + " and is providing " + d.getGenerationRequest());		//Debug
                 this.ParentService.addToAgentPool(d);
             }
 
             if (CurrentState == 4)
             {
                 getParentService();
-                logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
+                //logger.info("CurrentState = " + CurrentState + " T = "+ d.getT() +". Children Receive round");
                 //logger.info("Agent: " + actor + " attempting to retrieve allocation");
 
                 //todo
                 Demand allocated = ParentService.getAllocation(actor);
 
-                logger.info("Agent demand was: " + d.getDemandRequest() + " " + d.getGenerationRequest());
+                //logger.info("Agent demand was: " + d.getDemandRequest() + " " + d.getGenerationRequest());
 
                 //todo
                 d.allocate(allocated.getAllocationD(), allocated.getAllocationG());
@@ -78,8 +78,10 @@ public class ChildDemandHandler extends DemandHandler{
                 {
                     logger.info("Agent: " + actor + " Satisfaction " + ParentService.getSatisfaction(actor));
 
-                    try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("satisfaction.txt", true)))) {
+                    try{
+                        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("satisfaction.txt", true)));
                         out.println("Agent: " + actor + " Satisfaction " + ParentService.getSatisfaction(actor));
+                        out.close();
                     }catch (IOException e) {
                         logger.info("Failed to write to file" + "satisfaction.txt");
                     }

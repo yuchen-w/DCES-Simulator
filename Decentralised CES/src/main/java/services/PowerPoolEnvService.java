@@ -13,10 +13,12 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 
 import state.SimState;
+import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -105,7 +107,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
     public void addToAgentPool (Demand d)
     {
-        logger.info("Agent " + d.getAgentID() + " is adding to AgentDemandStorage");
+        //logger.info("Agent " + d.getAgentID() + " is adding to AgentDemandStorage");
         AgentDemandStorage.put(d.getAgentID(), d);
     }
 
@@ -113,9 +115,11 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	public parentDemand getGroupDemand(parentDemand Parent)
 	{
 		parentDemand sum = new parentDemand(0, 0, Parent.getAgentID(), null);
-		for (int i=0; i<Parent.getChildrenList().size(); i++)
+        logger.info("AgentDemandStorage: " + AgentDemandStorage);
+        for (int i=0; i<Parent.getChildrenList().size(); i++)
 		{
-			sum.addDemand(AgentDemandStorage.get(Parent.getChildrenList().get(i)));
+
+            sum.addDemand(AgentDemandStorage.get(Parent.getChildrenList().get(i)));
 		}
 		return sum;
 	}
@@ -186,10 +190,10 @@ public class PowerPoolEnvService extends GlobalEnvService{
     @Override
     public void allocate(Demand allocated, ArrayList<UUID> ChildrenList) {
         logger.info("PowerPoolEnvService.allocate() called");
-		logger.info("Allocating: D=" + allocated.getDemandRequest() + " G=" + allocated.getGenerationRequest());
+		logger.info("Allocating: D=" + allocated.getAllocationD() + " G=" + allocated.getAllocationG());
         getChildEnvService();
         Demand GroupDemand = getAgentDemand(allocated.getAgentID());   //also the same as ChildEnvService.getGroupDemand(allocated);
-        double shortfall = GroupDemand.getDemandRequest() - allocated.getDemandRequest();
+        double shortfall = GroupDemand.getDemandRequest() - allocated.getAllocationD();
 
         //No special algorithm if Gen > Demand:
         if (shortfall <= 0) {
@@ -211,7 +215,8 @@ public class PowerPoolEnvService extends GlobalEnvService{
             }
         } else {
             if (allocationType == 1 ) {
-                allocate_fairly();
+                logger.info("PowerPoolEnvService Allocating Fairly");
+                allocate_fairly(allocated, GroupDemand,  ChildrenList);
             }
             else {
                 allocate_proportionally(allocated, GroupDemand, ChildrenList);
@@ -220,14 +225,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
         }
     }
 
-    private void allocate_fairly()
-    {
-        logger.info ("PowerPoolEnvService Allocating fairly");
-    }
-
     private void allocate_proportionally(Demand allocated, Demand GroupDemand, ArrayList<UUID> ChildrenList)
     {
-        double proportion = allocated.getDemandRequest() / GroupDemand.getDemandRequest();
+        double proportion = allocated.getAllocationD() / GroupDemand.getDemandRequest();
         for (int i = 0; i < ChildrenList.size(); i++) {
             UUID agent = ChildrenList.get(i);
             Demand request = ChildEnvService.getAgentDemand(agent);
@@ -236,6 +236,53 @@ public class PowerPoolEnvService extends GlobalEnvService{
             logger.info("shortfall > 0; proportion factor is:" + proportion + " Appropriating: D =" + allocation.getAllocationD() + " G=" + allocation.getAllocationG() + " to Agent: " + agent);
             ChildEnvService.setGroupDemand(agent, allocation);
         }
+    }
+
+    //This needs to be overridden because ChildEnvSerivce refers to different services
+    private void allocate_fairly(Demand allocated, Demand GroupDemand, ArrayList<UUID> ChildrenList)
+    {
+        logger.info("GlobalEnvService allocating fairly");
+        double proportion_available = allocated.getAllocationD() / GroupDemand.getDemandRequest();
+        canon_of_equality(ChildrenList);
+
+
+
+        for (int i=0; i<ChildrenList.size(); i++)
+        {
+            UUID agent = ChildrenList.get(i);
+
+            //logger.info("For Agent: " + agent + "AgentBordaPoints" + AgentBordaPoints);
+
+            double BordaSum = calcBordaSum(ChildrenList); //Get BordaPoint sum
+            double BordaPts = (double)AgentBordaPoints.get(agent);
+            double proportion_Borda = BordaPts/BordaSum;
+            double proportion = proportion_available*proportion_Borda;
+
+            logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints.get(agent) + " Proportion: " + proportion);
+
+            Demand request = ChildEnvService.getAgentDemand(agent);
+            parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
+            allocation.allocate(allocated.getAllocationD()*proportion_Borda, request.getGenerationRequest());
+
+            logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
+
+            ChildEnvService.setGroupDemand(agent, allocation);
+            storeAllocation(agent, allocation.getAllocationD());
+        }
+        resetBordaPoints();
+    }
+
+    protected int calcBordaSum(ArrayList<UUID> ChildrenList)
+    {
+        int sum = 0;
+        for (UUID ID : AgentBordaPoints.keySet())
+        {
+            if (ChildrenList.contains(ID))
+            {
+                sum += AgentBordaPoints.get(ID);
+            }
+        }
+        return sum;
     }
 
     public void Feedback(UUID id, double satisfaction)
@@ -248,7 +295,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         }
         else
         {
-            list = new ArrayList();
+            list = new ArrayList<Double>();
             list.add(satisfaction);
         }
         this.AgentSatisfaction.put(id, list);
@@ -258,4 +305,6 @@ public class PowerPoolEnvService extends GlobalEnvService{
     {
         return this.AgentSatisfaction.get(id);
     }
+
+
 }

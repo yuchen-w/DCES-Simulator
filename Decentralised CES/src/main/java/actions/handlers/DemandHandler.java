@@ -56,16 +56,16 @@ public class DemandHandler implements ActionHandler {
 			int CurrentState = d.getT()%d.getStateNum();
 			if (CurrentState == 1)
             {
-                logger.info("T=" + d.getT() + " Parent Request round");
+                //logger.info("T=" + d.getT() + " Parent Request round");
                 //logger.info("DemandHandler: parentDemand d.parentDemand = " + d.getDemandRequest() + " and parentDemand d.Generation = " + d.getGenerationRequest());        //Debug
                 parentDemand GroupDemand = this.EnvService.getGroupDemand(d);
                 this.ParentEnvService.addToAgentPool(GroupDemand);
-                logger.info("GroupDemand D= " +GroupDemand.getDemandRequest()+" G= " + GroupDemand.getGenerationRequest());
+                //logger.info("GroupDemand D= " +GroupDemand.getDemandRequest()+" G= " + GroupDemand.getGenerationRequest());
             }
 
             if (CurrentState == 3)
             {
-                logger.info("T=" + d.getT() + ". Appropriate to agent round");
+                //logger.info("T=" + d.getT() + ". Appropriate to agent round");
                 Demand allocated = ParentEnvService.getAllocation(actor);
                 d.allocateDemandObj(allocated);
                 logger.info("Parent " + actor + " allocation: d =" + allocated.getAllocationD() + " g = " + allocated.getAllocationG());
@@ -82,7 +82,7 @@ public class DemandHandler implements ActionHandler {
 		{
 			try
 			{
-				logger.info("Getting ParentService (GlobalService) of ParentEnvService");
+				//logger.info("Getting ParentService (GlobalService) of ParentEnvService");
 				this.EnvService = serviceProvider.getEnvironmentService(ParentEnvService.class);
 			}
 			catch (UnavailableServiceException e)

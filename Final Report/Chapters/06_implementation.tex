@@ -53,3 +53,7 @@ Out of order parallel execution meant that Agents need to submit their individua
 Being new to both Java and Presage presented problems of its own. It was difficult to understand how simulations could be run and therefore create our own.
 
 One action per time step meant that it takes 4 time steps to simulate one round of request and appropriation of electricity. It would therefore take 24*4 time steps to simulate a full day of requests and appropriation.
+
+Difficulty with initialising Agents with arrays meant that Agents had to be created with no Demand or Generation Profiles, and the Demand and Generation Profiles were added one by one via a for-loop and the addProfileHourly() method.
+
+

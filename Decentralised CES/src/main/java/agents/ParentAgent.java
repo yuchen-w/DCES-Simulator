@@ -5,7 +5,7 @@ import actions.parentDemand;
 //import java.util.Set;
 import java.util.*;
 
-import data.DemandProfile;
+import actions.DemandProfile;
 import uk.ac.imperial.presage2.core.environment.*;
 //import uk.ac.imperial.presage2.core.environment.ParticipantSharedState;
 import uk.ac.imperial.presage2.core.simulator.Initialisor;

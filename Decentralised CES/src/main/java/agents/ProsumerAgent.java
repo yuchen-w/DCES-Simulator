@@ -58,8 +58,10 @@ public class ProsumerAgent extends ParentAgent {
         if(t% AgentDemand.getStateNum() == 4){
             logger.info("Agent: " + this.getID() + " d: " + AgentDemand.getDemandRequest() + " allocation: d =" + AgentDemand.getAllocationD() + " g = " + AgentDemand.getGenerationRequest() + " allocation g = " + AgentDemand.getAllocationG());
 
-            try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(request, true)))) {
+            try{
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(request, true)));
                 out.println(this.getName() + ", " +AgentDemand.getDemandRequest()+ ", "+ AgentDemand.getGenerationRequest());
+                out.close();
             }catch (IOException e) {
                 logger.info("Failed to write to file" + request);
             }

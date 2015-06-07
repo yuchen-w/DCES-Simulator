@@ -70,8 +70,10 @@ public class dCES_Sim extends RunnableSimulation {
         MasterAgent supervisor = new MasterAgent(Random.randomUUID(), "Supervisor/NGC");
         scenario.addAgent(supervisor);
 
-        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)))) {
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
             out.println("name , consumption , allocation");
+            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
         }catch (IOException e) {
 
         }
@@ -92,7 +94,7 @@ public class dCES_Sim extends RunnableSimulation {
 
                 for (int k=0; k<hours; k++)
                 {
-                    prosumer.addProfileHourly(Random.randomDouble(), Random.randomDouble()+1);
+                    prosumer.addProfileHourly(Random.randomDouble()+1, Random.randomDouble());
                 }
 
                 scenario.addAgent(prosumer);
