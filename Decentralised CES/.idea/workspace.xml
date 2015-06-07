@@ -4,7 +4,6 @@
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" afterPath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
     </list>
     <ignored path="Decentralised CES.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,7 +41,7 @@
           <file leaf-file-name="RunnableSimulation.class" pinned="false" current-in-tab="false">
             <entry file="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-core/0.4.1/presage2-core-0.4.1.jar!/uk/ac/imperial/presage2/core/simulator/RunnableSimulation.class">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-35.407406">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="460" column="24" selection-start-line="460" selection-start-column="24" selection-end-line="460" selection-end-column="24" />
                   <folding />
                 </state>
@@ -65,13 +64,14 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="124" column="37" selection-start-line="124" selection-start-column="37" selection-end-line="124" selection-end-column="37" />
+                  <caret line="121" column="37" selection-start-line="121" selection-start-column="37" selection-end-line="121" selection-end-column="37" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#4050#4065#0" expanded="true" />
                     <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#sortBordaPoints#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#sortBordaPointsReverse#0;class#GlobalEnvService#0" expanded="false" />
+                    <marker date="1433716105128" expanded="true" signature="8223:8231" placeholder="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -80,11 +80,11 @@
           <file leaf-file-name="PowerPoolEnvService.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7634783">
-                  <caret line="267" column="39" selection-start-line="267" selection-start-column="39" selection-end-line="267" selection-end-column="39" />
+                <state vertical-scroll-proportion="0.5989583">
+                  <caret line="250" column="0" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#9370#9385#0" expanded="true" />
+                    <element signature="e#9230#9245#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -130,12 +130,15 @@
           <file leaf-file-name="GlobalEnvService.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4678261">
-                  <caret line="113" column="9" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
+                <state vertical-scroll-proportion="0.5694444">
+                  <caret line="106" column="90" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="90" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#4050#4065#0" expanded="true" />
                     <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
+                    <element signature="method#calcAvgAllocation#0;class#GlobalEnvService#0" expanded="false" />
+                    <element signature="method#calcAvgDemand#0;class#GlobalEnvService#0" expanded="false" />
+                    <element signature="method#calcBordaSum#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#sortBordaPoints#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#sortBordaPointsReverse#0;class#GlobalEnvService#0" expanded="false" />
                   </folding>
@@ -590,7 +593,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -673,6 +675,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1097,12 +1100,13 @@
       <workItem from="1433683182500" duration="921000" />
       <workItem from="1433684144556" duration="18041000" />
       <workItem from="1433710544264" duration="4497000" />
+      <workItem from="1433715484570" duration="652000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="209843000" />
+    <option name="totallyTimeSpent" value="210495000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1115,18 +1119,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.44296375" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3474026" sideWeight="0.27878466" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34632036" sideWeight="0.28518122" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.6359275" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3474026" sideWeight="0.72121537" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34632036" sideWeight="0.7148188" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.49573562" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16791044" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1837,7 +1841,7 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-core/0.4.1/presage2-core-0.4.1.jar!/uk/ac/imperial/presage2/core/simulator/RunnableSimulation.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-35.407406">
+        <state vertical-scroll-proportion="0.0">
           <caret line="460" column="24" selection-start-line="460" selection-start-column="24" selection-end-line="460" selection-end-column="24" />
           <folding />
         </state>
@@ -1854,24 +1858,25 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="124" column="37" selection-start-line="124" selection-start-column="37" selection-end-line="124" selection-end-column="37" />
+          <caret line="121" column="37" selection-start-line="121" selection-start-column="37" selection-end-line="121" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4050#4065#0" expanded="true" />
             <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
             <element signature="method#sortBordaPoints#0;class#GlobalEnvService#0" expanded="false" />
             <element signature="method#sortBordaPointsReverse#0;class#GlobalEnvService#0" expanded="false" />
+            <marker date="1433716105128" expanded="true" signature="8223:8231" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7634783">
-          <caret line="267" column="39" selection-start-line="267" selection-start-column="39" selection-end-line="267" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.5989583">
+          <caret line="250" column="0" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9370#9385#0" expanded="true" />
+            <element signature="e#9230#9245#0" expanded="true" />
           </folding>
         </state>
       </provider>

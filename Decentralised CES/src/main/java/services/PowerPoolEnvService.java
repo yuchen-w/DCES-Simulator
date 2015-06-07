@@ -249,10 +249,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
         HashMap<UUID, Integer> AgentBordaPoints_l = new HashMap<>();
 
-        synchronized (AgentBordaPoints_l) {
-            AgentBordaPoints_l = canon_of_equality(ChildrenList, AgentBordaPoints_l);
-            AgentBordaPoints_l = canon_of_needs(ChildrenList, AgentBordaPoints_l);
-        }
+        AgentBordaPoints_l = calculateAllCanons(ChildrenList, AgentBordaPoints_l);
 
         for (int i=0; i<ChildrenList.size(); i++)
         {
@@ -276,10 +273,8 @@ public class PowerPoolEnvService extends GlobalEnvService{
             logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
 
             ChildEnvService.setGroupDemand(agent, allocation);
-            storeAllocation(agent, allocation.getAllocationD());
-            storeDemand(agent, allocation.getDemandRequest());
+            environmentStore(agent, allocation);
         }
-        resetBordaPoints();
     }
 
     protected int calcBordaSum(ArrayList<UUID> ChildrenList, ConcurrentHashMap<UUID, Integer> AgentBordaPoints)

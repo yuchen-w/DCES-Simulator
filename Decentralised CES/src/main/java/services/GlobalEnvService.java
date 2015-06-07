@@ -104,10 +104,7 @@ public class GlobalEnvService extends EnvironmentService{
         HashMap<UUID, Integer> AgentBordaPoints_local = new  HashMap<UUID, Integer>();
         Integer BordaSum = 0;
 
-        synchronized (AgentBordaPoints_local) {
-            AgentBordaPoints_local = canon_of_equality(ChildrenList, AgentBordaPoints_local);
-            AgentBordaPoints_local = canon_of_needs(ChildrenList, AgentBordaPoints_local);
-        }
+        AgentBordaPoints_local = calculateAllCanons(ChildrenList, AgentBordaPoints_local);
 
         synchronized (BordaSum) {
             BordaSum = calcBordaSum(AgentBordaPoints_local); //Get BordaPoint sum
@@ -129,10 +126,8 @@ public class GlobalEnvService extends EnvironmentService{
             //logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
 
             ChildEnvService.setGroupDemand(agent, allocation);
-            storeAllocation(agent, allocation.getAllocationD());
-            storeDemand(agent, allocation.getDemandRequest());
+            environmentStore(agent, allocation);
         }
-        resetBordaPoints();
     }
 
     protected PowerPoolEnvService getChildEnvService()
@@ -176,6 +171,13 @@ public class GlobalEnvService extends EnvironmentService{
         return state.getState();
     }
 
+    protected HashMap<UUID, Integer> calculateAllCanons(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
+    {
+        AgentBordaPoints = canon_of_equality(ChildrenList, AgentBordaPoints);
+        AgentBordaPoints = canon_of_needs(ChildrenList, AgentBordaPoints);
+        return AgentBordaPoints;
+    }
+
     protected HashMap<UUID, Integer> canon_of_equality( ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
     {
         // TreeMap <UUID, Double> AvgAllocation = new TreeMap<UUID, Double>();
@@ -207,9 +209,15 @@ public class GlobalEnvService extends EnvironmentService{
     }
 
     //protected HashMap<UUID, Integer> canon_of_productivity(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
-    protected void canon_of_productive(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
+    protected void canon_of_productivity(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
     {
 
+    }
+
+    protected void environmentStore(UUID agent, Demand allocation)
+    {
+        storeAllocation(agent, allocation.getAllocationD());
+        storeDemand(agent, allocation.getDemandRequest());
     }
 
     /**
@@ -444,11 +452,5 @@ public class GlobalEnvService extends EnvironmentService{
 
         return AgentBordaPoints;
 
-    }
-
-
-    protected void resetBordaPoints()
-    {
-        //AgentBordaPoints = new HashMap<UUID, Integer>();
     }
 }
