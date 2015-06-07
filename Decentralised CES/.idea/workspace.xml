@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/satisfaction.txt" afterPath="$PROJECT_DIR$/satisfaction.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Decentralised CES.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1114,13 +1111,13 @@
       <workItem from="1433557591792" duration="603000" />
       <workItem from="1433592625505" duration="23171000" />
       <workItem from="1433683182500" duration="921000" />
-      <workItem from="1433684144556" duration="16194000" />
+      <workItem from="1433684144556" duration="16242000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="203499000" />
+    <option name="totallyTimeSpent" value="203547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
