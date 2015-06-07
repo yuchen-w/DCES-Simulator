@@ -60,7 +60,7 @@ public class ProsumerAgent extends ParentAgent {
 
             try{
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(request, true)));
-                out.println(this.getName() + ", " +AgentDemand.getDemandRequest()+ ", "+ AgentDemand.getGenerationRequest());
+                out.println(hourCount +", " + this.getName() + ", " +AgentDemand.getDemandRequest()+ ", "+ AgentDemand.getGenerationRequest());
                 out.close();
             }catch (IOException e) {
                 logger.info("Failed to write to file" + request);
@@ -68,7 +68,7 @@ public class ProsumerAgent extends ParentAgent {
 
             try{
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(allocation, true)));
-                out.println(this.getName() + ", " +AgentDemand.getAllocationD()+ ", "+ AgentDemand.getAllocationG());
+                out.println(hourCount +", "+ this.getName() + ", " +AgentDemand.getAllocationD()+ ", "+ AgentDemand.getAllocationG());
                 out.close();
             }catch (IOException e) {
                 logger.info("Failed to write to file" + allocation);

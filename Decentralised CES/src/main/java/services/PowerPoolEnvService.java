@@ -109,7 +109,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
     public void addToAgentPool (Demand d)
     {
         //logger.info("Agent " + d.getAgentID() + " is adding to AgentDemandStorage");
-        AgentDemandStorage.put(d.getAgentID(), d);
+        synchronized (AgentDemandStorage) {
+            AgentDemandStorage.put(d.getAgentID(), d);
+        }
     }
 
     //Used by handlers to pass GroupDemand up to the next level
@@ -128,6 +130,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	public parentDemand getGroupDemand(MasterAction action)
 	{
 		parentDemand sum = new parentDemand(0, 0, action.getAgentID(), null);
+
 		for (int i=0; i<action.getChildrenList().size(); i++)
 		{
 			sum.addDemand(AgentDemandStorage.get(action.getChildrenList().get(i)));
@@ -244,7 +247,11 @@ public class PowerPoolEnvService extends GlobalEnvService{
         logger.info("GlobalEnvService allocating fairly");
         double proportion_available = allocated.getAllocationD() / GroupDemand.getDemandRequest();
 
-        HashMap <UUID, Integer> AgentBordaPoints_l = canon_of_equality(ChildrenList);
+        HashMap<UUID, Integer> AgentBordaPoints_l = new HashMap<>();
+
+        synchronized (AgentBordaPoints_l) {
+            AgentBordaPoints_l = canon_of_equality(ChildrenList, AgentBordaPoints_l);
+        }
 
         for (int i=0; i<ChildrenList.size(); i++)
         {
@@ -254,15 +261,13 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
             ConcurrentHashMap<UUID, Integer> AgentBordaPoints_l_CC = new ConcurrentHashMap<UUID, Integer>();
 
-            for (UUID ID : AgentBordaPoints_l.keySet())
+            for (UUID ID : AgentBordaPoints_l.keySet()) {
                 AgentBordaPoints_l_CC.put(ID, AgentBordaPoints_l.get(ID));
-
+            }
             double BordaSum = calcBordaSum(ChildrenList, AgentBordaPoints_l_CC); //Get BordaPoint sum
             double BordaPts = (double)AgentBordaPoints_l.get(agent);
             double proportion_Borda = BordaPts/BordaSum;
-
             logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints_l.get(agent) + " Proportion: " + proportion_Borda);
-
             Demand request = ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
             allocation.allocate(allocated.getAllocationD()*proportion_Borda, request.getGenerationRequest());
