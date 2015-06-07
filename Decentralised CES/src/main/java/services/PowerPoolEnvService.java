@@ -251,6 +251,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
         synchronized (AgentBordaPoints_l) {
             AgentBordaPoints_l = canon_of_equality(ChildrenList, AgentBordaPoints_l);
+            AgentBordaPoints_l = canon_of_needs(ChildrenList, AgentBordaPoints_l);
         }
 
         for (int i=0; i<ChildrenList.size(); i++)
@@ -276,6 +277,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
             ChildEnvService.setGroupDemand(agent, allocation);
             storeAllocation(agent, allocation.getAllocationD());
+            storeDemand(agent, allocation.getDemandRequest());
         }
         resetBordaPoints();
     }
