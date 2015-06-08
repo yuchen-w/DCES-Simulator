@@ -2,9 +2,7 @@ package agents;
 
 import actions.parentDemand;
 
-//import java.util.Set;
 import java.util.*;
-
 import actions.DemandProfile;
 import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.simulator.Initialisor;
@@ -18,15 +16,10 @@ public class ParentAgent extends MasterAgent
     DemandProfile demandProfile = new DemandProfile();
     int hourCount = 0;
 
-    //public State<Integer> ChildrenNum;
-
-
     public ParentAgent(UUID id, String name, double consumption, double allocation, int ChildrenNum)
     {
         super(id, name);
         this.GroupDemand = new parentDemand(consumption, allocation, id, ChildrenList);
-        //this.ChildrenNum = new State<Integer>("ChildrenNum", ChildrenNum);
-
     }
 
     public ParentAgent(UUID id, String name)

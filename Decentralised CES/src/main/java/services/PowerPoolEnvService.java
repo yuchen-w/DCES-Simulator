@@ -2,7 +2,6 @@
 
 package services;
 
-
 import actions.Demand;
 import actions.MasterAction;
 import actions.parentDemand;
@@ -22,8 +21,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PowerPoolEnvService extends GlobalEnvService{
-
-
 
     @Inject
 	@Named("params.children")

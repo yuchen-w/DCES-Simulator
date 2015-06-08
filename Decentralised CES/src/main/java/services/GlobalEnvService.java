@@ -135,17 +135,13 @@ public class GlobalEnvService extends EnvironmentService{
             allocation.setCanonSupplyAndDemandWeight(request.getCanonSupplyAndDemandWeight());
             allocation.setHour(request.getHour());
 
-
-            logger.info("Agent: " + agent + " Productivity: " + request.getProductivity() + " Social Utility: " + request.getSocial_utility());
-
+            //logger.info("Agent: " + agent + " Productivity: " + request.getProductivity() + " Social Utility: " + request.getSocial_utility());
 
             allocation.allocate(Total.getGenerationRequest()*proportion_borda, request.getGenerationRequest());
             setAllRanks(allocation);
 
             //logger.info("AgentBordaPoints = " + AgentBordaPoints_local.get(agent) + "BordaSum: " + BordaSum  + "Proportion_borda = " + proportion_borda); //todo
             //logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
-
-
 
             ChildEnvService.setGroupDemand(agent, allocation);
             environmentStore(agent, allocation);
@@ -200,20 +196,20 @@ public class GlobalEnvService extends EnvironmentService{
 
     protected void setAllRanks(Demand allocation)
     {
-        allocation.setCanonRank("CanonEqualityRank", CanonEqualityRank.get(allocation.getAgentID()));
+        //allocation.setCanonRank("CanonEqualityRank", CanonEqualityRank.get(allocation.getAgentID()));
         allocation.setCanonEqualityRank(CanonEqualityRank.get(allocation.getAgentID()));
 
-        allocation.setCanonRank("CanonNeedsRank", CanonNeedsRank.get(allocation.getAgentID()));
+        //allocation.setCanonRank("CanonNeedsRank", CanonNeedsRank.get(allocation.getAgentID()));
         allocation.setCanonNeedsRank(CanonNeedsRank.get(allocation.getAgentID()));
 
-        allocation.setCanonRank("CanonProductivityRank", CanonProductivityRank.get(allocation.getAgentID()));
+        //allocation.setCanonRank("CanonProductivityRank", CanonProductivityRank.get(allocation.getAgentID()));
         allocation.setCanonProductivityRank(CanonProductivityRank.get(allocation.getAgentID()));
         //logger.info("Agent: " + allocation.getAgentID() + "Productivity Rank: " + CanonProductivityRank.get(allocation.getAgentID()));
 
-        allocation.setCanonRank("CanonSocialUtilityRank", CanonSocialUtilityRank.get(allocation.getAgentID()));
+        //allocation.setCanonRank("CanonSocialUtilityRank", CanonSocialUtilityRank.get(allocation.getAgentID()));
         allocation.setCanonSocialUtilityRank(CanonSocialUtilityRank.get(allocation.getAgentID()));
 
-        allocation.setCanonRank("CanonSupplyAndDemandRank",CanonSupplyAndDemandRank.get(allocation.getAgentID()));
+        //allocation.setCanonRank("CanonSupplyAndDemandRank",CanonSupplyAndDemandRank.get(allocation.getAgentID()));
         allocation.setCanonSupplyAndDemandRank(CanonSupplyAndDemandRank.get(allocation.getAgentID()));
     }
 
@@ -543,14 +539,12 @@ public class GlobalEnvService extends EnvironmentService{
             if (value == prev_val)
             {
                 //logger.info("if (value == prev_val), Prev Value: " + prev_val + " Current Val: " + value);
-                //BordaPt++;
-                //BordaPtStorage.add(BordaPt);    //todo: simplify. same as the else statement
                 iteratorStorage.add(iterator-1);
                 RecalcBorda = true;
                 //if multiple elements within tMap has the same rank, set the last one to have the correct BordaPt
             }
             //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
-            BordaPtStorage.add((double)BordaPt*BordaProportion);    //todo: simplify
+            BordaPtStorage.add((double)BordaPt*BordaProportion);
 
             prev_val = value;
 
@@ -643,8 +637,6 @@ public class GlobalEnvService extends EnvironmentService{
             if (value == prev_val)
             {
                 //logger.info("if (value == prev_val), Prev Value: " + prev_val + " Current Val: " + value);
-                //BordaPt--;
-                //BordaPtStorage.add(BordaPt);    //todo: simplify. same as the else statement
                 iteratorStorage.add(iterator-1);
                 RecalcBorda = true;
                 //if multiple elements within tMap has the same rank, set the last one to have the correct BordaPt

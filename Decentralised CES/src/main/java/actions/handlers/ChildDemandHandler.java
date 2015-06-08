@@ -1,7 +1,6 @@
 package actions.handlers;
 
 import actions.Demand;
-import actions.parentDemand;
 import actions.childDemand;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;

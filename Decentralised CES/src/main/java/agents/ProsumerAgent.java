@@ -3,9 +3,7 @@ package agents;
 import actions.childDemand;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
-import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
 
 import java.io.BufferedWriter;

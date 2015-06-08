@@ -1,7 +1,6 @@
 package agents;
 
 import actions.MasterAction;
-import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;
 import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
 import uk.ac.imperial.presage2.core.simulator.Step;
 import uk.ac.imperial.presage2.util.participant.AbstractParticipant;

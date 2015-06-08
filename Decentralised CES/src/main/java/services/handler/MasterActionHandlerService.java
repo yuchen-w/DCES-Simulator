@@ -16,7 +16,6 @@ import java.util.UUID;
 public class MasterActionHandlerService extends GlobalEnvService implements ActionHandler{
     final private Logger logger = Logger.getLogger(DemandHandler.class);
 
-   // final protected EnvironmentServiceProvider serviceProvider;
     final protected EnvironmentSharedStateAccess sharedState;
     protected PowerPoolEnvService EnvService;
 

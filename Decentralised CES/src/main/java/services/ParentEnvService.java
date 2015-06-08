@@ -1,12 +1,9 @@
 package services;
 
 import actions.Demand;
-//import actions.Feedback;
 import actions.parentDemand;
 import actions.childDemand;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -23,7 +20,6 @@ public class ParentEnvService extends PowerPoolEnvService {
 
     protected final EnvironmentMembersService membersService;
     private PowerPoolEnvService EnvService;
-    //final private EnvironmentServiceProvider serviceProvider;
 
     private HashMap<UUID, Demand> GroupDemandStorage = new HashMap<UUID, Demand>();
 
@@ -34,7 +30,6 @@ public class ParentEnvService extends PowerPoolEnvService {
     public ParentEnvService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) {
         super(sharedState, serviceProvider);
         this.membersService = getMembersService(serviceProvider);
-        //this.serviceProvider = serviceProvider;
     }
 
     private EnvironmentMembersService getMembersService(

@@ -2,7 +2,6 @@
 package actions;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class DemandProfile{
 
@@ -13,12 +12,6 @@ public class DemandProfile{
 
     public DemandProfile()
     {}
-
-//    public void setProfile(int hour, double D, double G)
-//    {
-//        this.demand.set(hour, D);
-//        this.generation.set(hour, G);
-//    }
 
     public void addProfile(double D, double G)
     {
