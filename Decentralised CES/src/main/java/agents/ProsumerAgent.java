@@ -1,17 +1,14 @@
 package agents;
 
 import actions.childDemand;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
-import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class ProsumerAgent extends ParentAgent {
@@ -23,7 +20,11 @@ public class ProsumerAgent extends ParentAgent {
     public String request = "request.csv";
     public String allocation = "allocation.csv";
 
+    ArrayList<Integer> Productivity = new ArrayList<>();
 
+
+    //Used by SimpleDNOSim
+    @Deprecated
     public ProsumerAgent(UUID id, String name, double consumption, double allocation, String parent, UUID parent_id)
     {
         super(id, name, consumption, allocation, 0);
@@ -32,6 +33,8 @@ public class ProsumerAgent extends ParentAgent {
         this.AgentDemand = new childDemand(consumption, allocation, id, parent_id);
         logger.info("Initiated " + name + " with d: " +consumption+ " and g=" +allocation );
     }
+
+    //Used by newer simulator
     public ProsumerAgent(UUID id, String name, String parent, UUID parent_id)
     {
         super(id, name);
@@ -39,10 +42,21 @@ public class ProsumerAgent extends ParentAgent {
         this.parent_id = parent_id;
     }
 
+    public void addProductivity(int i)
+    {
+        this.Productivity.add(i);
+    }
+
+    public void setSocialUtility(int utility)
+    {
+        this.AgentDemand.setSocial_utility(utility);
+    }
+
     @Step
     public void step(int t) throws ActionHandlingException {
         AgentDemand = new childDemand(demandProfile.getDemandRequest(hourCount), demandProfile.getGenerationRequest(hourCount), this.getID(), this.parent_id);
         AgentDemand.setT(t);
+        AgentDemand.setProductivity(Productivity.get(hourCount));
         try
         {
             environment.act(AgentDemand, getID(), authkey);

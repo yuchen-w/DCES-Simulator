@@ -11,14 +11,11 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 
 import state.SimState;
-import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.lang.Thread;
 
 public class GlobalEnvService extends EnvironmentService{
     double curtailmentFactor = 1;
@@ -30,6 +27,8 @@ public class GlobalEnvService extends EnvironmentService{
     HashMap<UUID, ArrayList<Double>> AllocationHistory = new HashMap<UUID, ArrayList<Double>>();
     HashMap<UUID, ArrayList<Double>> DemandHistory = new HashMap<UUID, ArrayList<Double>>();
     HashMap<UUID, ArrayList<Double>> GenerationHistory = new HashMap<UUID, ArrayList<Double>>();
+    HashMap<UUID, ArrayList<Integer>> ProductivityHistory = new HashMap<UUID, ArrayList<Integer>>();
+    HashMap<UUID, ArrayList<Integer>> SocialUtilityHistory = new HashMap<UUID, ArrayList<Integer>>();
     //HashMap <UUID, Integer> AgentBordaPoints = new HashMap<UUID, Integer>();
 
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -121,6 +120,11 @@ public class GlobalEnvService extends EnvironmentService{
 
             parentDemand request = (parentDemand)ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
+            allocation.setProductivity(request.getProductivity());
+            allocation.setSocial_utility(request.getSocial_utility());
+            allocation.setHour(request.getHour());
+
+            logger.info("Agent: " + agent + " Productivity: " + request.getProductivity() + " Social Utility: " + request.getSocial_utility());
 
             allocation.allocate(Total.getGenerationRequest()*proportion_borda, request.getGenerationRequest());
 
@@ -223,11 +227,34 @@ public class GlobalEnvService extends EnvironmentService{
         return sortBordaPoints(AvgGeneration, AgentBordaPoints);
     }
 
+
+    protected void canon_of_social_utility()
+    {
+        //todo
+    }
+
+
+    protected HashMap<UUID, Integer> canon_of_supply_and_demand(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
+    {
+        //todo:
+        //consider replacing with canon of productivity
+        HashMap <UUID, Double> EconOutput = new HashMap<UUID, Double>();
+        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
+            EconOutput.put(ID, calcAvgEconOutput(ID));//getEconOutput(agent)
+        }
+
+        EconOutput = sortByValue(EconOutput);
+
+        return sortBordaPoints(EconOutput, AgentBordaPoints);
+
+    }
+
     protected void environmentStore(UUID agent, Demand allocation)
     {
         storeAllocation(agent, allocation.getAllocationD());
         storeDemand(agent, allocation.getDemandRequest());
         storeGenerataion(agent, allocation.getGenerationRequest());
+        storeEconOutput(agent, allocation.getProductivity());
     }
 
     /**
@@ -301,6 +328,38 @@ public class GlobalEnvService extends EnvironmentService{
         this.GenerationHistory.put(id, list);
     }
 
+    protected void storeEconOutput(UUID id, int Productivity)
+    {
+        ArrayList<Integer> list;
+        if (this.ProductivityHistory.containsKey(id))
+        {
+            list = this.ProductivityHistory.get(id);
+            list.add(Productivity);
+        }
+        else
+        {
+            list = new ArrayList<Integer>();
+            list.add(Productivity);
+        }
+        this.ProductivityHistory.put(id, list);
+    }
+
+    protected void storeSocialUtility(UUID id, int Utility)
+    {
+        ArrayList<Integer> list;
+        if (this.SocialUtilityHistory.containsKey(id))
+        {
+            list = this.SocialUtilityHistory.get(id);
+            list.add(Utility);
+        }
+        else
+        {
+            list = new ArrayList<Integer>();
+            list.add(Utility);
+        }
+        this.SocialUtilityHistory.put(id, list);
+    }
+
     protected double calcAvgAllocation(UUID id)
     {
         if (this.AllocationHistory.containsKey(id))
@@ -341,6 +400,38 @@ public class GlobalEnvService extends EnvironmentService{
             double sum = 0;
             for (Double d : list)
                 sum += d;
+            return sum;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    protected double calcAvgEconOutput(UUID id)
+    {
+        if (this.ProductivityHistory.containsKey(id))
+        {
+            ArrayList<Integer> list = this.ProductivityHistory.get(id);
+            double sum = 0;
+            for (Integer i : list)
+                sum += i;
+            return sum;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    protected double calcAvgSocialUtility(UUID id)
+    {
+        if (this.SocialUtilityHistory.containsKey(id))
+        {
+            ArrayList<Integer> list = this.SocialUtilityHistory.get(id);
+            double sum = 0;
+            for (Integer i : list)
+                sum += i;
             return sum;
         }
         else

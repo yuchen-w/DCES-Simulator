@@ -75,6 +75,7 @@ public class ChildDemandHandler extends DemandHandler{
                 //logger.info("ParentEnvService.Feedback");
                 //ParentEnvService.Feedback(actor, satisfaction);
                 ParentService.Feedback(actor, satisfaction);
+
                 if (d.getT() == hours*d.getStateNum()-1)
                 {
                     logger.info("Agent: " + actor + " Satisfaction " + ParentService.getSatisfaction(actor));

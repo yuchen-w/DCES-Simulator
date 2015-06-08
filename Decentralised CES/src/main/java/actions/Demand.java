@@ -15,6 +15,9 @@ public class Demand extends MasterAction implements Serializable {
 
     double curtailmentFactor = 1;
 
+    int productivity = 0;
+    int social_utility = 0;
+
     int hour = 0;
 
     UUID AgentID;
@@ -33,6 +36,25 @@ public class Demand extends MasterAction implements Serializable {
         this.demand = demand;
         this.generation = generation;
         this.AgentID = AgentID;
+    }
+
+    public void setProductivity(Integer i)
+    {
+        this.productivity = i;
+    }
+
+    public void setSocial_utility(int social_utility) {
+        this.social_utility = social_utility;
+    }
+
+    public int getProductivity()
+    {
+        return this.productivity;
+    }
+
+    public int getSocial_utility()
+    {
+        return this.social_utility;
     }
 
     public void setHour(int t)
@@ -66,11 +88,11 @@ public class Demand extends MasterAction implements Serializable {
         return this.curtailmentFactor;
     }
 
-//	@Override
-//	public String toString() {
-//		return "parentDemand [quantity=" + quantity + ", player=" + player.getName()
-//				+ ", t=" + t + "]";
-//	}
+	@Override
+	public String toString() {
+		return "parentDemand [quantity=" + getDemandRequest() + ", player=" + this.getAgentID()
+				+ ", t=" + t + "]";
+	}
 
     public double getDemandRequest()
     {
@@ -107,6 +129,8 @@ public class Demand extends MasterAction implements Serializable {
         this.generation += d.getGenerationRequest();
         this.allocated_demand += d.getAllocationD();
         this.allocated_generation += d.getAllocationG();
+        this.social_utility += d.getSocial_utility();
+        this.productivity += d.getProductivity();
         return this;
     }
 
