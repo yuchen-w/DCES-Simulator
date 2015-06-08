@@ -36,7 +36,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
 
 	protected HashMap<UUID, Integer>      RequestCounter = new HashMap<UUID, Integer>();
-	protected HashMap<UUID, Demand> AgentDemandStorage = new HashMap<UUID, Demand>();
+	protected ConcurrentHashMap<UUID, Demand> AgentDemandStorage = new ConcurrentHashMap<UUID, Demand>();
     protected HashMap<UUID, Demand> GroupDemandAllocationStorage = new HashMap<UUID, Demand>();
 	protected HashMap<UUID, parentDemand> AgentAllocationStorage = new HashMap<UUID, parentDemand>();
     protected HashMap<UUID,ArrayList<Double>> AgentSatisfaction = new HashMap <UUID,ArrayList<Double>>();

@@ -4,14 +4,8 @@
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.pdf" afterPath="$PROJECT_DIR$/../Final Report/main.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.synctex.gz" afterPath="$PROJECT_DIR$/../Final Report/main.synctex.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/Demand.java" afterPath="$PROJECT_DIR$/src/main/java/actions/Demand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/ParentAgent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/ParentAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" afterPath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.tex" afterPath="$PROJECT_DIR$/../Final Report/main.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
     </list>
     <ignored path="Decentralised CES.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,10 +53,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DemandProfile.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="DemandProfile.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/actions/DemandProfile.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.109375">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
                   <folding />
                 </state>
@@ -108,13 +102,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PowerPoolEnvService.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="PowerPoolEnvService.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="306" column="5" selection-start-line="306" selection-start-column="5" selection-end-line="306" selection-end-column="5" />
+                <state vertical-scroll-proportion="1.3871528">
+                  <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#1185#1199#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -137,10 +132,14 @@
           <file leaf-file-name="GlobalEnvService.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.0034722">
-                  <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+                <state vertical-scroll-proportion="0.4722222">
+                  <caret line="184" column="86" selection-start-line="184" selection-start-column="86" selection-end-line="184" selection-end-column="86" />
                   <folding>
-                    <element signature="imports" expanded="true" />
+                    <element signature="e#1103#1129#0" expanded="true" />
+                    <element signature="e#1389#1396#0" expanded="false" />
+                    <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
+                    <element signature="method#allocate#0;class#GlobalEnvService#0" expanded="false" />
+                    <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#sortBordaPoints#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#sortBordaPointsReverse#0;class#GlobalEnvService#0" expanded="false" />
@@ -207,12 +206,12 @@
         <option value="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/Demand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/ParentAgent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
       </list>
     </option>
   </component>
@@ -1036,7 +1035,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="uk.ac.imperial.presage2.core.simulator.RunnableSimulation" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=4 agents=1 mean=25 variance=10 children=2 surplus=10 allocationType=1 hours=24" />
+      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=119 agents=3 mean=25 variance=10 children=5 surplus=10 allocationType=1 hours=24" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -1105,13 +1104,13 @@
       <workItem from="1433710544264" duration="4497000" />
       <workItem from="1433715484570" duration="1856000" />
       <workItem from="1433718607482" duration="3656000" />
-      <workItem from="1433770651190" duration="6926000" />
+      <workItem from="1433770651190" duration="8264000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="222281000" />
+    <option name="totallyTimeSpent" value="223619000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1124,7 +1123,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
@@ -1135,7 +1134,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.6359275" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34632036" sideWeight="0.7089552" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34632036" sideWeight="0.7089552" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.49573562" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16684435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1823,16 +1822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="306" column="5" selection-start-line="306" selection-start-column="5" selection-end-line="306" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/actions/Demand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1869,23 +1858,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4722222">
+          <caret line="184" column="86" selection-start-line="184" selection-start-column="86" selection-end-line="184" selection-end-column="86" />
+          <folding>
+            <element signature="e#1103#1129#0" expanded="true" />
+            <element signature="e#1389#1396#0" expanded="false" />
+            <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="method#allocate#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="method#sortBordaPoints#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="method#sortBordaPointsReverse#0;class#GlobalEnvService#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/actions/DemandProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.109375">
+        <state vertical-scroll-proportion="0.0">
           <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0034722">
-          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+        <state vertical-scroll-proportion="1.3871528">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="method#sortBordaPoints#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="method#sortBordaPointsReverse#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="e#1185#1199#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 
 import state.SimState;
+import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
@@ -100,7 +101,6 @@ public class GlobalEnvService extends EnvironmentService{
     {
         //logger.info("GlobalEnvService allocating fairly");
 
-
         HashMap<UUID, Integer> AgentBordaPoints_local = new  HashMap<UUID, Integer>();
         Integer BordaSum = 0;
 
@@ -181,6 +181,8 @@ public class GlobalEnvService extends EnvironmentService{
         AgentBordaPoints = canon_of_equality(ChildrenList, AgentBordaPoints);
         AgentBordaPoints = canon_of_needs(ChildrenList, AgentBordaPoints);
         AgentBordaPoints = canon_of_productivity(ChildrenList, AgentBordaPoints);
+        AgentBordaPoints = canon_of_social_utility(ChildrenList, AgentBordaPoints);
+        AgentBordaPoints = canon_of_supply_and_demand(ChildrenList, AgentBordaPoints);
         return AgentBordaPoints;
     }
 
@@ -228,9 +230,17 @@ public class GlobalEnvService extends EnvironmentService{
     }
 
 
-    protected void canon_of_social_utility()
+    protected HashMap<UUID, Integer> canon_of_social_utility(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
     {
         //todo
+        HashMap <UUID, Double> SocialUtilityHistory = new HashMap<UUID, Double>();
+        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
+            SocialUtilityHistory.put(ID, calcAvgEconOutput(ID));//getEconOutput(agent)
+        }
+
+        SocialUtilityHistory = sortByValue(SocialUtilityHistory);
+
+        return sortBordaPoints(SocialUtilityHistory, AgentBordaPoints);
     }
 
 
@@ -255,6 +265,7 @@ public class GlobalEnvService extends EnvironmentService{
         storeDemand(agent, allocation.getDemandRequest());
         storeGenerataion(agent, allocation.getGenerationRequest());
         storeEconOutput(agent, allocation.getProductivity());
+        storeSocialUtility(agent, allocation.getSocial_utility());
     }
 
     /**
