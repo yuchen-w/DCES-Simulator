@@ -112,6 +112,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         synchronized (AgentDemandStorage) {
             AgentDemandStorage.put(d.getAgentID(), d);
         }
+        //logger.info("AgentDemandStorage, Agent: " + d.getAgentID() + " Canon total weight: " + AgentDemandStorage.get(d.getAgentID()).getTotalCanonWeight());
     }
 
     //Used by handlers to pass GroupDemand up to the next level
@@ -247,9 +248,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
         logger.info("GlobalEnvService allocating fairly");
         double proportion_available = allocated.getAllocationD() / GroupDemand.getDemandRequest();
 
-        HashMap<UUID, Integer> AgentBordaPoints_l = new HashMap<>();
+        HashMap<UUID, Double> AgentBordaPoints_l = new HashMap<UUID, Double>();
 
-        AgentBordaPoints_l = calculateAllCanons(ChildrenList, AgentBordaPoints_l);
+        AgentBordaPoints_l = calculateAllCanons(ChildrenList, AgentBordaPoints_l, allocated);
 
         for (int i=0; i<ChildrenList.size(); i++)
         {
@@ -257,15 +258,18 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
             //logger.info("For Agent: " + agent + "AgentBordaPoints" + AgentBordaPoints);
 
-            ConcurrentHashMap<UUID, Integer> AgentBordaPoints_l_CC = new ConcurrentHashMap<UUID, Integer>();
+            ConcurrentHashMap<UUID, Double> AgentBordaPoints_l_CC = new ConcurrentHashMap<UUID, Double>();
 
             for (UUID ID : AgentBordaPoints_l.keySet()) {
                 AgentBordaPoints_l_CC.put(ID, AgentBordaPoints_l.get(ID));
             }
+
             double BordaSum = calcBordaSum(ChildrenList, AgentBordaPoints_l_CC); //Get BordaPoint sum
             double BordaPts = (double)AgentBordaPoints_l.get(agent);
             double proportion_Borda = BordaPts/BordaSum;
-            logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints_l.get(agent) + " Proportion: " + proportion_Borda);
+
+            logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints_l.get(agent) + " Proportion: " + proportion_Borda); //debug todo tag
+
             Demand request = ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
             allocation.setProductivity(request.getProductivity());
@@ -283,9 +287,9 @@ public class PowerPoolEnvService extends GlobalEnvService{
         }
     }
 
-    protected int calcBordaSum(ArrayList<UUID> ChildrenList, ConcurrentHashMap<UUID, Integer> AgentBordaPoints)
+    protected double calcBordaSum(ArrayList<UUID> ChildrenList, ConcurrentHashMap<UUID, Double> AgentBordaPoints)
     {
-        int sum = 0;
+        double sum = 0;
         for (UUID ID : AgentBordaPoints.keySet())
         {
             if (ChildrenList.contains(ID))

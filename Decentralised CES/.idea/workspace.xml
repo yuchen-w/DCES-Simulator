@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/state/Canon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.pdf" afterPath="$PROJECT_DIR$/../Final Report/main.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.synctex.gz" afterPath="$PROJECT_DIR$/../Final Report/main.synctex.gz" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/Demand.java" afterPath="$PROJECT_DIR$/src/main/java/actions/Demand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" afterPath="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/parentDemand.java" afterPath="$PROJECT_DIR$/src/main/java/actions/parentDemand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Decentralised CES.iws" />
@@ -31,7 +35,7 @@
     <favorites_list name="Decentralised CES" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.41394752">
+    <splitter split-orientation="horizontal" split-proportion="0.38771594">
       <split-first>
         <leaf>
           <file leaf-file-name="dCES_Sim.java" pinned="false" current-in-tab="false">
@@ -44,38 +48,60 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="Demand.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/actions/Demand.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="199" column="8" selection-start-line="199" selection-start-column="8" selection-end-line="210" selection-end-column="77" />
+                  <folding>
+                    <element signature="e#707#724#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="GlobalEnvService.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
                   <caret line="128" column="58" selection-start-line="128" selection-start-column="58" selection-end-line="128" selection-end-column="58" />
                   <folding>
-                    <element signature="e#1150#1176#0" expanded="true" />
-                    <element signature="e#1440#1455#0" expanded="true" />
-                    <element signature="e#1534#1549#0" expanded="true" />
-                    <element signature="e#1635#1650#0" expanded="true" />
-                    <element signature="e#1737#1752#0" expanded="true" />
-                    <element signature="e#1841#1856#0" expanded="true" />
-                    <element signature="e#1936#1943#0" expanded="false" />
+                    <element signature="e#1170#1196#0" expanded="true" />
+                    <element signature="e#1381#1396#0" expanded="true" />
+                    <element signature="e#1475#1490#0" expanded="true" />
+                    <element signature="e#1576#1591#0" expanded="true" />
+                    <element signature="e#1678#1693#0" expanded="true" />
+                    <element signature="e#1782#1797#0" expanded="true" />
+                    <element signature="e#1877#1884#0" expanded="false" />
                     <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#allocate#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="e#10958#10972#0" expanded="true" />
+                    <element signature="e#11195#11209#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ProsumerAgent.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ProsumerAgent.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.0625">
-                  <caret line="98" column="76" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="76" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
                   <folding>
                     <element signature="e#1755#1756#0" expanded="true" />
                     <element signature="e#1795#1796#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DemandHandler.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.33272395">
+                  <caret line="58" column="57" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="57" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -88,66 +114,38 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="36" column="51" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="51" />
+                  <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
                   <folding>
-                    <element signature="e#1150#1176#0" expanded="true" />
-                    <element signature="e#1440#1455#0" expanded="true" />
-                    <element signature="e#1534#1549#0" expanded="true" />
-                    <element signature="e#1635#1650#0" expanded="true" />
-                    <element signature="e#1737#1752#0" expanded="true" />
-                    <element signature="e#1841#1856#0" expanded="true" />
-                    <element signature="e#1936#1943#0" expanded="false" />
+                    <element signature="e#1170#1196#0" expanded="true" />
+                    <element signature="e#1381#1396#0" expanded="true" />
+                    <element signature="e#1475#1490#0" expanded="true" />
+                    <element signature="e#1576#1591#0" expanded="true" />
+                    <element signature="e#1678#1693#0" expanded="true" />
+                    <element signature="e#1782#1797#0" expanded="true" />
+                    <element signature="e#1877#1884#0" expanded="false" />
                     <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="method#allocate#0;class#GlobalEnvService#0" expanded="false" />
                     <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
+                    <element signature="e#4763#4777#0" expanded="true" />
                     <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="e#10958#10972#0" expanded="true" />
+                    <element signature="e#11195#11209#0" expanded="true" />
+                    <element signature="e#19319#19328#0" expanded="true" />
+                    <element signature="e#19388#19396#0" expanded="true" />
+                    <element signature="e#23072#23080#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Demand.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/actions/Demand.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8524306">
-                  <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#568#585#0" expanded="true" />
-                    <element signature="method#allocateDemandObj#0;class#Demand#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ParentEnvService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/services/ParentEnvService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ChildDemandHandler.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PowerPoolEnvService.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="PowerPoolEnvService.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="193" column="16" selection-start-line="193" selection-start-column="16" selection-end-line="193" selection-end-column="16" />
+                <state vertical-scroll-proportion="0.6753472">
+                  <caret line="265" column="0" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#1185#1199#0" expanded="true" />
+                    <element signature="e#9030#9044#0" expanded="true" />
+                    <element signature="e#9431#9445#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -201,22 +199,23 @@
         <option value="$PROJECT_DIR$/src/main/java/state/SimState.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/ChildEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/TimestampedAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/actions/parentDemand.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/childDemand.java" />
         <option value="$PROJECT_DIR$/src/main/java/sim/SimpleDNOSim.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/DemandProfile.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/Feedback.java" />
         <option value="$PROJECT_DIR$/src/main/java/util/ValueComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/ParentEnvService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/ParentAgent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/state/Canon.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/Demand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/actions/parentDemand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
       </list>
     </option>
   </component>
@@ -1040,7 +1039,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="uk.ac.imperial.presage2.core.simulator.RunnableSimulation" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=119 agents=3 mean=25 variance=10 children=5 surplus=10 allocationType=1 hours=24" />
+      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=4 agents=3 mean=25 variance=10 children=5 surplus=10 allocationType=1 hours=24" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -1109,13 +1108,13 @@
       <workItem from="1433710544264" duration="4497000" />
       <workItem from="1433715484570" duration="1856000" />
       <workItem from="1433718607482" duration="3656000" />
-      <workItem from="1433770651190" duration="19494000" />
+      <workItem from="1433770651190" duration="26005000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="234849000" />
+    <option name="totallyTimeSpent" value="241360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1128,7 +1127,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
@@ -1139,7 +1138,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.6359275" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34632036" sideWeight="0.7089552" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34632036" sideWeight="0.7089552" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.49573562" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16684435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1167,7 +1166,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34632036" sideWeight="0.29104477" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34632036" sideWeight="0.29104477" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1216,20 +1215,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-core/0.4.1/presage2-core-0.4.1.jar!/uk/ac/imperial/presage2/core/environment/EnvironmentRegistrationRequest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37777779">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-core/0.4.1/presage2-core-0.4.1.jar!/uk/ac/imperial/presage2/core/environment/EnvironmentConnector.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2034188">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-core/0.4.1/presage2-core-0.4.1.jar!/uk/ac/imperial/presage2/core/environment/ActionHandlingException.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11623932">
@@ -1290,20 +1275,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23247863">
           <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/state/SimState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/state/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.055555556">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1584,34 +1555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UML/Actions.uml">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>actions.Demand</OriginalElement>
-          <nodes>
-            <node x="" y="">actions.MasterAction</node>
-            <node x="" y="">actions.parentDemand</node>
-            <node x="" y="">actions.childDemand</node>
-            <node x="" y="">actions.TimestampedAction</node>
-            <node x="" y="">actions.Demand</node>
-            <node x="" y="">uk.ac.imperial.presage2.core.Action</node>
-            <node x="" y="">java.io.Serializable</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="118.0" y="73.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Fields</Category>
-            <Category>Properties</Category>
-            <Category>Methods</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UML/MasterActionHandlerService.uml">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1644,13 +1587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/actions/parentDemand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35416666">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="27" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/uk/ac/imperial/presage2/presage2-util/0.4.1/presage2-util-0.4.1.jar!/uk/ac/imperial/presage2/util/participant/AbstractParticipant.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34972677">
@@ -1658,59 +1594,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/actions/childDemand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.055555556">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UML/ActionHandlers.uml">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>actions.handlers.ChildDemandHandler</OriginalElement>
-          <nodes>
-            <node x="44.0" y="0.0">uk.ac.imperial.presage2.core.environment.ActionHandler</node>
-            <node x="0.0" y="123.0">actions.handlers.DemandHandler</node>
-            <node x="50.0" y="423.0">actions.handlers.ChildDemandHandler</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="actions.handlers.ChildDemandHandler" target="actions.handlers.DemandHandler">
-              <point x="0.0" y="-70.0" />
-              <point x="0.0" y="125.0" />
-            </edge>
-            <edge source="actions.handlers.DemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
-              <point x="0.0" y="-125.0" />
-              <point x="0.0" y="36.5" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="-466.0" y="319.0" />
-          <SelectedNodes>
-            <node>actions.handlers.ChildDemandHandler</node>
-          </SelectedNodes>
-          <Categories>
-            <Category>Fields</Category>
-            <Category>Properties</Category>
-            <Category>Methods</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/actions/Feedback.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.265625">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/FeedbackHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1729,14 +1616,6 @@
             <element signature="e#683#684#0" expanded="false" />
             <element signature="e#719#720#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1788,6 +1667,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/FeedbackHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14756945">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/ParentEnvService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7083333">
+          <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UML/Actions.uml">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>actions.Demand</OriginalElement>
+          <nodes>
+            <node x="" y="">actions.MasterAction</node>
+            <node x="" y="">actions.parentDemand</node>
+            <node x="" y="">actions.childDemand</node>
+            <node x="" y="">actions.TimestampedAction</node>
+            <node x="" y="">uk.ac.imperial.presage2.core.Action</node>
+            <node x="" y="">actions.Demand</node>
+            <node x="" y="">java.io.Serializable</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="256.5" y="353.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UML/ActionHandlers.uml">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>actions.handlers.ChildDemandHandler</OriginalElement>
+          <nodes>
+            <node x="" y="">uk.ac.imperial.presage2.core.environment.ActionHandler</node>
+            <node x="" y="">actions.handlers.DemandHandler</node>
+            <node x="" y="">actions.handlers.ChildDemandHandler</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="74.0" y="274.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Properties</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/UML/Services.uml">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1801,70 +1748,41 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="359.5" y="793.5" />
+          <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="686.5714285714286" y="797.7142857142857" />
           <SelectedNodes />
           <Categories>
             <Category>Fields</Category>
-            <Category>Methods</Category>
             <Category>Properties</Category>
+            <Category>Methods</Category>
           </Categories>
           <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/state/State.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11805555">
-          <caret line="59" column="84" selection-start-line="59" selection-start-column="84" selection-end-line="59" selection-end-column="84" />
+        <state vertical-scroll-proportion="0.03794643">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/state/Canon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="193" column="16" selection-start-line="193" selection-start-column="16" selection-end-line="193" selection-end-column="16" />
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/state/SimState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1185#1199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/ParentEnvService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="51" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="51" />
-          <folding>
-            <element signature="e#1150#1176#0" expanded="true" />
-            <element signature="e#1440#1455#0" expanded="true" />
-            <element signature="e#1534#1549#0" expanded="true" />
-            <element signature="e#1635#1650#0" expanded="true" />
-            <element signature="e#1737#1752#0" expanded="true" />
-            <element signature="e#1841#1856#0" expanded="true" />
-            <element signature="e#1936#1943#0" expanded="false" />
-            <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="method#allocate#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="e#10958#10972#0" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+            <element signature="e#632#633#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1877,10 +1795,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/actions/childDemand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.055555556">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/src.zip!/java/util/concurrent/ConcurrentHashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="933" column="13" selection-start-line="933" selection-start-column="13" selection-end-line="933" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0625">
-          <caret line="98" column="76" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
           <folding>
             <element signature="e#1755#1756#0" expanded="true" />
             <element signature="e#1795#1796#0" expanded="true" />
@@ -1888,13 +1822,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5017361">
+          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/actions/parentDemand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="77" selection-start-line="33" selection-start-column="77" selection-end-line="33" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31770834">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/actions/Demand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8524306">
-          <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="199" column="8" selection-start-line="199" selection-start-column="8" selection-end-line="210" selection-end-column="77" />
           <folding>
-            <element signature="e#568#585#0" expanded="true" />
-            <element signature="method#allocateDemandObj#0;class#Demand#0" expanded="false" />
+            <element signature="e#707#724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33272395">
+          <caret line="58" column="57" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
+          <folding>
+            <element signature="e#1170#1196#0" expanded="true" />
+            <element signature="e#1381#1396#0" expanded="true" />
+            <element signature="e#1475#1490#0" expanded="true" />
+            <element signature="e#1576#1591#0" expanded="true" />
+            <element signature="e#1678#1693#0" expanded="true" />
+            <element signature="e#1782#1797#0" expanded="true" />
+            <element signature="e#1877#1884#0" expanded="false" />
+            <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="e#4763#4777#0" expanded="true" />
+            <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="e#11195#11209#0" expanded="true" />
+            <element signature="e#19319#19328#0" expanded="true" />
+            <element signature="e#19388#19396#0" expanded="true" />
+            <element signature="e#23072#23080#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6753472">
+          <caret line="265" column="0" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1185#1199#0" expanded="true" />
+            <element signature="e#9030#9044#0" expanded="true" />
+            <element signature="e#9431#9445#0" expanded="true" />
           </folding>
         </state>
       </provider>

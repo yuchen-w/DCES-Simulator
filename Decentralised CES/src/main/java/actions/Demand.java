@@ -1,12 +1,17 @@
 //Object for passing demand and generation between agent and environment
 package actions;
 
+import actions.handlers.DemandHandler;
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Demand extends MasterAction implements Serializable {
+
+    final private Logger logger = Logger.getLogger(Demand.class);
 
     UUID AgentID;
 
@@ -165,6 +170,7 @@ public class Demand extends MasterAction implements Serializable {
         return demand;
     }
 
+    @Deprecated
     public void allocateDemandObj(Demand d)
     {
         this.allocated_demand = d.demand;
@@ -260,6 +266,7 @@ public class Demand extends MasterAction implements Serializable {
 
     public int getTotalCanonWeight()
     {
+        //logger.info("getTotalCanonWeight: " + CanonNeedsWeight+CanonEqualityWeight+CanonProductivityWeight+CanonSocialUtilityWeight+CanonSupplyAndDemandWeight);
         return CanonNeedsWeight+CanonEqualityWeight+CanonProductivityWeight+CanonSocialUtilityWeight+CanonSupplyAndDemandWeight;
     }
 

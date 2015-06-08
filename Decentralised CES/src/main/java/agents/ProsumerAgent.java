@@ -95,8 +95,10 @@ public class ProsumerAgent extends ParentAgent {
         AgentDemand.setCanonNeedsWeight(CanonNeedsWeight);
         AgentDemand.setCanonEqualityWeight(CanonEqualityWeight);
         AgentDemand.setCanonProductivityWeight(CanonProductivityWeight);
-        AgentDemand.setCanonSocialUtilityRank(CanonSocialUtilityWeight);
+        AgentDemand.setCanonSocialUtilityWeight(CanonSocialUtilityWeight);
         AgentDemand.setCanonSupplyAndDemandWeight(CanonSupplyAndDemandWeight);
+
+        //logger.info("Agent: " + getID() + " Total Canon Weight: " + AgentDemand.getTotalCanonWeight() + " Composed of: ");    //debug
 
         try
         {
