@@ -7,12 +7,9 @@ import java.util.*;
 
 import actions.DemandProfile;
 import uk.ac.imperial.presage2.core.environment.*;
-//import uk.ac.imperial.presage2.core.environment.ParticipantSharedState;
 import uk.ac.imperial.presage2.core.simulator.Initialisor;
 import uk.ac.imperial.presage2.core.simulator.Step;
-//import uk.ac.imperial.presage2.util.location.Location;
-//import uk.ac.imperial.presage2.util.location.Move;
-//import uk.ac.imperial.presage2.util.location.ParticipantLocationService;
+
 
 
 public class ParentAgent extends MasterAgent
@@ -40,6 +37,16 @@ public class ParentAgent extends MasterAgent
     public void addProfileHourly(double D, double G)
     {
         this.demandProfile.addProfile(D, G);
+    }
+
+    public void addProductivity(int i)
+    {
+        this.GroupDemand.setProductivity(i);
+    }
+
+    public void setSocialUtility(int utility)
+    {
+        this.GroupDemand.setSocial_utility(utility);
     }
 
     @Initialisor

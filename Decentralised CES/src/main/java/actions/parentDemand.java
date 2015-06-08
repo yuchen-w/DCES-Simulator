@@ -24,6 +24,14 @@ public class parentDemand extends Demand{
         this.generation += d.getGenerationRequest();
         this.allocated_demand += d.getAllocationD();
         this.allocated_generation += d.getAllocationG();
+        this.social_utility += d.getSocial_utility();
+        this.productivity += d.getProductivity();
+
+        this.CanonEqualityWeight += d.getCanonEqualityWeight();
+        this.CanonNeedsWeight += d.getCanonNeedsWeight();
+        this.CanonProductivityWeight += d.getCanonProductivityWeight();
+        this.CanonSocialUtilityWeight += d.getCanonSocialUtilityWeight();
+        this.CanonSupplyAndDemandWeight += d.getCanonSupplyAndDemandWeight();
         return this;
     }
 }

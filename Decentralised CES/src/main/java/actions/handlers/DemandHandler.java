@@ -9,8 +9,6 @@ import services.ParentEnvService;
 import services.PowerPoolEnvService;
 
 import org.apache.log4j.Logger;
-//import org.drools.runtime.StatefulKnowledgeSession;
-
 
 import com.google.inject.Inject;
 
@@ -59,6 +57,9 @@ public class DemandHandler implements ActionHandler {
                 //logger.info("T=" + d.getT() + " Parent Request round");
                 logger.info("DemandHandler: parentDemand d.parentDemand = " + d.getDemandRequest() + " and parentDemand d.Generation = " + d.getGenerationRequest());        //Debug
                 parentDemand GroupDemand = this.EnvService.getGroupDemand(d);
+
+                //logger.info("Parent: " + d.getAgentID() + " Total Canon Weight: " + GroupDemand.getTotalCanonWeight());   //todo
+
                 this.ParentEnvService.addToAgentPool(GroupDemand);
                 //logger.info("GroupDemand D= " +GroupDemand.getDemandRequest()+" G= " + GroupDemand.getGenerationRequest());
             }

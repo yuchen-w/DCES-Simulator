@@ -10,15 +10,14 @@ import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
 
+import state.Canon;
 import state.SimState;
-import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.lang.Thread;
 
 public class GlobalEnvService extends EnvironmentService{
     double curtailmentFactor = 1;
@@ -29,7 +28,16 @@ public class GlobalEnvService extends EnvironmentService{
 
     HashMap<UUID, ArrayList<Double>> AllocationHistory = new HashMap<UUID, ArrayList<Double>>();
     HashMap<UUID, ArrayList<Double>> DemandHistory = new HashMap<UUID, ArrayList<Double>>();
-    //HashMap <UUID, Integer> AgentBordaPoints = new HashMap<UUID, Integer>();
+    HashMap<UUID, ArrayList<Double>> GenerationHistory = new HashMap<UUID, ArrayList<Double>>();
+    HashMap<UUID, ArrayList<Integer>> ProductivityHistory = new HashMap<UUID, ArrayList<Integer>>();
+    HashMap<UUID, ArrayList<Integer>> SocialUtilityHistory = new HashMap<UUID, ArrayList<Integer>>();
+
+    ConcurrentHashMap<UUID, Integer> CanonEqualityRank = new ConcurrentHashMap<UUID, Integer>();
+    ConcurrentHashMap<UUID, Integer> CanonNeedsRank = new ConcurrentHashMap<UUID, Integer>();
+    ConcurrentHashMap<UUID, Integer> CanonProductivityRank = new ConcurrentHashMap<UUID, Integer>();
+    ConcurrentHashMap<UUID, Integer> CanonSocialUtilityRank = new ConcurrentHashMap<UUID, Integer>();
+    ConcurrentHashMap<UUID, Integer> CanonSupplyAndDemandRank = new ConcurrentHashMap<UUID, Integer>();
+
 
     private final Logger logger = Logger.getLogger(this.getClass());
 
@@ -99,15 +107,10 @@ public class GlobalEnvService extends EnvironmentService{
     private void allocate_fairly(Demand Total, ArrayList<UUID> ChildrenList)
     {
         //logger.info("GlobalEnvService allocating fairly");
+        HashMap<UUID, Double> AgentBordaPoints_local = new  HashMap<UUID, Double>();
+        Double BordaSum = 0.0;
 
-
-        HashMap<UUID, Integer> AgentBordaPoints_local = new  HashMap<UUID, Integer>();
-        Integer BordaSum = 0;
-
-        synchronized (AgentBordaPoints_local) {
-            AgentBordaPoints_local = canon_of_equality(ChildrenList, AgentBordaPoints_local);
-            AgentBordaPoints_local = canon_of_needs(ChildrenList, AgentBordaPoints_local);
-        }
+        AgentBordaPoints_local = calculateAllCanons(ChildrenList, AgentBordaPoints_local, Total);
 
         synchronized (BordaSum) {
             BordaSum = calcBordaSum(AgentBordaPoints_local); //Get BordaPoint sum
@@ -123,16 +126,30 @@ public class GlobalEnvService extends EnvironmentService{
 
             parentDemand request = (parentDemand)ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
+            allocation.setProductivity(request.getProductivity());
+            allocation.setSocial_utility(request.getSocial_utility());
+            allocation.setCanonEqualityWeight(request.getCanonEqualityWeight());
+            allocation.setCanonNeedsWeight(request.getCanonNeedsWeight());
+            allocation.setCanonProductivityWeight(request.getCanonProductivityWeight());
+            allocation.setCanonSocialUtilityWeight(request.getCanonSocialUtilityWeight());
+            allocation.setCanonSupplyAndDemandWeight(request.getCanonSupplyAndDemandWeight());
+            allocation.setHour(request.getHour());
+
+
+            logger.info("Agent: " + agent + " Productivity: " + request.getProductivity() + " Social Utility: " + request.getSocial_utility());
+
 
             allocation.allocate(Total.getGenerationRequest()*proportion_borda, request.getGenerationRequest());
+            setAllRanks(allocation);
 
+            //logger.info("AgentBordaPoints = " + AgentBordaPoints_local.get(agent) + "BordaSum: " + BordaSum  + "Proportion_borda = " + proportion_borda); //todo
             //logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
 
+
+
             ChildEnvService.setGroupDemand(agent, allocation);
-            storeAllocation(agent, allocation.getAllocationD());
-            storeDemand(agent, allocation.getDemandRequest());
+            environmentStore(agent, allocation);
         }
-        resetBordaPoints();
     }
 
     protected PowerPoolEnvService getChildEnvService()
@@ -176,7 +193,41 @@ public class GlobalEnvService extends EnvironmentService{
         return state.getState();
     }
 
-    protected HashMap<UUID, Integer> canon_of_equality( ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
+    protected void calculateCanonWeight()
+    {
+        //todo
+    }
+
+    protected void setAllRanks(Demand allocation)
+    {
+        allocation.setCanonRank("CanonEqualityRank", CanonEqualityRank.get(allocation.getAgentID()));
+        allocation.setCanonEqualityRank(CanonEqualityRank.get(allocation.getAgentID()));
+
+        allocation.setCanonRank("CanonNeedsRank", CanonNeedsRank.get(allocation.getAgentID()));
+        allocation.setCanonNeedsRank(CanonNeedsRank.get(allocation.getAgentID()));
+
+        allocation.setCanonRank("CanonProductivityRank", CanonProductivityRank.get(allocation.getAgentID()));
+        allocation.setCanonProductivityRank(CanonProductivityRank.get(allocation.getAgentID()));
+        //logger.info("Agent: " + allocation.getAgentID() + "Productivity Rank: " + CanonProductivityRank.get(allocation.getAgentID()));
+
+        allocation.setCanonRank("CanonSocialUtilityRank", CanonSocialUtilityRank.get(allocation.getAgentID()));
+        allocation.setCanonSocialUtilityRank(CanonSocialUtilityRank.get(allocation.getAgentID()));
+
+        allocation.setCanonRank("CanonSupplyAndDemandRank",CanonSupplyAndDemandRank.get(allocation.getAgentID()));
+        allocation.setCanonSupplyAndDemandRank(CanonSupplyAndDemandRank.get(allocation.getAgentID()));
+    }
+
+    protected HashMap<UUID, Double> calculateAllCanons(ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
+    {
+        AgentBordaPoints = canon_of_equality(ChildrenList, AgentBordaPoints, Total);
+        AgentBordaPoints = canon_of_needs(ChildrenList, AgentBordaPoints, Total);
+        AgentBordaPoints = canon_of_productivity(ChildrenList, AgentBordaPoints, Total);
+        AgentBordaPoints = canon_of_social_utility(ChildrenList, AgentBordaPoints, Total);
+        AgentBordaPoints = canon_of_supply_and_demand(ChildrenList, AgentBordaPoints, Total);
+        return AgentBordaPoints;
+    }
+
+    protected HashMap<UUID, Double> canon_of_equality( ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
     {
         // TreeMap <UUID, Double> AvgAllocation = new TreeMap<UUID, Double>();
         HashMap <UUID, Double> AvgDemand = new HashMap<UUID, Double>();
@@ -187,12 +238,12 @@ public class GlobalEnvService extends EnvironmentService{
 
         AvgDemand = sortByValue(AvgDemand);
 
-        //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgAllocation);
-        return sortBordaPoints(AvgDemand, AgentBordaPoints);
+        //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgDemand);
+        return sortBordaPointsReverse(AvgDemand, AgentBordaPoints, CanonEqualityRank, Total, Canon.equality);
 
     }
 
-    protected HashMap<UUID, Integer> canon_of_needs(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
+    protected HashMap<UUID, Double> canon_of_needs(ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
     {
         //sort by average demands
         HashMap <UUID, Double> AvgAllocation = new HashMap<UUID, Double>();
@@ -202,22 +253,57 @@ public class GlobalEnvService extends EnvironmentService{
 
         AvgAllocation = sortByValue(AvgAllocation);
 
-        return sortBordaPointsReverse(AvgAllocation, AgentBordaPoints);
+        return sortBordaPointsReverse(AvgAllocation, AgentBordaPoints, CanonNeedsRank, Total, Canon.needs);
         //return
     }
 
-    //protected HashMap<UUID, Integer> canon_of_productivity(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
-    protected void canon_of_productive(ArrayList<UUID> ChildrenList, HashMap<UUID, Integer> AgentBordaPoints)
+    protected HashMap<UUID, Double> canon_of_supply_and_demand(ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
     {
+        //rank agents by decreasing order of average provision
+        HashMap <UUID, Double> AvgGeneration = new HashMap<UUID, Double>();
+        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
+            AvgGeneration.put(ID, calcAvgGeneration(ID));
+        }
+
+        AvgGeneration = sortByValue(AvgGeneration);
+
+        return sortBordaPoints(AvgGeneration, AgentBordaPoints, CanonSupplyAndDemandRank, Total, Canon.supply_and_demand);
+    }
+
+
+    protected HashMap<UUID, Double> canon_of_social_utility(ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
+    {
+        HashMap <UUID, Double> SocialUtilityHistory = new HashMap<UUID, Double>();
+        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
+            SocialUtilityHistory.put(ID, calcAvgSocialUtility(ID));//getEconOutput(agent)
+        }
+
+        SocialUtilityHistory = sortByValue(SocialUtilityHistory);
+
+        return sortBordaPoints(SocialUtilityHistory, AgentBordaPoints, CanonSocialUtilityRank, Total, Canon.social_utility);
+    }
+
+
+    protected HashMap<UUID, Double> canon_of_productivity(ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
+    {
+        //consider replacing with canon of productivity
+        HashMap <UUID, Double> EconOutput = new HashMap<UUID, Double>();
+        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
+            EconOutput.put(ID, calcAvgEconOutput(ID));//getEconOutput(agent)
+        }
+
+        EconOutput = sortByValue(EconOutput);
+
+        return sortBordaPoints(EconOutput, AgentBordaPoints, CanonProductivityRank, Total, Canon.productivity);
 
     }
 
     /**
-     * Taken from http://www.programcreek.com/2013/03/java-sort-map-by-value/
+     * Based on some code from http://www.programcreek.com/2013/03/java-sort-map-by-value/
      * @param unsortMap
      * @return
      */
-    public static HashMap <UUID, Double>  sortByValue(HashMap <UUID, Double> unsortMap) {
+    public static HashMap <UUID, Double> sortByValue(HashMap <UUID, Double> unsortMap) {
         List list = new LinkedList(unsortMap.entrySet());
 
         Collections.sort(list, new Comparator() {
@@ -232,6 +318,15 @@ public class GlobalEnvService extends EnvironmentService{
             sortedMap.put((UUID)entry.getKey(), (Double)entry.getValue());
         }
         return sortedMap;
+    }
+
+    protected void environmentStore(UUID agent, Demand allocation)
+    {
+        storeAllocation(agent, allocation.getAllocationD());
+        storeDemand(agent, allocation.getDemandRequest());
+        storeGenerataion(agent, allocation.getGenerationRequest());
+        storeEconOutput(agent, allocation.getProductivity());
+        storeSocialUtility(agent, allocation.getSocial_utility());
     }
 
     protected void storeAllocation(UUID id, double allocationD)
@@ -265,7 +360,54 @@ public class GlobalEnvService extends EnvironmentService{
             list.add(Demand);
         }
         this.DemandHistory.put(id, list);
+    }
 
+    protected void storeGenerataion(UUID id, double Demand)
+    {
+        ArrayList<Double> list;
+        if (this.GenerationHistory.containsKey(id))
+        {
+            list = this.GenerationHistory.get(id);
+            list.add(Demand);
+        }
+        else
+        {
+            list = new ArrayList<Double>();
+            list.add(Demand);
+        }
+        this.GenerationHistory.put(id, list);
+    }
+
+    protected void storeEconOutput(UUID id, int Productivity)
+    {
+        ArrayList<Integer> list;
+        if (this.ProductivityHistory.containsKey(id))
+        {
+            list = this.ProductivityHistory.get(id);
+            list.add(Productivity);
+        }
+        else
+        {
+            list = new ArrayList<Integer>();
+            list.add(Productivity);
+        }
+        this.ProductivityHistory.put(id, list);
+    }
+
+    protected void storeSocialUtility(UUID id, int Utility)
+    {
+        ArrayList<Integer> list;
+        if (this.SocialUtilityHistory.containsKey(id))
+        {
+            list = this.SocialUtilityHistory.get(id);
+            list.add(Utility);
+        }
+        else
+        {
+            list = new ArrayList<Integer>();
+            list.add(Utility);
+        }
+        this.SocialUtilityHistory.put(id, list);
     }
 
     protected double calcAvgAllocation(UUID id)
@@ -300,22 +442,97 @@ public class GlobalEnvService extends EnvironmentService{
         }
     }
 
-    protected int calcBordaSum(HashMap <UUID, Integer> AgentBordaPoints)
+    protected double calcAvgGeneration(UUID id)
     {
-        int sum = 0;
-        for (int d : AgentBordaPoints.values())
+        if (this.GenerationHistory.containsKey(id))
+        {
+            ArrayList<Double> list = this.GenerationHistory.get(id);
+            double sum = 0;
+            for (Double d : list)
+                sum += d;
+            return sum;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    protected double calcAvgEconOutput(UUID id)
+    {
+        if (this.ProductivityHistory.containsKey(id))
+        {
+            ArrayList<Integer> list = this.ProductivityHistory.get(id);
+            double sum = 0;
+            for (Integer i : list)
+                sum += i;
+            return sum;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    protected double calcAvgSocialUtility(UUID id)
+    {
+        if (this.SocialUtilityHistory.containsKey(id))
+        {
+            ArrayList<Integer> list = this.SocialUtilityHistory.get(id);
+            double sum = 0;
+            for (Integer i : list)
+                sum += i;
+            return sum;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    protected double calcBordaSum(HashMap <UUID, Double> AgentBordaPoints)
+    {
+        double sum = 0;
+        for (double d : AgentBordaPoints.values())
             sum += d;
         return sum;
     }
 
-    protected HashMap <UUID, Integer> sortBordaPoints(HashMap<UUID, Double> tMap, HashMap <UUID, Integer> AgentBordaPoints)
+    protected HashMap <UUID, Double> sortBordaPoints(HashMap<UUID, Double> tMap, HashMap <UUID, Double> AgentBordaPoints, ConcurrentHashMap<UUID, Integer> BordaRank, Demand Total, Canon CanonName)
     {
         int BordaPt = 1;
         double prev_val = -1;       //-1 to eliminate issue when history is 0;
 
         int iterator = 0;
+        double CanonBordaSum = 0;
+        if (CanonName == Canon.equality)
+        {
+            CanonBordaSum = Total.getCanonEqualityWeight();
+        }
+        else if (CanonName == Canon.needs)
+        {
+            CanonBordaSum = Total.getCanonNeedsWeight();
+        }
+        else if (CanonName == Canon.productivity)
+        {
+            CanonBordaSum = Total.getCanonProductivityWeight();
+        }
+        else if (CanonName == Canon.social_utility)
+        {
+            CanonBordaSum = Total.getCanonSocialUtilityWeight();
+        }
+        else if (CanonName == Canon.supply_and_demand)
+        {
+            CanonBordaSum = Total.getCanonSupplyAndDemandWeight();
+        }
+
+        double BordaProportion = CanonBordaSum/(double)Total.getTotalCanonWeight();
+
+
+
         ArrayList<Integer> iteratorStorage = new ArrayList<Integer>();
-        ArrayList<Integer> BordaPtStorage = new ArrayList<Integer>();
+        ArrayList<Double> BordaPtStorage = new ArrayList<Double>();
+
         boolean RecalcBorda = false;
         //logger.info("Average allocation: " + tMap);
         for (Map.Entry<UUID, Double> entry : tMap.entrySet())
@@ -326,27 +543,30 @@ public class GlobalEnvService extends EnvironmentService{
             if (value == prev_val)
             {
                 //logger.info("if (value == prev_val), Prev Value: " + prev_val + " Current Val: " + value);
-                BordaPt++;
-                BordaPtStorage.add(BordaPt);
+                //BordaPt++;
+                //BordaPtStorage.add(BordaPt);    //todo: simplify. same as the else statement
                 iteratorStorage.add(iterator-1);
                 RecalcBorda = true;
                 //if multiple elements within tMap has the same rank, set the last one to have the correct BordaPt
             }
-            else{
-                //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
-                BordaPtStorage.add(BordaPt);
-            }
+            //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
+            BordaPtStorage.add((double)BordaPt*BordaProportion);    //todo: simplify
+
             prev_val = value;
+
+            BordaRank.put(entry.getKey(), tMap.size() - iterator);
+
             BordaPt++;
             iterator++;
         }
 
         if (RecalcBorda == true) {
-            iterator = BordaPtStorage.size() - 1;
+            iterator = iteratorStorage.size() - 1;
             while (iterator >= 0) {
                 if (iterator < BordaPtStorage.size()-1) {
-                    BordaPtStorage.set(iterator, BordaPtStorage.get(iterator + 1));
+                    BordaPtStorage.set(iteratorStorage.get(iterator), BordaPtStorage.get(iteratorStorage.get(iterator) + 1));
                     //go back and replace the wrongly calculated Borda rank with the correct one
+                    //todo: do the same for rank here
                 }
                 iterator--;
             }
@@ -357,7 +577,7 @@ public class GlobalEnvService extends EnvironmentService{
         {
             UUID ID = entry.getKey();
 
-            int sum = 0;
+            double sum = 0;
             if (AgentBordaPoints.containsKey(ID))
             {
                 sum = AgentBordaPoints.get(ID);
@@ -378,14 +598,41 @@ public class GlobalEnvService extends EnvironmentService{
     }
 
     //Takes a sorted list (small -> big) and allocates Borda points from big to small
-    protected HashMap <UUID, Integer> sortBordaPointsReverse(HashMap<UUID, Double> tMap, HashMap <UUID, Integer> AgentBordaPoints)
+    protected HashMap <UUID, Double> sortBordaPointsReverse(HashMap<UUID, Double> tMap, HashMap <UUID, Double> AgentBordaPoints, ConcurrentHashMap<UUID, Integer> BordaRank, Demand Total, Canon CanonName)
     {
         int BordaPt = tMap.size();
         double prev_val = -1;       //-1 to eliminate issue when history is 0;
 
         int iterator = 0;
+
+        double CanonBordaSum = 0;
+        if (CanonName == Canon.equality)
+        {
+            CanonBordaSum = Total.getCanonEqualityWeight();
+        }
+        else if (CanonName == Canon.needs)
+        {
+            CanonBordaSum = Total.getCanonNeedsWeight();
+        }
+        else if (CanonName == Canon.productivity)
+        {
+            CanonBordaSum = Total.getCanonProductivityWeight();
+        }
+        else if (CanonName == Canon.social_utility)
+        {
+            CanonBordaSum = Total.getCanonSocialUtilityWeight();
+        }
+        else if (CanonName == Canon.supply_and_demand)
+        {
+            CanonBordaSum = Total.getCanonSupplyAndDemandWeight();
+        }
+
+        double BordaProportion = CanonBordaSum/(double)Total.getTotalCanonWeight();
+
+        //logger.info("BordaProportion: " + BordaProportion);
+
         ArrayList<Integer> iteratorStorage = new ArrayList<Integer>();
-        ArrayList<Integer> BordaPtStorage = new ArrayList<Integer>();
+        ArrayList<Double> BordaPtStorage = new ArrayList<Double>();
         boolean RecalcBorda = false;
         //logger.info("Average allocation: " + tMap);
         for (Map.Entry<UUID, Double> entry : tMap.entrySet())
@@ -396,26 +643,28 @@ public class GlobalEnvService extends EnvironmentService{
             if (value == prev_val)
             {
                 //logger.info("if (value == prev_val), Prev Value: " + prev_val + " Current Val: " + value);
-                BordaPt--;
-                BordaPtStorage.add(BordaPt);
+                //BordaPt--;
+                //BordaPtStorage.add(BordaPt);    //todo: simplify. same as the else statement
                 iteratorStorage.add(iterator-1);
                 RecalcBorda = true;
                 //if multiple elements within tMap has the same rank, set the last one to have the correct BordaPt
             }
-            else{
-                //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
-                BordaPtStorage.add(BordaPt);
-            }
+            //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
+            BordaPtStorage.add(BordaProportion*(double)BordaPt);
+
             prev_val = value;
-            BordaPt++;
+
+            BordaPt--;
             iterator++;
+            BordaRank.put(entry.getKey(), iterator);
+
         }
 
         if (RecalcBorda == true) {
-            iterator = BordaPtStorage.size() - 1;
+            iterator = iteratorStorage.size() - 1;
             while (iterator >= 0) {
                 if (iterator < BordaPtStorage.size()-1) {
-                    BordaPtStorage.set(iterator, BordaPtStorage.get(iterator + 1));
+                    BordaPtStorage.set(iteratorStorage.get(iterator), BordaPtStorage.get(iteratorStorage.get(iterator) + 1));
                     //go back and replace the wrongly calculated Borda rank with the correct one
                 }
                 iterator--;
@@ -426,7 +675,7 @@ public class GlobalEnvService extends EnvironmentService{
         for (Map.Entry<UUID, Double> entry : tMap.entrySet())
         {
             UUID ID = entry.getKey();
-            int sum = 0;
+            double sum = 0;
             if (AgentBordaPoints.containsKey(ID))
             {
                 sum = AgentBordaPoints.get(ID);
@@ -444,11 +693,5 @@ public class GlobalEnvService extends EnvironmentService{
 
         return AgentBordaPoints;
 
-    }
-
-
-    protected void resetBordaPoints()
-    {
-        //AgentBordaPoints = new HashMap<UUID, Integer>();
     }
 }

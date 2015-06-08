@@ -47,6 +47,7 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
                 //logger.info("Parents are:" + a.getChildrenList());
                 TotalDemand = TotalDemand.addDemand(EnvService.getGroupDemand(a));
                 logger.info("Global Total D = " + TotalDemand.getDemandRequest() + "G = " + TotalDemand.getGenerationRequest());
+                //logger.info("Global Canon Weight: " + TotalDemand.getTotalCanonWeight());
                 allocate(TotalDemand, a.getChildrenList());
             }
 

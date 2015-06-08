@@ -53,8 +53,9 @@ public class ChildDemandHandler extends DemandHandler{
             {
                 //logger.info("T= "+ d.getT() +". Children Request round");
                 //logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemandRequest() + " and is providing " + d.getGenerationRequest());		//Debug
-
+                //logger.info ("Agent: " + d.getAgentID() + " Total Canon Weight: " + d.getTotalCanonWeight());
                 this.ParentService.addToAgentPool(d);
+
             }
 
             if (CurrentState == 4)
@@ -70,11 +71,17 @@ public class ChildDemandHandler extends DemandHandler{
 
                 //todo
                 d.allocate(allocated.getAllocationD(), allocated.getAllocationG());
+                d.setCanonEqualityRank(allocated.getCanonEqualityRank());
+                d.setCanonSupplyAndDemandRank(allocated.getCanonSupplyAndDemandRank());
+                d.setCanonSocialUtilityRank(allocated.getCanonSocialUtilityRank());
+                d.setCanonProductivityRank(allocated.getCanonProductivityRank());
+                d.setCanonNeedsRank(allocated.getCanonNeedsRank());
 
                 double satisfaction = allocated.getAllocationD()/d.getDemandRequest();
                 //logger.info("ParentEnvService.Feedback");
                 //ParentEnvService.Feedback(actor, satisfaction);
                 ParentService.Feedback(actor, satisfaction);
+
                 if (d.getT() == hours*d.getStateNum()-1)
                 {
                     logger.info("Agent: " + actor + " Satisfaction " + ParentService.getSatisfaction(actor));

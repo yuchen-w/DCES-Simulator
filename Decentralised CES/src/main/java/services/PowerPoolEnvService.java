@@ -4,7 +4,6 @@ package services;
 
 
 import actions.Demand;
-import actions.Feedback;
 import actions.MasterAction;
 import actions.parentDemand;
 import com.google.inject.name.Named;
@@ -13,12 +12,10 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 
 import state.SimState;
-import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -36,7 +33,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
 
 	protected HashMap<UUID, Integer>      RequestCounter = new HashMap<UUID, Integer>();
-	protected HashMap<UUID, Demand> AgentDemandStorage = new HashMap<UUID, Demand>();
+	protected ConcurrentHashMap<UUID, Demand> AgentDemandStorage = new ConcurrentHashMap<UUID, Demand>();
     protected HashMap<UUID, Demand> GroupDemandAllocationStorage = new HashMap<UUID, Demand>();
 	protected HashMap<UUID, parentDemand> AgentAllocationStorage = new HashMap<UUID, parentDemand>();
     protected HashMap<UUID,ArrayList<Double>> AgentSatisfaction = new HashMap <UUID,ArrayList<Double>>();
@@ -112,6 +109,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         synchronized (AgentDemandStorage) {
             AgentDemandStorage.put(d.getAgentID(), d);
         }
+        //logger.info("AgentDemandStorage, Agent: " + d.getAgentID() + " Canon total weight: " + AgentDemandStorage.get(d.getAgentID()).getTotalCanonWeight());
     }
 
     //Used by handlers to pass GroupDemand up to the next level
@@ -245,14 +243,10 @@ public class PowerPoolEnvService extends GlobalEnvService{
     private void allocate_fairly(Demand allocated, Demand GroupDemand, ArrayList<UUID> ChildrenList)
     {
         logger.info("GlobalEnvService allocating fairly");
-        double proportion_available = allocated.getAllocationD() / GroupDemand.getDemandRequest();
 
-        HashMap<UUID, Integer> AgentBordaPoints_l = new HashMap<>();
-
-        synchronized (AgentBordaPoints_l) {
-            AgentBordaPoints_l = canon_of_equality(ChildrenList, AgentBordaPoints_l);
-            AgentBordaPoints_l = canon_of_needs(ChildrenList, AgentBordaPoints_l);
-        }
+        HashMap<UUID, Double> AgentBordaPoints = new HashMap<UUID, Double>();
+        logger.info(" AgentBordaPoints = calculateAllCanons(ChildrenList, AgentBordaPoints, allocated); ChildrenList: " + ChildrenList);
+        AgentBordaPoints = calculateAllCanons(ChildrenList, AgentBordaPoints, allocated);
 
         for (int i=0; i<ChildrenList.size(); i++)
         {
@@ -260,33 +254,41 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
             //logger.info("For Agent: " + agent + "AgentBordaPoints" + AgentBordaPoints);
 
-            ConcurrentHashMap<UUID, Integer> AgentBordaPoints_l_CC = new ConcurrentHashMap<UUID, Integer>();
+            ConcurrentHashMap<UUID, Double> AgentBordaPoints_l_CC = new ConcurrentHashMap<UUID, Double>();
 
-            for (UUID ID : AgentBordaPoints_l.keySet()) {
-                AgentBordaPoints_l_CC.put(ID, AgentBordaPoints_l.get(ID));
+            for (UUID ID : AgentBordaPoints.keySet()) {
+                AgentBordaPoints_l_CC.put(ID, AgentBordaPoints.get(ID));
             }
+
             double BordaSum = calcBordaSum(ChildrenList, AgentBordaPoints_l_CC); //Get BordaPoint sum
-            double BordaPts = (double)AgentBordaPoints_l.get(agent);
+            double BordaPts = (double)AgentBordaPoints.get(agent);
             double proportion_Borda = BordaPts/BordaSum;
-            logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints_l.get(agent) + " Proportion: " + proportion_Borda);
+
+            logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints.get(agent) + " Proportion: " + proportion_Borda); //debug todo tag
+
             Demand request = ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
+            allocation.setProductivity(request.getProductivity());
+            allocation.setSocial_utility(request.getSocial_utility());
+            allocation.setHour(request.getHour());
+            setAllRanks(allocation);
+
             allocation.allocate(allocated.getAllocationD()*proportion_Borda, request.getGenerationRequest());
+
 
             logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
 
             ChildEnvService.setGroupDemand(agent, allocation);
-            storeAllocation(agent, allocation.getAllocationD());
-            storeDemand(agent, allocation.getDemandRequest());
+            environmentStore(agent, allocation);
         }
-        resetBordaPoints();
     }
 
-    protected int calcBordaSum(ArrayList<UUID> ChildrenList, ConcurrentHashMap<UUID, Integer> AgentBordaPoints)
+    protected double calcBordaSum(ArrayList<UUID> ChildrenList, ConcurrentHashMap<UUID, Double> AgentBordaPoints)
     {
-        int sum = 0;
+        double sum = 0;
         for (UUID ID : AgentBordaPoints.keySet())
         {
+
             if (ChildrenList.contains(ID))
             {
                 sum += AgentBordaPoints.get(ID);
