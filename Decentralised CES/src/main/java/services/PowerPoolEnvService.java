@@ -4,7 +4,6 @@ package services;
 
 
 import actions.Demand;
-import actions.Feedback;
 import actions.MasterAction;
 import actions.parentDemand;
 import com.google.inject.name.Named;
@@ -13,12 +12,10 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 
 import state.SimState;
-import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
 import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -246,11 +243,10 @@ public class PowerPoolEnvService extends GlobalEnvService{
     private void allocate_fairly(Demand allocated, Demand GroupDemand, ArrayList<UUID> ChildrenList)
     {
         logger.info("GlobalEnvService allocating fairly");
-        double proportion_available = allocated.getAllocationD() / GroupDemand.getDemandRequest();
 
-        HashMap<UUID, Double> AgentBordaPoints_l = new HashMap<UUID, Double>();
-
-        AgentBordaPoints_l = calculateAllCanons(ChildrenList, AgentBordaPoints_l, allocated);
+        HashMap<UUID, Double> AgentBordaPoints = new HashMap<UUID, Double>();
+        logger.info(" AgentBordaPoints = calculateAllCanons(ChildrenList, AgentBordaPoints, allocated); ChildrenList: " + ChildrenList);
+        AgentBordaPoints = calculateAllCanons(ChildrenList, AgentBordaPoints, allocated);
 
         for (int i=0; i<ChildrenList.size(); i++)
         {
@@ -260,15 +256,15 @@ public class PowerPoolEnvService extends GlobalEnvService{
 
             ConcurrentHashMap<UUID, Double> AgentBordaPoints_l_CC = new ConcurrentHashMap<UUID, Double>();
 
-            for (UUID ID : AgentBordaPoints_l.keySet()) {
-                AgentBordaPoints_l_CC.put(ID, AgentBordaPoints_l.get(ID));
+            for (UUID ID : AgentBordaPoints.keySet()) {
+                AgentBordaPoints_l_CC.put(ID, AgentBordaPoints.get(ID));
             }
 
             double BordaSum = calcBordaSum(ChildrenList, AgentBordaPoints_l_CC); //Get BordaPoint sum
-            double BordaPts = (double)AgentBordaPoints_l.get(agent);
+            double BordaPts = (double)AgentBordaPoints.get(agent);
             double proportion_Borda = BordaPts/BordaSum;
 
-            logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints_l.get(agent) + " Proportion: " + proportion_Borda); //debug todo tag
+            logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints.get(agent) + " Proportion: " + proportion_Borda); //debug todo tag
 
             Demand request = ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
@@ -292,6 +288,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         double sum = 0;
         for (UUID ID : AgentBordaPoints.keySet())
         {
+
             if (ChildrenList.contains(ID))
             {
                 sum += AgentBordaPoints.get(ID);

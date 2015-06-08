@@ -12,7 +12,6 @@ import com.google.inject.Inject;
 
 import state.Canon;
 import state.SimState;
-import sun.management.Agent;
 import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
@@ -129,7 +128,13 @@ public class GlobalEnvService extends EnvironmentService{
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
             allocation.setProductivity(request.getProductivity());
             allocation.setSocial_utility(request.getSocial_utility());
+            allocation.setCanonEqualityWeight(request.getCanonEqualityWeight());
+            allocation.setCanonNeedsWeight(request.getCanonNeedsWeight());
+            allocation.setCanonProductivityWeight(request.getCanonProductivityWeight());
+            allocation.setCanonSocialUtilityWeight(request.getCanonSocialUtilityWeight());
+            allocation.setCanonSupplyAndDemandWeight(request.getCanonSupplyAndDemandWeight());
             allocation.setHour(request.getHour());
+
 
             logger.info("Agent: " + agent + " Productivity: " + request.getProductivity() + " Social Utility: " + request.getSocial_utility());
 
@@ -233,7 +238,7 @@ public class GlobalEnvService extends EnvironmentService{
 
         AvgDemand = sortByValue(AvgDemand);
 
-        //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgAllocation);
+        //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgDemand);
         return sortBordaPointsReverse(AvgDemand, AgentBordaPoints, CanonEqualityRank, Total, Canon.equality);
 
     }
@@ -623,6 +628,8 @@ public class GlobalEnvService extends EnvironmentService{
         }
 
         double BordaProportion = CanonBordaSum/(double)Total.getTotalCanonWeight();
+
+        //logger.info("BordaProportion: " + BordaProportion);
 
         ArrayList<Integer> iteratorStorage = new ArrayList<Integer>();
         ArrayList<Double> BordaPtStorage = new ArrayList<Double>();

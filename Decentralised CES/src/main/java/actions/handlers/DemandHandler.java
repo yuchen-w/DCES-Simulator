@@ -9,8 +9,6 @@ import services.ParentEnvService;
 import services.PowerPoolEnvService;
 
 import org.apache.log4j.Logger;
-//import org.drools.runtime.StatefulKnowledgeSession;
-
 
 import com.google.inject.Inject;
 

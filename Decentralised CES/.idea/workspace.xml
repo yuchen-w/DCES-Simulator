@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/state/Canon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.pdf" afterPath="$PROJECT_DIR$/../Final Report/main.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.synctex.gz" afterPath="$PROJECT_DIR$/../Final Report/main.synctex.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/Demand.java" afterPath="$PROJECT_DIR$/src/main/java/actions/Demand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" afterPath="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/actions/parentDemand.java" afterPath="$PROJECT_DIR$/src/main/java/actions/parentDemand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Decentralised CES.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,125 +28,38 @@
     <favorites_list name="Decentralised CES" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38771594">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="dCES_Sim.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Demand.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/actions/Demand.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="199" column="8" selection-start-line="199" selection-start-column="8" selection-end-line="210" selection-end-column="77" />
-                  <folding>
-                    <element signature="e#707#724#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GlobalEnvService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="128" column="58" selection-start-line="128" selection-start-column="58" selection-end-line="128" selection-end-column="58" />
-                  <folding>
-                    <element signature="e#1170#1196#0" expanded="true" />
-                    <element signature="e#1381#1396#0" expanded="true" />
-                    <element signature="e#1475#1490#0" expanded="true" />
-                    <element signature="e#1576#1591#0" expanded="true" />
-                    <element signature="e#1678#1693#0" expanded="true" />
-                    <element signature="e#1782#1797#0" expanded="true" />
-                    <element signature="e#1877#1884#0" expanded="false" />
-                    <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="method#allocate#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="e#11195#11209#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ProsumerAgent.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-                  <folding>
-                    <element signature="e#1755#1756#0" expanded="true" />
-                    <element signature="e#1795#1796#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DemandHandler.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33272395">
-                  <caret line="58" column="57" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="57" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="GlobalEnvService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
-                  <folding>
-                    <element signature="e#1170#1196#0" expanded="true" />
-                    <element signature="e#1381#1396#0" expanded="true" />
-                    <element signature="e#1475#1490#0" expanded="true" />
-                    <element signature="e#1576#1591#0" expanded="true" />
-                    <element signature="e#1678#1693#0" expanded="true" />
-                    <element signature="e#1782#1797#0" expanded="true" />
-                    <element signature="e#1877#1884#0" expanded="false" />
-                    <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="e#4763#4777#0" expanded="true" />
-                    <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-                    <element signature="e#11195#11209#0" expanded="true" />
-                    <element signature="e#19319#19328#0" expanded="true" />
-                    <element signature="e#19388#19396#0" expanded="true" />
-                    <element signature="e#23072#23080#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PowerPoolEnvService.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6753472">
-                  <caret line="265" column="0" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1185#1199#0" expanded="true" />
-                    <element signature="e#9030#9044#0" expanded="true" />
-                    <element signature="e#9431#9445#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="dCES_Sim.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Demand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/actions/Demand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="199" column="8" selection-start-line="199" selection-start-column="8" selection-end-line="210" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProsumerAgent.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.07986111">
+              <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -211,11 +117,11 @@
         <option value="$PROJECT_DIR$/src/main/java/actions/Demand.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/parentDemand.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
       </list>
     </option>
   </component>
@@ -240,7 +146,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="y" value="-1048" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -312,8 +218,88 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="actions">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -600,88 +586,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="actions">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1039,7 +945,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="uk.ac.imperial.presage2.core.simulator.RunnableSimulation" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=4 agents=3 mean=25 variance=10 children=5 surplus=10 allocationType=1 hours=24" />
+      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim finishTime=119 agents=3 mean=25 variance=10 children=5 surplus=10 allocationType=1 hours=24" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -1109,12 +1015,13 @@
       <workItem from="1433715484570" duration="1856000" />
       <workItem from="1433718607482" duration="3656000" />
       <workItem from="1433770651190" duration="26005000" />
+      <workItem from="1433804700056" duration="1291000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="241360000" />
+    <option name="totallyTimeSpent" value="242651000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1126,8 +1033,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-1048" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
@@ -1138,13 +1045,12 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.6359275" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34632036" sideWeight="0.7089552" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34632036" sideWeight="0.7089552" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.49573562" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16684435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10607676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.45788914" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37526652" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Time Tracking" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1159,6 +1065,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.45788914" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1699,12 +1606,12 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="256.5" y="353.5" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="257.0" y="354.0" />
           <SelectedNodes />
           <Categories>
             <Category>Fields</Category>
-            <Category>Methods</Category>
             <Category>Properties</Category>
+            <Category>Methods</Category>
           </Categories>
           <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
@@ -1748,7 +1655,7 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="686.5714285714286" y="797.7142857142857" />
+          <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="687.0" y="798.0" />
           <SelectedNodes />
           <Categories>
             <Category>Fields</Category>
@@ -1811,17 +1718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-          <folding>
-            <element signature="e#1755#1756#0" expanded="true" />
-            <element signature="e#1795#1796#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5017361">
@@ -1850,54 +1746,47 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="199" column="8" selection-start-line="199" selection-start-column="8" selection-end-line="210" selection-end-column="77" />
-          <folding>
-            <element signature="e#707#724#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33272395">
-          <caret line="58" column="57" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.38368055">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
           <folding>
-            <element signature="e#1170#1196#0" expanded="true" />
-            <element signature="e#1381#1396#0" expanded="true" />
-            <element signature="e#1475#1490#0" expanded="true" />
-            <element signature="e#1576#1591#0" expanded="true" />
-            <element signature="e#1678#1693#0" expanded="true" />
-            <element signature="e#1782#1797#0" expanded="true" />
-            <element signature="e#1877#1884#0" expanded="false" />
+            <element signature="e#1848#1855#0" expanded="false" />
             <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
+            <element signature="method#allocate#0;class#GlobalEnvService#0" expanded="false" />
             <element signature="method#allocate_proportionally#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="e#4763#4777#0" expanded="true" />
             <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="e#11195#11209#0" expanded="true" />
-            <element signature="e#19319#19328#0" expanded="true" />
-            <element signature="e#19388#19396#0" expanded="true" />
-            <element signature="e#23072#23080#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6753472">
-          <caret line="265" column="0" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5017361">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1185#1199#0" expanded="true" />
-            <element signature="e#9030#9044#0" expanded="true" />
-            <element signature="e#9431#9445#0" expanded="true" />
+            <element signature="e#8843#8857#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31944445">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07986111">
+          <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
