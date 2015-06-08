@@ -268,7 +268,13 @@ public class PowerPoolEnvService extends GlobalEnvService{
             logger.info("BordaSum: " +BordaSum + " For Agent: " + agent + " AgentBordaPoints:" + AgentBordaPoints_l.get(agent) + " Proportion: " + proportion_Borda);
             Demand request = ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
+            allocation.setProductivity(request.getProductivity());
+            allocation.setSocial_utility(request.getSocial_utility());
+            allocation.setHour(request.getHour());
+            setAllRanks(allocation);
+
             allocation.allocate(allocated.getAllocationD()*proportion_Borda, request.getGenerationRequest());
+
 
             logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
 

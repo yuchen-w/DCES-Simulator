@@ -70,6 +70,11 @@ public class ChildDemandHandler extends DemandHandler{
 
                 //todo
                 d.allocate(allocated.getAllocationD(), allocated.getAllocationG());
+                d.setCanonEqualityRank(allocated.getCanonEqualityRank());
+                d.setCanonSupplyAndDemandRank(allocated.getCanonSupplyAndDemandRank());
+                d.setCanonSocialUtilityRank(allocated.getCanonSocialUtilityRank());
+                d.setCanonProductivityRank(allocated.getCanonProductivityRank());
+                d.setCanonNeedsRank(allocated.getCanonNeedsRank());
 
                 double satisfaction = allocated.getAllocationD()/d.getDemandRequest();
                 //logger.info("ParentEnvService.Feedback");
