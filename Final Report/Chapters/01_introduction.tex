@@ -2,36 +2,16 @@
 \chapter{Introduction}
 \label{introduction}
 
-\section*{What is a decentralised community energy system}
-Talk about UK energy system, and how it compares to a decentralised energy system
+Electricity is in wide-spread use in many developed countries and are delivered by a vast network of cables, overhead lines and other assets maintained by Distribution and Transmission Network Operators. Electricity access has 100\% penetration in the UK \cite{World-Bank-web:2015}, and residents also benefits from a Transmission Network which operates at above 99\% reliability \cite{NG-web:2015}. In many areas of rural developing countries, there are often no wide-spread access to a continuous and reliable electricity supply which is provided by the country's electricity grid \cite{IEA-web:2015}. However there exists many isolated sources of electricity generation such as solar panels and standalone diesel generators utilised by relatively wealthy households, shops and buildings belonging to large organisations. 
 
-\section*{Simulate with MAS model}
-Why Multi-Agent, and why Presage.
-Design choices.
+The aim of this project is to explore the idea of using a holonic institution to model a Decentralised Community Energy System which bring together the existing decentralised generation infrastructure to provide a reliable electricity for users in rural communities. The model was constructed as a Multi-Agent System (MAS) and simulated using Presage 2 with individual consumers such as households and providers such as generators modelled agents. The agents can be grouped together to form communities such as villages, which in turn can be grouped together to form a larger entity such as a district or a province. 
 
-\section*{How is this applicable to the world we live in?}
-In many areas of rural developing countries, there are often no wide-spread access to a continuous and reliable electricity supply such provided by the country's electricity grid \cite{IEA-web:2015}. However there exists many isolated sources of electricity generation such as solar panels and standalone diesel generators utilised by relatively wealthy households, shops and buildings belonging to large organisations. 
+With the vast majority of people living in communities such as villages, towns and cities, the structure of the decentralised energy system model will need to be designed in a fashion that is scalable and allows grouping of people to form communities. Designing the structure of the simulation on the design of holonic systems simplifies the scalability aspect of having multiple communities in a simulation. A holonic system is one which is formed of many smaller systems, which are in turn formed of many smaller systems and so on, until reaching the most "elementary" of systems. In the case of this project, the simulation will be designed to be able to distribute fairly electrical power between interrelated agents which are in turn composed of interrelated subagents recursively, until reaching lowest level of subagents (households and businesses). 
 
-The aim of this project is to explore the idea of using a holonic institution to model a Decentralised Community Energy System which bring together the existing decentralised generation infrastructure to provide an affordable source of reliable electricity for users in rural communities. 
+A Multi-Agent System was selected to simulate as Agents are required to be able to act independently, to be unable to directly manipulate the environment and unable to control the actions of other Agents. In the case of this simulator, consumers are independent entities who can't change the environment conditions (e.g. have access to Grid Electricity) and unable to directly control the consumption and provision of other consumers or providers. Presage 2 was selected as the Multi-Agent Simulation platform as it was possible to seek support from PhD students within the EEE department who currently use the system.
 
-Over the course of this project, a multi-agent simulation model was built using Presage 2 with individual households and businesses modelled agents. The agents can be grouped together to form communities such as villages, which in turn can be grouped together to form a larger entity such as a district or a province. 
+With Presage 2, there are also some issues and limitations. The simulation results can sometimes be inconsistent due to out of order parallel execution by the simulation platform, and the simulation can only execute in discrete time steps. Suitable design steps have been taken to mitigate these problems and limitations which have been detailed in the Design section of this report. 
 
-%To do: cite here:
-With humans being social creatures who are likely to band together to form communities, the structure of the decentralised energy system model will be designed in a similar way with holonics. The structure of how the simulation is designed is based on the design of holonic systems. In the case of this project, the simulation will be to distribute fairly electrical power between interrelated agents which are in turn composed of interrelated subagents recursively, until reaching lowest level of subagents (households and businesses). 
-
-To allow the model to be realistic, candidate rural communities with no access to a source of reliable electricity will be identified using data and research. Additional data on usage habits and potential generation profiles of generators in the candidate areas will be obtained through research to produce a simulation model that is accurate and relevant.
-
-Include:
-\begin{itemize}
-	\item Design Choices: Holonics, design of objectives
-	\item difficulties and how they were designed:
-		\subitem Out of order parallel execution
-		\subitem Presage
-		\subitem One action per time step
-	\item Discovery or invetion of something novel?
-	\item What did you learn:
-		\subitem Java, Presage, Software design
-\end{itemize}
-
+To allow the model to be realistic, the model has been based on real rural communities in Rwanda, with realistic demand and generation profiles. Due to the lack of available data in Rwanda, the demand and generation profile has been approximated using data from rural UK load centres.
 
 This report outlines the design, implementation and testing of a holonic multiagent simulation of a decentralised energy system. 
