@@ -57,14 +57,15 @@ Agents represent the most "elementary" system such as generators, households, bu
 
 \subsection*{Agent Properties}
 Agent Properties represent the information that is to be relayed to the Community or Institution that the Agent is part of.
-\paragraph*{Demand} - All Agents will also have the Demand property which represents aggregated electricity consumption at a point of connection. Assumed demand curves will be produced from survey data of potential customers in the area for the initial testing. Should the survey data not be available for the area, a reasonable approximation will be made based a predicted usage habits of the wider local population.
+\begin{description}
+\item[Demand] - is a property which represents aggregated electricity consumption at a point of connection. Assumed demand curves will be produced from survey data of potential customers in the area for the initial testing. Should the survey data not be available for the area, a reasonable approximation will be made based a predicted usage habits of the wider local population.
 
 It is anticipated that the final simulation will have a desired demand profile that each agent will aim to have. 
 
 For Virtual Agents, this property represents the aggregated Demand of all connected sub-communities or Agents and will not have any associated Demand profiles.
 % However, the change in demand profile due to appropriation of energy must be able to satisfy the expected behavioral habits of the local inhabitants. These habits should include restrictions such as no trading during hours of sleep for households. What the habits will be, and how this will be implemented will be determined after some additional research into the area.
 
-\paragraph*{Generation} - All Agents will have a Generator property which will allow all agents to generate power. For Virtual Agents, this property represents the aggregated Generation of all connected sub-communities or Agents. Four types of generator properties will be implemented in this simulation model for Prosumer Agents: 
+\item[Generation] - is a property which will allow all agents to generate power. For Virtual Agents, this property represents the aggregated Generation of all connected sub-communities or Agents. Four types of generator properties will be implemented in this simulation model for Prosumer Agents: 
 
 \begin{itemize}
   \item Hydro-electric - a constant source of energy based on a mixture of historical data and projections.
@@ -84,10 +85,10 @@ With the power output of renewable sources of energy such as wind and solar bein
 
 A variation of both approaches are currently in use by distribution networks in the UK for assessing network congestion \cite{IPSA-web-constraint:2015}. \
 
-\paragraph*{Storage} - Storage devices will be batteries of various types that can be connected to the network. For the purpose of this project, it will be assumed that all Prosumer Agents will have one of these to allow allocation of electricity on a hourly basis.
+\item[Storage] - Storage devices will be batteries of various types that can be connected to the network. For the purpose of this project, it will be assumed that all Prosumer Agents will have one of these to allow allocation of electricity on a hourly basis.
 
 The Storage property should be designed have the capability to prioritise the allocation of its stored energy for certain Agents. For example, the energy output of Storage-only agents could be made to always prioritise the households they are attached to. If the battery box is communal or belongs to a centralised entity such as an e.quinox Energy Kiosk, then no priority will be attached.
-
+\end{description}
 \section*{Simulation with Presage 2}
 For the initial implementation and testing, the model will only contain two levels of Aggregation (see \ref{fig:SimEnv} below):
 
@@ -101,7 +102,17 @@ For the initial implementation and testing, the model will only contain two leve
 \clearpage
 During a round, Agents (or the houses in \ref{fig:SimEnv})are expected to publish their Demand/Generation request to the Virtual Agent that they are connected to. The Community that these parents are part of are represented by Virtual Agents. The Virtual Agent aggregates the connected Demand/Generation requests and publishes this information to the Supervisor. The Supervisor aggregates the total Demand/Generation and appropriates the electricity fairly, and curtails the generation if there is an excess.
 
-\section*{Fair Appropriation of the Common Pool Resource}
+The basic algorithm for the simulation is outlined below:
+
+\begin{pseudoc}
+  Agents submit Demand and Generation Requests to Virtual Agents
+  Virtual Agents submit Demand and Generation Requests to Supervisor
+  Supervisor determines amount of power available
+  Supervisor makes a provision of power to Virtual Agents
+  Virtual Agents makes a provision to Agents
+\end{pseudoc}
+
+\section*{Fair Allocation of the Common Pool Resource}
 With a lot of generation provided by renewable sources, there will be occurences when the aggregated Demand requests will be exceeded by the aggregated Generation requests. In circumstances such as these, electricity will need to be allocated to all users fairly. {\color{red} Rescher had observed in 1966 that a fair allocation can be found by ranking participants according to the Rescher's Canon of Distributive Justice:}
 
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
@@ -125,5 +136,6 @@ From Rescher's analysis, using each canon (criteria) alone as a basis for a clai
 	\item \textbf{\textit{The canon of supply and demand}} - When allocations are required, the Agents which are most "in demand" are those Agents who contribute the most to the common pool. Therefore to encourage contribution, Agents are ranked in decreasing order of their average provision
 	\item \textbf{\textit{The canon of merits and achievements}} - The merits and achievements of the Agents can't be accurately depicted in this simulation, and therefore excluded
 	\item \textbf{\textit{Weighting of the canon}} - The importance placed in each of these canons when used to decide the ranking of the legitimate claims made by the participants is decided by a vote. At the end of each allocation round, participants submit a vote to decide the importance of each of the canons for the next round
+	\item \textbf{\textit{Voting and multiple claims}} - To allow multiple claims to be allocated fairly, each canon and each Agent is treated as a voter in the Borda count protocol. During each allocation round, each Agent is given a number of votes by each of the canons. Under Borda count, each Agent receives a number of points corresponding to \textit{n-r+1} with n being the number of Agents being ranked, and r where the Agent placed in the ranking. For example, in a ranking of \textit{n=5} Agents, the Agent ranked first receves \textit{n-0=}5 votes, and last ranked Agent receiving \textit{n-4=}1 vote. Similarly, at the end of each allocation round, Agents rank the canons in a similar fashion to decide the points of each of the canons according to the Borda count protocol.
 \end{enumerate}
 
