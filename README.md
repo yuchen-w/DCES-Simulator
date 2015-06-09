@@ -18,7 +18,11 @@ To do:
 - Explore nesting of agents (done)
   - Explore creating agentservice (not required)
 Next Steps:
-- Deploy self-organising demand/generation allocation algorithm for agents
+- Deploy self-organising demand/generation allocation algorithm for agents (done)
 - Run simulations
 - Store simulation data
 - Integrate JBoss Rules Engine (http://www.jboss.org/drools/)
+
+Potential future work:
+- Implement Agent cheating
+
