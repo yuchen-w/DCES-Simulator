@@ -102,14 +102,16 @@ For the initial implementation and testing, the model will only contain two leve
 	\label{fig:SimEnv}
 \end{figure}
 
-Similar to many other Multi-Agent Simulators, there can be no direct Agent-to-Agent communication. All communication must be done via the environment. As such, the environments have been designed in such a way to enable multiple levels of holonic systems.
+Similar to many other Multi-Agent Simulators, there can be no direct Agent-to-Agent communication. All communication must be done via the environment. As such, the environments have been designed in such a way to enable multiple levels of holonic systems that can be seen in \ref{fig:SimEnv2}. 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.41]{Figures/Environment3.pdf}
 	\caption{A simplified overview of the simulation structure}
-	\label{fig:SimEnv}
+	\label{fig:SimEnv2}
 \end{figure}
+
+Architectually, Agents in the Simulation hold all of the information that is relevant to them. The Agents at the beginning of each allocation round submits their individual Demand and Generation request to the Virtual Agent that they are connected to. The Virtual Agents can submit their Group Demand and Group Generation Requests to other "Parent" Virtual Agents that they are connected to through the Parent Environment, and can do so recursively until the Group Demand and Generation have been sent to the Supervisor. By making the first initial allocation, the Supervisor is able to trigger a stream of allocation making by the Virtual Agents to the Virtual Agents and other Agents that are in their holonic sub-system.
 
 \clearpage
 During a round, Agents (or the houses in \ref{fig:SimEnv})are expected to publish their Demand/Generation request to the Virtual Agent that they are connected to. The Community that these parents are part of are represented by Virtual Agents. The Virtual Agent aggregates the connected Demand/Generation requests and publishes this information to the Supervisor. The Supervisor aggregates the total Demand/Generation and appropriates the electricity fairly, and curtails the generation if there is an excess.
@@ -134,6 +136,9 @@ The basic algorithm for the simulation is outlined below in Algorithm \ref{alg:b
 	\caption{Basic Simulator Algorithm}
 	\label{alg:basic}
 \end{algorithm}
+
+\subsection*{Time}
+With the simulation being built on Presage 2, the simulation will be run in discrete time. Currently in the UK, energy is traded on a forward market at least 30 minutes ahead of consumption. In a similar fashion, the micro-grid will have the provision and allocation done on an hourly basis, one hour ahead of consumption. The Demand request will be made automatically based on their consumption at the time of allocation without user intervention. It is assumed that there is a device such a smart meter in place which can intelligently request Demand based on past user demand profiles and current electricity consumption. 
 
 \section*{Fair Allocation of the Common Pool Resource}
 With a lot of generation provided by renewable sources, there will be occurences when the aggregated Demand requests will be exceeded by the aggregated Generation requests. In circumstances such as these, electricity will need to be allocated to all users fairly. {\color{red} Rescher had observed in 1966 that a fair allocation can be found by ranking participants according to the Rescher's Canon of Distributive Justice:}
@@ -162,4 +167,6 @@ From Rescher's analysis, using each canon (criteria) alone as a basis for a clai
 	\item \textbf{\textit{Weighting of the canon}} - The importance placed in each of these canons when used to decide the ranking of the legitimate claims made by the participants is decided by a vote. At the end of each allocation round, participants submit a vote to decide the importance of each of the canons for the next round
 	\item \textbf{\textit{Voting and multiple claims}} - To allow multiple claims to be allocated fairly, each canon and each Agent is treated as a voter in the Borda count protocol. During each allocation round, each Agent is given a number of votes by each of the canons. Under Borda count, each Agent receives a number of points corresponding to \textit{n-r+1} with n being the number of Agents being ranked, and r where the Agent placed in the ranking. For example, in a ranking of \textit{n=5} Agents, the Agent ranked first receves \textit{n-0=}5 votes, and last ranked Agent receiving \textit{n-4=}1 vote. Similarly, at the end of each allocation round, Agents rank the canons in a similar fashion to decide the points of each of the canons according to the Borda count protocol.
 \end{enumerate}
+
+%The algorithm which can allocate fairly by implementing the voting method and the canons outlined below can be found in the algorithm below
 
