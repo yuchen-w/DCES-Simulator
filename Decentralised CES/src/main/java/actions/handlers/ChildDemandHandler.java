@@ -54,6 +54,7 @@ public class ChildDemandHandler extends DemandHandler{
                 //logger.info("ProsumerAgent: " + actor +" requesting: " + d.getDemandRequest() + " and is providing " + d.getGenerationRequest());		//Debug
                 //logger.info ("Agent: " + d.getAgentID() + " Total Canon Weight: " + d.getTotalCanonWeight());
                 this.ParentService.addToAgentPool(d);
+                logger.info("Hour = " + d.getHour());
 
             }
 

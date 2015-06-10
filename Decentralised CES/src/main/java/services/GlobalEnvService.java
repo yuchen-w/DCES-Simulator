@@ -16,6 +16,10 @@ import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.Step;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -133,7 +137,7 @@ public class GlobalEnvService extends EnvironmentService{
             allocation.setCanonProductivityWeight(request.getCanonProductivityWeight());
             allocation.setCanonSocialUtilityWeight(request.getCanonSocialUtilityWeight());
             allocation.setCanonSupplyAndDemandWeight(request.getCanonSupplyAndDemandWeight());
-            allocation.setHour(request.getHour());
+            allocation.setHour(Total.getHour());
 
             //logger.info("Agent: " + agent + " Productivity: " + request.getProductivity() + " Social Utility: " + request.getSocial_utility());
 
@@ -498,7 +502,6 @@ public class GlobalEnvService extends EnvironmentService{
     {
         int BordaPt = 1;
         double prev_val = -1;       //-1 to eliminate issue when history is 0;
-
         int iterator = 0;
         double CanonBordaSum = 0;
         if (CanonName == Canon.equality)
@@ -560,7 +563,6 @@ public class GlobalEnvService extends EnvironmentService{
                 if (iterator < BordaPtStorage.size()-1) {
                     BordaPtStorage.set(iteratorStorage.get(iterator), BordaPtStorage.get(iteratorStorage.get(iterator) + 1));
                     //go back and replace the wrongly calculated Borda rank with the correct one
-                    //todo: do the same for rank here
                 }
                 iterator--;
             }
@@ -582,10 +584,20 @@ public class GlobalEnvService extends EnvironmentService{
 
             AgentBordaPoints.put(ID, sum);
             iterator++;
+            try{
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocation.csv", true)));
+                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + AgentBordaPoints.get(ID));
+                out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+            }catch (IOException e) {
+
+            }
         }
+
 
         //logger.info("Input Map: " + tMap);
         //logger.info("Agent Point Allocation" + AgentBordaPoints);
+
+
 
         return AgentBordaPoints;
 
@@ -649,7 +661,13 @@ public class GlobalEnvService extends EnvironmentService{
             BordaPt--;
             iterator++;
             BordaRank.put(entry.getKey(), iterator);
+            try{
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("BordaRank.csv", true)));
+                out.println(Total.getHour() + ", " + entry.getKey() + ", " + CanonName + " ," + iterator);
+                out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+            }catch (IOException e) {
 
+            }
         }
 
         if (RecalcBorda == true) {
@@ -660,6 +678,7 @@ public class GlobalEnvService extends EnvironmentService{
                     //go back and replace the wrongly calculated Borda rank with the correct one
                 }
                 iterator--;
+
             }
         }
 
@@ -678,6 +697,13 @@ public class GlobalEnvService extends EnvironmentService{
 
             AgentBordaPoints.put(ID, sum);
             iterator++;
+            try{
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocation.csv", true)));
+                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + AgentBordaPoints.get(ID));
+                out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+            }catch (IOException e) {
+
+            }
         }
 
         //logger.info("Input Map: " + tMap);
