@@ -47,16 +47,19 @@ Agents that group together are connected to a central virtual agent to allow the
 	\label{fig:SimpleModel2}
 \end{figure}
 
-\subsection*{Types of Agents}
+\section*{Types of Agents}
 A Multi-Agent System's main components are Agents, which are the actors which can act on the environment. Outlined below are the Agents that will be implemented as part of the simulator.
-\subsubsection*{Virtual Agents}
-Virtual Agents represents all connected sub-communities or Agents in a community of Virtual Agents. These Agents will be responsible for enforcing quotas on connected sub-communities or Agents and collecting Generation for the Common Pool. 
+\begin{description}
+\item[Virtual Agents]
+represent all connected sub-communities or Agents in a community of Virtual Agents. These Agents will be responsible for enforcing quotas on connected sub-communities or Agents and collecting Generation for the Common Pool. 
 
-\subsubsection*{Prosumer Agents}
-Agents represent the most "elementary" system such as generators, households, businesses and other demand centres.
+\item[Prosumer Agents]
+represent the most "elementary" system such as generators, households, businesses and other demand centres.
+\end{description}
 
-\subsection*{Agent Properties}
+\section*{Agent Properties}
 Agent Properties represent the information that is to be relayed to the Community or Institution that the Agent is part of.
+
 \begin{description}
 \item[Demand] - is a property which represents aggregated electricity consumption at a point of connection. Assumed demand curves will be produced from survey data of potential customers in the area for the initial testing. Should the survey data not be available for the area, a reasonable approximation will be made based a predicted usage habits of the wider local population.
 
@@ -90,7 +93,7 @@ A variation of both approaches are currently in use by distribution networks in 
 The Storage property should be designed have the capability to prioritise the allocation of its stored energy for certain Agents. For example, the energy output of Storage-only agents could be made to always prioritise the households they are attached to. If the battery box is communal or belongs to a centralised entity such as an e.quinox Energy Kiosk, then no priority will be attached.
 \end{description}
 \section*{Simulation with Presage 2}
-For the initial implementation and testing, the model will only contain two levels of Aggregation (see \ref{fig:SimEnv} below):
+For the initial implementation and testing, the model will only contain two levels of Aggregation designed similar to \ref{fig:SimEnv} because the micro-grid in Rugaragara Falls will be only connecting one to two communities. 
 
 \begin{figure}[h!]
 	\centering
@@ -99,18 +102,31 @@ For the initial implementation and testing, the model will only contain two leve
 	\label{fig:SimEnv}
 \end{figure}
 
+Similar to many other Multi-Agent Simulators, there can be no direct Agent-to-Agent communication. All communication needs to be done via the environment.
+
 \clearpage
 During a round, Agents (or the houses in \ref{fig:SimEnv})are expected to publish their Demand/Generation request to the Virtual Agent that they are connected to. The Community that these parents are part of are represented by Virtual Agents. The Virtual Agent aggregates the connected Demand/Generation requests and publishes this information to the Supervisor. The Supervisor aggregates the total Demand/Generation and appropriates the electricity fairly, and curtails the generation if there is an excess.
 
-The basic algorithm for the simulation is outlined below:
+The basic algorithm for the simulation is outlined below in Algorithm \ref{alg:basic}: \\
 
-\begin{pseudoc}
-  Agents submit Demand and Generation Requests to Virtual Agents
-  Virtual Agents submit Demand and Generation Requests to Supervisor
-  Supervisor determines amount of power available
-  Supervisor makes a provision of power to Virtual Agents
-  Virtual Agents makes a provision to Agents
-\end{pseudoc}
+\begin{algorithm}[H]
+	\For{each Agent} {
+		request \textit{Demand} and \textit{Generation} from Virtual Agent\;
+	}
+	\For{each Virtual Agent} {
+		request \textit{Group Demand} and \textit{Group Generation} from Supervisor Agent\;
+	}
+	\eIf{Group Generation >= Group Demand}{
+		curtail Group Generation\;
+	}{
+		allocate fairly Group Demand among Virtual Agents\;
+	}
+	\For{each Virtual Agent} {
+		allocate \textit{Group Demand} and \textit{Group Generation} allocated from Supervisor Agent\;
+	}
+	\caption{Basic Simulator Algorithm}
+	\label{alg:basic}
+\end{algorithm}
 
 \section*{Fair Allocation of the Common Pool Resource}
 With a lot of generation provided by renewable sources, there will be occurences when the aggregated Demand requests will be exceeded by the aggregated Generation requests. In circumstances such as these, electricity will need to be allocated to all users fairly. {\color{red} Rescher had observed in 1966 that a fair allocation can be found by ranking participants according to the Rescher's Canon of Distributive Justice:}
@@ -124,6 +140,7 @@ With a lot of generation provided by renewable sources, there will be occurences
 	\item Treatment according to supply and demand
 	\item Treatment according to their ability, merit or achievements
 \end{enumerate}
+
 
 From Rescher's analysis, using each canon (criteria) alone as a basis for a claim was inadequate as it was deemed unfair. Instead, for a fair system, all canons need to be employed in conjunction with each other. In a democratic and self-organising system, the importance of each canon in the eventual allocation should be decided by the system participants. In this simulation, how the participants are ranked according to the canons are based on a similar allocation systems demonstrated in \textit{LPG'}\cite{PittSASO2012} , and are defined as below:
 

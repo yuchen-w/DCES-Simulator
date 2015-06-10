@@ -9,6 +9,7 @@
 \usepackage[superscript,biblabel]{cite}
 \usepackage{pdfcomment}
 \usepackage[rgb]{xcolor}
+\usepackage[]{algorithm2e}
 %\usepackage[round]{natbib}\citeindextrue % Round brackets around citations, change to square for square brackets
 \usepackage{graphicx} % Required to include images
 \usepackage{color} % Required for custom colors
@@ -111,7 +112,8 @@
   breaklines=true
 }
 % Examples of list environments for different programming languages, you will likely need to specify your own
-\lstnewenvironment{pseudoc}{\lstset{frame=lines,language=C,mathescape=true}}{}
+%\lstnewenvironment{pseudoc}{\lstset{frame=lines,language=C,mathescape=true}}{}
+\lstnewenvironment{pseudoc}[1][]{\lstset{frame=lines,language=Python,mathescape=true,caption={#1}}}{}
 \lstnewenvironment{logs}{\lstset{frame=lines,basicstyle=\footnotesize\ttfamily,numbers=none}}{}
 \lstnewenvironment{cc}{\lstset{frame=lines,language=C}}{}
 \lstnewenvironment{c64}{\lstset{backgroundcolor=\color{c64},basewidth=0.65em,basicstyle=\commodoreface\color{c64light},numbers=none,framerule=10pt,rulecolor=\color{c64light},frame=tb,framexbottommargin=30pt}}{}
