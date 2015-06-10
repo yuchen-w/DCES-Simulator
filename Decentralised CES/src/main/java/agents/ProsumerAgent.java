@@ -52,16 +52,16 @@ public class ProsumerAgent extends ParentAgent {
         super(id, name);
         this.parent = parent;
         this.parent_id = parent_id;
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentBordaVotes.csv", true)));
-            out.println("Hour" +", "+ "AgentName" + ", " + "Equality" + " ,"
-                            +"Productivity"+ " ," + "Utility" + " ,"
-                            + "Needs" + " ," + "Supply and Demand"
-            );
-            out.close();
-        }catch (IOException e) {
-            logger.info("Failed to write to file" + allocation);
-        }
+//        try{
+//            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentBordaVotes.csv", true)));
+//            out.println("Hour" +", "+ "AgentName" + ", " + "Equality" + " ,"
+//                            +"Productivity"+ " ," + "Utility" + " ,"
+//                            + "Needs" + " ," + "Supply and Demand"
+//            );
+//            out.close();
+//        }catch (IOException e) {
+//            logger.info("Failed to write to file" + allocation);
+//        }
     }
 
     public void addProductivity(int i)
@@ -83,7 +83,7 @@ public class ProsumerAgent extends ParentAgent {
         this.CanonSupplyAndDemandWeight = children - AgentDemand.getCanonSupplyAndDemandRank() + 1;
 
         try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("BordaWeights.csv", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentCanonVotes.csv", true)));
             out.println(hourCount +", "+ this.getID() + ", " + this.CanonEqualityWeight + " ,"
                             +this.CanonProductivityWeight + " ," + this.CanonSocialUtilityWeight + " ,"
                             + CanonNeedsWeight + " ," + CanonSupplyAndDemandWeight
@@ -136,7 +136,7 @@ public class ProsumerAgent extends ParentAgent {
 
             try{
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Ranking.csv", true)));
-                out.println(hourCount +", "+ this.getName() + ", " +AgentDemand.getCanonEqualityRank() + " ,"
+                out.println(hourCount +", "+ this.getName() + " ," + this.getID() + " ," + AgentDemand.getCanonEqualityRank() + " ,"
                         + AgentDemand.getCanonNeedsRank() + " ," + AgentDemand.getCanonProductivityRank() + " ,"
                         + AgentDemand.getCanonSocialUtilityRank() + " ," + AgentDemand.getCanonSupplyAndDemandRank()
                         );

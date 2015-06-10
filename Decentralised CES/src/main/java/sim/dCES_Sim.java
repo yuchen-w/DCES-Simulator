@@ -74,7 +74,7 @@ public class dCES_Sim extends RunnableSimulation {
 
         try{
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
-            out.println("hour, name , D , G");
+            out.println("hour, name , Request D , Request G");
             out.close(); //Fixing Resource specification not allowed here for source level below 1.7
         }catch (IOException e) {
 
@@ -104,7 +104,7 @@ public class dCES_Sim extends RunnableSimulation {
 
                 for (int k=0; k<hours; k++)
                 {
-                    prosumer.addProfileHourly(Random.randomDouble()+1, Random.randomDouble());
+                    prosumer.addProfileHourly(Random.randomDouble()+1, Random.randomDouble()+2);
                 }
 
                 for (int k=0; k<hours; k++)
