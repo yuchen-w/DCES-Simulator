@@ -102,7 +102,14 @@ For the initial implementation and testing, the model will only contain two leve
 	\label{fig:SimEnv}
 \end{figure}
 
-Similar to many other Multi-Agent Simulators, there can be no direct Agent-to-Agent communication. All communication needs to be done via the environment.
+Similar to many other Multi-Agent Simulators, there can be no direct Agent-to-Agent communication. All communication must be done via the environment. As such, the environments have been designed in such a way to enable multiple levels of holonic systems.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 0.41]{Figures/Environment3.pdf}
+	\caption{A simplified overview of the simulation structure}
+	\label{fig:SimEnv}
+\end{figure}
 
 \clearpage
 During a round, Agents (or the houses in \ref{fig:SimEnv})are expected to publish their Demand/Generation request to the Virtual Agent that they are connected to. The Community that these parents are part of are represented by Virtual Agents. The Virtual Agent aggregates the connected Demand/Generation requests and publishes this information to the Supervisor. The Supervisor aggregates the total Demand/Generation and appropriates the electricity fairly, and curtails the generation if there is an excess.
