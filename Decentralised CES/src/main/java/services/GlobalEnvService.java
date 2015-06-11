@@ -226,30 +226,30 @@ public class GlobalEnvService extends EnvironmentService{
     protected HashMap<UUID, Double> canon_of_equality( ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
     {
         // TreeMap <UUID, Double> AvgAllocation = new TreeMap<UUID, Double>();
-        HashMap <UUID, Double> AvgDemand = new HashMap<UUID, Double>();
-
-        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
-            AvgDemand.put(ID, calcAvgDemand(ID));
-        }
-
-        AvgDemand = sortByValue(AvgDemand);
-
-        //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgDemand);
-        return sortBordaPointsReverse(AvgDemand, AgentBordaPoints, CanonEqualityRank, Total, Canon.equality);
-
-    }
-
-    protected HashMap<UUID, Double> canon_of_needs(ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
-    {
-        //sort by average demands
         HashMap <UUID, Double> AvgAllocation = new HashMap<UUID, Double>();
+
         for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
             AvgAllocation.put(ID, calcAvgAllocation(ID));
         }
 
         AvgAllocation = sortByValue(AvgAllocation);
 
-        return sortBordaPointsReverse(AvgAllocation, AgentBordaPoints, CanonNeedsRank, Total, Canon.needs);
+        //logger.info("ChildrenList: " + ChildrenList +" Sorted AvgAllocation List: " + AvgDemand);
+        return sortBordaPointsReverse(AvgAllocation, AgentBordaPoints, CanonEqualityRank, Total, Canon.equality);
+
+    }
+
+    protected HashMap<UUID, Double> canon_of_needs(ArrayList<UUID> ChildrenList, HashMap<UUID, Double> AgentBordaPoints, Demand Total)
+    {
+        //sort by average demands
+        HashMap <UUID, Double> AvgDemand = new HashMap<UUID, Double>();
+        for (UUID ID : ChildrenList) {   //Sort the AvgAllocation by size
+            AvgDemand.put(ID, calcAvgDemand(ID));
+        }
+
+        AvgDemand = sortByValue(AvgDemand);
+
+        return sortBordaPointsReverse(AvgDemand, AgentBordaPoints, CanonNeedsRank, Total, Canon.needs);
         //return
     }
 
@@ -289,6 +289,8 @@ public class GlobalEnvService extends EnvironmentService{
         }
 
         EconOutput = sortByValue(EconOutput);
+
+        logger.info("EconOutput Sorted:" + EconOutput);
 
         return sortBordaPoints(EconOutput, AgentBordaPoints, CanonProductivityRank, Total, Canon.productivity);
 
@@ -387,6 +389,7 @@ public class GlobalEnvService extends EnvironmentService{
             list = new ArrayList<Integer>();
             list.add(Productivity);
         }
+        //logger.info("StoringEconOutput: " + list);
         this.ProductivityHistory.put(id, list);
     }
 
@@ -702,6 +705,12 @@ public class GlobalEnvService extends EnvironmentService{
                 BordaRank.put(BordaCurrKeyStorage.get(iterator), BordaRank.get(BordaPrevKeyStorage.get(iterator)));
                 //go back and replace the wrongly calculated Borda rank with the correct one
             }
+        }
+        logger.info("BordaRank: " + BordaRank);
+
+        if (CanonName == Canon.needs)
+        {
+            logger.info("BordaRank: " + BordaRank);
         }
 
         iterator = 0;
