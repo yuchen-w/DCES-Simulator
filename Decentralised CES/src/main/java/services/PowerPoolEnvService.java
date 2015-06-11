@@ -210,6 +210,10 @@ public class PowerPoolEnvService extends GlobalEnvService{
                 logger.info("Curtailment factor = " + curtailmentFactor);
                 logger.info("Allocation post curtailment, D,G = " + allocation.getAllocationD() +"  "+allocation.getAllocationG());
                 ChildEnvService.setGroupDemand(agent, allocation);
+
+                allocation.setProductivity(request.getProductivity());
+                allocation.setSocial_utility(request.getSocial_utility());
+                environmentStore(agent, allocation);
             }
         } else {
             if (allocationType == 1 ) {
@@ -233,6 +237,10 @@ public class PowerPoolEnvService extends GlobalEnvService{
             allocation.allocate(request.getDemandRequest()*proportion, request.getGenerationRequest());
             logger.info("shortfall > 0; proportion factor is:" + proportion + " Appropriating: D =" + allocation.getAllocationD() + " G=" + allocation.getAllocationG() + " to Agent: " + agent);
             ChildEnvService.setGroupDemand(agent, allocation);
+
+            allocation.setProductivity(request.getProductivity());
+            allocation.setSocial_utility(request.getSocial_utility());
+            environmentStore(agent, allocation);
         }
     }
 
@@ -270,13 +278,21 @@ public class PowerPoolEnvService extends GlobalEnvService{
             allocation.setHour(request.getHour());
             setAllRanks(allocation);
 
-            allocation.allocate(allocated.getAllocationD()*proportion_Borda, request.getGenerationRequest());
+            allocation.setCanonEqualityWeight(request.getCanonEqualityWeight());
+            allocation.setCanonNeedsWeight(request.getCanonNeedsWeight());
+            allocation.setCanonProductivityWeight(request.getCanonProductivityWeight());
+            allocation.setCanonSocialUtilityWeight(request.getCanonSocialUtilityWeight());
+            allocation.setCanonSupplyAndDemandWeight(request.getCanonSupplyAndDemandWeight());
+            allocation.setHour(allocated.getHour());
 
+            allocation.allocate(allocated.getAllocationD()*proportion_Borda, request.getGenerationRequest());
 
             logger.info("Allocating to Agent: " + agent + " D: " + allocation.getAllocationD() + " G: " + allocation.getAllocationG());
 
             ChildEnvService.setGroupDemand(agent, allocation);
             environmentStore(agent, allocation);
+            logger.info(" EconOutput for Agent: " + agent + " is: " + this.ProductivityHistory.get(agent));
+            logger.info(" AllocationHistory for Agent: " + agent + " is: " + this.AllocationHistory.get(agent));
         }
     }
 

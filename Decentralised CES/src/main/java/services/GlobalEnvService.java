@@ -33,8 +33,8 @@ public class GlobalEnvService extends EnvironmentService{
     HashMap<UUID, ArrayList<Double>> AllocationHistory = new HashMap<UUID, ArrayList<Double>>();
     HashMap<UUID, ArrayList<Double>> DemandHistory = new HashMap<UUID, ArrayList<Double>>();
     HashMap<UUID, ArrayList<Double>> GenerationHistory = new HashMap<UUID, ArrayList<Double>>();
-    HashMap<UUID, ArrayList<Integer>> ProductivityHistory = new HashMap<UUID, ArrayList<Integer>>();
-    HashMap<UUID, ArrayList<Integer>> SocialUtilityHistory = new HashMap<UUID, ArrayList<Integer>>();
+    HashMap<UUID, ArrayList<Double>> ProductivityHistory = new HashMap<UUID, ArrayList<Double>>();
+    HashMap<UUID, ArrayList<Double>> SocialUtilityHistory = new HashMap<UUID, ArrayList<Double>>();
 
     ConcurrentHashMap<UUID, Integer> CanonEqualityRank = new ConcurrentHashMap<UUID, Integer>();
     ConcurrentHashMap<UUID, Integer> CanonNeedsRank = new ConcurrentHashMap<UUID, Integer>();
@@ -79,6 +79,9 @@ public class GlobalEnvService extends EnvironmentService{
                 allocation.curtail(curtailmentFactor);
                 //logger.info("Allocating: " + allocation.getAllocationD() + " " + allocation.getAllocationG());
                 ChildEnvService.setGroupDemand(agent, allocation);
+                allocation.setProductivity(request.getProductivity());
+                allocation.setSocial_utility(request.getSocial_utility());
+                environmentStore(agent, allocation);
             }
         }
         else
@@ -103,7 +106,10 @@ public class GlobalEnvService extends EnvironmentService{
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
             allocation.allocate(request.getDemandRequest()*proportion, request.getGenerationRequest());
             ChildEnvService.setGroupDemand(agent, allocation);
-            //storeAllocation(agent, allocation.getAllocationD());
+
+            allocation.setProductivity(request.getProductivity());
+            allocation.setSocial_utility(request.getSocial_utility());
+            environmentStore(agent, allocation);
         }
     }
 
@@ -276,6 +282,8 @@ public class GlobalEnvService extends EnvironmentService{
 
         SocialUtilityHistory = sortByValue(SocialUtilityHistory);
 
+        //logger.info("Social Utility Sorted: " + SocialUtilityHistory);
+
         return sortBordaPoints(SocialUtilityHistory, AgentBordaPoints, CanonSocialUtilityRank, Total, Canon.social_utility);
     }
 
@@ -290,7 +298,7 @@ public class GlobalEnvService extends EnvironmentService{
 
         EconOutput = sortByValue(EconOutput);
 
-        logger.info("EconOutput Sorted:" + EconOutput);
+        //logger.info("EconOutput Sorted:" + EconOutput);
 
         return sortBordaPoints(EconOutput, AgentBordaPoints, CanonProductivityRank, Total, Canon.productivity);
 
@@ -341,7 +349,6 @@ public class GlobalEnvService extends EnvironmentService{
             list.add(allocationD);
         }
         this.AllocationHistory.put(id, list);
-
     }
 
     protected void storeDemand(UUID id, double Demand)
@@ -376,9 +383,9 @@ public class GlobalEnvService extends EnvironmentService{
         this.GenerationHistory.put(id, list);
     }
 
-    protected void storeEconOutput(UUID id, int Productivity)
+    protected void storeEconOutput(UUID id, double Productivity)
     {
-        ArrayList<Integer> list;
+        ArrayList<Double> list;
         if (this.ProductivityHistory.containsKey(id))
         {
             list = this.ProductivityHistory.get(id);
@@ -386,16 +393,16 @@ public class GlobalEnvService extends EnvironmentService{
         }
         else
         {
-            list = new ArrayList<Integer>();
+            list = new ArrayList<Double>();
             list.add(Productivity);
         }
-        //logger.info("StoringEconOutput: " + list);
+        //logger.info("Agent: " + id + "StoringEconOutput: " + list);
         this.ProductivityHistory.put(id, list);
     }
 
-    protected void storeSocialUtility(UUID id, int Utility)
+    protected void storeSocialUtility(UUID id, double Utility)
     {
-        ArrayList<Integer> list;
+        ArrayList<Double> list;
         if (this.SocialUtilityHistory.containsKey(id))
         {
             list = this.SocialUtilityHistory.get(id);
@@ -403,7 +410,7 @@ public class GlobalEnvService extends EnvironmentService{
         }
         else
         {
-            list = new ArrayList<Integer>();
+            list = new ArrayList<Double>();
             list.add(Utility);
         }
         this.SocialUtilityHistory.put(id, list);
@@ -461,10 +468,12 @@ public class GlobalEnvService extends EnvironmentService{
     {
         if (this.ProductivityHistory.containsKey(id))
         {
-            ArrayList<Integer> list = this.ProductivityHistory.get(id);
+            ArrayList<Double> list = this.ProductivityHistory.get(id);
+
             double sum = 0;
-            for (Integer i : list)
+            for (Double i : list)
                 sum += i;
+            //logger.info("Agent: " + id + " EconHistory: " + list + " Sum:" + sum);  //todo: debug
             return sum;
         }
         else
@@ -477,9 +486,9 @@ public class GlobalEnvService extends EnvironmentService{
     {
         if (this.SocialUtilityHistory.containsKey(id))
         {
-            ArrayList<Integer> list = this.SocialUtilityHistory.get(id);
+            ArrayList<Double> list = this.SocialUtilityHistory.get(id);
             double sum = 0;
-            for (Integer i : list)
+            for (Double i : list)
                 sum += i;
             return sum;
         }
