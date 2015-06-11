@@ -113,7 +113,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
 	public parentDemand getGroupDemand(parentDemand Parent)
 	{
 		parentDemand sum = new parentDemand(0, 0, Parent.getAgentID(), null);
-        logger.info("AgentDemandStorage: " + AgentDemandStorage);
+        //logger.info("AgentDemandStorage: " + AgentDemandStorage);
         for (int i=0; i<Parent.getChildrenList().size(); i++)
 		{
             sum.addDemand(AgentDemandStorage.get(Parent.getChildrenList().get(i)));
@@ -242,7 +242,7 @@ public class PowerPoolEnvService extends GlobalEnvService{
         logger.info("GlobalEnvService allocating fairly");
 
         HashMap<UUID, Double> AgentBordaPoints = new HashMap<UUID, Double>();
-        logger.info(" AgentBordaPoints = calculateAllCanons(ChildrenList, AgentBordaPoints, allocated); ChildrenList: " + ChildrenList);
+        //logger.info(" AgentBordaPoints = calculateAllCanons(ChildrenList, AgentBordaPoints, allocated); ChildrenList: " + ChildrenList);
         AgentBordaPoints = calculateAllCanons(ChildrenList, AgentBordaPoints, allocated);
 
         for (int i=0; i<ChildrenList.size(); i++)
