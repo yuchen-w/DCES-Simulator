@@ -503,7 +503,6 @@ public class GlobalEnvService extends EnvironmentService{
     protected HashMap <UUID, Double> sortBordaPoints(HashMap<UUID, Double> tMap, HashMap <UUID, Double> AgentBordaPoints, ConcurrentHashMap<UUID, Integer> BordaRank, Demand Total, Canon CanonName)
     {
         int BordaPt = 1;
-        double prev_val = -1;       //-1 to eliminate issue when history is 0;
         int iterator = 0;
         double CanonBordaSum = 0;
         if (CanonName == Canon.equality)
@@ -533,6 +532,10 @@ public class GlobalEnvService extends EnvironmentService{
 
         ArrayList<Integer> iteratorStorage = new ArrayList<Integer>();
         ArrayList<Double> BordaPtStorage = new ArrayList<Double>();
+        ArrayList<UUID> BordaPrevKeyStorage = new ArrayList<UUID>();   //Key = Previous key which has the same rank as this; Value = Key to replace with
+        ArrayList<UUID> BordaCurrKeyStorage = new ArrayList<UUID>();
+        double prev_val = -1;       //-1 to eliminate issue when history is 0;
+        UUID prev_key = UUID.randomUUID();
 
         boolean RecalcBorda = false;
         //logger.info("Average allocation: " + tMap);
@@ -546,12 +549,15 @@ public class GlobalEnvService extends EnvironmentService{
                 //logger.info("if (value == prev_val), Prev Value: " + prev_val + " Current Val: " + value);
                 iteratorStorage.add(iterator-1);
                 RecalcBorda = true;
+                BordaPrevKeyStorage.add(prev_key);
+                BordaCurrKeyStorage.add(entry.getKey());
                 //if multiple elements within tMap has the same rank, set the last one to have the correct BordaPt
             }
             //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
             BordaPtStorage.add((double)BordaPt*BordaProportion);
 
             prev_val = value;
+            prev_key = entry.getKey();
 
             BordaRank.put(entry.getKey(), tMap.size() - iterator);
 
@@ -572,8 +578,13 @@ public class GlobalEnvService extends EnvironmentService{
             while (iterator >= 0) {
                 if (iterator < BordaPtStorage.size()-1) {
                     BordaPtStorage.set(iteratorStorage.get(iterator), BordaPtStorage.get(iteratorStorage.get(iterator) + 1));
-                    //go back and replace the wrongly calculated Borda rank with the correct one
                 }
+                iterator--;
+            }
+            iterator = BordaPrevKeyStorage.size() - 1;
+            while (iterator >= 0){
+                BordaRank.put(BordaPrevKeyStorage.get(iterator), BordaRank.get(BordaCurrKeyStorage.get(iterator)));
+                //go back and replace the wrongly calculated Borda rank with the correct one
                 iterator--;
             }
         }
@@ -603,14 +614,10 @@ public class GlobalEnvService extends EnvironmentService{
             }
         }
 
-
         //logger.info("Input Map: " + tMap);
         //logger.info("Agent Point Allocation" + AgentBordaPoints);
 
-
-
         return AgentBordaPoints;
-
     }
 
     //Takes a sorted list (small -> big) and allocates Borda points from big to small
@@ -649,6 +656,9 @@ public class GlobalEnvService extends EnvironmentService{
 
         ArrayList<Integer> iteratorStorage = new ArrayList<Integer>();
         ArrayList<Double> BordaPtStorage = new ArrayList<Double>();
+        ArrayList<UUID> BordaPrevKeyStorage = new ArrayList<UUID>();   //Key = Previous key which has the same rank as this; Value = Key to replace with
+        ArrayList<UUID> BordaCurrKeyStorage = new ArrayList<UUID>();
+        UUID prev_key = UUID.randomUUID();
         boolean RecalcBorda = false;
         //logger.info("Average allocation: " + tMap);
         for (Map.Entry<UUID, Double> entry : tMap.entrySet())
@@ -661,12 +671,15 @@ public class GlobalEnvService extends EnvironmentService{
                 //logger.info("if (value == prev_val), Prev Value: " + prev_val + " Current Val: " + value);
                 iteratorStorage.add(iterator-1);
                 RecalcBorda = true;
+                BordaPrevKeyStorage.add(prev_key);
+                BordaCurrKeyStorage.add(entry.getKey());
                 //if multiple elements within tMap has the same rank, set the last one to have the correct BordaPt
             }
             //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
             BordaPtStorage.add(BordaProportion*(double)BordaPt);
 
             prev_val = value;
+            prev_key = entry.getKey();
 
             BordaPt--;
             iterator++;
@@ -688,7 +701,11 @@ public class GlobalEnvService extends EnvironmentService{
                     //go back and replace the wrongly calculated Borda rank with the correct one
                 }
                 iterator--;
-
+                while (iterator >= 0){
+                    BordaRank.put(BordaPrevKeyStorage.get(iterator), BordaRank.get(BordaCurrKeyStorage.get(iterator)));
+                    //go back and replace the wrongly calculated Borda rank with the correct one
+                    iterator--;
+                }
             }
         }
 
@@ -720,6 +737,5 @@ public class GlobalEnvService extends EnvironmentService{
         //logger.info("Agent Point Allocation" + AgentBordaPoints);
 
         return AgentBordaPoints;
-
     }
 }
