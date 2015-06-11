@@ -130,8 +130,10 @@ public class GlobalEnvService extends EnvironmentService{
 
             parentDemand request = (parentDemand)ChildEnvService.getAgentDemand(agent);
             parentDemand allocation = new parentDemand(request.getDemandRequest(), request.getGenerationRequest(), agent); //todo fix this
+
             allocation.setProductivity(request.getProductivity());
             allocation.setSocial_utility(request.getSocial_utility());
+
             allocation.setCanonEqualityWeight(request.getCanonEqualityWeight());
             allocation.setCanonNeedsWeight(request.getCanonNeedsWeight());
             allocation.setCanonProductivityWeight(request.getCanonProductivityWeight());
@@ -553,6 +555,14 @@ public class GlobalEnvService extends EnvironmentService{
 
             BordaRank.put(entry.getKey(), tMap.size() - iterator);
 
+            try{
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("BordaRank.csv", true)));
+                out.println(Total.getHour() + ", " + entry.getKey() + ", " + CanonName + " ," + (tMap.size() - iterator));
+                out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+            }catch (IOException e) {
+
+            }
+
             BordaPt++;
             iterator++;
         }
@@ -585,8 +595,8 @@ public class GlobalEnvService extends EnvironmentService{
             AgentBordaPoints.put(ID, sum);
             iterator++;
             try{
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocation.csv", true)));
-                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + AgentBordaPoints.get(ID));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
+                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + AgentBordaPoints.get(ID) + ", " + BordaProportion + ", " + CanonBordaSum + ", " + Total.getTotalCanonWeight());
                 out.close(); //Fixing Resource specification not allowed here for source level below 1.7
             }catch (IOException e) {
 
@@ -698,8 +708,8 @@ public class GlobalEnvService extends EnvironmentService{
             AgentBordaPoints.put(ID, sum);
             iterator++;
             try{
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocation.csv", true)));
-                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + AgentBordaPoints.get(ID));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
+                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + AgentBordaPoints.get(ID) + ", " + BordaProportion + ", " + CanonBordaSum + ", " + Total.getTotalCanonWeight());
                 out.close(); //Fixing Resource specification not allowed here for source level below 1.7
             }catch (IOException e) {
 

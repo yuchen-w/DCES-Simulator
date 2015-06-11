@@ -27,6 +27,7 @@ public class ProsumerAgent extends ParentAgent {
     public String allocation = "allocation.csv";
 
     ArrayList<Integer> Productivity = new ArrayList<>();
+    ArrayList<Integer> SocialUtility = new ArrayList<>();
 
     int CanonEqualityWeight = 1;
     int CanonNeedsWeight = 1;
@@ -69,6 +70,11 @@ public class ProsumerAgent extends ParentAgent {
         this.Productivity.add(i);
     }
 
+    public void addSocialUtility(int i)
+    {
+        this.SocialUtility.add(i);
+    }
+
     public void setSocialUtility(int utility)
     {
         this.AgentDemand.setSocial_utility(utility);
@@ -77,8 +83,8 @@ public class ProsumerAgent extends ParentAgent {
     void setBordaWeights(childDemand AgentDemand)
     {
         this.CanonEqualityWeight        = children - AgentDemand.getCanonEqualityRank() + 1;
-        this.CanonProductivityWeight    = children - AgentDemand.getCanonNeedsRank() + 1;
-        this.CanonSocialUtilityWeight   = children - AgentDemand.getSocial_utility() + 1;
+        this.CanonProductivityWeight    = children - AgentDemand.getCanonProductivityRank() + 1;
+        this.CanonSocialUtilityWeight   = children - AgentDemand.getCanonSocialUtilityRank() + 1;
         this.CanonNeedsWeight           = children - AgentDemand.getCanonNeedsRank() + 1;
         this.CanonSupplyAndDemandWeight = children - AgentDemand.getCanonSupplyAndDemandRank() + 1;
 
@@ -99,6 +105,7 @@ public class ProsumerAgent extends ParentAgent {
         AgentDemand = new childDemand(demandProfile.getDemandRequest(hourCount), demandProfile.getGenerationRequest(hourCount), this.getID(), this.parent_id);
         AgentDemand.setT(t);
         AgentDemand.setProductivity(Productivity.get(hourCount));
+        AgentDemand.setSocial_utility(SocialUtility.get(hourCount));
 
         AgentDemand.setCanonNeedsWeight(CanonNeedsWeight);
         AgentDemand.setCanonEqualityWeight(CanonEqualityWeight);
@@ -120,7 +127,7 @@ public class ProsumerAgent extends ParentAgent {
 
             try{
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(request, true)));
-                out.println(hourCount +", " + this.getName() + ", " +AgentDemand.getDemandRequest()+ ", "+ AgentDemand.getGenerationRequest());
+                out.println(hourCount +", " + this.getName() + ", " +AgentDemand.getDemandRequest()+ ", "+ AgentDemand.getGenerationRequest() + "," + Productivity.get(hourCount) + "," + SocialUtility.get(hourCount));
                 out.close();
             }catch (IOException e) {
                 logger.info("Failed to write to file" + request);
@@ -135,7 +142,7 @@ public class ProsumerAgent extends ParentAgent {
             }
 
             try{
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Ranking.csv", true)));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentRanking.csv", true)));
                 out.println(hourCount +", "+ this.getName() + " ," + this.getID() + " ," + AgentDemand.getCanonEqualityRank() + " ,"
                         + AgentDemand.getCanonNeedsRank() + " ," + AgentDemand.getCanonProductivityRank() + " ,"
                         + AgentDemand.getCanonSocialUtilityRank() + " ," + AgentDemand.getCanonSupplyAndDemandRank()

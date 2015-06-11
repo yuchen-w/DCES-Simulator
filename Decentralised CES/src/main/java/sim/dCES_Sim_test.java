@@ -16,13 +16,12 @@ import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
 //import services.ChildEnvService;
 
-public class dCES_Sim extends RunnableSimulation {
+public class dCES_Sim_test extends RunnableSimulation {
 
     //private final Logger logger = Logger.getLogger(this.getClass());
     private java.util.Random fRandom = new java.util.Random();
@@ -74,56 +73,7 @@ public class dCES_Sim extends RunnableSimulation {
         MasterAgent supervisor = new MasterAgent(Random.randomUUID(), "Supervisor/NGC");
         scenario.addAgent(supervisor);
 
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
-            out.println("hour, name , Request D , Request G, Productivity, Social Utility");
-            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
-        }catch (IOException e) {
-
-        }
-
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output2, true)));
-            out.println("hour, name , Allocated D , Allocated G");
-            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
-        }catch (IOException e) {
-
-        }
-
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentRanking.csv", true)));
-            out.println("hour, name, id, CanonEqualityRank, CanonNeedsRank, CanonProductivityRank, CanonSocialUtilityRank, CanonSupplyAndDemandRank"
-            );
-            out.close();
-        }catch (IOException e) {
-            logger.info("Failed to write to file" + "AgentRanking.csv");
-        }
-
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentCanonVotes.csv", true)));
-            out.println("hour,id,Equalityweight,ProductivityWeight,UtilityWeight,NeedsWeight,SupplyAndDemandWeight"
-            );
-            out.close();
-        }catch (IOException e) {
-            logger.info("Failed to write to file" + "AgentCanonVotes.csv");
-        }
-
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("BordaRank.csv", true)));
-            out.println("hour,id,canon,assigned rank");
-            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
-        }catch (IOException e) {
-
-        }
-
-        try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
-            out.println("hour, canon, id, Borda pts for ID, Borda Proportion, Borda Sum, Canon weight(aggregated votes for this canon)");
-            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
-        }catch (IOException e) {
-
-        }
-
+        textFileInit();
 
         ArrayList<Double> WindProfile = new ArrayList<Double>();
         try{
@@ -230,5 +180,58 @@ public class dCES_Sim extends RunnableSimulation {
 
     private double getGaussian(double aMean, double aVariance){
         return aMean + fRandom.nextGaussian() * (aVariance/100);
+    }
+
+    private void textFileInit()
+    {
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
+            out.println("hour, name , Request D , Request G, Productivity, Social Utility");
+            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+        }catch (IOException e) {
+
+        }
+
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output2, true)));
+            out.println("hour, name , Allocated D , Allocated G");
+            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+        }catch (IOException e) {
+
+        }
+
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentRanking.csv", true)));
+            out.println("hour, name, id, CanonEqualityRank, CanonNeedsRank, CanonProductivityRank, CanonSocialUtilityRank, CanonSupplyAndDemandRank"
+            );
+            out.close();
+        }catch (IOException e) {
+            logger.info("Failed to write to file" + "AgentRanking.csv");
+        }
+
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentCanonVotes.csv", true)));
+            out.println("hour,id,Equalityweight,ProductivityWeight,UtilityWeight,NeedsWeight,SupplyAndDemandWeight"
+            );
+            out.close();
+        }catch (IOException e) {
+            logger.info("Failed to write to file" + "AgentCanonVotes.csv");
+        }
+
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("BordaRank.csv", true)));
+            out.println("hour,id,canon,assigned rank");
+            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+        }catch (IOException e) {
+
+        }
+
+        try{
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
+            out.println("hour, canon, id, Borda pts for ID, Borda Proportion, Borda Sum, Canon weight(aggregated votes for this canon)");
+            out.close(); //Fixing Resource specification not allowed here for source level below 1.7
+        }catch (IOException e) {
+
+        }
     }
 }
