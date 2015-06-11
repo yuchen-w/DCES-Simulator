@@ -10,9 +10,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.synctex.gz" afterPath="$PROJECT_DIR$/../Final Report/main.synctex.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" afterPath="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AgentCanonVotes.csv" afterPath="$PROJECT_DIR$/AgentCanonVotes.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AgentRanking.csv" afterPath="$PROJECT_DIR$/AgentRanking.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BordaRank.csv" afterPath="$PROJECT_DIR$/BordaRank.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CanonAllocationFromGlobal.csv" afterPath="$PROJECT_DIR$/CanonAllocationFromGlobal.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allocation.csv" afterPath="$PROJECT_DIR$/allocation.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" afterPath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim_test.java" afterPath="$PROJECT_DIR$/src/main/java/sim/dCES_Sim_test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.lot" afterPath="$PROJECT_DIR$/../Final Report/main.lot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/request.csv" afterPath="$PROJECT_DIR$/request.csv" />
     </list>
     <ignored path="Decentralised CES.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +47,7 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="219" column="40" selection-start-line="219" selection-start-column="40" selection-end-line="219" selection-end-column="40" />
+                  <caret line="193" column="126" selection-start-line="193" selection-start-column="126" selection-end-line="193" selection-end-column="126" />
                   <folding />
                 </state>
               </provider>
@@ -50,8 +56,8 @@
           <file leaf-file-name="dCES_Sim_test.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim_test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7488987">
-                  <caret line="164" column="80" selection-start-line="164" selection-start-column="80" selection-end-line="164" selection-end-column="80" />
+                <state vertical-scroll-proportion="0.27459618">
+                  <caret line="148" column="76" selection-start-line="148" selection-start-column="76" selection-end-line="148" selection-end-column="76" />
                   <folding />
                 </state>
               </provider>
@@ -205,12 +211,12 @@
         <option value="$PROJECT_DIR$/src/main/java/agents/ParentAgent.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/ParentEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/handler/MasterActionHandlerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/ProsumerAgent.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/handlers/DemandHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/handlers/ChildDemandHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/PowerPoolEnvService.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java" />
         <option value="$PROJECT_DIR$/src/main/java/sim/dCES_Sim_test.java" />
       </list>
     </option>
@@ -1042,7 +1048,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="uk.ac.imperial.presage2.core.simulator.RunnableSimulation" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim_test finishTime=119 agents=1 mean=25 variance=10 children=5 surplus=10 allocationType=1 hours=24" />
+      <option name="PROGRAM_PARAMETERS" value="sim.dCES_Sim_test finishTime=119 agents=5 mean=25 variance=10 children=5 surplus=10 allocationType=0 hours=24" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -1119,13 +1125,13 @@
       <workItem from="1433897421288" duration="838000" />
       <workItem from="1433902024038" duration="634000" />
       <workItem from="1433945416582" duration="15556000" />
-      <workItem from="1433975849616" duration="14573000" />
+      <workItem from="1433975849616" duration="15732000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="278577000" />
+    <option name="totallyTimeSpent" value="279736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1138,7 +1144,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286638" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
@@ -1564,14 +1570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sim/SimpleDNOSim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77065766">
-          <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/state/State.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.03794643">
@@ -1903,18 +1901,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sim/SimpleDNOSim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7709251">
+          <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="40" selection-start-line="219" selection-start-column="40" selection-end-line="219" selection-end-column="40" />
+          <caret line="193" column="126" selection-start-line="193" selection-start-column="126" selection-end-line="193" selection-end-column="126" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim_test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7488987">
-          <caret line="164" column="80" selection-start-line="164" selection-start-column="80" selection-end-line="164" selection-end-column="80" />
+        <state vertical-scroll-proportion="0.27459618">
+          <caret line="148" column="76" selection-start-line="148" selection-start-column="76" selection-end-line="148" selection-end-column="76" />
           <folding />
         </state>
       </provider>

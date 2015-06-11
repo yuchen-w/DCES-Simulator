@@ -141,7 +141,7 @@ public class dCES_Sim_test extends RunnableSimulation {
 
                 for (int k=0; k<hours; k++)
                 {
-                    prosumer.addProfileHourly(DemandProfile.get(k), WindProfile.get(k));
+                    prosumer.addProfileHourly(DemandProfile.get(k)*getGaussian(1, 0.2), WindProfile.get(k)*getGaussian(1, 0.2));
                 }
 
                 for (int k=0; k<hours; k++)
@@ -162,7 +162,7 @@ public class dCES_Sim_test extends RunnableSimulation {
 
                 for (int k=0; k<hours; k++)
                 {
-                    prosumer.addProfileHourly(DemandProfile.get(k), SolarProfile.get(k));
+                    prosumer.addProfileHourly(DemandProfile.get(k)*getGaussian(1, 0.2), SolarProfile.get(k)*getGaussian(1, 0.2));
                 }
 
                 for (int k=0; k<hours; k++)
