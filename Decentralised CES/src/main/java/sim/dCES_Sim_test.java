@@ -228,7 +228,7 @@ public class dCES_Sim_test extends RunnableSimulation {
 
         try{
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
-            out.println("hour, canon, id, Borda pts for ID, Borda Proportion, Borda Sum, Canon weight(aggregated votes for this canon)");
+            out.println("hour, canon, id, Borda Pts, Borda pts norm, Borda Proportion, Borda Votes for Canon, Total Borda Votes");
             out.close(); //Fixing Resource specification not allowed here for source level below 1.7
         }catch (IOException e) {
 

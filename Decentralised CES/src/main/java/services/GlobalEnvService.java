@@ -663,6 +663,7 @@ public class GlobalEnvService extends EnvironmentService{
 
         ArrayList<Integer> iteratorStorage = new ArrayList<Integer>();
         ArrayList<Double> BordaPtStorage = new ArrayList<Double>();
+        ArrayList<Double> BordaPtStorage2 = new ArrayList<Double>();
         ArrayList<UUID> BordaPrevKeyStorage = new ArrayList<UUID>();   //Key = Previous key which has the same rank as this; Value = Key to replace with
         ArrayList<UUID> BordaCurrKeyStorage = new ArrayList<UUID>();
         UUID prev_key = UUID.randomUUID();
@@ -683,7 +684,9 @@ public class GlobalEnvService extends EnvironmentService{
                 //if multiple elements within tMap has the same rank, set the last one to have the correct BordaPt
             }
             //logger.info("else, Prev Value: " + prev_val + " Current Val: " + value + " RecalcBorda =" + RecalcBorda);
-            BordaPtStorage.add(BordaProportion*(double)BordaPt);
+
+            BordaPtStorage.add((double)BordaPt);
+            BordaPtStorage2.add((double)BordaPt); // todo: delete this lines
 
             prev_val = value;
             prev_key = entry.getKey();
@@ -691,6 +694,7 @@ public class GlobalEnvService extends EnvironmentService{
             BordaPt--;
             iterator++;
             BordaRank.put(entry.getKey(), iterator);
+            BordaPtStorage.add(BordaProportion*(double)iterator);
 
 //            try{
 //                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("BordaRank.csv", true)));
@@ -706,6 +710,7 @@ public class GlobalEnvService extends EnvironmentService{
              {
                 if (iterator < BordaPtStorage.size()-1) {
                     BordaPtStorage.set(iteratorStorage.get(iterator), BordaPtStorage.get(iteratorStorage.get(iterator) + 1));
+                    BordaPtStorage2.set(iteratorStorage.get(iterator), BordaPtStorage.get(iteratorStorage.get(iterator) + 1));
                     //go back and replace the wrongly calculated Borda rank with the correct one
                 }
             }
@@ -731,7 +736,10 @@ public class GlobalEnvService extends EnvironmentService{
             {
                 sum = AgentBordaPoints.get(ID);
             }
-            sum += BordaPtStorage.get(iterator);
+            double weightedBordaPt = 0;
+            BordaProportion = CanonBordaSum/(double)Total.getTotalCanonWeight();
+            weightedBordaPt = BordaPtStorage2.get(iterator)*BordaProportion;
+            sum += weightedBordaPt;
 
             //logger.info("Storing AgentBordaPoints: " + sum + " to Agent: " + ID);
 
@@ -739,7 +747,7 @@ public class GlobalEnvService extends EnvironmentService{
 
             try{
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
-                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + BordaPtStorage.get(iterator) + ", " + BordaProportion + ", " + CanonBordaSum + ", " + Total.getTotalCanonWeight());
+                out.println(Total.getHour() + ", " + CanonName + " ," + ID + ", " + BordaPtStorage2.get(iterator) + "," + weightedBordaPt + ", " + BordaProportion + ", " + CanonBordaSum + ", " + Total.getTotalCanonWeight());
                 out.close(); //Fixing Resource specification not allowed here for source level below 1.7
             }catch (IOException e) {
 

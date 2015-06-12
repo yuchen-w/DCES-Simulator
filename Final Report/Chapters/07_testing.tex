@@ -67,21 +67,65 @@ To check that total allocated Demand is equal to total Generation dispatch, and 
 \end{figure}
 
 \subsection*{Test 3}
-To test that the allocation proportion is correct, Borda ranking and point allocation for each Agent under each of the canons need to be checked to be correct. Figure \ref{fig:test4} shows the previous requests and allocations made by Agents under Virtual Agent \textit{Parent0}. Figure 
+To test that the allocation proportion is correct, Borda ranking and point allocation for each Agent under each of the canons were checked to be correct. Figure \ref{fig:test4} shows the previous requests and allocations made by Agents under Virtual Agent \textit{Parent0} in one of these tests. The data for the requests and allocations were gathered from \textit{"allocation.csv"} and \textit{"request.csv"} , which are generated when the simulation is running. Figure \ref{fig:test6} shows the ranking that is based on historical data of the Agents, which matches with what the data shows in figure \ref{fig:test5}. 
 
 \begin{figure}[h!]
  	\centering
  	\includegraphics[scale=0.4]{Images/test-allocation3(PrevData).png}
- 	\caption{Parent0 Agent requests and allocations}
+ 	\caption{Historical Parent0 Agent requests and allocations}
  	\label{fig:test4}
+ \end{figure} 
+
+ \begin{figure}[h!]
+ 	\centering
+ 	\includegraphics[scale=0.4]{Images/test-allocation3(PrevDataSorted).png}
+ 	\caption{Historical Parent0 Agent requests and allocations data processed}
+ 	\label{fig:test5}
  \end{figure} 
 
  \begin{figure}[h!]
  	\centering
  	\includegraphics[scale=0.4]{Images/test-allocation3(Ranking).png}
  	\caption{Parent0 Agent ranking}
- 	\label{fig:figure1}
+ 	\label{fig:test6}
  \end{figure}
+
+With the Ranking checked to be correct, the Borda Point allocation for each of the Agents were also checked. The Borda point allocation for the example dataset above can be found in figure \ref{fig:test7}.  The allocations according to the weighted Borda point allocation can be found in figure \ref{fig:test8}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.33]{Images/test-allocation3(BordaPtAllocation).png}
+	\caption{Parent0 Hour 2 Borda Point Allocation}
+	\label{fig:test7}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{Images/test-allocation3(FinalAllocation).png}
+	\caption{Parent0 Allocations according to the Borda Points}
+	\label{fig:test8}
+\end{figure}
+
+\clearpage
+
+\subsection*{Tests 4 and 5}
+To check that the Borda voting mechanism is correct, the votes for each Agent was checked against where they were ranked the previous round. For the dataset used above, this can be found in figure \ref{fig:bordavoting}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.34]{Images/test-allocation3(Voting).png}
+	\caption{Parent0 Agent votes for the weight of the canons in the next round}
+	\label{fig:bordavoting}
+\end{figure}
+
+To check that the voting mechanism was fed back into the system, the aggregate votes for each of the canons for all Agents were checked. For the data set above, this can be shown in figure \ref{fig:AgentVotes}. \textit{Borda Proportion} represents the percentage of votes that went into a particular canon under the Borda Voting protocol for all of the Agents.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.34]{Images/test-allocation4.png}
+	\caption{Parent0 Agent votes in hour 3}
+	\label{fig:AgentVotes}
+\end{figure}
 
 % section section_name (end)
 %If data is available for the potential customers in Rugaragara, the simulation could be used in %conjunction with the feasibility study
