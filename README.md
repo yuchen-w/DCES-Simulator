@@ -1,11 +1,23 @@
 # Simulator for Decentralised Energy Systems
 Repository for Simulator for Decentralised Energy Systems. Forked from the publicly available FYP-repository-test (https://github.com/yuchen-w/FYP-repository-test)
 ## Repository Structure
-.m2: This contains a backup of all the sources I used for this project. If presage servers are down and are using Windows OS, copy this folder into:
+###.m2 
+This contains a backup of all the sources I used for this project. If presage servers are down and are using Windows OS, copy this folder into:
 ```
 C:\Users\YourUserName
 ```
-Decentralised CES: This contains all of the source code for my final year project. Import this into Eclipse or IntelliJ as a Maven project. Follow the steps here: https://github.com/yuchen-w/FYP/blob/master/Decentralised%20CES/README.md
+###Decentralised CES
+This contains all of the source code for my final year project. Import this into Eclipse or IntelliJ as a Maven project. Follow the steps here: https://github.com/yuchen-w/FYP/blob/master/Decentralised%20CES/README.md
+
+###Final Report
+This folder contains the latex code and diagrams for the final report.
+
+##Quick Start
+Clone this repository on to your computer. Import DCES-Simulator into Eclipse/Net Beans/IntelliJ as a Maven Project.
+Set up the Run Configuration as the following:
+![image](https://cloud.githubusercontent.com/assets/3355737/8119285/4df7767a-108c-11e5-9cb6-6162bc0e47cd.png)
+
+
 
 ## Project stuff
 To do: 
