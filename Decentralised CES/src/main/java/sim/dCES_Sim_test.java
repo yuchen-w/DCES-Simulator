@@ -129,7 +129,7 @@ public class dCES_Sim_test extends RunnableSimulation {
         for (int i = 0; i < agents; i++)
         {
             UUID parent_id = Random.randomUUID();
-            ParentAgent Parent = new ParentAgent(parent_id, "parent" + i, 0, 0, agent_children);
+            ParentAgent Parent = new ParentAgent(parent_id, "Cluster" + i, 0, 0, agent_children);
             scenario.addAgent(Parent);
 
             supervisor.addChild(Parent.getID());
@@ -138,7 +138,7 @@ public class dCES_Sim_test extends RunnableSimulation {
             {
                 UUID child_id = Random.randomUUID();
                 ProsumerAgent prosumer = new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, "parent" + i, parent_id);
+                        "Cluster" + i + "Agent" + j, "Cluster" + i, parent_id);
 
                 for (int k=0; k<hours; k++)
                 {
@@ -159,7 +159,7 @@ public class dCES_Sim_test extends RunnableSimulation {
             {
                 UUID child_id = Random.randomUUID();
                 ProsumerAgent prosumer = new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, "parent" + i, parent_id);
+                        "Cluster" + i + "Agent" + j, "Cluster" + i, parent_id);
 
                 for (int k=0; k<hours; k++)
                 {

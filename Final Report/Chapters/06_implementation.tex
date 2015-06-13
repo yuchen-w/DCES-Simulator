@@ -3,8 +3,8 @@
 \label{Implementation}
 In this section, how the design is implemented will be described in detail. 
 
-\section*{Discrete Time Simulation Implementation}
-Demand and Generation requests are made and satisfied on a hourly basis. Due to the nature of Presage 2, actions and requests happen in discrete time steps. In this simulation, each hour has to be split into 5 discrete time-steps due to the out of order execution of Agent actions and the discrete time nature of Presage 2. What actions are performed in each of the time steps are outlined below:
+\section*{Discrete Time Simulation Implementation Overview}
+In the simulation, Demand and Generation requests are made and satisfied on a hourly basis. Due to the nature of Presage 2, actions and requests happen in discrete time steps. In this simulation, each hour has to be split into 5 discrete time-steps due to the out of order execution of Agent actions and the discrete time nature of Presage 2. What actions are performed in each of the time steps are outlined below:
 \begin{enumerate}
 	\item During the first time step, Prosumer Agents submit their Generation and Demand requests to the Virtual Agent or Community they are part of.
 	\item During the second time step, Virtual Agents or Communities aggregate the Generation and Demand requests received and submit their Generation and Demand requests to the Supervisor Agent
@@ -14,7 +14,7 @@ Demand and Generation requests are made and satisfied on a hourly basis. Due to 
 \end{enumerate}
 
 \section*{Agent Class Structure and Implementation}
-Agents in Presage 2 are created by extending the \textit{AbstractParticipant} class as shown in the UML diagram in figure \ref{fig:AgentUML}. 
+Agents in Presage 2 are created by extending the \textit{AbstractParticipant} class as shown in the \ac{UML} diagram in figure \ref{fig:AgentUML}. 
 
 A Virtual Agent (\textit{ParentAgent} class) represents connected Prosumer Agents. It is required to:
 \begin{itemize}
@@ -69,7 +69,7 @@ The Prosumer Agent is implemented with the following methods to allow it to perf
 \clearpage
 
 \section*{Demand Action}
-Agents act on Environments and shared state by performing \textit{Actions}, which are implemented by extending the Java interface \textit{Action} in Presage 2. In the context of this simulation, an \textit{Action} would be a Demand/Generation request or a Demand/Generation allocation. As Generation can be modelled as a negative Demand, a single \textit{Action} such as the \textit{Demand Action} can be defined to represent both Demand requests/quotas and Generation requests/dispatch. \textit{childDemand} and \textit{parentDemand} are special instances of \textit{Demand}, and are responsible for representing Demand/Generation requests from Prosumer Agents and Virtual Agents respectively. The UML diagram of all of the \textit{Actions} in this simulation is defined in the UML diagram in figure \ref{fig:ActionUML}.
+Agents act on Environments and shared state by performing \textit{Actions}, which are implemented by extending the Java interface \textit{Action} from Presage 2. In the context of this simulation, an \textit{Action} would be a Demand/Generation request or a Demand/Generation allocation. As Generation can be modelled as a negative Demand, a single \textit{Action} such as the \textit{Demand Action} can be defined to represent both Demand requests/quotas and Generation requests/dispatch. \textit{childDemand} and \textit{parentDemand} are special instances of \textit{Demand}, and are responsible for representing Demand/Generation requests from Prosumer Agents and Virtual Agents respectively. The UML diagram of all of the \textit{Actions} in this simulation is defined in the UML diagram in figure \ref{fig:ActionUML}.
 
 \begin{figure}[!h]
 	\centering
@@ -123,10 +123,35 @@ Simiar to the \textit{GlobalEnvService} class, if there isn't enough Generation,
 \subsection*{Virtual Agent Environment Service}
 The \textit{ParentEnvService} is the Environment Service accessible by both the Virtual Agents and the Prosumer Agents. The \textit{ParentEnvService} inherits from the \textit{PowerPoolEnvService}, and does the same things on a smaller scale. The \textit{ParentEnvService} is used to store information about the Prosumer Agents, such as their individual Demand and Generation requests, and also contain information about their allocations. During time step 1 of a simulated hour, Agents store their Demand and Generation requests in this Environment Service as a "shared state". During time step 2 of a simulated hour, Virtual Agents aggregate the stored Demand and Generation requests and store them in the \textit{PowerPoolEnvService}. During time step 5, Agents retrieve their allocations from the \textit{ParentEnvService}.
 
-\section{Setting up the simulation}
-To set up the simulation with realistic demand and generation profiles, some measured data over a 24 hour period was used to set up the demand and generation profiles of the Agents. To simulate random, independent behaviour between Agents, each of the measured data points was randomly changed by 20\% according to a normal distribution centred around the data point before.
+\section*{Setting up the simulation}
+To set up the simulation with realistic demand and generation profiles, some measured data over a 24 hour period was used to set up the demand and generation profiles of the Agents. To simulate random, independent behaviour between Agents, each of the measured data points was randomly changed by 20\% according to a normal distribution centred around the data point before. Figures \ref{fig:WindGenProfile}, \ref{fig:SolarGenProfile} and \ref{fig:DemandProfile} show a plot of the Wind Generation, Solar Generation and Demand data used to set up the simulation.
 
-{color{red} insert the charts here}
+\begin{figure} 
+	\centering \newlength\figureheight \newlength\figurewidth 
+	\setlength\figureheight{6cm} 
+	\setlength\figurewidth{13cm} 
+	\input{Figures/WindGen.tikz} 
+	\caption{Wind Generation Profile} 
+	\label{fig:WindGenProfile} 
+\end{figure}
+
+\begin{figure} 
+	\centering
+	\setlength\figureheight{6cm} 
+	\setlength\figurewidth{13cm} 
+	\input{Figures/SolarGen.tikz} 
+	\caption{Solar Generation Profile} 
+	\label{fig:SolarGenProfile} 
+\end{figure}
+
+\begin{figure} 
+	\centering
+	\setlength\figureheight{6cm} 
+	\setlength\figurewidth{13cm} 
+	\input{Figures/Demand.tikz} 
+	\caption{Demand Profile} 
+	\label{fig:DemandProfile} 
+\end{figure}
 
 \section*{Issues}
 Out of order parallel execution meant that Agents need to submit their individual Demands to the SharedState, and have that summed at the end of each timestep. It is not possible to sum the Demands on the fly.
@@ -135,6 +160,4 @@ Being new to both Java and Presage presented problems of its own. It was difficu
 
 One action per time step meant that it takes 4 time steps to simulate one round of request and appropriation of electricity. It would therefore take 24*4 time steps to simulate a full day of requests and appropriation.
 
-Difficulty with initialising Agents with arrays meant that Agents had to be created with no Demand or Generation Profiles, and the Demand and Generation Profiles were added one by one via a for-loop and the addProfileHourly() method.
-
-
+Difficulty with initialising Agents with arrays meant that Agents had to be created with no Demand or Generation Profiles, and the Demand and Generation Profiles were added one by one by using the \textit{addProfileHourly()} method.
