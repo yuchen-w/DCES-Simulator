@@ -75,11 +75,6 @@ public class ProsumerAgent extends ParentAgent {
         this.SocialUtility.add(i);
     }
 
-    public void setSocialUtility(int utility)
-    {
-        this.AgentDemand.setSocial_utility(utility);
-    }
-
     void setBordaWeights(childDemand AgentDemand)
     {
         this.CanonEqualityWeight        = children - AgentDemand.getCanonEqualityRank() + 1;
@@ -98,6 +93,11 @@ public class ProsumerAgent extends ParentAgent {
         }catch (IOException e) {
             logger.info("Failed to write to file" + allocation);
         }
+    }
+
+    public void addProfileHourly(double D, double G)
+    {
+        this.demandProfile.addProfile(D, G);
     }
 
     @Step

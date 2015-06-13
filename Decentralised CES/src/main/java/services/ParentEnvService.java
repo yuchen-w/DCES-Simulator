@@ -43,30 +43,6 @@ public class ParentEnvService extends PowerPoolEnvService {
         }
     }
 
-    /**
-     * <p>This function adds to GroupDemandStorage HashMap <ParentID, ChildDemandTotal> </p>
-     * @param d
-     */
-    public void addtoPool(childDemand d) {
-        logger.info("Attempting to add to Parent Pool. ");
-
-        //Add to history
-        //Add to Pool[ParentID] for agent
-        if (GroupDemandStorage.containsKey(d.getParentID()) == false)
-        {
-            logger.info("For ParentID " +d.getParentID()+" HashMap Entry !Exists, creating new entry. (ParentID:"+d.getParentID()+")");
-            GroupDemandStorage.put(d.getParentID(),d);
-        }
-        else
-        {
-            logger.info("For ParentID " +d.getParentID()+" HashMap Entry Exists, adding demand.");
-            Demand temp;
-            temp = GroupDemandStorage.get(d.getParentID());
-            GroupDemandStorage.put(d.getParentID(), (parentDemand)temp.addDemand(d));
-        }
-        incrementRequestCounter(d.getParentID());
-    }
-
     private PowerPoolEnvService getParentService()
     {
         if (EnvService == null)

@@ -27,20 +27,7 @@ public class ParentAgent extends MasterAgent
         super(id, name);
     }
 
-    public void addProfileHourly(double D, double G)
-    {
-        this.demandProfile.addProfile(D, G);
-    }
 
-    public void addProductivity(int i)
-    {
-        this.GroupDemand.setProductivity(i);
-    }
-
-    public void setSocialUtility(int utility)
-    {
-        this.GroupDemand.setSocial_utility(utility);
-    }
 
     @Initialisor
     public void init()
