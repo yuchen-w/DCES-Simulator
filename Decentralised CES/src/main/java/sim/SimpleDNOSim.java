@@ -8,6 +8,7 @@ import services.PowerPoolEnvService;
 import agents.ProsumerAgent;
 import actions.handlers.ChildDemandHandler;
 import actions.handlers.ParentDemandHandler;
+import services.handler.MasterActionHandler;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
@@ -47,7 +48,7 @@ public class SimpleDNOSim extends RunnableSimulation {
 
                         .addActionHandler(ParentDemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)
-                        .addActionHandler(services.handler.MasterActionHandlerService.class)
+                        .addActionHandler(MasterActionHandler.class)
                 //Add the participant service and any other additional environment services here too
         );
 

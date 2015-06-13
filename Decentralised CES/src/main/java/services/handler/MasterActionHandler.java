@@ -13,7 +13,7 @@ import uk.ac.imperial.presage2.core.environment.*;
 
 import java.util.UUID;
 
-public class MasterActionHandlerService extends GlobalEnvService implements ActionHandler{
+public class MasterActionHandler extends GlobalEnvService implements ActionHandler{
     final private Logger logger = Logger.getLogger(ParentDemandHandler.class);
 
     final protected EnvironmentSharedStateAccess sharedState;
@@ -22,7 +22,7 @@ public class MasterActionHandlerService extends GlobalEnvService implements Acti
     private int hour;
 
     @Inject
-    public MasterActionHandlerService(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState)
+    public MasterActionHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState)
     {
         super(sharedState, serviceProvider);
         this.sharedState = sharedState;

@@ -6,10 +6,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import services.ParentEnvService;
 import uk.ac.imperial.presage2.core.Action;
-import uk.ac.imperial.presage2.core.environment.ActionHandlingException;
-import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
-import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
-import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
+import uk.ac.imperial.presage2.core.environment.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,11 +15,17 @@ import java.io.PrintWriter;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
-public class ChildDemandHandler extends ParentDemandHandler {
+import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
+
+public class ChildDemandHandler implements ActionHandler {
 
     final private Logger logger = Logger.getLogger(ChildDemandHandler.class);
 
     private ParentEnvService ParentService;
+
+    final protected EnvironmentServiceProvider serviceProvider;
+    final protected EnvironmentSharedStateAccess sharedState;
+    private final EnvironmentMembersService membersService;
 
     @Inject
     @Named("params.hours")
@@ -32,7 +35,9 @@ public class ChildDemandHandler extends ParentDemandHandler {
     public ChildDemandHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState)
             throws UnavailableServiceException
     {
-        super(serviceProvider, sharedState);
+        this.serviceProvider = serviceProvider;
+        this.sharedState = sharedState;
+        this.membersService = serviceProvider.getEnvironmentService(EnvironmentMembersService.class);
     }
 
     @Override

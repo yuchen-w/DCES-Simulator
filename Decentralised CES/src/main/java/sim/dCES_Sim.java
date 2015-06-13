@@ -8,6 +8,7 @@ import agents.ProsumerAgent;
 import org.apache.log4j.Logger;
 import services.ParentEnvService;
 import services.PowerPoolEnvService;
+import services.handler.MasterActionHandler;
 import uk.ac.imperial.presage2.core.simulator.Parameter;
 import uk.ac.imperial.presage2.core.simulator.RunnableSimulation;
 import uk.ac.imperial.presage2.core.simulator.Scenario;
@@ -65,7 +66,7 @@ public class dCES_Sim extends RunnableSimulation {
 
                         .addActionHandler(ParentDemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)
-                        .addActionHandler(services.handler.MasterActionHandlerService.class)
+                        .addActionHandler(MasterActionHandler.class)
                         //Add the participant service and any other additional environment services here too
         );
 

@@ -61,11 +61,10 @@ The Prosumer Agent is implemented with the following methods to allow it to perf
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.4]{Images/AgentUMLEdited.png}
+	\includegraphics[scale=0.4]{Images/AgentUML.png}
 	\caption{Agent UML Diagram}
 	\label{fig:AgentUML}
 \end{figure}
-
 
 \clearpage
 
@@ -80,7 +79,11 @@ Agents act on Environments and shared state by performing \textit{Actions}, whic
 \end{figure}
 
 \section*{Action Handlers} % (fold)
-To enable the Environment to be able to process the Action requests, \textit{Action Handlers} need to be created to tell the simulation how to deal with Actions from Agents. In Presage 2, \textit{Action Handlers} are created by extending the implementing the Java interface \textit{ActionHandler}. The superclass \textit{Demand} isn't used by any of the Agents, so there are two \textit{Action Handlers}:  \textit{ChildDemandHandler} and \textit{ParentDemandHandler} which are responsible for processing \textit{childDemand} and \textit{parentDemand} requests respectively. How these \textit{Action Handlers} relate to each other is decribed in the UML diagram in figure \ref{fig:ActionHandlerUML}. 
+\subsection*{Demand Handlers}
+To enable the Environment to be able to process the Action requests, \textit{Action Handlers} need to be created to tell the simulation how to deal with Actions from Agents. In Presage 2, \textit{Action Handlers} are created by extending the implementing the Java interface \textit{ActionHandler}. The superclass \textit{Demand} isn't used by any of the Agents, so there are three \textit{Action Handlers}:  \textit{ChildDemandHandler}, \textit{ParentDemandHandler} and \textit{MasterActionHandler}. Depending on which the time step in the simulation hour it is, \textit{ChildDemandHandler} and \textit{ParentDemandHandler} \textit{Action Handlers} store or retrieve requests and allocations accordingly. The \textit{MasterActionHandler} is responsible for aggregating all Demand and Generation requests from all Virtual Agents and allocating that in time step 3. How these \textit{Action Handlers} relate to each other is decribed in the UML diagram in figure \ref{fig:ActionHandlerUML}. 
+
+\subsection*{Master Action Handler}
+A special case of the \textit{Action Handler} is the \textit{MasterActionHandler}. Unlike the other action handlers which access and data in one localised Environment Services, and methods in another Environment Service to allocate and st, this \textit{Action Handlers} is a \textit{Action-Environment Service} hybrid, which access and stores data in one localised Environment Service
 
 \begin{figure}[!h]
 	\centering
@@ -100,11 +103,10 @@ At the end of the allocation process, the data about the allocation is stored in
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.3]{Images/EnvironmentUML-1.png}
+	\includegraphics[scale=0.45]{Images/EnvironmentUML-1.png}
 	\caption{Environment Services UML Diagram}
 	\label{fig:ServiceUML}
 \end{figure}
-
 
 \subsection*{Supervisor Environment Service}
 The \textit{PowerPoolEnvService} is the Environment Service accessible by both the Supervisor Agent and the Virtual Agents. The \textit{PowerPoolEnvService} inherits from \textit{GlobalEnvService} class, and does a lot of the same things on a smaller scale.  The \textit{PowerPoolEnvService} is used to store information about the Virtual Agents, such as their aggregated Demand and Generation requests, and contains the same methods that are called when allocations are being made by the Virtual Agents. During time step 2 of a simulated hour, Virtual Agents sum up their Prosumer Agent Demand and Generation requests, and store them in \textit{PowerPoolEnvService}. During time step 4 of a simulated hour, the \textit{allocate()} method is called from the \textit{parentDemandHandler}. \textit{allocate()} method by default satisfies all the requirements of Agents if there is enough Generation to support it. If there is excess Generation, the excess is curtailed proportionally. In a holonic system, Agents are not able to access information concerning other Agents that it is not directly connected to. A separate Environment Service is used to prevent the Supervisor Agent from being able to access and modify "shared states" about Prosumer Agents that are not directly connected to the Supervisor Agent.
@@ -113,7 +115,7 @@ Simiar to the \textit{GlobalEnvService} class, if there isn't enough Generation,
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.3]{Images/EnvironmentUML-2.png}
+	\includegraphics[scale=0.5]{Images/EnvironmentUML-2.png}
 	\caption{Environment Services UML Diagram}
 	\label{fig:ServiceUML2}
 \end{figure}
@@ -121,6 +123,10 @@ Simiar to the \textit{GlobalEnvService} class, if there isn't enough Generation,
 \subsection*{Virtual Agent Environment Service}
 The \textit{ParentEnvService} is the Environment Service accessible by both the Virtual Agents and the Prosumer Agents. The \textit{ParentEnvService} inherits from the \textit{PowerPoolEnvService}, and does the same things on a smaller scale. The \textit{ParentEnvService} is used to store information about the Prosumer Agents, such as their individual Demand and Generation requests, and also contain information about their allocations. During time step 1 of a simulated hour, Agents store their Demand and Generation requests in this Environment Service as a "shared state". During time step 2 of a simulated hour, Virtual Agents aggregate the stored Demand and Generation requests and store them in the \textit{PowerPoolEnvService}. During time step 5, Agents retrieve their allocations from the \textit{ParentEnvService}.
 
+\section{Setting up the simulation}
+To set up the simulation with realistic demand and generation profiles, some measured data over a 24 hour period was used to set up the demand and generation profiles of the Agents. To simulate random, independent behaviour between Agents, each of the measured data points was randomly changed by 20\% according to a normal distribution centred around the data point before.
+
+{color{red} insert the charts here}
 
 \section*{Issues}
 Out of order parallel execution meant that Agents need to submit their individual Demands to the SharedState, and have that summed at the end of each timestep. It is not possible to sum the Demands on the fly.
