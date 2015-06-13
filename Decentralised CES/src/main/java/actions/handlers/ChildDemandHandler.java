@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
-public class ChildDemandHandler extends DemandHandler{
+public class ChildDemandHandler extends ParentDemandHandler {
 
     final private Logger logger = Logger.getLogger(ChildDemandHandler.class);
 

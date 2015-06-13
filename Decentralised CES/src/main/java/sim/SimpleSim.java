@@ -3,7 +3,7 @@ package sim;
 //import org.apache.log4j.Logger;
 import agents.ParentAgent;
 import services.PowerPoolEnvService;
-import actions.handlers.DemandHandler;
+import actions.handlers.ParentDemandHandler;
 //import uk.ac.imperial.evpool.EvEnvService;
 //import uk.ac.imperial.evpool.Inject;
 //import uk.ac.imperial.presage2.core.environment.EnvironmentServiceProvider;
@@ -40,7 +40,7 @@ public class SimpleSim extends RunnableSimulation {
 						.addParticipantGlobalEnvironmentService(PowerPoolEnvService.class)
 								//.addParticipantEnvironmentService()
 								//.addParticipantGlobalEnvironmentService(EnvironmentMembersService.class)
-						.addActionHandler(DemandHandler.class)
+						.addActionHandler(ParentDemandHandler.class)
 				//Add the participant service and any other additional environment services here too
 		);
 

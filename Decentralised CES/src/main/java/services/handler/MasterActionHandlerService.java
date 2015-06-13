@@ -3,7 +3,7 @@ package services.handler;
 import actions.parentDemand;
 import actions.MasterAction;
 import actions.childDemand;
-import actions.handlers.DemandHandler;
+import actions.handlers.ParentDemandHandler;
 import com.google.inject.Inject;
 import org.apache.log4j.Logger;
 import services.GlobalEnvService;
@@ -14,7 +14,7 @@ import uk.ac.imperial.presage2.core.environment.*;
 import java.util.UUID;
 
 public class MasterActionHandlerService extends GlobalEnvService implements ActionHandler{
-    final private Logger logger = Logger.getLogger(DemandHandler.class);
+    final private Logger logger = Logger.getLogger(ParentDemandHandler.class);
 
     final protected EnvironmentSharedStateAccess sharedState;
     protected PowerPoolEnvService EnvService;

@@ -720,12 +720,12 @@ public class GlobalEnvService extends EnvironmentService{
                 //go back and replace the wrongly calculated Borda rank with the correct one
             }
         }
-        logger.info("BordaRank: " + BordaRank);
+        //logger.info("BordaRank: " + BordaRank);
 
-        if (CanonName == Canon.needs)
-        {
-            logger.info("BordaRank: " + BordaRank);
-        }
+//        if (CanonName == Canon.needs)
+//        {
+//            logger.info("BordaRank: " + BordaRank);
+//        }
 
         iterator = 0;
         for (Map.Entry<UUID, Double> entry : tMap.entrySet())

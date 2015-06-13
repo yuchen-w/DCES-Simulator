@@ -8,9 +8,9 @@ import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class MasterAgent extends AbstractParticipant {
+public class MasterAgent extends ParentAgent {
     MasterAction Action;
-    protected ArrayList<UUID> ChildrenList = new ArrayList<UUID>();
+
 
     public MasterAgent(UUID id, String name)
     {
@@ -18,10 +18,7 @@ public class MasterAgent extends AbstractParticipant {
         Action = new MasterAction(id, ChildrenList);
     }
 
-    public void addChild(UUID id)
-    {
-        ChildrenList.add(id);
-    }
+
 
     @Step
     public void step(int t) throws ActionHandlingException {

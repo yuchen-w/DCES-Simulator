@@ -20,9 +20,9 @@ import uk.ac.imperial.presage2.core.environment.EnvironmentSharedStateAccess;
 import uk.ac.imperial.presage2.core.environment.UnavailableServiceException;
 import uk.ac.imperial.presage2.util.environment.EnvironmentMembersService;
 
-public class DemandHandler implements ActionHandler {
+public class ParentDemandHandler implements ActionHandler {
 
-	final private Logger logger = Logger.getLogger(DemandHandler.class);
+	final private Logger logger = Logger.getLogger(ParentDemandHandler.class);
 
 	ParentEnvService EnvService;
 	PowerPoolEnvService ParentEnvService;
@@ -31,7 +31,7 @@ public class DemandHandler implements ActionHandler {
     private final EnvironmentMembersService membersService;
 	
 	@Inject
-	public DemandHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) throws UnavailableServiceException
+	public ParentDemandHandler(EnvironmentServiceProvider serviceProvider, EnvironmentSharedStateAccess sharedState) throws UnavailableServiceException
 	{
 		this.serviceProvider = serviceProvider;
 		this.sharedState = sharedState;
@@ -55,7 +55,7 @@ public class DemandHandler implements ActionHandler {
 			if (CurrentState == 1)
             {
                 //logger.info("T=" + d.getT() + " Parent Request round");
-                //logger.info("DemandHandler: parentDemand d.parentDemand = " + d.getDemandRequest() + " and parentDemand d.Generation = " + d.getGenerationRequest());        //Debug
+                //logger.info("ParentDemandHandler: parentDemand d.parentDemand = " + d.getDemandRequest() + " and parentDemand d.Generation = " + d.getGenerationRequest());        //Debug
                 parentDemand GroupDemand = this.EnvService.getGroupDemand(d);
 
                 //logger.info("Parent: " + d.getAgentID() + " Total Canon Weight: " + GroupDemand.getTotalCanonWeight());   //todo

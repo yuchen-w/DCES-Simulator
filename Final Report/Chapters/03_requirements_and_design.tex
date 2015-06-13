@@ -50,8 +50,12 @@ Agents that group together are connected to a central virtual agent to allow the
 \section*{Types of Agents}
 A Multi-Agent System's main components are Agents, which are the actors which can act on the environment. Outlined below are the Agents that will be implemented as part of the simulator.
 \begin{description}
+
 \item[Virtual Agents]
-represent all connected sub-communities or Agents in a community of Virtual Agents. These Agents will be responsible for enforcing quotas on connected sub-communities or Agents and collecting Generation for the Common Pool. 
+represent all connected sub-communities or Agents in a community of Virtual Agents. These Agents will be responsible for enforcing quotas on connected sub-communities or Agents and collecting Generation for the Common Pool.
+
+\item[Supervisor Agents] 
+is a special type of Virtual Agent whose responsibility is to enforce quotas on connected Virtual Agents. There should only be one Supervisor Agent in a simulation.
 
 \item[Prosumer Agents]
 represent the most "elementary" system such as generators, households, businesses and other demand centres.

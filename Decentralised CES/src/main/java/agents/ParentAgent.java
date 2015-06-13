@@ -7,12 +7,13 @@ import actions.DemandProfile;
 import uk.ac.imperial.presage2.core.environment.*;
 import uk.ac.imperial.presage2.core.simulator.Initialisor;
 import uk.ac.imperial.presage2.core.simulator.Step;
+import uk.ac.imperial.presage2.util.participant.AbstractParticipant;
 
 
-
-public class ParentAgent extends MasterAgent
+public class ParentAgent extends AbstractParticipant
 {
     private parentDemand GroupDemand;
+    protected ArrayList<UUID> ChildrenList = new ArrayList<UUID>();
     DemandProfile demandProfile = new DemandProfile();
     int hourCount = 0;
 
@@ -35,6 +36,10 @@ public class ParentAgent extends MasterAgent
         super.initialise();
     }
 
+    public void addChild(UUID id)
+    {
+        ChildrenList.add(id);
+    }
 
     @Step
     public void step(int t) throws ActionHandlingException {

@@ -1,7 +1,7 @@
 package sim;
 
 import actions.handlers.ChildDemandHandler;
-import actions.handlers.DemandHandler;
+import actions.handlers.ParentDemandHandler;
 import agents.MasterAgent;
 import agents.ParentAgent;
 import agents.ProsumerAgent;
@@ -16,7 +16,6 @@ import uk.ac.imperial.presage2.util.environment.AbstractEnvironmentModule;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -64,7 +63,7 @@ public class dCES_Sim extends RunnableSimulation {
                         .addParticipantGlobalEnvironmentService(ParentEnvService.class)
                         //.addParticipantEnvironmentService(ChildEnvService.class)
 
-                        .addActionHandler(DemandHandler.class)
+                        .addActionHandler(ParentDemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)
                         .addActionHandler(services.handler.MasterActionHandlerService.class)
                         //Add the participant service and any other additional environment services here too

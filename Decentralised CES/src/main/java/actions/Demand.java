@@ -1,7 +1,6 @@
 //Object for passing demand and generation between agent and environment
 package actions;
 
-import actions.handlers.DemandHandler;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
