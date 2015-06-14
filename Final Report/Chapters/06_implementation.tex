@@ -156,8 +156,8 @@ To set up the simulation with realistic demand and generation profiles, some mea
 \section*{Issues}
 Out of order parallel execution meant that Agents need to submit their individual Demands to the SharedState, and have that summed at the end of each timestep. It is not possible to sum the Demands on the fly.
 
-Being new to both Java and Presage presented problems of its own. It was difficult to understand how simulations could be run and therefore create our own.
+Being new to both Java and Presage presented problems of its own. It was difficult to understand how simulations could be run and therefore create our own. Some aspects of this project is similar to \textit{LPG'}, but due to API changes the code had to be redesigned and rewritten for this project.
 
-One action per time step meant that it takes 4 time steps to simulate one round of request and appropriation of electricity. It would therefore take 24*4 time steps to simulate a full day of requests and appropriation.
+One action per time step meant that it takes 5 time steps to simulate one round of request and appropriation of electricity. It would therefore take 24*4 time steps to simulate a full day of requests and appropriation.
 
 Difficulty with initialising Agents with arrays meant that Agents had to be created with no Demand or Generation Profiles, and the Demand and Generation Profiles were added one by one by using the \textit{addProfileHourly()} method.
