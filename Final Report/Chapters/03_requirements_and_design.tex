@@ -1,7 +1,7 @@
 % !TEX root = ../main.tex
 \chapter{Requirements and Design}
 \label{Requirements and Design}
-In this project, a model of a rural electricity network that is disconnected from the grid is expected to be modeled. To allow the network to be scalable, the network is holonic in structure and consist of communities of prosumer "smart households" which can generate and utilise electricity depending on their demand and generation profiles. Therefore the simulator was required to have the following features:
+To be able to simulate a dCES operating within the Rugaragara Falls community, a model of a rural electricity network that is disconnected from the grid is expected to be constructed. To allow the network to be scalable, the network is holonic in structure and consist of communities of prosumer "smart households" which can generate and utilise electricity depending on their demand and generation profiles. Therefore the simulator was required to have the following features:
 \begin{itemize}
   \item Multiple Forms of Generation: Renewable and Non-renewable generators which can operate continuously or discontinuously
   \item Realistic Generator Models: Programmable variable generation power output to simulate wind and solar power
@@ -15,7 +15,7 @@ As this was a simulation implemented in Presage 2, there were no specific requir
 The simulation was developed using Presage 2, with the hope that a network of Decentralised Community Energy Systems can be simulated, and an algorithm for fairly allocating available generation to demand will be implemented. It is assumed that no cheating will take place.
 
 \section*{Model Assumptions}
-For the purpose of this project, all participants in the community micro-grid must be prosumers. This means all participants are expected to contribute and consume electricity. Some important assumptions will be made about how the system operates in order to simplify the implementation of both the model and the micro grid:
+For the purpose of this project, all participants in the micro-grid are assumed to be prosumers. This means all participants are expected to contribute and consume electricity. Some important assumptions will be made about how the system operates in order to simplify the implementation of both the model and the micro grid:
 \begin{itemize}
 	\item No losses would be incurred by the network
 	\item All load on the network will be purely resistive
