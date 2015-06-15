@@ -2,19 +2,11 @@
 \chapter{Further Work}
 \label{Further Work}
 
-So far, the work carried out has been only be applicable for a small rural community in Rwanda, and has the scope to be developed further to a larger scale to model future smart grid networks in developed nations. Currently, much of the costs surrounding the network set-up, network maintenance have not been included. Additional limitations include purely resistive loading and no network losses. Future work can improve the accuracy of the model by taking into consideration these additional costs and losses.
+The work that has been done so far has been only be applicable for a small rural community in Rwanda. However, with small modifications it has the scope to be developed further to a larger scale to model future smart grid networks in developed nations. Currently, much of the costs surrounding the network set-up, network maintenance have not been included in the model. In addition, reactive power flows and losses due to equipment efficiencies were also not modelled. Future work can improve the accuracy of the model by taking into consideration the aforestated additional costs and losses. In its current iteration, excess generation is curtailed. This is the correct behaviour in poor rural communities where energy storage facilities are limited. In more advanced economies, Smart Grids will need to be able to store unused generation \cite{IEEE-SmartGrid:2015}, so the Simulator will need to be adapted to carry forward unused generation.
 
-An attempt has been made at simulating realistically a community, and fairly allocating energy to end users. More data such as household economic output, household utility would be required to implement all 8 Rescher's Canons of Distributive Justice. 
+An attempt has been made at simulating a community energy system that has yet to be build in Rwanda, which is capable of fairly allocating energy to end users. However, due to a lack of available data on the economic output, and household information from the Rugaragara area, this data had to be generated for the Simulation. More data would be gathered required to accurately implement all 8 \textit{Rescher's Canons of Distributive Justice} and to validate the findings that were stated in the Results section.
 
-Currently, only renewable sources of generation were included, as these were the most prevailent in the area studied. It would be realistic to include diesel generators and their costs in further works.
+In the Simulator's present form, only renewable sources of generation are supported fully, as these were the most prevailent type of generation in the Rugaragara Falls area. However, as renewable generation is not the only form of generation available in many rural areas, it would be more realistic to be able to support Prosumer Agents with diesel generators. Work would need to be done to reflect the cost of providing electricity from non-renewable sources to the Common Pool, and appropriately be able to compensate the Agents who operate those generators with a fair allocation.
 
-The simulator in its present form only one aspect has been explored in the holonic model. The model employed in this simulation can be further adapted to include other bottlenecks and opportunities such as government intervention, grid electricity and financial incentives. The Agents' behavioral model are very simple, and can be further improved.
+The current implementation of the Simulator only takes into account variables at a local level. The Simulator design and implementation can also be further expanded to simulate other variables, bottlenecks and opportunities such as government intervention, grid electricity availability and financial incentives. 
 
-In the immediate future, it is hoped that this tool could be used to aid the feasibility study of the Micro-Grid to be implemented in Rugaragara Falls. 
-
-Consider Diesel Generators' costs 
-Consider satisfaction of individual agents for them to partake in this
-
-In the simulation, carry forward unused generation because we have storage. Any excess generation is simply curtailed.
-
-Trading platform.

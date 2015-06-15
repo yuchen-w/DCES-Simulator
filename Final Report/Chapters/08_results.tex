@@ -3,7 +3,7 @@
 \label{Results}
 
 \section*{Simulating over 24 hours}
-A copy of the complete simulation data can be found in the \ref{Appendix}.
+A copy of the complete simulation data can be found in the Appendices.
 
 \subsection*{Analysis}
 Five clusters of 5 Prosumer Agents (25 Prosumer Agents, 5 Virtual Agents and 1 Supervisor Agents) were simulated over 24 hours. Each cluster had 2 Prosumers generating using Wind Turbines and 3 Prosumers generating using Photovoltaic cells. With no data about the economic output or social utility of the individual households in Rugaragara being available, the data had to be generated for the simulation. All Prosumer Agents were initialised with a random \textit{Productivity} rating and a random \textit{Social Utility} representing a household's hourly contribution to the economic or social development of the local community.
@@ -25,7 +25,7 @@ As expected, as long as there was some generation, all Prosumer Agents would rec
 	}
 \end{table}
 
-It is interesting to find that Agents can sometimes receive more than what they have requested, resulting in a satisfaction rating that is above 1 (see table \ref{tab:SatisfactionMoreThanOne}). Opportunities such as these arise due to the holonic nature of the system, as the Supervisor Agent allocates fairly to the Virtual Agents. If as a cluster, it is contributing more than the other clusters, then at the Supervisor Allocation stage, this particular cluster will be allocated more energy. If an Agent within that Cluster is contributing more, then that Agent will be allocated more of an already big pool, which can lead to allocating more energy than is requested by the Agent. Take the cases of Clusters 2 and 3, which both have had multiple occurences of Agents being allocated more than requested; these clusters have had an above average contribution to the common pool which can be seen in table \ref{tab:ClusterRank}, and as a result have the two highest average satisfaction ratings. 
+It is interesting to find that Agents can sometimes receive more than what they have requested, resulting in a satisfaction rating that is above 1 (see table \ref{tab:SatisfactionMoreThanOne}). Opportunities such as these arise due to the holonic nature of the system, as the Supervisor Agent allocates fairly to the Virtual Agents. If as a cluster, it is contributing more than the other clusters, then at the Supervisor Allocation stage, this particular cluster will be allocated more energy. If an Agent within that Cluster is contributing more, then that Agent will be allocated more of an already big pool, which can lead to allocating more energy than is requested by the Agent. Take the cases of Clusters 2 and 3, which both have had multiple occurences of Agents being allocated more than requested; these clusters have had an above average contribution to the common pool which can be seen in table \ref{tab:ClusterRank}, and as a result have the two highest average satisfaction ratings. Figure \ref{fig:SatisfactionVsRanking} shows the relationship between average ranking according to the \textit{Rescher's Canons of Distributive Justice} and the average Agent satisfaction within a Cluster. The trend is that, with higher ranking, comes higher average Agent satisfaction.
 
 \begin{table}[h]
 \centering
@@ -77,6 +77,15 @@ Cluster3                    & 1                                                 
 Cluster4                    & 4                                                                              & 5                                                                                   & 2                                                                                   & 5                                                                             & 4                                                                              & 0.715                                                                               \\ \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure} 
+	\centering
+	\setlength\figureheight{6cm} 
+	\setlength\figurewidth{13cm} 
+	\input{Figures/SatisfactionVsRanking.tikz} 
+	\caption{Variation in satisfaction with varying average contribution ranking} 
+	\label{fig:SatisfactionVsRanking} 
+\end{figure}
 
 \subsection*{Implications}
 With a differing amount of satisfaction between clusters, the results have shown that it benefits to be a contributor in a Cluster in which all Agents contribute more than the average. In the real world, the households modelled in this simulation are likely to be in close geological proximity. Under the same weather conditions, more contribution to the common pool are likely to be as a result of better equipment which can be attributed to wealth. In a similar fashion, assuming that all households are equal, with mechanisms to prevent cheating so that no household can act in a selfish manner, higher productivity and social utility can also be attributed to higher wealth. For example, a communal fridge/shop/TV contributed owned by a household can contribute to social utility, but only because not everyone in the community is able to afford it. In the case of productivity, if a household has a spinning wheel to produce more yarn, that household is likely to be wealthier to be able to afford such equipment. 

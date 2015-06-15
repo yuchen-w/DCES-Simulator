@@ -9,17 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6ded38c-8bf4-46fe-96c4-0658df65eeb5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.pdf" afterPath="$PROJECT_DIR$/../Final Report/main.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.synctex.gz" afterPath="$PROJECT_DIR$/../Final Report/main.synctex.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/Chapters/08_results.tex" afterPath="$PROJECT_DIR$/../Final Report/Chapters/08_results.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/Chapters/12_user_guide.tex" afterPath="$PROJECT_DIR$/../Final Report/Chapters/12_user_guide.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AgentCanonVotes.csv" afterPath="$PROJECT_DIR$/AgentCanonVotes.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AgentRanking.csv" afterPath="$PROJECT_DIR$/AgentRanking.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BordaRank.csv" afterPath="$PROJECT_DIR$/BordaRank.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CanonAllocationFromGlobal.csv" afterPath="$PROJECT_DIR$/CanonAllocationFromGlobal.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allocation.csv" afterPath="$PROJECT_DIR$/allocation.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.lot" afterPath="$PROJECT_DIR$/../Final Report/main.lot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Final Report/main.tex" afterPath="$PROJECT_DIR$/../Final Report/main.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/request.csv" afterPath="$PROJECT_DIR$/request.csv" />
     </list>
     <ignored path="Decentralised CES.iws" />
@@ -43,19 +38,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GlobalEnvService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GlobalEnvService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/services/GlobalEnvService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="637" column="33" selection-start-line="637" selection-start-column="33" selection-end-line="637" selection-end-column="33" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="e#1958#1965#0" expanded="false" />
                 <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
                 <element signature="method#getChildEnvService#0;class#GlobalEnvService#0" expanded="false" />
                 <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-                <element signature="e#8526#8527#0" expanded="false" />
-                <element signature="e#8565#8566#0" expanded="false" />
                 <element signature="method#calculateCanonWeight#0;class#GlobalEnvService#0" expanded="false" />
               </folding>
             </state>
@@ -72,60 +64,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionHandlers.uml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/UML/ActionHandlers.uml">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JAVA</ID>
-              <OriginalElement>actions.handlers.ChildDemandHandler</OriginalElement>
-              <nodes>
-                <node x="351.0" y="0.0">uk.ac.imperial.presage2.core.environment.ActionHandler</node>
-                <node x="0.0" y="134.0">actions.handlers.ChildDemandHandler</node>
-                <node x="634.0" y="156.0">services.handler.MasterActionHandler</node>
-                <node x="307.0" y="123.0">actions.handlers.ParentDemandHandler</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="actions.handlers.ParentDemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
-                  <point x="0.0" y="-125.0" />
-                  <point x="0.0" y="36.5" />
-                </edge>
-                <edge source="services.handler.MasterActionHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
-                  <point x="0.0" y="-92.0" />
-                  <point x="757.5" y="98.0" />
-                  <point x="533.5" y="98.0" />
-                  <point x="73.0" y="36.5" />
-                </edge>
-                <edge source="actions.handlers.ChildDemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
-                  <point x="0.0" y="-114.0" />
-                  <point x="143.5" y="98.0" />
-                  <point x="387.5" y="98.0" />
-                  <point x="-73.0" y="36.5" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="1.0" x="440.5" y="186.5" />
-              <SelectedNodes>
-                <node>services.handler.MasterActionHandler</node>
-              </SelectedNodes>
-              <Categories>
-                <Category>Fields</Category>
-                <Category>Properties</Category>
-                <Category>Methods</Category>
-              </Categories>
-              <SCOPE>All</SCOPE>
-              <VISIBILITY>private</VISIBILITY>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="dCES_Sim.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sim/dCES_Sim.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="203" column="22" selection-start-line="203" selection-start-column="22" selection-end-line="203" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,21 +79,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="267" column="27" selection-start-line="267" selection-start-column="19" selection-end-line="267" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1898#1899#0" expanded="false" />
-                <element signature="e#1944#1945#0" expanded="false" />
-                <element signature="e#1988#1989#0" expanded="false" />
-                <element signature="e#2034#2035#0" expanded="false" />
-                <element signature="e#2318#2319#0" expanded="false" />
-                <element signature="e#2348#2349#0" expanded="false" />
-                <element signature="e#2388#2389#0" expanded="false" />
-                <element signature="e#2422#2423#0" expanded="false" />
-                <element signature="e#2456#2457#0" expanded="false" />
-                <element signature="e#2484#2485#0" expanded="false" />
-                <element signature="e#12692#12693#0" expanded="false" />
-                <element signature="e#12745#12746#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,15 +89,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#846#847#0" expanded="false" />
-                <element signature="e#877#878#0" expanded="false" />
-                <element signature="e#926#927#0" expanded="false" />
-                <element signature="e#960#961#0" expanded="false" />
-                <element signature="e#1001#1002#0" expanded="false" />
-                <element signature="e#1037#1038#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -177,11 +99,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1542#1543#0" expanded="false" />
-                <element signature="e#1623#1624#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,9 +109,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -203,11 +119,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1477#1478#0" expanded="false" />
-                <element signature="e#1530#1531#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -217,16 +129,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-              <folding>
-                <element signature="e#173#174#0" expanded="false" />
-                <element signature="e#187#188#0" expanded="false" />
-                <element signature="e#266#267#0" expanded="false" />
-                <element signature="e#281#282#0" expanded="false" />
-                <element signature="e#309#310#0" expanded="false" />
-                <element signature="e#326#327#0" expanded="false" />
-                <element signature="e#356#357#0" expanded="false" />
-                <element signature="e#383#384#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -320,10 +223,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-1727" />
+    <option name="y" value="-95" />
+    <option name="width" value="1335" />
+    <option name="height" value="846" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -393,6 +296,89 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="actions">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -642,89 +628,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="handlers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="actions">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Decentralised CES">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1196,12 +1099,13 @@
       <workItem from="1434231351959" duration="881000" />
       <workItem from="1434238214047" duration="601000" />
       <workItem from="1434295716695" duration="1800000" />
+      <workItem from="1434325875694" duration="49000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="310521000" />
+    <option name="totallyTimeSpent" value="310570000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1213,20 +1117,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1727" y="-95" width="1335" height="846" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286638" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27351353" sideWeight="0.30490404" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35384616" sideWeight="0.30490404" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.6359275" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.49573562" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18869936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27764705" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37526652" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1748,7 +1652,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.449827">
           <caret line="2216" column="23" selection-start-line="2216" selection-start-column="23" selection-end-line="2216" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1756,7 +1659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7709251">
           <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1852,15 +1754,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#846#847#0" expanded="false" />
-            <element signature="e#877#878#0" expanded="false" />
-            <element signature="e#926#927#0" expanded="false" />
-            <element signature="e#960#961#0" expanded="false" />
-            <element signature="e#1001#1002#0" expanded="false" />
-            <element signature="e#1037#1038#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1868,9 +1762,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="203" column="22" selection-start-line="203" selection-start-column="22" selection-end-line="203" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1878,16 +1770,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-          <folding>
-            <element signature="e#173#174#0" expanded="false" />
-            <element signature="e#187#188#0" expanded="false" />
-            <element signature="e#266#267#0" expanded="false" />
-            <element signature="e#281#282#0" expanded="false" />
-            <element signature="e#309#310#0" expanded="false" />
-            <element signature="e#326#327#0" expanded="false" />
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#383#384#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1896,13 +1779,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="637" column="33" selection-start-line="637" selection-start-column="33" selection-end-line="637" selection-end-column="33" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="e#1958#1965#0" expanded="false" />
             <element signature="method#GlobalEnvService#0;class#GlobalEnvService#0" expanded="false" />
             <element signature="method#getChildEnvService#0;class#GlobalEnvService#0" expanded="false" />
             <element signature="method#step#0;class#GlobalEnvService#0" expanded="false" />
-            <element signature="e#8526#8527#0" expanded="false" />
-            <element signature="e#8565#8566#0" expanded="false" />
             <element signature="method#calculateCanonWeight#0;class#GlobalEnvService#0" expanded="false" />
           </folding>
         </state>
@@ -1912,21 +1792,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="267" column="27" selection-start-line="267" selection-start-column="19" selection-end-line="267" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1898#1899#0" expanded="false" />
-            <element signature="e#1944#1945#0" expanded="false" />
-            <element signature="e#1988#1989#0" expanded="false" />
-            <element signature="e#2034#2035#0" expanded="false" />
-            <element signature="e#2318#2319#0" expanded="false" />
-            <element signature="e#2348#2349#0" expanded="false" />
-            <element signature="e#2388#2389#0" expanded="false" />
-            <element signature="e#2422#2423#0" expanded="false" />
-            <element signature="e#2456#2457#0" expanded="false" />
-            <element signature="e#2484#2485#0" expanded="false" />
-            <element signature="e#12692#12693#0" expanded="false" />
-            <element signature="e#12745#12746#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1960,11 +1826,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1477#1478#0" expanded="false" />
-            <element signature="e#1530#1531#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1972,9 +1834,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1982,11 +1842,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1542#1543#0" expanded="false" />
-            <element signature="e#1623#1624#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2011,9 +1867,11 @@
           </nodes>
           <notes />
           <edges>
-            <edge source="actions.handlers.ParentDemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
-              <point x="0.0" y="-125.0" />
-              <point x="0.0" y="36.5" />
+            <edge source="actions.handlers.ChildDemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
+              <point x="0.0" y="-114.0" />
+              <point x="143.5" y="98.0" />
+              <point x="387.5" y="98.0" />
+              <point x="-73.0" y="36.5" />
             </edge>
             <edge source="services.handler.MasterActionHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
               <point x="0.0" y="-92.0" />
@@ -2021,14 +1879,12 @@
               <point x="533.5" y="98.0" />
               <point x="73.0" y="36.5" />
             </edge>
-            <edge source="actions.handlers.ChildDemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
-              <point x="0.0" y="-114.0" />
-              <point x="143.5" y="98.0" />
-              <point x="387.5" y="98.0" />
-              <point x="-73.0" y="36.5" />
+            <edge source="actions.handlers.ParentDemandHandler" target="uk.ac.imperial.presage2.core.environment.ActionHandler">
+              <point x="0.0" y="-125.0" />
+              <point x="0.0" y="36.5" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="440.5" y="186.5" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="441.0" y="187.0" />
           <SelectedNodes>
             <node>services.handler.MasterActionHandler</node>
           </SelectedNodes>
