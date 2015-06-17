@@ -18,7 +18,8 @@ Set up the Run Configuration as the following:
 ![image](https://cloud.githubusercontent.com/assets/3355737/8119285/4df7767a-108c-11e5-9cb6-6162bc0e47cd.png)
 
 ##Notes
-Generation and demand profiles are stored in the `./data` folder. If changes aer made to any of the csv files, make sure to open them up in a text editor of your choice and get rid of the new line. 
+- Generation and demand profiles are stored in the `./data` folder. If changes aer made to any of the csv files, make sure to open them up in a text editor of your choice and get rid of the new line. 
+- finishTime of 119 simulates for 24 hours, 839 simulates 7 days.
 
 
 ## Project stuff
