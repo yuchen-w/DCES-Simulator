@@ -62,18 +62,131 @@ public class dCES_Sim extends RunnableSimulation {
         addModule(new AbstractEnvironmentModule()
                         .addParticipantGlobalEnvironmentService(PowerPoolEnvService.class)
                         .addParticipantGlobalEnvironmentService(ParentEnvService.class)
-                        //.addParticipantEnvironmentService(ChildEnvService.class)
+                                //.addParticipantEnvironmentService(ChildEnvService.class)
 
                         .addActionHandler(ParentDemandHandler.class)
                         .addActionHandler(ChildDemandHandler.class)
                         .addActionHandler(MasterActionHandler.class)
-                        //Add the participant service and any other additional environment services here too
+                //Add the participant service and any other additional environment services here too
         );
 
 
         MasterAgent supervisor = new MasterAgent(Random.randomUUID(), "Supervisor/NGC");
         scenario.addAgent(supervisor);
 
+        textFileInit();
+        int it = 0;
+        ArrayList<Double> WindProfile = new ArrayList<Double>();
+        try{
+            Scanner inFile1 = new Scanner(new File("./data/Wind Generation Profile.csv")).useDelimiter(",\\s*");
+            while (inFile1.hasNext()) {
+                double token1 = inFile1.nextDouble();
+                WindProfile.add(token1);
+                it++;
+                logger.info("iteration: " + it);
+                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+                for (Double s : tempsArray) {
+                    logger.info("reading: " + (s));
+                }
+            }
+            inFile1.close();
+        }catch (IOException e) {
+
+        }
+
+        ArrayList<Double> SolarProfile = new ArrayList<Double>();
+        try{
+            Scanner inFile1 = new Scanner(new File("./data/Solar Generation Profile.csv")).useDelimiter(",\\s*");
+            while (inFile1.hasNext()) {
+                double token1 = inFile1.nextDouble();
+                SolarProfile.add(token1);
+                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+                for (Double s : tempsArray) {
+                    logger.info("reading: " + (s));
+                }
+            }
+            inFile1.close();
+        }catch (IOException e) {
+
+        }
+
+        ArrayList<Double> DemandProfile = new ArrayList<Double>();
+        try{
+            Scanner inFile1 = new Scanner(new File("./data/Agent Demand Profile.csv")).useDelimiter(",\\s*");
+            while (inFile1.hasNext()) {
+                double token1 = inFile1.nextDouble();
+                token1 = token1*1.2;
+                DemandProfile.add(token1);
+                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+                for (Double s : tempsArray) {
+                    logger.info("reading: " + (s));
+                }
+            }
+            inFile1.close();
+        }catch (IOException e) {
+
+        }
+
+
+        for (int i = 0; i < agents; i++)
+        {
+            UUID parent_id = Random.randomUUID();
+            ParentAgent Parent = new ParentAgent(parent_id, "Cluster" + i, 0, 0, agent_children);
+            scenario.addAgent(Parent);
+
+            supervisor.addChild(Parent.getID());
+
+            for (int j = 0; j < agent_children/2; j++)
+            {
+                UUID child_id = Random.randomUUID();
+                ProsumerAgent prosumer = new ProsumerAgent(child_id,
+                        "Cluster" + i + "Agent" + j, "Cluster" + i, parent_id);
+
+                for (int k=0; k<hours; k++)
+                {
+                    prosumer.addProfileHourly(DemandProfile.get(k)*getGaussian(1, 0.2), WindProfile.get(k)*getGaussian(1, 0.2));
+                }
+
+                for (int k=0; k<hours; k++)
+                {
+                    prosumer.addProductivity(Random.randomInt(agent_children));
+                    prosumer.addSocialUtility(Random.randomInt(agent_children));
+                }
+
+                scenario.addAgent(prosumer);
+                Parent.addChild(child_id);
+
+            }
+            for (int j = agent_children/2; j < agent_children; j++)
+            {
+                UUID child_id = Random.randomUUID();
+                ProsumerAgent prosumer = new ProsumerAgent(child_id,
+                        "Cluster" + i + "Agent" + j, "Cluster" + i, parent_id);
+
+                for (int k=0; k<hours; k++)
+                {
+                    prosumer.addProfileHourly(DemandProfile.get(k)*getGaussian(1, 0.2), SolarProfile.get(k)*getGaussian(1, 0.2));
+                }
+
+                for (int k=0; k<hours; k++)
+                {
+                    prosumer.addProductivity(Random.randomInt(agent_children));
+                    prosumer.addSocialUtility(Random.randomInt(agent_children));
+                }
+
+                scenario.addAgent(prosumer);
+                Parent.addChild(child_id);
+
+            }
+        }
+    }
+
+    private double getGaussian(double aMean, double aVariance){
+        return aMean + fRandom.nextGaussian() * (aVariance/100);
+    }
+
+    private void textFileInit()
+    {
         try{
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(output, true)));
             out.println("hour, name , Request D , Request G, Productivity, Social Utility");
@@ -118,117 +231,10 @@ public class dCES_Sim extends RunnableSimulation {
 
         try{
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
-            out.println("hour, canon, id, Borda Pts, Borda Pts norm, Borda Proportion, Borda Sum, Canon weight(aggregated votes for this canon)");
+            out.println("hour, canon, id, Borda Pts, Borda pts norm, Borda Proportion, Borda Votes for Canon, Total Borda Votes");
             out.close(); //Fixing Resource specification not allowed here for source level below 1.7
         }catch (IOException e) {
 
         }
-
-
-        ArrayList<Double> WindProfile = new ArrayList<Double>();
-        try{
-            Scanner inFile1 = new Scanner(new File("./data/Wind Generation Profile.csv")).useDelimiter(",\\s*");
-            while (inFile1.hasNext()) {
-                double token1 = inFile1.nextDouble();
-                WindProfile.add(token1);
-//                Float[] tempsArray = WindProfile.toArray(new Float[0]);
-//                for (Float s : tempsArray) {
-//                    logger.info("reading: " + (s));
-//                }
-            }
-            inFile1.close();
-        }catch (IOException e) {
-
-        }
-
-        ArrayList<Double> SolarProfile = new ArrayList<Double>();
-        try{
-            Scanner inFile1 = new Scanner(new File("./data/Solar Generation Profile.csv")).useDelimiter(",\\s*");
-            while (inFile1.hasNext()) {
-                double token1 = inFile1.nextDouble();
-                SolarProfile.add(token1);
-//                Float[] tempsArray = WindProfile.toArray(new Float[0]);
-//                for (Float s : tempsArray) {
-//                    logger.info("reading: " + (s));
-//                }
-            }
-            inFile1.close();
-        }catch (IOException e) {
-
-        }
-
-        ArrayList<Double> DemandProfile = new ArrayList<Double>();
-        try{
-            Scanner inFile1 = new Scanner(new File("./data/Agent Demand Profile.csv")).useDelimiter(",\\s*");
-            while (inFile1.hasNext()) {
-                double token1 = inFile1.nextDouble();
-                token1 = token1*1.2;
-                DemandProfile.add(token1);
-//                Float[] tempsArray = WindProfile.toArray(new Float[0]);
-//                for (Float s : tempsArray) {
-//                    logger.info("reading: " + (s));
-//                }
-            }
-            inFile1.close();
-        }catch (IOException e) {
-
-        }
-
-
-        for (int i = 0; i < agents; i++)
-        {
-            UUID parent_id = Random.randomUUID();
-            ParentAgent Parent = new ParentAgent(parent_id, "parent" + i, 0, 0, agent_children);
-            scenario.addAgent(Parent);
-
-            supervisor.addChild(Parent.getID());
-
-            for (int j = 0; j < agent_children/2; j++)
-            {
-                UUID child_id = Random.randomUUID();
-                ProsumerAgent prosumer = new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, "parent" + i, parent_id);
-
-                for (int k=0; k<hours; k++)
-                {
-                    prosumer.addProfileHourly(DemandProfile.get(k)*getGaussian(1, 0.2), WindProfile.get(k)*getGaussian(1, 0.2));
-                }
-
-                for (int k=0; k<hours; k++)
-                {
-                    prosumer.addProductivity(Random.randomInt(agent_children));
-                    prosumer.addSocialUtility(Random.randomInt(agent_children));
-                }
-
-                scenario.addAgent(prosumer);
-                Parent.addChild(child_id);
-
-            }
-            for (int j = agent_children/2; j < agent_children; j++)
-            {
-                UUID child_id = Random.randomUUID();
-                ProsumerAgent prosumer = new ProsumerAgent(child_id,
-                        "parent" + i + "agent" + j, "parent" + i, parent_id);
-
-                for (int k=0; k<hours; k++)
-                {
-                    prosumer.addProfileHourly(DemandProfile.get(k)*getGaussian(1, 0.2), WindProfile.get(k)*getGaussian(1, 0.2));
-                }
-
-                for (int k=0; k<hours; k++)
-                {
-                    prosumer.addProductivity(Random.randomInt(agent_children));
-                    prosumer.addSocialUtility(Random.randomInt(agent_children));
-                }
-
-                scenario.addAgent(prosumer);
-                Parent.addChild(child_id);
-
-            }
-        }
-    }
-
-    private double getGaussian(double aMean, double aVariance){
-        return aMean + fRandom.nextGaussian() * (aVariance/100);
     }
 }

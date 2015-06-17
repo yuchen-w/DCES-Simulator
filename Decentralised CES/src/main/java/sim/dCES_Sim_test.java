@@ -75,17 +75,19 @@ public class dCES_Sim_test extends RunnableSimulation {
         scenario.addAgent(supervisor);
 
         textFileInit();
-
+        int it = 0;
         ArrayList<Double> WindProfile = new ArrayList<Double>();
         try{
             Scanner inFile1 = new Scanner(new File("./data/Wind Generation Profile.csv")).useDelimiter(",\\s*");
             while (inFile1.hasNext()) {
                 double token1 = inFile1.nextDouble();
                 WindProfile.add(token1);
-//                Float[] tempsArray = WindProfile.toArray(new Float[0]);
-//                for (Float s : tempsArray) {
-//                    logger.info("reading: " + (s));
-//                }
+                it++;
+                logger.info("iteration: " + it);
+                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+                for (Double s : tempsArray) {
+                    logger.info("reading: " + (s));
+                }
             }
             inFile1.close();
         }catch (IOException e) {
@@ -98,10 +100,10 @@ public class dCES_Sim_test extends RunnableSimulation {
             while (inFile1.hasNext()) {
                 double token1 = inFile1.nextDouble();
                 SolarProfile.add(token1);
-//                Float[] tempsArray = WindProfile.toArray(new Float[0]);
-//                for (Float s : tempsArray) {
-//                    logger.info("reading: " + (s));
-//                }
+                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+                for (Double s : tempsArray) {
+                    logger.info("reading: " + (s));
+                }
             }
             inFile1.close();
         }catch (IOException e) {
@@ -115,10 +117,10 @@ public class dCES_Sim_test extends RunnableSimulation {
                 double token1 = inFile1.nextDouble();
                 token1 = token1*1.2;
                 DemandProfile.add(token1);
-//                Float[] tempsArray = WindProfile.toArray(new Float[0]);
-//                for (Float s : tempsArray) {
-//                    logger.info("reading: " + (s));
-//                }
+                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+                for (Double s : tempsArray) {
+                    logger.info("reading: " + (s));
+                }
             }
             inFile1.close();
         }catch (IOException e) {
