@@ -69,7 +69,7 @@ Agent Properties represent the information that is to be relayed to the Communit
 For Virtual Agents, this property represents the aggregated demand of all connected sub-communities or Agents and will not have any associated demand profiles.
 % However, the change in demand profile due to appropriation of energy must be able to satisfy the expected behavioral habits of the local inhabitants. These habits should include restrictions such as no trading during hours of sleep for households. What the habits will be, and how this will be implemented will be determined after some additional research into the area.
 
-\item[Generation] - is a property which will allow all agents to generate power. For Virtual Agents, this property represents the aggregated Generation of all connected sub-communities or Agents. Four types of generator properties will be implemented in this simulation model for Prosumer Agents: 
+\item[Generation] - is a property which allows all agents to generate power. For Virtual Agents, this property represents the aggregated Generation of all connected sub-communities or Agents. Four types of generator properties will be implemented in this simulation model for Prosumer Agents: 
 
 \begin{itemize}
   \item Hydro-electric - a constant source of energy based on a mixture of historical data and projections.
@@ -110,8 +110,8 @@ Similar to many other Multi-Agent Simulators, there can be no direct Agent-to-Ag
 	\label{fig:SimEnv2}
 \end{figure}
 
-Architecturally, Agents in the Simulation hold all of the information that is relevant to them. The Agents at the beginning of each allocation round submits their individual demand and generation request to the Virtual Agent that they are connected to. The Virtual Agents can submit their Group demand and Group generation Requests (Aggregated demand and generation Requests) to other "Parent" Virtual Agents that they are connected to through the Parent Environment, and can do so recursively until the group demand and generation have been sent to the Supervisor. By making the first initial allocation, the Supervisor is able to trigger a stream of allocation making actions performed by the Virtual Agents to the Virtual Agents and other Agents that are in their holonic sub-system.
-During a round, Agents (or the houses in \ref{fig:SimEnv})are expected to publish their demand/generation request to the Virtual Agent that they are connected to. The Community that these parents are part of are represented by Virtual Agents. 
+Architecturally, Agents in the Simulation hold all of the information that is relevant to them. The Agents at the beginning of each allocation round submit their individual demand and generation request to the Virtual Agent that they are connected to. The Virtual Agents can submit their group demand and group generation requests (Aggregated demand and generation Requests) to other "Parent" Virtual Agents that they are connected to through the Parent Environment, and can do so recursively until the group demand and generation have been sent to the Supervisor. By making the first initial allocation, the Supervisor is able to trigger a stream of allocation making actions performed by the Virtual Agents to the Virtual Agents and other Agents that are in their holonic sub-system.
+During a round, Agents (or the houses in \ref{fig:SimEnv}) are expected to publish their demand/generation request to the Virtual Agent that they are connected to. The Community that these parents are part of are represented by Virtual Agents. 
 
 The Virtual Agent aggregates the connected demand/generation requests and publishes this information to the Supervisor. The Supervisor aggregates the total demand/generation and appropriates the electricity fairly, and curtails the generation if there is an excess.
 
@@ -127,9 +127,9 @@ The basic algorithm for the simulation is outlined below in Algorithm \ref{alg:b
 		request \textit{Group Demand} and \textit{Group Generation} from Supervisor Agent\;
 	}
 	\eIf{Group Generation >= Group Demand}{
-		curtail Group Generation\;
+		curtail \textit{Group Generation}\;
 	}{
-		allocate fairly Group Demand among Virtual Agents\;
+		allocate fairly \textit{Group Generation} among \textit{Virtual Agents}\;
 	}
 	\For{each Virtual Agent} {
 		allocate \textit{Group Demand} and \textit{Group Generation} allocated from Supervisor Agent\;

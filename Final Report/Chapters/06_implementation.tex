@@ -54,7 +54,7 @@ The Prosumer Agent is implemented with the following methods to allow it to perf
 \begin{itemize}
 	\item The \textit{constructor} of this object is responsible for keeping track of which Agent is its \textit{ParentAgent}. The \textit{constructor} is called when this object is created in the initial Simulation set-up as part of the Agent creation and initialisation process.
 	\item \textit{addChild()} method is used for keeping track of the Agents. This is called during the initial Simulation set-up as part of the Agent creation and initialisation process.
-	\item \textit{step(int)} method is called by Presage during the simulation to allow the Agent to act on the environment. demand and generation requests are sent to the supervisor, and allocation of demand and generation are also made to the Agents when this method is called automatically by Presage.
+	\item \textit{step(int)} method is called by Presage during the simulation to allow the Agent to act on the environment. Demand and generation requests are sent to the supervisor, and allocation of demand and generation are also made to the Agents when this method is called automatically by Presage.
 	\item \textit{addProductivity(), addSocialUtility(), addProfileHourly()} are the methods that are called during the initial Simulation set-up as part of the Agent creation and initialisation process to define the properties of this Agent.
 \end{itemize}
 
@@ -69,7 +69,7 @@ The Prosumer Agent is implemented with the following methods to allow it to perf
 \clearpage
 
 \section*{Demand Action}
-Agents act on Environments and "Shared States" by performing \textit{Actions}. \textit{Actions} are implemented by extending the Java interface \textit{Action} from Presage 2. In the context of this simulation, an \textit{Action} would be a demand/generation request or a demand/generation allocation. As generation can be modeled as a negative demand, a single \textit{Action} such as the \textit{Demand Action} can be defined to represent both demand requests/quotas and generation requests/dispatch. \textit{childDemand} and \textit{parentDemand} are special instances of \textit{Demand}, and are responsible for representing demand/generation requests from Prosumer Agents and Virtual Agents respectively. The UML diagram of all of the \textit{Actions} in this simulation is defined in the UML diagram in figure \ref{fig:ActionUML}.
+Agents act on Environments and "Shared States" by performing \textit{Actions}. \textit{Actions} are implemented by extending the Java interface \textit{Action} from Presage 2. In the context of this simulation, an \textit{Action} would be a demand/generation request or a demand/generation allocation. As generation can be modelled as a negative demand, a single \textit{Action} such as the \textit{Demand Action} can be defined to represent both demand requests/quotas and generation requests/dispatch. \textit{childDemand} and \textit{parentDemand} are special instances of \textit{Demand}, and are responsible for representing demand/generation requests from Prosumer Agents and Virtual Agents respectively. The UML diagram of all of the \textit{Actions} in this simulation is defined in the UML diagram in figure \ref{fig:ActionUML}.
 
 \begin{figure}[!h]
 	\centering
@@ -83,7 +83,7 @@ Agents act on Environments and "Shared States" by performing \textit{Actions}. \
 To enable the Environment to be able to process the Action requests, \textit{Action Handlers} need to be created to tell the simulation how to deal with Actions from Agents. In Presage 2, \textit{Action Handlers} are created by extending the implementing the Java interface \textit{ActionHandler}. The superclass \textit{Demand} isn't used by any of the Agents, so there are three \textit{Action Handlers}:  \textit{ChildDemandHandler}, \textit{ParentDemandHandler} and \textit{MasterActionHandler}. Depending on which the time step in the simulation hour it is, \textit{ChildDemandHandler} and \textit{ParentDemandHandler} \textit{Action Handlers} store or retrieve requests and allocations accordingly. The \textit{MasterActionHandler} is responsible for aggregating all demand and generation requests from all Virtual Agents and allocating that in time step 3. How these \textit{Action Handlers} relate to each other is described in the UML diagram in figure \ref{fig:ActionHandlerUML}. 
 
 \subsection*{Master Action Handler}
-A special case of the \textit{Action Handler} is the \textit{MasterActionHandler}. Unlike the other action handlers which access and data in one localised Environment Services, and methods in another Environment Service to allocate and st, this \textit{Action Handlers} is a \textit{Action-Environment Service} hybrid, which access and stores data in one localised Environment Service
+A special case of the \textit{Action Handler} is the \textit{MasterActionHandler}. Unlike the other action handlers which access and send data in one localised Environment Service, and utlises methods in another Environment Service to allocate and store electricity, this \textit{Action Handler} is an \textit{Action-Environment Service} hybrid, which accesses, stores and allocates electricity in the Global Environment Service.
 
 \begin{figure}[!h]
 	\centering

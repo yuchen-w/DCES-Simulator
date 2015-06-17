@@ -2,7 +2,7 @@
 \chapter{Testing}
 \label{Testing}
 
-The final product of this project should be a realistic simulator of a Decentralised Community Energy System. To produce realistic simulations, each of the following features will be tested to ensure they work individually and together:
+The final product of this project should be a realistic simulator of a Decentralised Community Energy System. To produce realistic simulations, each of the following features were tested to ensure they work individually and together:
 
 \begin{itemize}
 \item Agents are able to submit their requests to the Virtual Agent they are connected to.
@@ -34,7 +34,7 @@ An example of this test can be seen in figure \ref{fig:test1}, where a test of t
 \end{figure}
 
 \section*{Testing Allocation Algorithm}
-When the global aggregated generation requests exceed the global aggregated demand requests, all Agents are expected to receive their requests. Globally, generation is curtailed to not exceed the total demand request by curtailing generation proportionally for everyone. In this case, we should expect all Agents to be allocated less generation than they have offered, and all Agents to be allocated their demand requests. An example of this test being passed can be seen in figure \ref{fig:test2}. \\
+When the global aggregated generation requests exceed the global aggregated demand requests, all Agents are expected to receive their requests. Generation is curtailed curtailed globally and proportionally to not exceed the total demand request. In this case, we should expect all Agents to be allocated less generation than they have offered, and all Agents to be allocated their demand requests. An example of this test being passed can be seen in figure \ref{fig:test2}. \\
 
 \begin{figure}[h!]
 	\centering
@@ -43,7 +43,7 @@ When the global aggregated generation requests exceed the global aggregated dema
 	\label{fig:test2}
 \end{figure}
 
-When the global aggregated demand request exceed the global demand request, the "fair allocation method" will need to be used. To ensure this is working as intended, we need to ensure the following tests are passed:
+When the global aggregated demand request exceed the global demand request, the "fair allocation method" is used. To ensure this is working as intended, we need to ensure the following tests are passed:
 
 \begin{enumerate}
 	\item Total allocated demand is equal to total allocated Generation
