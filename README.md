@@ -17,6 +17,8 @@ Clone this repository on to your computer. Import DCES-Simulator into Eclipse/Ne
 Set up the Run Configuration as the following:
 ![image](https://cloud.githubusercontent.com/assets/3355737/8119285/4df7767a-108c-11e5-9cb6-6162bc0e47cd.png)
 
+##Notes
+Generation and demand profiles are stored in the `./data` folder. If changes aer made to any of the csv files, make sure to open them up in a text editor of your choice and get rid of the new line. 
 
 
 ## Project stuff
@@ -31,9 +33,9 @@ To do:
   - Explore creating agentservice (not required)
 Next Steps:
 - Deploy self-organising demand/generation allocation algorithm for agents (done)
-- Run simulations
-- Store simulation data
-- Integrate JBoss Rules Engine (http://www.jboss.org/drools/)
+- Run simulations (done)
+- Store simulation data (done)
+- Integrate JBoss Rules Engine (http://www.jboss.org/drools/) (not required)
 
 Potential future work:
 - Implement Agent cheating
