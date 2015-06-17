@@ -2,15 +2,15 @@
 \chapter{Testing}
 \label{Testing}
 
-The final product of this project should be a realistic simulation of a Decentralised Community Energy System. To produce the simulation, each of the following features will be tested to ensure they work individually and together:
+The final product of this project should be a realistic simulator of a Decentralised Community Energy System. To produce realistic simulations, each of the following features will be tested to ensure they work individually and together:
 
 \begin{itemize}
 \item Agents are able to submit their requests to the Virtual Agent they are connected to.
 \item Virtual Agents are able to submit their requests to the Supervisor.
-\item Virtual Agents and their Agents are allocated Generation dispatch and an amount of electricity to use 
+\item Virtual Agents and their Agents are allocated an amount of generation dispatch and an appropriate amount of electricity to use 
 \end{itemize}
 
-Due to time constraints, unit testing was not implemented. A series of tests was done manually by exporting the data using Excel to prove that the simulator was working as intended. The testing has been outlined in the sections below. Each of the tests below has been conducted for the following simulation cases:
+Due to time constraints, unit testing was not implemented. A series of tests was done manually by exporting the data using Microsoft Excel to prove that the simulator was working as intended. The testing has been outlined in the sections below. Each of the tests detailed below have been conducted for the following simulation cases:
 
 \begin{itemize}
 	\item 1 Supervisor, 1 Virtual Agent and 1 Agent
@@ -20,9 +20,9 @@ Due to time constraints, unit testing was not implemented. A series of tests was
 \end{itemize}
 
 \section*{Testing Request Submission} % (fold)
-To test that Agents are able to submit their Demand and Generation requests, the individual Demand and Generation request of each Agent was recorded in a CSV file. The allocations in the CSV file was summed and compared to that of the computed Global Demand and Generation request.
+To test that Agents are able to submit their demand and generation requests, the individual demand and generation request of each Agent was recorded in a CSV file. The allocations in the CSV file was summed and compared to that of the computed Global demand and generation request.
 
-An example can be seen in figure \ref{fig:test1} of testing the contribution of 25 Agents during hour 23 of a simulation
+An example of this test can be seen in figure \ref{fig:test1}, where a test of the contribution of 25 Agents during hour 23 of a simulation was conducted.
 
 \clearpage
 
@@ -33,10 +33,8 @@ An example can be seen in figure \ref{fig:test1} of testing the contribution of 
 	\label{fig:test1}
 \end{figure}
 
-
-
 \section*{Testing Allocation Algorithm}
-When the global aggregated Generation requests exceed the global aggregated Demand requests, all Agents are expected to receive their requests. Globally, Generation is curtailed to not exceed total Demand Request. Generation is curtailed proportionally for everyone. In this case, we should expect all Agents to be allocated less Generation than they have requested, and all Agents to be allocated their Demand requests. An example of this test being passed can be seen in figure \ref{fig:test2}. \\
+When the global aggregated generation requests exceed the global aggregated demand requests, all Agents are expected to receive their requests. Globally, generation is curtailed to not exceed the total demand request by curtailing generation proportionally for everyone. In this case, we should expect all Agents to be allocated less generation than they have offered, and all Agents to be allocated their demand requests. An example of this test being passed can be seen in figure \ref{fig:test2}. \\
 
 \begin{figure}[h!]
 	\centering
@@ -45,11 +43,11 @@ When the global aggregated Generation requests exceed the global aggregated Dema
 	\label{fig:test2}
 \end{figure}
 
-When the global aggregated Demand request exceed the global Demand request, the fair allocation method will need to be used. To ensure this is working as intended, we need to ensure the following tests are passed:
+When the global aggregated demand request exceed the global demand request, the "fair allocation method" will need to be used. To ensure this is working as intended, we need to ensure the following tests are passed:
 
 \begin{enumerate}
-	\item Total allocated Demand is equal to total allocated Generation
-	\item Total allocated Generation is equal to the total Generation request
+	\item Total allocated demand is equal to total allocated Generation
+	\item Total allocated generation is equal to the total generation request
 	\item Demand allocation proportion is correct
 	\item Borda ranking is correct for each of the canons
 	\item Borda voting by the Agents are correct
@@ -57,7 +55,7 @@ When the global aggregated Demand request exceed the global Demand request, the 
 \end{enumerate}
 
 \subsection*{Tests 1 and 2}
-To check that total allocated Demand is equal to total Generation dispatch, and the total Generation dispatch is equal to the total Generation request, the total Generation Request, Generation Dispatch and Demand Allocation were summed up for each hour of the simulation.  Figure \ref{fig:test3} shows the data for one of such tests. The summation at the bottom shows that the total allocated Demand (Allocated D) and Generation Dispatch (Allocated G) is equal to the total requested Generation (Request G).
+To check that total allocated demand is equal to total generation dispatch, and the total generation dispatch is equal to the total generation request, the total generation Request, generation dispatch and demand allocation were summed up for each hour of the simulation.  Figure \ref{fig:test3} shows the data for one of such tests. The summation at the bottom shows that the total allocated demand (Allocated D) and generation dispatch (Allocated G) is equal to the total requested generation (Request G).
 
 \begin{figure}[h!]
 	\centering
@@ -128,7 +126,7 @@ To check that the voting mechanism was fed back into the system, the aggregate v
 \end{figure}
 
 \section*{Bugs}
-Under Presage 2, all communication between Agents are stored in the Environment Services by the sending party, and accessed by the receiving party. With all simulations under Presage 2 being multi-threaded, there are some occurrences where some Agents are in different time-steps in the simulation. If a Virtual Agent was in a time-step ahead of the Agents connected to it, the Virtual Agent will sometimes access the Demand and Generation request data before it is ready. This usually causes a Java concurrency error warning in the console. This bug rarely occurs, and usually disappears when the simulation is rerun.
+Under Presage 2, all communication between Agents are stored in the Environment Services by the sending party and accessed by the receiving party. With all simulations under Presage 2 being multi-threaded, there are some occurrences of Agents being in different time-steps in the simulation. If a Virtual Agent was in a time-step ahead of the Agents connected to it, the Virtual Agent will sometimes access the demand and generation request data before they are ready. This usually causes a Java concurrency error warning in the console. This bug rarely occurs, and usually disappears when the simulation is relaunched.
 
 % section section_name (end)
 %If data is available for the potential customers in Rugaragara, the simulation could be used in %conjunction with the feasibility study
