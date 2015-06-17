@@ -10,7 +10,7 @@ In the simulation, demand and generation requests are made and satisfied on a ho
 	\item During the second time step, Virtual Agents (Communities) aggregate the generation and demand requests received and submit their generation and demand requests to the Supervisor Agent.
 	\item During the third time step, the Supervisor Agent gathers the total demand and generation requests and subsequently allocates the demand and generation to the Virtual Agents.
 	\item During the fourth time step, the Virtual Agents (Communities) receive the allocation given by the supervisor, and allocates that appropriately to the Agents.
-	\item During the 5th time step, the Agents appropriates the demand and generation allocation that has been given to them
+	\item During the 5th time step, the Agents appropriates the demand and generation allocation that has been given to them.
 \end{enumerate}
 
 \section*{Agent Class Structure and Implementation}
@@ -18,8 +18,8 @@ Agents in Presage 2 are created by extending the \textit{AbstractParticipant} cl
 
 A Virtual Agent (\textit{ParentAgent} class) represents connected Prosumer Agents. It is required to:
 \begin{itemize}
-	\item Keep track of which Agent is the Supervisor Agent
-	\item Keep track of the Prosumer Agents that it is connected to and submit demand and Generation requests on their behalf
+	\item Keep track of the Supervisor Agent, and communicate with it the group demand and generation requests
+	\item Keep track of the Prosumer Agents that it is connected to and submit demand and generation requests on their behalf
 	\item Submit generation and demand requests to the Supervisor Agent it is connected to
 	\item Enforce demand and generation quotas on connected Prosumer Agents
 \end{itemize}
@@ -28,7 +28,7 @@ To perform the duties outlined above, the following methods are implemented in t
 \begin{itemize}
 	\item The \textit{constructor} of this object is responsible for keeping track of which Agent is the Supervisor Agent. The \textit{constructor} is called when this object is created in the initial Simulation set-up as part of the Agent creation and initialisation process.
 	\item \textit{addChild()} method is used for keeping track of the Agents. This is also called during the initial Simulation set-up as part of the Agent creation and initialisation process.
-	\item \textit{step(int)} method is called by Presage during the simulation to allow the Agent to act on the environment. demand and Generation requests are sent to the supervisor, and allocation of demand and generation are also made to the Agents when this method is called automatically by Presage during a simulation.
+	\item \textit{step(int)} method is called by Presage during the simulation to allow the Agent to act on the environment. demand and generation requests are sent to the supervisor, and allocation of demand and generation are also made to the Agents when this method is called automatically by Presage during a simulation.
 \end{itemize}
 
 The class \textit{MasterAgent} is how a Supervisor Agent is defined within the Simulator. As a special type of Virtual Agent, it extends from \textit{ParentAgent} class and is required to only do two things:
@@ -40,13 +40,13 @@ The class \textit{MasterAgent} is how a Supervisor Agent is defined within the S
 To satisfy those requirements the following methods in the class are implemented:
 \begin{itemize}
 	\item \textit{addChild()} method is used for keeping track of the Virtual Agents. This is called during the initial Simulation set-up as part of the Agent creation and initialisation process.
-	\item \textit{step(int)} method is called by Presage during the simulation to allow the Agent to act on the environment. Demand and Generation are allocated to the Virtual Agents when this method is called automatically by Presage
+	\item \textit{step(int)} method is called by Presage during the simulation to allow the Agent to act on the environment. Demand and generation are allocated to the Virtual Agents when this method is called automatically by Presage
 \end{itemize}
 
 Prosumer Agents are Virtual Agents but with no aggregation function, as a Prosumer Agent is the most elementary Agent is the most elementary Agent or sub-community in this holonic system simulation. A Prosumer Agent is required to:
 \begin{itemize}
 	\item Keep track of which Agent is the Virtual Agent
-	\item Submit Generation and demand requests to the Virtual Agent it is connected to
+	\item Submit generation and demand requests to the Virtual Agent it is connected to
 	\item Appropriate the allocated amount of generation and demand allocated
 \end{itemize}
 
@@ -122,7 +122,7 @@ Similar to the \textit{GlobalEnvService} class, if there isn't enough generation
 \end{figure}
 
 \subsection*{Virtual Agent Environment Service}
-The \textit{ParentEnvService} is the Environment Service accessible by both the Virtual Agents and the Prosumer Agents. The \textit{ParentEnvService} inherits from the \textit{PowerPoolEnvService}, and does the same things on a smaller scale. The \textit{ParentEnvService} is used to store information about the Prosumer Agents, such as their individual demand and generation requests, and also contain information about their allocations. During time step 1 of a simulated hour, Agents store their Demand and Generation requests in this Environment Service as a "shared state". During time step 2 of a simulated hour, Virtual Agents aggregate the stored demand and generation requests and store them in the \textit{PowerPoolEnvService}. During time step 5, Agents retrieve their allocations from the \textit{ParentEnvService}.
+The \textit{ParentEnvService} is the Environment Service accessible by both the Virtual Agents and the Prosumer Agents. The \textit{ParentEnvService} inherits from the \textit{PowerPoolEnvService}, and does the same things on a smaller scale. The \textit{ParentEnvService} is used to store information about the Prosumer Agents, such as their individual demand and generation requests, and also contain information about their allocations. During time step 1 of a simulated hour, Agents store their demand and generation requests in this Environment Service as a "shared state". During time step 2 of a simulated hour, Virtual Agents aggregate the stored demand and generation requests and store them in the \textit{PowerPoolEnvService}. During time step 5, Agents retrieve their allocations from the \textit{ParentEnvService}.
 
 \section*{Setting up the simulation}
 To set up the simulation with realistic demand and generation profiles, some measured data over a 24 hour period was used to set up the demand and generation profiles of the Agents. To simulate random and independent behaviour between Agents, each of the measured data points was randomly changed by 20\% according to a normal distribution centred around the data points. Figures \ref{fig:WindGenProfile}, \ref{fig:SolarGenProfile} and \ref{fig:DemandProfile} show a plot of the wind generation, solar generation and demand data used to set up the simulation.

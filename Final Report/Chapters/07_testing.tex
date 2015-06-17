@@ -126,7 +126,7 @@ To check that the voting mechanism was fed back into the system, the aggregate v
 \end{figure}
 
 \section*{Bugs}
-Under Presage 2, all communication between Agents are stored in the Environment Services by the sending party and accessed by the receiving party. With all simulations under Presage 2 being multi-threaded, there are some occurrences of Agents being in different time-steps in the simulation. If a Virtual Agent was in a time-step ahead of the Agents connected to it, the Virtual Agent will sometimes access the demand and generation request data before they are ready. This usually causes a Java concurrency error warning in the console. This bug rarely occurs, and usually disappears when the simulation is relaunched.
+Under Presage 2, all communication between Agents are stored in the Environment Services by the sending party and accessed by the receiving party. With all simulations under Presage 2 being multi-threaded, there are some occurrences of Agents being in different time-steps in the simulation. If a Virtual Agent was in a time-step ahead of the Agents connected to it, the Virtual Agent will sometimes access the demand and generation request data before they are ready. When this happens, it usually causes a Java concurrency error warning in the console. Fortunately, this bug rarely occurs, and usually disappears when the simulation is relaunched.
 
 % section section_name (end)
 %If data is available for the potential customers in Rugaragara, the simulation could be used in %conjunction with the feasibility study

@@ -83,11 +83,11 @@ public class dCES_Sim_test extends RunnableSimulation {
                 double token1 = inFile1.nextDouble();
                 WindProfile.add(token1);
                 it++;
-                logger.info("iteration: " + it);
-                Double[] tempsArray = WindProfile.toArray(new Double[0]);
-                for (Double s : tempsArray) {
-                    logger.info("reading: " + (s));
-                }
+//                logger.info("iteration: " + it);
+//                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+//                for (Double s : tempsArray) {
+//                    logger.info("reading: " + (s));
+//                }
             }
             inFile1.close();
         }catch (IOException e) {
@@ -100,10 +100,10 @@ public class dCES_Sim_test extends RunnableSimulation {
             while (inFile1.hasNext()) {
                 double token1 = inFile1.nextDouble();
                 SolarProfile.add(token1);
-                Double[] tempsArray = WindProfile.toArray(new Double[0]);
-                for (Double s : tempsArray) {
-                    logger.info("reading: " + (s));
-                }
+//                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+//                for (Double s : tempsArray) {
+//                    logger.info("reading: " + (s));
+//                }
             }
             inFile1.close();
         }catch (IOException e) {
@@ -117,10 +117,10 @@ public class dCES_Sim_test extends RunnableSimulation {
                 double token1 = inFile1.nextDouble();
                 token1 = token1*1.2;
                 DemandProfile.add(token1);
-                Double[] tempsArray = WindProfile.toArray(new Double[0]);
-                for (Double s : tempsArray) {
-                    logger.info("reading: " + (s));
-                }
+//                Double[] tempsArray = WindProfile.toArray(new Double[0]);
+//                for (Double s : tempsArray) {
+//                    logger.info("reading: " + (s));
+//                }
             }
             inFile1.close();
         }catch (IOException e) {
