@@ -19,7 +19,7 @@ Set up the Run Configuration as the following:
 
 ##Notes
 - Generation and demand profiles are stored in the `./data` folder. If changes aer made to any of the csv files, make sure to open them up in a text editor of your choice and get rid of the new line. 
-- finishTime of 119 simulates for 24 hours, 839 simulates 7 days.
+- finishTime of 119 simulates for 24 hours, 839 simulates 7 days. When changing the finishTime, make sure to change the parameter `hours` too.
 
 
 ## Project stuff
