@@ -29,9 +29,9 @@ public class dCES_Sim extends RunnableSimulation {
     private final Logger logger = Logger.getLogger(this.getClass());
 
     @Parameter(name = "output", optional = true)
-    public String output = "request.csv";
+    public String output = "debug_request.csv";
 
-    public String output2 = "allocation.csv";
+    public String output2 = "debug_allocation.csv";
 
     @Parameter(name = "mean")
     public int mean;
@@ -204,7 +204,7 @@ public class dCES_Sim extends RunnableSimulation {
         }
 
         try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentRanking.csv", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("debug_AgentRanking.csv", true)));
             out.println("hour, name, id, CanonEqualityRank, CanonNeedsRank, CanonProductivityRank, CanonSocialUtilityRank, CanonSupplyAndDemandRank"
             );
             out.close();
@@ -213,7 +213,7 @@ public class dCES_Sim extends RunnableSimulation {
         }
 
         try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("AgentCanonVotes.csv", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("debug_AgentCanonVotes.csv", true)));
             out.println("hour,id,Equalityweight,ProductivityWeight,UtilityWeight,NeedsWeight,SupplyAndDemandWeight"
             );
             out.close();
@@ -222,7 +222,7 @@ public class dCES_Sim extends RunnableSimulation {
         }
 
         try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("BordaRank.csv", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("debug_BordaRank.csv", true)));
             out.println("hour,id,canon,assigned rank");
             out.close(); //Fixing Resource specification not allowed here for source level below 1.7
         }catch (IOException e) {
@@ -230,7 +230,7 @@ public class dCES_Sim extends RunnableSimulation {
         }
 
         try{
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CanonAllocationFromGlobal.csv", true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("debug_CanonAllocationFromGlobal.csv", true)));
             out.println("hour, canon, id, Borda Pts, Borda pts norm, Borda Proportion, Borda Votes for Canon, Total Borda Votes");
             out.close(); //Fixing Resource specification not allowed here for source level below 1.7
         }catch (IOException e) {
