@@ -23,7 +23,7 @@ Set up the Run Configuration as the following:
 
 
 ## Project stuff
-To do: 
+Task list: 
 - Create multiple agents (done)
 - Create environment (done)
 - Make the Environment talk to the Agents (done)
@@ -32,7 +32,6 @@ To do:
 - Tidy up the code and publish! (done)
 - Explore nesting of agents (done)
   - Explore creating agentservice (not required)
-Next Steps:
 - Deploy self-organising demand/generation allocation algorithm for agents (done)
 - Run simulations (done)
 - Store simulation data (done)
