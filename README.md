@@ -22,7 +22,7 @@ Set up the Run Configuration as the following:
 - finishTime of 119 simulates for 24 hours, 839 simulates 7 days. When changing the finishTime, make sure to change the parameter `hours` too.
 
 
-## Project stuff
+## Project List
 Task list: 
 - Create multiple agents (done)
 - Create environment (done)
@@ -38,5 +38,5 @@ Task list:
 - Integrate JBoss Rules Engine (http://www.jboss.org/drools/) (not required)
 
 Potential future work:
-- Implement Agent cheating
+- Implement Agent cheating mechanism
 
