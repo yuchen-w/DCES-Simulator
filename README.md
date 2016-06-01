@@ -7,7 +7,7 @@ This contains a backup of all the sources I used for this project. If presage se
 C:\Users\YourUserName
 ```
 ###Decentralised CES
-This contains all of the source code for my final year project. Import this into Eclipse or IntelliJ as a Maven project. Follow the steps here: https://github.com/yuchen-w/FYP/blob/master/Decentralised%20CES/README.md
+This contains all of the source code for my final year project. Import this into Eclipse or IntelliJ as a Maven project.
 
 ###Final Report
 This folder contains the latex code and diagrams for the final report.
@@ -18,8 +18,8 @@ Set up the Run Configuration as the following:
 ![image](https://cloud.githubusercontent.com/assets/3355737/8119285/4df7767a-108c-11e5-9cb6-6162bc0e47cd.png)
 
 ##Notes
-- Generation and demand profiles are stored in the `./data` folder. If changes aer made to any of the csv files, make sure to open them up in a text editor of your choice and get rid of the new line. 
-- finishTime of 119 simulates for 24 hours, 839 simulates 7 days. When changing the finishTime, make sure to change the parameter `hours` too.
+- Generation and demand profiles are stored in the `./data` folder. If changes are made to any of the csv files, make sure to open them up in a text editor of your choice and get rid of the new line. 
+- finishTime of 119 simulates for 24 hours, 839 simulates 7 days. When changing the finishTime, be sure to change the parameter `hours` too.
 
 
 ## Project List
